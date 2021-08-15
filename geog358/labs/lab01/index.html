@@ -1,0 +1,3173 @@
+<!DOCTYPE html>
+<html lang="en" class="color-toggle-hidden">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark" />
+
+
+
+
+
+    <meta name="description" content="This lab is a gratefully modified version a lab from Lee Hachadoorian&rsquo;s github page
+ Learning Objective    To introduce ArcGIS and its basic data management, display, and analysis components. To learn how to work with map layers, query attribute tables and geographic features, create maps, and design and execute a simple GIS analysis. As a demonstration, you will map and analyze data from Philadelphia, Pennsylvania.
+Outline:    Learning Objective Submission requirements Tutorial  Acquiring the Data Opening ArcMap and Adding Map Layers  What are ArcMap documents?">
+
+
+
+    <title>Lab 01 - Intro to GISystems | So long as you get the GIST of it</title>
+
+    <link rel="icon" href="/classes/favicon/favicon-32x32.png" type="image/x-icon">
+
+    <script src="/classes/js/darkmode-ce906ea916.min.js"></script>
+
+<link rel="preload" as="font" href="/classes/fonts/Metropolis.woff2" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" as="font" href="/classes/fonts/LiberationSans.woff2" type="font/woff2" crossorigin="anonymous">
+
+<link rel="preload" href="/classes/main-468ccf24c5.min.css" as="style">
+<link rel="stylesheet" href="/classes/main-468ccf24c5.min.css" media="all">
+
+<link rel="preload" href="/classes/mobile-0e5d2e7ecf.min.css" as="style">
+<link rel="stylesheet" href="/classes/mobile-0e5d2e7ecf.min.css" media="screen and (max-width: 45rem)">
+
+<link rel="preload" href="/classes/print-f79fc3e5d7.min.css" as="style">
+<link rel="stylesheet" href="/classes/print-f79fc3e5d7.min.css" media="print">
+
+<link rel="preload" href="/classes/custom.css" as="style">
+<link rel="stylesheet" href="/classes/custom.css" media="all">
+
+
+
+<!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
+
+    
+
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+    
+<!-- geekdoc include: sprites/geekdoc.svg -->
+<svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_back" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.526v2.947H5.755l8.351 8.421-2.105 2.105-12-12 12-12 2.105 2.105-8.351 8.421H24z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_left_alt" xmlns="http://www.w3.org/2000/svg"><path d="M5.965 10.526V6.035L0 12l5.965 5.965v-4.491H24v-2.947H5.965z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_right_alt" xmlns="http://www.w3.org/2000/svg"><path d="M18.035 10.526V6.035L24 12l-5.965 5.965v-4.491H0v-2.947h18.035z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_bitbucket" xmlns="http://www.w3.org/2000/svg"><path d="M15.905 13.355c.189 1.444-1.564 2.578-2.784 1.839-1.375-.602-1.375-2.784-.034-3.403 1.151-.705 2.818.223 2.818 1.564zm1.907-.361c-.309-2.44-3.076-4.056-5.328-3.042-1.426.636-2.389 2.148-2.32 3.747.086 2.097 2.08 3.815 4.176 3.626s3.729-2.234 3.472-4.331zm4.108-9.315c-.756-.997-2.045-1.169-3.179-1.358-3.214-.516-6.513-.533-9.727.034-1.066.172-2.269.361-2.939 1.323 1.1 1.031 2.664 1.186 4.073 1.358 2.544.327 5.156.344 7.699.017 1.426-.172 3.008-.309 4.073-1.375zm.979 17.788c-.481 1.684-.206 3.953-1.994 4.932-3.076 1.701-6.806 1.89-10.191 1.289-1.787-.327-3.884-.894-4.864-2.578-.43-1.65-.705-3.334-.98-5.018l.103-.275.309-.155c5.121 3.386 12.288 3.386 17.427 0 .808.241.206 1.22.189 1.805zM26.01 4.951c-.584 3.764-1.255 7.51-1.908 11.257-.189 1.1-1.255 1.719-2.148 2.183-3.214 1.615-6.96 1.89-10.483 1.512-2.389-.258-4.829-.894-6.771-2.389-.911-.705-.911-1.908-1.083-2.922-.602-3.523-1.289-7.046-1.719-10.604.206-1.547 1.942-2.217 3.231-2.698C6.848.654 8.686.362 10.508.19c3.884-.378 7.854-.241 11.618.859 1.341.395 2.784.945 3.695 2.097.412.533.275 1.203.189 1.805z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_bookmark" xmlns="http://www.w3.org/2000/svg"><path d="M15.268 4.392q.868 0 1.532.638t.664 1.506v17.463l-7.659-3.268-7.608 3.268V6.536q0-.868.664-1.506t1.532-.638h10.876zm4.34 14.144V4.392q0-.868-.638-1.532t-1.506-.664H6.537q0-.868.664-1.532T8.733 0h10.876q.868 0 1.532.664t.664 1.532v17.412z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_auto" xmlns="http://www.w3.org/2000/svg"><path d="M16.846 18.938h2.382L15.22 7.785h-2.44L8.772 18.938h2.382l.871-2.44h3.95zm7.087-9.062L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809zm-11.385 4.937L14 10.282l1.452 4.531h-2.904z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_dark" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565q-1.51 0-3.079.697 1.917.871 3.108 2.701T15.22 14t-1.191 4.037-3.108 2.701q1.568.697 3.079.697zm9.933-11.559L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_light" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565 8.743 8.743 6.565 14t2.178 5.257T14 21.435zm9.933-3.311v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809L27.999 14z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_cloud_off" xmlns="http://www.w3.org/2000/svg"><path d="M9.023 10.5H7q-1.914 0-3.281 1.395t-1.367 3.309 1.367 3.281T7 19.852h11.375zM3.5 4.976l1.477-1.477L24.5 23.022l-1.477 1.477-2.352-2.297H6.999q-2.898 0-4.949-2.051t-2.051-4.949q0-2.844 1.969-4.867t4.758-2.133zm19.086 5.578q2.242.164 3.828 1.832T28 16.351q0 3.008-2.461 4.758l-1.695-1.695q1.805-.984 1.805-3.063 0-1.422-1.039-2.461t-2.461-1.039h-1.75v-.602q0-2.68-1.859-4.539t-4.539-1.859q-1.531 0-2.953.711l-1.75-1.695Q11.431 3.5 14.001 3.5q2.953 0 5.496 2.078t3.09 4.977z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_code" xmlns="http://www.w3.org/2000/svg"><path d="M9.917 24.5a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm0-21a1.75 1.75 0 10-3.501.001A1.75 1.75 0 009.917 3.5zm11.666 2.333a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm1.75 0a3.502 3.502 0 01-1.75 3.026c-.055 6.581-4.721 8.039-7.82 9.023-2.898.911-3.846 1.349-3.846 3.117v.474a3.502 3.502 0 011.75 3.026c0 1.932-1.568 3.5-3.5 3.5s-3.5-1.568-3.5-3.5c0-1.294.711-2.424 1.75-3.026V6.526A3.502 3.502 0 014.667 3.5c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5a3.502 3.502 0 01-1.75 3.026v9.06c.93-.456 1.914-.766 2.807-1.039 3.391-1.075 5.323-1.878 5.359-5.687a3.502 3.502 0 01-1.75-3.026c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_date" xmlns="http://www.w3.org/2000/svg"><path d="M27.192 28.844V11.192H4.808v17.652h22.384zm0-25.689q1.277 0 2.253.976t.976 2.253v22.459q0 1.277-.976 2.216t-2.253.939H4.808q-1.352 0-2.291-.901t-.939-2.253V6.385q0-1.277.939-2.253t2.291-.976h1.577V.001h3.23v3.155h12.769V.001h3.23v3.155h1.577zm-3.155 11.267v3.155h-3.23v-3.155h3.23zm-6.46 0v3.155h-3.155v-3.155h3.155zm-6.384 0v3.155h-3.23v-3.155h3.23z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_download" xmlns="http://www.w3.org/2000/svg"><path d="M2.866 28.209h26.269v3.79H2.866v-3.79zm26.268-16.925L16 24.418 2.866 11.284h7.493V.001h11.283v11.283h7.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_email" xmlns="http://www.w3.org/2000/svg"><path d="M28.845 9.615v-3.23L16 14.422 3.155 6.385v3.23L16 17.577zm0-6.46q1.277 0 2.216.977T32 6.385v19.23q0 1.277-.939 2.253t-2.216.977H3.155q-1.277 0-2.216-.977T0 25.615V6.385q0-1.277.939-2.253t2.216-.977h25.69z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_git" xmlns="http://www.w3.org/2000/svg"><path d="M27.472 12.753L15.247.529a1.803 1.803 0 00-2.55 0l-2.84 2.84 2.137 2.137a2.625 2.625 0 013.501 3.501l3.499 3.499a2.625 2.625 0 11-1.237 1.237l-3.499-3.499c-.083.04-.169.075-.257.106v7.3a2.626 2.626 0 11-1.75 0v-7.3a2.626 2.626 0 01-1.494-3.607L8.62 4.606l-8.09 8.09a1.805 1.805 0 000 2.551l12.225 12.224a1.803 1.803 0 002.55 0l12.168-12.168a1.805 1.805 0 000-2.551z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_github" xmlns="http://www.w3.org/2000/svg"><path d="M16 .394c8.833 0 15.999 7.166 15.999 15.999 0 7.062-4.583 13.062-10.937 15.187-.813.146-1.104-.354-1.104-.771 0-.521.021-2.25.021-4.396 0-1.5-.5-2.458-1.083-2.958 3.562-.396 7.312-1.75 7.312-7.896 0-1.75-.625-3.167-1.646-4.291.167-.417.708-2.042-.167-4.25-1.333-.417-4.396 1.646-4.396 1.646a15.032 15.032 0 00-8 0S8.937 6.602 7.603 7.018c-.875 2.208-.333 3.833-.167 4.25-1.021 1.125-1.646 2.542-1.646 4.291 0 6.125 3.729 7.5 7.291 7.896-.458.417-.875 1.125-1.021 2.146-.917.417-3.25 1.125-4.646-1.333-.875-1.521-2.458-1.646-2.458-1.646-1.562-.021-.104.979-.104.979 1.042.479 1.771 2.333 1.771 2.333.938 2.854 5.396 1.896 5.396 1.896 0 1.333.021 2.583.021 2.979 0 .417-.292.917-1.104.771C4.582 29.455-.001 23.455-.001 16.393-.001 7.56 7.165.394 15.998.394zM6.063 23.372c.042-.083-.021-.187-.146-.25-.125-.042-.229-.021-.271.042-.042.083.021.187.146.25.104.062.229.042.271-.042zm.646.709c.083-.062.062-.208-.042-.333-.104-.104-.25-.146-.333-.062-.083.062-.062.208.042.333.104.104.25.146.333.062zm.625.937c.104-.083.104-.25 0-.396-.083-.146-.25-.208-.354-.125-.104.062-.104.229 0 .375s.271.208.354.146zm.875.875c.083-.083.042-.271-.083-.396-.146-.146-.333-.167-.417-.062-.104.083-.062.271.083.396.146.146.333.167.417.062zm1.187.521c.042-.125-.083-.271-.271-.333-.167-.042-.354.021-.396.146s.083.271.271.312c.167.062.354 0 .396-.125zm1.313.104c0-.146-.167-.25-.354-.229-.187 0-.333.104-.333.229 0 .146.146.25.354.229.187 0 .333-.104.333-.229zm1.208-.208c-.021-.125-.187-.208-.375-.187-.187.042-.312.167-.292.312.021.125.187.208.375.167s.312-.167.292-.292z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_gitlab" xmlns="http://www.w3.org/2000/svg"><path d="M1.629 11.034L14 26.888.442 17.048a1.09 1.09 0 01-.39-1.203l1.578-4.811zm7.217 0h10.309l-5.154 15.854zM5.753 1.475l3.093 9.559H1.63l3.093-9.559a.548.548 0 011.031 0zm20.618 9.559l1.578 4.811c.141.437-.016.922-.39 1.203l-13.558 9.84 12.371-15.854zm0 0h-7.216l3.093-9.559a.548.548 0 011.031 0z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_heart" xmlns="http://www.w3.org/2000/svg"><path d="M16 29.714a1.11 1.11 0 01-.786-.321L4.072 18.643c-.143-.125-4.071-3.714-4.071-8 0-5.232 3.196-8.357 8.535-8.357 3.125 0 6.053 2.464 7.464 3.857 1.411-1.393 4.339-3.857 7.464-3.857 5.339 0 8.535 3.125 8.535 8.357 0 4.286-3.928 7.875-4.089 8.035L16.785 29.392c-.214.214-.5.321-.786.321z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_down" xmlns="http://www.w3.org/2000/svg"><path d="M3.281 5.36L14 16.079 24.719 5.36 28 8.641l-14 14-14-14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_left" xmlns="http://www.w3.org/2000/svg"><path d="M25.875 28.25L22.125 32 6.126 16.001 22.125.002l3.75 3.75-12.25 12.25z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_right" xmlns="http://www.w3.org/2000/svg"><path d="M6.125 28.25L18.375 16 6.125 3.75 9.875 0l15.999 15.999L9.875 31.998z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_up" xmlns="http://www.w3.org/2000/svg"><path d="M24.719 22.64L14 11.921 3.281 22.64 0 19.359l14-14 14 14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_link" xmlns="http://www.w3.org/2000/svg"><path d="M24.037 7.963q3.305 0 5.634 2.366T32 16t-2.329 5.671-5.634 2.366h-6.46v-3.08h6.46q2.028 0 3.493-1.465t1.465-3.493-1.465-3.493-3.493-1.465h-6.46v-3.08h6.46zM9.615 17.578v-3.155h12.77v3.155H9.615zM3.005 16q0 2.028 1.465 3.493t3.493 1.465h6.46v3.08h-6.46q-3.305 0-5.634-2.366T0 16.001t2.329-5.671 5.634-2.366h6.46v3.08h-6.46q-2.028 0-3.493 1.465t-1.465 3.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_menu" xmlns="http://www.w3.org/2000/svg"><path d="M.001 5.334h31.998v3.583H.001V5.334zm0 12.416v-3.5h31.998v3.5H.001zm0 8.916v-3.583h31.998v3.583H.001z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_notification" xmlns="http://www.w3.org/2000/svg"><path d="M22.615 19.384l2.894 2.894v1.413H2.49v-1.413l2.894-2.894V12.25q0-3.365 1.716-5.856t4.745-3.231v-1.01q0-.875.606-1.514T13.999 0t1.548.639.606 1.514v1.01q3.029.74 4.745 3.231t1.716 5.856v7.134zM14 27.999q-1.211 0-2.053-.808t-.841-2.019h5.788q0 1.144-.875 1.986T14 27.999z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_path" xmlns="http://www.w3.org/2000/svg"><path d="M28 12.62h-9.793V8.414h-2.826v11.173h2.826v-4.206H28V26.62h-9.793v-4.206H12.62v-14H9.794v4.206H.001V1.381h9.793v4.206h8.413V1.381H28V12.62z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_person" xmlns="http://www.w3.org/2000/svg"><path d="M16 20.023q5.052 0 10.526 2.199t5.473 5.754v4.023H0v-4.023q0-3.555 5.473-5.754t10.526-2.199zM16 16q-3.275 0-5.614-2.339T8.047 8.047t2.339-5.661T16 0t5.614 2.386 2.339 5.661-2.339 5.614T16 16z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_search" xmlns="http://www.w3.org/2000/svg"><path d="M11.925 20.161q3.432 0 5.834-2.402t2.402-5.834-2.402-5.834-5.834-2.402-5.834 2.402-2.402 5.834 2.402 5.834 5.834 2.402zm10.981 0L32 29.255 29.255 32l-9.094-9.094v-1.458l-.515-.515q-3.26 2.831-7.721 2.831-4.976 0-8.45-3.432T.001 11.925t3.474-8.45 8.45-3.474 8.407 3.474 3.432 8.45q0 1.802-.858 4.075t-1.973 3.646l.515.515h1.458z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_shield" xmlns="http://www.w3.org/2000/svg"><path d="M22.167 15.166V3.5h-8.166v20.726c.93-.492 2.424-1.349 3.883-2.497 1.95-1.531 4.284-3.919 4.284-6.562zm3.499-13.999v14c0 7.674-10.737 12.523-11.192 12.724-.146.073-.31.109-.474.109s-.328-.036-.474-.109c-.456-.201-11.192-5.049-11.192-12.724v-14C2.334.529 2.863 0 3.501 0H24.5c.638 0 1.167.529 1.167 1.167z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_tags" xmlns="http://www.w3.org/2000/svg"><path d="M6.606 7.549c0-1.047-.84-1.887-1.887-1.887s-1.887.84-1.887 1.887.84 1.887 1.887 1.887 1.887-.84 1.887-1.887zm15.732 8.493c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546s-.988-.206-1.327-.546L1.342 14.066C.59 13.329 0 11.899 0 10.852V4.718a1.9 1.9 0 011.887-1.887h6.134c1.047 0 2.477.59 3.229 1.342L21.792 14.7c.339.354.546.84.546 1.342zm5.661 0c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546-.767 0-1.15-.354-1.651-.87l6.93-6.93c.339-.339.546-.826.546-1.327s-.206-.988-.546-1.342L13.609 4.173c-.752-.752-2.182-1.342-3.229-1.342h3.303c1.047 0 2.477.59 3.229 1.342L27.454 14.7c.339.354.546.84.546 1.342z"/></symbol></svg>
+
+
+
+    <div class="wrapper ">
+        <input type="checkbox" class="hidden" id="menu-control" />
+        
+        <header class="gdoc-header">
+    <div class="container flex align-center justify-between">
+        
+        <label for="menu-control" class="gdoc-nav__control">
+            <svg class="icon gdoc_menu"><use xlink:href="#gdoc_menu"></use></svg>
+            <svg class="icon gdoc_arrow_back"><use xlink:href="#gdoc_arrow_back"></use></svg>
+        </label>
+        
+        <a class="gdoc-header__link" href="https://jimcoll.github.io/classes/">
+            <span class="gdoc-brand flex align-center">
+                <img class="gdoc-brand__img" src="/classes/logo.png" alt="">
+                <span class="gdoc-brand__title">So long as you get the GIST of it</span>
+            </span>
+        </a>
+        <span id="gdoc-dark-mode">
+            <svg class="icon gdoc_brightness_dark"><use xlink:href="#gdoc_brightness_dark"></use></svg>
+            <svg class="icon gdoc_brightness_light"><use xlink:href="#gdoc_brightness_light"></use></svg>
+            <svg class="icon gdoc_brightness_auto"><use xlink:href="#gdoc_brightness_auto"></use></svg>
+        </span>
+    </div>
+</header>
+
+
+        <main class="container flex flex-even">
+            
+            <aside class="gdoc-nav">
+                <nav>
+    
+    <div class="gdoc-search">
+        <svg class="icon gdoc_search"><use xlink:href="#gdoc_search"></use></svg>
+        <input type="text" id="gdoc-search-input" class="gdoc-search__input" placeholder="Search..."
+            aria-label="Search" maxlength="64" />
+        <div class="gdoc-search__spinner spinner hidden"></div>
+        <ul id="gdoc-search-results" class="gdoc-search__list"></ul>
+    </div>
+
+
+
+    <section class="gdoc-nav--main">
+        <h2>Navigation</h2>
+        
+            
+
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-3ac26c08" class="gdoc-nav__toggle" >
+            <label for="navtree-3ac26c08" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/" class="gdoc-nav__entry ">
+                        Introduction to GEOINT -- GEOG111
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-57082eb1" class="gdoc-nav__toggle" >
+            <label for="navtree-57082eb1" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Computer basics
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Introduction to Google Earth Pro
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Coordinates and Position Measurements
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - GPS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - GIS introduction
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - spatial analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Digital Terrain Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Map making
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab09A/" class="gdoc-nav__entry ">
+                        Lab 09A - 3D Modeling and Visualization
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab09B/" class="gdoc-nav__entry ">
+                        Lab 09B - Cloud based GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab 10 - Visual Imagery Interpretation
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab11/" class="gdoc-nav__entry ">
+                        Lab 11 - Remotely Sensed Imagery and Color Composites
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab12/" class="gdoc-nav__entry ">
+                        Lab 12 - Landsat 8 Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab13/" class="gdoc-nav__entry ">
+                        Lab 13 - Earth Observing Missions Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab14/" class="gdoc-nav__entry ">
+                        Lab 14 - Final Lab activity
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-9af49685" class="gdoc-nav__toggle" checked>
+            <label for="navtree-9af49685" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/" class="gdoc-nav__entry ">
+                        Introduction to GIS -- GEOG358
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-2ef21881" class="gdoc-nav__toggle" checked>
+            <label for="navtree-2ef21881" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab00/" class="gdoc-nav__entry ">
+                        Lab 00 - Intro to GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab01/" class="gdoc-nav__entry is-active">
+                        Lab 01 - Intro to GISystems
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Projections and Coordinate Systems
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Using GPS for Field Data Collection
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - On-Screen Digitizing &amp; Image Restoration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - Building a GIS database
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - Selections Queries and Joins
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Overlay &amp; site suitability analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Introduction to network analyist and ArcScene
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab09/" class="gdoc-nav__entry ">
+                        Lab 09 - Interpolation and Fire Hazard Modeling
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/termpaper/" class="gdoc-nav__entry ">
+                        Project
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-91899dd7" class="gdoc-nav__toggle" >
+            <label for="navtree-91899dd7" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/" class="gdoc-nav__entry ">
+                        Remote Sensing -- GEOG526
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-efafcb0c" class="gdoc-nav__toggle" >
+            <label for="navtree-efafcb0c" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/bib/" class="gdoc-nav__entry ">
+                        Bibliography Guidelines
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab - Data Acquisition and Image Preprocessing
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab - Introduction to ERDAS IMAGINE I
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab09A/" class="gdoc-nav__entry ">
+                        Lab - Introduction to ERDAS IMAGINE （Part II）
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO IMAGE INTERPRETATION
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab11/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO MODIS TIME SERIES
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab - LANDSAT TM &amp; SPOT IMAGERY
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab09B/" class="gdoc-nav__entry ">
+                        Lab - Remote Sensing (Assignment 9) NDVI
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab13/" class="gdoc-nav__entry ">
+                        Lab - Remote Sensing with RADAR Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab12/" class="gdoc-nav__entry ">
+                        Lab - THERMAL IMAGERY
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Map making
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab14/" class="gdoc-nav__entry ">
+                        Lab 14 - Final Lab activity
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab - Internet Resources Exploration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab - Maps &amp; Aerial Photography
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO UNIT CONVERSION &amp; SCALE PROBLEMS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab - ELECTROMAGNETIC RADIATION PRINCIPLES
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-a5a58dbc" class="gdoc-nav__toggle" >
+            <label for="navtree-a5a58dbc" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/" class="gdoc-nav__entry ">
+                        Intermediate GIS -- GEOG558
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-e44c6ffc" class="gdoc-nav__toggle" >
+            <label for="navtree-e44c6ffc" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Data survey and database building
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Cartographic Modeling
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Focal Operations
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - Zonal Operations
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - Model Builder
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - Cost Distance, Region Groups, more Model Builder &amp; Python
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Siting a New School with Model Builder and Fungus weight
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Advanced Terrain Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab09/" class="gdoc-nav__entry ">
+                        Lab 09 - Descriptive Spatial Statistics and Point Pattern Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab 10 - Spatial Interpolation
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/termpaper/" class="gdoc-nav__entry ">
+                        Project
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-643316ca" class="gdoc-nav__toggle" >
+            <label for="navtree-643316ca" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/" class="gdoc-nav__entry ">
+                        Random bin
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/Install_Help/" class="gdoc-nav__entry ">
+                        Installing GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/cart_prime/" class="gdoc-nav__entry ">
+                        Cartography primer
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FOSS/" class="gdoc-nav__entry ">
+                        FOSS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FirstGoogleEarthMap/" class="gdoc-nav__entry ">
+                        A basic map in Google Maps
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/dronemapping/" class="gdoc-nav__entry ">
+                        Drone Mapping
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FOSS_RS/" class="gdoc-nav__entry ">
+                        RS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/GEE_intro/" class="gdoc-nav__entry ">
+                        GEE
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-4d073202" class="gdoc-nav__toggle" >
+            <label for="navtree-4d073202" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/website/" class="gdoc-nav__entry ">
+                        Creating a website
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/website/oldwebsite/" class="gdoc-nav__entry ">
+                        Old website tutorial
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+
+
+
+
+        
+    </section>
+
+    <section class="gdoc-nav--more">
+        
+    </section>
+</nav>
+
+            </aside>
+            
+
+            <div class="gdoc-page">
+                
+    
+
+
+    
+
+
+
+
+
+
+<div class="gdoc-page__header flex flex-wrap
+     justify-between 
+     hidden-mobile 
+    " itemprop="breadcrumb">
+    
+    <div>
+        <svg class="icon gdoc_path hidden-mobile"><use xlink:href="#gdoc_path"></use></svg>
+        <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            
+            
+            
+            
+    
+    
+        
+        
+        
+        
+    
+    
+        
+        
+        
+        
+    
+    
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/' href='/classes/'><span itemprop='name'>Classes</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/geog358/' href='/classes/geog358/'><span itemprop='name'>Introduction to GIS -- GEOG358</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/geog358/labs/' href='/classes/geog358/labs/'><span itemprop='name'>Labs</span></a><meta itemprop='position' content='4' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Lab 01 - Intro to GISystems</span><meta itemprop='position' content='5' /></li>
+    
+
+    
+
+    
+
+    
+
+        </ol>
+    </div>
+    
+    
+</div>
+
+
+    <article class="gdoc-markdown gdoc-markdown__align--left">
+        <h1>Lab 01 - Intro to GISystems</h1>
+        <blockquote>
+<p>This lab is a gratefully modified version a lab from <a class="gdoc-markdown__link" href="https://github.com/leehach">Lee Hachadoorian&rsquo;s github page</a></p>
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="learning-objective">
+        Learning Objective
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#learning-objective" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Learning Objective" href="#learning-objective">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>To introduce ArcGIS and its basic data management, display, and analysis components. To learn how to work with map layers, query attribute tables and geographic features, create maps, and design and execute a simple GIS analysis. As a demonstration, you will map and analyze data from Philadelphia, Pennsylvania.</p>
+<p><strong>Outline:</strong>
+
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#learning-objective">Learning Objective</a></li>
+        <li><a href="#submission-requirements">Submission requirements</a></li>
+        <li><a href="#tutorial">Tutorial</a>
+          <ul>
+            <li><a href="#acquiring-the-data">Acquiring the Data</a></li>
+            <li><a href="#opening-arcmap-and-adding-map-layers"><strong>Opening ArcMap and Adding Map Layers</strong></a>
+              <ul>
+                <li><a href="#what-are-arcmap-documents-mxd-files">What are ArcMap documents? (.mxd files)</a></li>
+                <li><a href="#saving-a-map-document">Saving a Map Document</a></li>
+                <li><a href="#opening-your-arcmap-document-mxd-file">Opening your ArcMap Document (.mxd file)</a></li>
+                <li><a href="#remove-map-layers-from-map-document">Remove Map Layers from Map Document</a></li>
+                <li><a href="#organizing-gis-data">Organizing GIS data</a></li>
+                <li><a href="#viewing-shapefiles-between-folders">Viewing Shapefiles between Folders</a></li>
+                <li><a href="#repairing-broken-data-links">Repairing Broken Data Links</a></li>
+                <li><a href="#using-relative-paths">Using Relative Paths</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#a-handful-of-basic-operations"><strong>A handful of basic operations</strong></a>
+          <ul>
+            <li><a href="#changing-the-symbology-of-map-layers">Changing the Symbology of Map Layers</a>
+              <ul>
+                <li><a href="#change-color">Change Color</a></li>
+                <li><a href="#change-point-glyph-symbol-and-color">Change Point Glyph (Symbol) and Color</a></li>
+                <li><a href="#using-the-tools-toolbar-to-navigate-and-get-information">Using the Tools Toolbar to Navigate and Get Information</a></li>
+                <li><a href="#zoom-and-pan">Zoom and Pan</a></li>
+                <li><a href="#full-extent-previous-extent-and-next-extent">Full Extent, Previous Extent, and Next Extent</a></li>
+                <li><a href="#identify-features">Identify Features</a></li>
+                <li><a href="#measure-distances-and-areas">Measure Distances and Areas</a></li>
+              </ul>
+            </li>
+            <li><a href="#selecting-things-in-arcmap">Selecting things in ArcMap</a>
+              <ul>
+                <li><a href="#working-with-attribute-tables">Working with Attribute Tables</a></li>
+                <li><a href="#opening-the-attribute-table">Opening the Attribute Table</a></li>
+                <li><a href="#select-by-attribute-attribute-query">Select by Attribute (Attribute Query)</a></li>
+                <li><a href="#manual-selection">Manual Selection</a></li>
+              </ul>
+            </li>
+            <li><a href="#attribute-query">Attribute Query</a></li>
+            <li><a href="#graphical-selection">Graphical Selection</a></li>
+            <li><a href="#select-by-location-spatial-selection">Select by Location (Spatial Selection)</a></li>
+          </ul>
+        </li>
+        <li><a href="#getting-statistics-for-selected-records"><strong>Getting Statistics for Selected Records</strong></a></li>
+        <li><a href="#using-selected-features-in-another-selection-operation"><strong>Using Selected Features in Another Selection Operation</strong></a></li>
+        <li><a href="#creating-a-new-map-layer-from-a-selection-of-features"><strong>Creating a New Map Layer from a Selection of Features</strong></a></li>
+        <li><a href="#designing-and-exporting-a-map"><strong>Designing and Exporting a Map</strong></a>
+          <ul>
+            <li><a href="#working-in-layout-view">Working in Layout View</a></li>
+            <li><a href="#exporting-a-map-image">Exporting a Map Image</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#submission">Submission</a></li>
+  </ul>
+</nav><hr></div>
+
+</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="submission-requirements">
+        Submission requirements
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#submission-requirements" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Submission requirements" href="#submission-requirements">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h2 id="tutorial">
+        Tutorial
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#tutorial" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Tutorial" href="#tutorial">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="acquiring-the-data">
+        Acquiring the Data
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#acquiring-the-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Acquiring the Data" href="#acquiring-the-data">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>Create a <strong>workspace</strong>, which is a technical way of referring to a project folder, the folder where you store your data files, including both inputs and outputs. Thus, when you see a reference to &lsquo;your workspace&rsquo; here, you can think of it as &ldquo;your Lab1 data folder&rdquo;. Using the term &ldquo;workspace&rdquo; is more concise, and when you become a more advanced GIS user, setting the workspace becomes an important part of automating complex processes. If you have a flash drive, create a new workspace folder named &lsquo;Lab2&rsquo;. If you do not have a flash drive create a new folder in the Documents folder.</li>
+<li>First we will acquire the following spatial data layers for the city of Philadelphia: schools, bike routes, and neighborhoods. We will download data from <strong>PASDA</strong> (The Pennsylvania Geospatial Clearinghouse), which is an example of a <strong>geoportal</strong>, a website that collects geospatial data from many different sources organized around a particular theme or region of interest. Unsurprisingly, PASDA, hosts data related to Pennsylvania, and is maintained by Pennsylvania State University. PASDA hosts data provided by local governments, federal and state agencies, nonprofits, and academic institutions.</li>
+<li>Go to <a class="gdoc-markdown__link" href="http://www.pasda.psu.edu/">http://www.pasda.psu.edu.</a> Under SEARCH BY KEYWORD(S) enter &lsquo;Philadelphia&rsquo; and press submit.</li>
+<li>Find <em>2016 Philadelphia Planning - Schools</em>, click on the link and press <strong>Download</strong>, which will download a file.</li>
+<li>In addition to schools, find and download the following: <em>2016 Philadelphia Streets - Bike Network</em> &amp; <em>2016 Philadelphia Planning - Neighborhoods</em></li>
+<li>(Check step) You should have downloaded and be able to locate 3 files:</li>
+</ol>
+<ul>
+<li>PhillyPlanning_Schools.zip</li>
+<li>PhillyPlanning_Neighborhoods.zip</li>
+<li>PhillyStreets_Bike_Network.zip</li>
+</ul>
+<ol start="7">
+<li>Notice all 3 files are .zip files, which is a single file that is composed of one or more individual files that have been compressed to a smaller storage size for convenience. The lab computers will automatically save the zip files to the Downloads folder. Copy or move these files to your Lab1 workspace folder.</li>
+<li>Unzip the archive. The lab computers have <a class="gdoc-markdown__link" href="https://www.7-zip.org/">7-Zip</a> installed on them. In File Explorer, right-click the file and choose <strong>7-Zip → Extract to &ldquo;folder_name&rdquo;</strong>.</li>
+</ol>
+<blockquote>
+<p>If you don&rsquo;t have that, you really should download it, but for this lab you can get by with the default windows extractor.  right-click the file and choose <strong>Extract all</strong>.</p>
+</blockquote>
+<ol start="9">
+<li>Unzip each of the .zip files using the 7-zip application (or another appropriate application) and extract the files to your workspace folder.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="opening-arcmap-and-adding-map-layers">
+        <strong>Opening ArcMap and Adding Map Layers</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#opening-arcmap-and-adding-map-layers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Opening ArcMap and Adding Map Layers" href="#opening-arcmap-and-adding-map-layers">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+
+
+
+<div class="gdoc-tabs">
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-uniqueid" id="tabs-uniqueid-0"
+      checked="checked"  />
+    <label for="tabs-uniqueid-0" class="gdoc-tabs__label">
+      ArcMap
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <ol>
+<li>Open ArcMap.</li>
+<li>The New Document dialog will appear. Click OK to begin with a blank map.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> When you are starting with a new map, it doesn&rsquo;t really matter whether you close this dialog by clicking OK, Cancel, or the <strong>X</strong> at the upper right.</p>
+</blockquote>
+<ol start="3">
+<li>Click the Add Data Button.</li>
+<li>In the Add Data browser window click the &lsquo;Connect to Folder&rsquo; button, navigate to your workspace folder, and press OK.</li>
+<li>Navigate into your workspace folder and add the neighborhoods, schools, and bike network data layers to ArcMap.</li>
+<li>After adding the files, it should look something like this (the colors may be different):
+<img src="/classes/geog358/img/image2.jpg" alt="imcenter"  /></li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="table-of-contents-toc">
+        <strong>Table of Contents (TOC)</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#table-of-contents-toc" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Table of Contents (TOC)" href="#table-of-contents-toc">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>The left panel of panel in ArcMap is called the &ldquo;Table of Contents&rdquo;. The TOC lists all the map layers found in the map window and shows what the geographic features in each map layer represent (points, lines, polygons, images, tables). The table of contents helps you manage the display order of map layers and symbols used to represent layers, as well as set the display and other properties (e.g. colors, line thickness) for each map layer. It is also the place where you can easily see the drive paths where your files are physically located on the computer (e.g., C:\temp\mygisfiles).</p>
+<blockquote class="gdoc-hint danger">
+  It is very important to remember where your files are located when you are working on a GIS project. In a GIS environment you will be doing a lot of data processing which requires the creation of new files, which must be saved. If you don&rsquo;t know where you saved a file, your instructor is not going to know either.
+</blockquote>
+<blockquote>
+<p>Hint: if you click on geoprocessing &gt; results and expand the top most tool to see where Arcmap last dumped something out*</p>
+</blockquote>
+<p>At the top of the TOC is a toolbar that controls how the layers are listed, and what you can do to them. You can hover over the buttons to see tooltips for their function:</p>
+<ul>
+<li>List By Drawing Order</li>
+<li>List By Source</li>
+<li>List By Visibility</li>
+<li>List By Selection</li>
+<li>Options<br>
+<img src="/classes/geog358/img/image3.jpg" alt="imcenter"  /></li>
+</ul>
+<ol>
+<li>Select the List By Drawing Order button (if it is not already selected)</li>
+<li>Try changing the order of the map layers. Click, hold, and drag the neighborhoods layer to the top. Notice that now that is &lsquo;on top&rsquo; it visually obscures the other layers (schools and bike network) below it. Drag and drop the schools and bike network layers to the top again.</li>
+<li>Select the List By Source button.</li>
+<li>Note the path, i.e. the drive and folder hierarchy, within which each layer is stored.</li>
+<li>You can also turn layers on and off (i.e. make them visible or not) by simply checking or unchecking the box next to the layer name in the Table of Contents.</li>
+</ol>
+
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-uniqueid" id="tabs-uniqueid-1"
+       />
+    <label for="tabs-uniqueid-1" class="gdoc-tabs__label">
+      ArcPro
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap">
+    <h1 id="linux-content">
+        Linux Content
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#linux-content" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Linux Content" href="#linux-content">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h1>
+</div>
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-uniqueid" id="tabs-uniqueid-2"
+       />
+    <label for="tabs-uniqueid-2" class="gdoc-tabs__label">
+      QGIS
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap">
+    <h1 id="windows-content">
+        Windows Content
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#windows-content" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Windows Content" href="#windows-content">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h1>
+</div>
+    </div>
+  
+</div>
+
+<div class="gdoc-page__anchorwrap">
+    <h4 id="what-are-arcmap-documents-mxd-files">
+        What are ArcMap documents? (.mxd files)
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#what-are-arcmap-documents-mxd-files" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor What are ArcMap documents? (.mxd files)" href="#what-are-arcmap-documents-mxd-files">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>ArcMap documents (which have the .mxd extension) allow desktop users to save and share their GIS project with other desktop users or reopen a project at a future time. After an ArcMap document is created and its various map properties are defined (map colors, projection), all of the properties of the GIS map are saved as part of the map document. Remember that the map document file (.mxd) only saves ArcMap document properties and the location of the map layers that are being used and does not save the geospatial data (that is, the data in the shapefiles or other geospatial data format). The ArcMap document will only reference the location where the data files are saved. If you move your data files to a different drive path or folder and then open your project, you will have to locate the files again.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="saving-a-map-document">
+        Saving a Map Document
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#saving-a-map-document" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Saving a Map Document" href="#saving-a-map-document">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><ol>
+<li>Click File, Save.</li>
+<li>Navigate to your workspace and save the project as Lab2.mxd.</li>
+<li>Click Save.</li>
+<li>Close the ArcMap software completely.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="opening-your-arcmap-document-mxd-file">
+        Opening your ArcMap Document (.mxd file)
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#opening-your-arcmap-document-mxd-file" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Opening your ArcMap Document (.mxd file)" href="#opening-your-arcmap-document-mxd-file">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><blockquote>
+<p>As with Microsoft Word or other Windows applications, if you have an existing map document, you can open it directly from the desktop. You do not have to have ArcMap already open.</p>
+</blockquote>
+<ol>
+<li>In File Explorer, navigate to your map document file (Lab1.mxd)</li>
+<li>Double-click the file to launch ArcMap and open your existing document. Again, as with other Windows applications, you can open an existing map document from the File menu. The File menu will also list recently opened documents.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="remove-map-layers-from-map-document">
+        Remove Map Layers from Map Document
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#remove-map-layers-from-map-document" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Remove Map Layers from Map Document" href="#remove-map-layers-from-map-document">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><ol>
+<li>Right-click Neighborhoods from the popup menu and click Remove.</li>
+<li>Close ArcMap completely. Do not save your changes.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="organizing-gis-data">
+        Organizing GIS data
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#organizing-gis-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Organizing GIS data" href="#organizing-gis-data">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>One of the most challenging parts of learning GIS is organizing your files and understanding where they are stored. You will find out in the next few weeks that when you perform spatial operations and/or geoprocess your data ArcGIS often creates new files. You need to stay organized (check you paths and know where the data are being stored). The faster you get this concept, the quicker you will learn the more important GIS concepts.</p>
+<p>There are many different spatial data formats. Vector data (points, lines and polygons) are commonly stored in <strong>shapefiles</strong>. A shapefile is a simple, nontopological format (topology will be explained later this term) for storing the geometric location and attribute information of geographic features. Geographic features in a shapefile can be represented by points, lines, or polygons.</p>
+<p>The shapefile format defines the geometry and attributes of geographically referenced features in three or more files with specific file extensions that should be stored in the same folder. Each file must have the same base name in order for ArcGIS to recognize them as part of the same spatial layer, for example, schools.shp, schools.shx, and schools.dbf.</p>
+<p>The following are common shapefile extensions. The first three (.shp,
+.shx, .dbf) are <strong>required</strong> by the shapefile standard:</p>
+<ul>
+<li>.shp&mdash;The main file that stores the feature geometry; required.<br/></li>
+<li>.shx&mdash;The index file that stores the index of the feature geometry; required.<br/></li>
+<li>.dbf&mdash;The dBASE table that stores the attribute information of features; required.<br/></li>
+<li>.prj&mdash;The file that stores the coordinate system information. <strong>All</strong> spatial data use <strong>some</strong> CRS (coordinate reference system), but shapefiles are sometimes distributed without the PRJ file. How to deal with that will be demonstrated in a future exercise.</li>
+<li>.sbn and .sbx&mdash;The files that store the spatial index of the features.</li>
+<li>.xml&mdash;<strong>Metadata</strong> (&ldquo;data about data&rdquo;) for ArcGIS&mdash;stores information about the shapefile, such as the source of the data, accuracy, publication date, time period, etc.<br/></li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="viewing-shapefiles-between-folders">
+        Viewing Shapefiles between Folders
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#viewing-shapefiles-between-folders" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Viewing Shapefiles between Folders" href="#viewing-shapefiles-between-folders">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>This section aims to show you that shapefiles are composed of many files that you must transport all together in one group to another location. Additionally, it is important to note where all the files are stored for each project that you work on.</p>
+<ol>
+<li>Open File Explorer and navigate to your workspace folder and examine the schools shapefile. There should be 8 files with the base name PhillyPlanning_Schools. These files must be kept together to be maintained. <em>THE LOSS OF ANY ONE OF THESE FILES CAN BREAK THE SHAPEFILE.</em></li>
+<li>Open ArcCatalog and navigate to your workspace so you can view the schools shapefile. Note that it appears as a single file in ArcCatalog, even though it is actually composed of 8 individual files.</li>
+<li>In ArcCatalog you can rename, copy, and move shapefiles, just as you can in File Explorer, and it will automatically maintain the integrity of all files that compose the shapefile. It is recommended to use the ArcCatalog windows to rename, copy, and move GIS data files (though it is still possible to use File Explorer for this purpose).</li>
+<li>Close ArcCatalog.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="repairing-broken-data-links">
+        Repairing Broken Data Links
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#repairing-broken-data-links" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Repairing Broken Data Links" href="#repairing-broken-data-links">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><blockquote>
+<p>ArcMap and ArcCatalog should be closed when you begin this section. Your Lab1 workspace folder should have a map document named Lab1.mxd which is linked to data in that folder. We are going to break that link and learn how to repair it.</p>
+</blockquote>
+<p>We are going to break the link by moving the map document. It could also be broken by moving the data to a new folder, or, if the data were not in the same folder as the map document, by renaming the data folder. If you don&rsquo;t have relative paths set (see next section), it can also be broken just by plugging your flash drive into a new computer and having it mount on a different drive letter. All of these are very common occurrences, so it is very likely that you will encounter broken data links when working with GIS.</p>
+<ol>
+<li>In File Explorer, move Lab1.mxd to a new location (this can be the desktop for ease of use)</li>
+<li>Double-click Lab1.mxd to open ArcMap. Notice that the map canvas is empty, and all of the layers have a red exclamation mark next to them. This indicates that a layer is defined in the map document, but the source data is not at the expected location. Any layer properties, such as the color of polygon features, are preserved, even if ArcMap can&rsquo;t find the polygons to display!<br>
+<img src="/classes/geog358/img/image4.jpg" alt="imcenter"  /></li>
+<li>Right-click on any of the layers in the TOC. From the popup menu select Data → Repair Data Source.&hellip;</li>
+<li>Navigate to the correct shapefile for the layer you clicked on. Select it and hit the Add button.</li>
+<li>Notice that ArcMap has repaired the link for not just that layer, but for all the other layers as well. The Repair Data Source feature will check whether other map document layers come from the same data source. In this case, since all of the shapefiles are in the same folder, all of the data links were repaired.</li>
+<li>Close ArcMap <strong>but do not save your changes</strong>.</li>
+<li>Move Lab1.mxd back into the Lab1 folder.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="using-relative-paths">
+        Using Relative Paths
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#using-relative-paths" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Using Relative Paths" href="#using-relative-paths">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>A file location can be stored using an <strong>absolute</strong> or a <strong>relative</strong> path. In the real world, an absolute path would be a location specified in some address system, like &ldquo;1801 N. Broad Street&rdquo;. A relative path would be a location specified in relation to your current location, like &ldquo;walk two blocks, turn left, walk three blocks, and go into the third building on the right&rdquo;. When you add geographic layers and tables to ArcMap and save the project (.mxd), the software does NOT store the data. It stores the paths to the data. When you use absolute paths, the data must be at the exact same location in the filesystem. If you work on a lab computer and store your map document and data in C:\temp\mystuff, but go home and copy the data to C:\other_folder\mystuff, ArcMap will not find the data, even though it is right there. If you work on a flash drive that is mounted as drive letter E:\, but then go work on another computer (or even return to the same computer) that happens to mount the flash drive as drive letter F:\, ArcMap will not find the data. In order to make sure that you keep your map document connected to your data, you must:</p>
+<ul>
+<li>Use relative paths for the map document.</li>
+<li>Copy your map document (MXD) and data as a unit. This will be easiest if you keep the data in the same folder as or an immediate subfolder (perhaps named &ldquo;data&rdquo;) of the map document.</li>
+</ul>
+<p>Relative or absolute paths is a property of the map document, so you may choose to have some that use relative paths and some that use absolute paths.  Check the path settings as follows:</p>
+<ol>
+<li>Reopen your Lab1.mxd map document.</li>
+<li>Click File → Map Document Properties.</li>
+<li>Check &ldquo;Store relative pathnames to data sources&rdquo; (if it is not checked) and Press OK.
+<img src="/classes/geog358/img/image5.jpg" alt="imcenter"  /></li>
+</ol>
+<blockquote>
+<p>Note: Usually, working with relative paths is preferable.</p>
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="a-handful-of-basic-operations">
+        <strong>A handful of basic operations</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#a-handful-of-basic-operations" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor A handful of basic operations" href="#a-handful-of-basic-operations">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><hr>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="changing-the-symbology-of-map-layers">
+        Changing the Symbology of Map Layers
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#changing-the-symbology-of-map-layers" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Changing the Symbology of Map Layers" href="#changing-the-symbology-of-map-layers">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>In ArcGIS it is very easy to change the colors and symbols of map layers. Let&rsquo;s try changing the color and symbols of the map layers in your Lab1 map document</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="change-color">
+        Change Color
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#change-color" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Change Color" href="#change-color">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><ol>
+<li>Turn off the bike network and schools layers so only neighborhoods is showing.</li>
+<li>Double click the neighborhoods layer in the TOC. (You can also right-click on the layer and select Properties from the popup menu.)</li>
+<li>Click on the Symbology tab.<br>
+<img src="/classes/geog358/img/image6.jpg" alt="imcenter"  /></li>
+<li>Click the colored polygon symbol.</li>
+<li>Select a new &lsquo;fill&rsquo; color and select a color from the color palette.</li>
+<li>Select &lsquo;outline&rsquo; color and select a new color.</li>
+<li>Make sure to choose a fill and outline color that makes it easy to see the individual neighborhoods.</li>
+<li>Click OK to see the new color settings.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="change-point-glyph-symbol-and-color">
+        Change Point Glyph (Symbol) and Color
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#change-point-glyph-symbol-and-color" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Change Point Glyph (Symbol) and Color" href="#change-point-glyph-symbol-and-color">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><ol>
+<li>Turn off all the layers except for the schools layer.</li>
+<li>Double click the schools layer.</li>
+<li>Click point symbol.</li>
+<li>Scroll down and change the glyph.</li>
+<li>Change the fill color.</li>
+<li>Make sure to choose a glyph and fill color that makes it easy to see the individual schools.</li>
+<li>Click OK.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="using-the-tools-toolbar-to-navigate-and-get-information">
+        Using the Tools Toolbar to Navigate and Get Information
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#using-the-tools-toolbar-to-navigate-and-get-information" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Using the Tools Toolbar to Navigate and Get Information" href="#using-the-tools-toolbar-to-navigate-and-get-information">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p><img src="/classes/geog358/img/image7.jpg" alt="imcenter"  />
+ArcMap has many toolbars, which can be toggled on and off in the Customize menu. A default installation will start with the following two toolbars visible:</p>
+<ul>
+<li><strong>Standard</strong>&mdash;This has file management features and actions common to almost all Windows software, including opening and saving files, cut-copy-paste, and undo-redo. We have already used to add spatial data to our map document.</li>
+<li><strong>Tools</strong>&mdash;This has a number of tools commonly and specifically used for working with geospatial data. We will explore it now.</li>
+</ul>
+<blockquote>
+<p>Hint: Hover the mouse over each of the different buttons to see their name and description.</p>
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="zoom-and-pan">
+        Zoom and Pan
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#zoom-and-pan" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Zoom and Pan" href="#zoom-and-pan">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Using the &lsquo;zoom in&rsquo; or &lsquo;zoom out&rsquo; tool you can navigate to and from close-up views. The pan tool shifts the display in any direction without changing the scale of the map</p>
+<ol>
+<li>Try the zoom tools</li>
+<li>Try the pan tool</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="full-extent-previous-extent-and-next-extent">
+        Full Extent, Previous Extent, and Next Extent
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#full-extent-previous-extent-and-next-extent" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Full Extent, Previous Extent, and Next Extent" href="#full-extent-previous-extent-and-next-extent">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>The map extent tools allow you to navigate through map extents. A map extent defines the geographic boundaries for displaying map layers within a data frame. <strong>Try the different map extent tools.</strong></p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="identify-features">
+        Identify Features
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#identify-features" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Identify Features" href="#identify-features">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>The identify tool allows you to quickly get attribute information about a geographic feature. Let&rsquo;s try to get info about the neighborhoods.</p>
+<ol>
+<li>Turn off all the layers except the neighborhoods.</li>
+<li>Select the &lsquo;Identify&rsquo; tool and click on one of the neighborhoods. The Identify window will appear. This shows you the attribute values from the attribute table for that neighborhood, such as its name.</li>
+<li>If you are not getting info about the neighborhoods, then you will need to change the &ldquo;Identify from&rdquo; layer in the dropdown at the top of the window.</li>
+<li>Try using this tool on the other map layers.</li>
+</ol>
+<blockquote>
+<p>Note that when features are close together (e.g. a bike network nearby a school), the Identify tool may select several nearby features. Zoom in until you can select a single feature.</p>
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="measure-distances-and-areas">
+        Measure Distances and Areas
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#measure-distances-and-areas" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Measure Distances and Areas" href="#measure-distances-and-areas">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><blockquote>
+<p>Skill demonstration: Can you tell me how big Philadelphia is?</p>
+</blockquote>
+<ol>
+<li>Click the Measure tool on the Tools toolbar to open the Measure dialog box.</li>
+<li>When the measure menu opens, click on the units dropdown menu (its down arrow), select distance, and then miles.</li>
+<li>Click on the northeastern tip of Philadelphia and then drag the ruler drag ruler tool to the southwestern tip and double click to take the measurement.</li>
+<li>Close the Measure tool.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="selecting-things-in-arcmap">
+        Selecting things in ArcMap
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#selecting-things-in-arcmap" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Selecting things in ArcMap" href="#selecting-things-in-arcmap">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Selecting and subsetting a database is one of the most fundamental operations one can do to data.  In AcrMap there are several ways one can go about accomplishing this feat.  This section will walk you the three most useful ways to select something.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="working-with-attribute-tables">
+        Working with Attribute Tables
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#working-with-attribute-tables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Working with Attribute Tables" href="#working-with-attribute-tables">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Along with feature classes (points, lines, and polygons) and image datasets (referred to more generally as raster datasets), tables represent one of the three key dataset types in GIS. Tables are used to store descriptive attributes about geographic features (e.g., census data for counties or census tracts, disease counts by health district).</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="opening-the-attribute-table">
+        Opening the Attribute Table
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#opening-the-attribute-table" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Opening the Attribute Table" href="#opening-the-attribute-table">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><ol>
+<li>Turn off all layers except for schools.</li>
+<li>Right-click the schools layer in the TOC (table of contents) and select &lsquo;Open Attribute Table&rsquo; from the popup menu.
+<img src="/classes/geog358/img/image10.jpg" alt="imcenter"  />
+The table containing the records for schools should open.
+<img src="/classes/geog358/img/image11.jpg" alt="imcenter"  /></li>
+<li>The attribute fields names appear at the top. Scroll across the table to view them all. Some important fields are:</li>
+</ol>
+<ul>
+<li>FACIL_NAME which contains the name of the school</li>
+<li>ENROLLMENT which contains the number of students</li>
+<li>GRADE_LEVE which contains the grade level of the school</li>
+<li>TYPE_SPECI which indicates whether the school is run by the&hellip;
+<ul>
+<li>District (Philadelphia School District)</li>
+<li>Private school</li>
+<li>Charter school</li>
+<li>Archdiocese (Catholic parish) school</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>Scroll down the table to view the records. Note the total number of records (rows) in the layer appears at the bottom (550 schools), along with a count of how many are currently selected, which at the moment should be 0).</li>
+<li>Open the attribute table for the bike network layer. Note the important fields:</li>
+</ol>
+<ul>
+<li>STREETNAME which indicates the name of the street</li>
+<li>TYPE which indicates the type of bike lane
+<ul>
+<li>buffered</li>
+<li>conventional</li>
+<li>sharrow</li>
+<li>conventional with sharrow</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>Open the attribute table for the neighborhood layer. Note the important fields:</li>
+</ol>
+<ul>
+<li>NAME indicating the name of the neighborhood</li>
+</ul>
+<ol start="5">
+<li>Close all the attribute tables.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="select-by-attribute-attribute-query">
+        Select by Attribute (Attribute Query)
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#select-by-attribute-attribute-query" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Select by Attribute (Attribute Query)" href="#select-by-attribute-attribute-query">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>An attribute query helps users select or view certain data on the map based on that data&rsquo;s attributes. It works the same way as a relational database like Microsoft Access.</p>
+<blockquote>
+<p><strong>Structured Query Language (SQL)</strong> is a set of defined expressions and syntax used to query and manipulate data in relational database management systems (RDBMS). The American National Standards Institute (ANSI) defines a standard for SQL. Most RDBMSs use that standard and have extended it, making SQL syntax across different RDBMSs slightly different from one another. Query expressions are used in ArcGIS to select a subset of features and table records. Query expressions in ArcGIS adhere to standard SQL expressions.</p>
+</blockquote>
+<p>One way to select geographic features is directly from the attribute table. From a table, you can manually select records with the mouse pointer, or you could select those records that meet some criteria (SQL query). Once you&rsquo;ve selected records in the table, you&rsquo;ll see those features selected (highlighted) on your map.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="manual-selection">
+        Manual Selection
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#manual-selection" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Manual Selection" href="#manual-selection">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><ol>
+<li>
+<p>Open the schools attribute table. Right click on the FACIL_NAME field and select &lsquo;Sort Ascending&rsquo;. This puts the schools in alphabetical order by name.</p>
+</li>
+<li>
+<p>Scroll down the table until you find the Dunbar, Paul Laurence school.</p>
+</li>
+<li>
+<p>Click on the row on the far left of the table to manually select that row (see circle in the picture below). Note the Dunbar school will be highlighted to show its selection &ndash; in both the attribute table and in the map (it is adjacent to Temple University Main Campus). Note that at bottom of the table it should indicate 1 out of 550 schools are selected.<br>
+<img src="/classes/geog358/img/image12.png" alt="imcenter"  /></p>
+</li>
+<li>
+<p>Clear the selection by clicking the Clear Selection button on the attribute table or in ArcMap.</p>
+</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="attribute-query">
+        Attribute Query
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#attribute-query" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Attribute Query" href="#attribute-query">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>
+<p>In the attribute table go the Table Options button at the top left and choose Select by Attributes.
+<img src="/classes/geog358/img/image14.jpg" alt="imcenter"  /></p>
+</li>
+<li>
+<p>A dialog box will pop up that allows to make a query statement. We will create a query that states which schools will be selected based on some criteria, in this example, the school with the name Dunbar, Paul Laurence.</p>
+</li>
+<li>
+<p>In the Select by Attributes dialog, note that the beginning of a standard SQL query appears above the lower text box: SELECT * FROM PhillyPlanning_Schools WHERE. The WHERE keyword indicates that a criteria is about to specified. The database engine will use this criteria to <strong>filter</strong> the records, that is, to select only those records which satisfy the criteria.</p>
+</li>
+<li>
+<p>In the top box, double click &quot;FACIL_NAME&quot;. It should appear in the text box below.</p>
+</li>
+<li>
+<p>Click the equals (=) button, then click the Get Unique Values button.</p>
+</li>
+<li>
+<p>Scroll down in the list of school names and double click 'Dunbar, Paul Laurence'. Note that the column name appears in double quotes. Text values, such as the school name, appear in single quotes. You should form a query appearing in the text box at the bottom of the dialog box:
+<img src="/classes/geog358/img/image15.jpg" alt="imcenter"  /></p>
+</li>
+<li>
+<p>Click Apply. The same school should be selected in the table and on the map.</p>
+</li>
+<li>
+<p>Close the Select by Attributes box and clear your selection.</p>
+</li>
+<li>
+<p>As another example, let&rsquo;s select schools with enrollments over 500 students. Open Select by Attributes and delete the last query statement.</p>
+</li>
+<li>
+<p>Create a query statement by double clicking the ENROLLMENT field at the top, then the greater than (&gt;) button then type in 500. Note that 500 is a numeric value, and does not appear in quotes. Press Apply.</p>
+</li>
+<li>
+<p>The selection should show that 212 out of 550 schools have enrollments over 500.</p>
+</li>
+<li>
+<p>You can also create a compound query. Build a new query in the Select By Attributes dialog box query window by clicking on the buttons that reads &quot;TYPE_SPECI&quot; = 'District' AND &quot;ENROLLMENT&quot; &gt; 600. This will select only schools run by the Philadelphia School District (as opposed to charter, private, or Archdiocese schools) with enrollments greater than 600 students.</p>
+</li>
+</ol>
+<blockquote>
+<p>Check: There should be 77 schools selected.</p>
+</blockquote>
+<ol start="13">
+<li>Close the Select by Attributes box, clear your selection, and close the attribute table.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="graphical-selection">
+        Graphical Selection
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#graphical-selection" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Graphical Selection" href="#graphical-selection">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>You can also select features interactively on the map.  The Tools toolbar in ArcMap contains a tool for graphically selecting features. The &lsquo;Select Features&rsquo; tool works using a single graphic that you interactively digitize (draw) as part of the selection process.</p>
+<ol>
+<li>
+<p>Click the Select Features button, then click &lsquo;Select by Rectangle&rsquo;
+<img src="/geog358/media/image18.jpg" alt=""  /></p>
+</li>
+<li>
+<p>Using the cursor draw a rectangle around a set of schools, say, the schools in West Philadelphia.
+<img src="/geog358/media/image19.jpg" alt=""  /></p>
+</li>
+<li>
+<p>Examine the selected records on the map and in the schools attribute table.</p>
+</li>
+<li>
+<p>You can also perform a graphical selection using a circle or other shapes.</p>
+</li>
+<li>
+<p>Experiment with different graphical selection options. When you are finished, clear your selection.</p>
+</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="select-by-location-spatial-selection">
+        Select by Location (Spatial Selection)
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#select-by-location-spatial-selection" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Select by Location (Spatial Selection)" href="#select-by-location-spatial-selection">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>You can also select features based on their spatial relationship to another feature, such as the distance between features or whether one feature contains another feature. As an example we will select schools located within 500 feet of the bike network.</p>
+<ol>
+<li>
+<p>Turn on the schools and bike network layers (neighborhoods should be off).</p>
+</li>
+<li>
+<p>From the menu at the top, choose Selection, then Select by Location.
+<img src="/geog358/media/image20.jpg" alt=""  /></p>
+</li>
+<li>
+<p>In the Select By Location dialog box choose</p>
+<ul>
+<li>Selection method: Select features from</li>
+<li>Check the box next to PhillyPlanning_Schools (since you want to select schools)</li>
+<li>Source Layer: PhillyStreets_Bike_Network</li>
+<li>Spatial selection method for target layer feature(s): are within a distance of the source layer feature</li>
+<li>Apply a search distance: 250 Feet
+<img src="/geog358/media/image21.jpg" alt=""  /></li>
+</ul>
+</li>
+<li>
+<p>Press OK.</p>
+</li>
+<li>
+<p>You should see 140 of the 550 schools selected. Open the attribute table for the schools layer to see how many schools are selected.</p>
+</li>
+<li>
+<p>Clear your selection so no schools are selected.</p>
+</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="getting-statistics-for-selected-records">
+        <strong>Getting Statistics for Selected Records</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#getting-statistics-for-selected-records" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Getting Statistics for Selected Records" href="#getting-statistics-for-selected-records">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><hr>
+<p>When exploring a table, you can immediately get statistics describing the numeric values in the columns. When you use the statistics tool you&rsquo;ll see how many values the column has, as well as the sum, minimum, mean, maximum, and standard deviation of those values. A histogram is also provided showing how the column&rsquo;s values are distributed.</p>
+<p>As an example, we will get statistics from the schools attribute table:</p>
+<ol>
+<li>
+<p>Clear all your selections so no schools are selected. Open the schools attribute table.</p>
+</li>
+<li>
+<p>Right-click the heading of the field Enrollment and select &ldquo;Statistics...&rdquo;</p>
+</li>
+<li>
+<p>On the Statistics dialog box, you&rsquo;ll see information about the values in the field whose heading you clicked.
+<img src="/geog358/media/image16.jpg" alt=""  /></p>
+</li>
+<li>
+<p>Note the statistics, e.g. minimum, maximum, mean, etc. The sum is the sum of the row values in the Enrollment field for all the schools, i.e. the total number of students in all schools &ndash; 231,981 students.</p>
+</li>
+<li>
+<p>Close the statistics box. Using Select by Attributes, select only the private schools. There should be 173 schools selected.</p>
+</li>
+<li>
+<p>Reopen the statistics for the Enrollment field. Note the Statistics tool operates only on selected rows (if any are selected). You can see the sum for enrollment for private schools is 15,860 &ndash; this is the total number of students in private schools.</p>
+</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="using-selected-features-in-another-selection-operation">
+        <strong>Using Selected Features in Another Selection Operation</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#using-selected-features-in-another-selection-operation" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Using Selected Features in Another Selection Operation" href="#using-selected-features-in-another-selection-operation">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><hr>
+<p>You can also select features from a set of features which are already selected, or alternatively, select a set of features from a set of selected source features. We&rsquo;ll use two examples for illustration.</p>
+<p>First, we will select features from a set of features &ndash; charter schools (first selection) and enrollments over 1,000 students (second selection).</p>
+<ol>
+<li>
+<p>Turn on only the schools and neighborhoods layers (turn off the bike network layer). Put the neighborhoods layer on the bottom of the drawing list so you can see both schools and neighborhoods layers clearly.</p>
+</li>
+<li>
+<p>Using Select by Attributes, select only the charter schools. There should be 94 selected.</p>
+</li>
+<li>
+<p>Open the Select by Attribute dialog box again, but this time for Method: choose select from current selection. Then, of those selected schools, select those with enrollments greater than 1,000. There should be 15 schools selected, which are both charter schools and with enrollments greater than 1,000 students.
+<img src="/geog358/media/image22.jpg" alt=""  /></p>
+</li>
+</ol>
+<p>Now, we will select a set of features from a set of selected source features &ndash; the neighborhoods that contain the selected schools.</p>
+<ol>
+<li>
+<p>Close the schools attribute table, but keep the 15 charter schools selected.
+<img src="/geog358/media/image23.jpg" alt=""  /></p>
+</li>
+<li>
+<p>Open Select By Location.</p>
+<ul>
+<li>For Selection method: choose select features from.</li>
+<li>For Target layer(s) check the box for the neighborhoods layer and uncheck all other boxes.</li>
+<li>For Source layer: choose the schools layer. Then check the Use selected features box.</li>
+<li>Under Spatial selection method for target layer feature(s): choose contain the source layer feature.</li>
+</ul>
+<blockquote>
+<p>This spatial relationship operator allows you to select based on spatial containment &ndash; whether on feature contains another feature &ndash; i.e. if a neighborhood contains a currently selected school. (Make sure the Apply a search distance box is NOT checked)</p>
+</blockquote>
+<ul>
+<li>Press OK.
+<img src="/geog358/media/image24.jpg" alt=""  /></li>
+</ul>
+</li>
+<li>
+<p>There should be 10 out of 48 neighborhoods selected.
+<img src="/geog358/media/image25.jpg" alt=""  /></p>
+</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="creating-a-new-map-layer-from-a-selection-of-features">
+        <strong>Creating a New Map Layer from a Selection of Features</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#creating-a-new-map-layer-from-a-selection-of-features" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Creating a New Map Layer from a Selection of Features" href="#creating-a-new-map-layer-from-a-selection-of-features">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><hr>
+<p>Frequently, you will want to save your selected subset of features as a separate, standalone data file. For instance, you may want to select a set of schools based some enrollment criteria, and save this smaller number of schools as its own data file, not simply as a selection within the original schools data file. Generally, as you proceed through a GIS analysis, it is helpful to regularly save your selected features in separate data file.  You will have occasion to create new data files over and over again this term, and you must pay attention to where you are storing this data <strong>every single time</strong>. ArcGIS tries very hard to get you to save your data:</p>
+<ul>
+<li>in the &ldquo;Geodatabase&rdquo; format; and</li>
+<li>in a default location on your local hard drive.</li>
+<li>Additionally, it usually gives you unhelpful default file names, like &ldquo;Export_Output&rdquo;.
+Therefore, if you don&rsquo;t pay attention when you do this step, you will end up with a file name that is unintelligible, in a format that you don&rsquo;t want, in a location that you won&rsquo;t be able to find. Do not do
+this.</li>
+</ul>
+<p>As an example of how to save a selected set of data to its own file, we will export the 10 selected neighborhoods from the last step in the tutorial.</p>
+<ol>
+<li>
+<p>Make sure the neighborhoods layer is on and you have 10 neighborhoods selected.</p>
+</li>
+<li>
+<p>In the TOC, right-click on the neighborhoods layer, then choose Data &gt; Export Data.</p>
+</li>
+<li>
+<p>Under Export: choose Selected features.</p>
+</li>
+<li>
+<p>Under Output feature class: click on the yellow folder icon and navigate to your Lab1 workspace folder.</p>
+</li>
+<li>
+<p>Under Save as type: choose Shapefile.</p>
+</li>
+<li>
+<p>Under Name: enter my_neighborhoods (or, whatever you want to name this file &ndash; whether or not you leave .shp at the end doesn&rsquo;t matter).
+<img src="/geog358/media/image26.jpg" alt=""  /></p>
+</li>
+<li>
+<p>Click Save. You&rsquo;re actually not done yet, as this just pushes your settings to the Export Data dialog box. Click OK.</p>
+</li>
+<li>
+<p>A dialog box will appear asking whether you want to add your new layer to the current map. Click Yes. The layer will now appear in TOC.</p>
+</li>
+<li>
+<p>Clear your selection so no schools or neighborhoods are selected.</p>
+</li>
+<li>
+<p>Turn off the neighborhoods layer. You should be able to see the my_neighborhoods layer contains only those 10 formerly selected neighborhoods.</p>
+</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="designing-and-exporting-a-map">
+        <strong>Designing and Exporting a Map</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#designing-and-exporting-a-map" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Designing and Exporting a Map" href="#designing-and-exporting-a-map">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><hr>
+<p>In this section we will see how to create a map layout and export the map.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="working-in-layout-view">
+        Working in Layout View
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#working-in-layout-view" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Working in Layout View" href="#working-in-layout-view">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>We have been working in a view called &ldquo;Data View&rdquo;, which is most useful for data exploration and analysis. When producing maps for export, we need to switch to &ldquo;Layout View&rdquo;. In this view, you will see a representation of a page, and the map (or maps) will appear on that page. By default, the page will be a standard 8½ by 11 inch page in portrait view. In Layout View you can also add other elements, such as titles, textboxes, and legends. It is possible to place elements &ldquo;off&rdquo; the page (in an area known as the &ldquo;pasteboard&rdquo; in desktop publishing lingo). Anything not on the page will not be included on the map when you export the image, so it can be a useful place to store items during the design process when you are trying out different ideas.</p>
+<ol>
+<li>
+<p>Turn off the bike network layer and turn on all the other layers.  Put them in the following drawing order:</p>
+<ul>
+<li>Schools (top)</li>
+<li>My_neighborhoods</li>
+<li>Neighborhoods (bottom)</li>
+</ul>
+</li>
+<li>
+<p>Make sure you are viewing the full extent of your data (press the full extent button to be sure). Your canvas should look something like this (your colors may be different):
+<img src="/geog358/media/image27.jpg" alt=""  /></p>
+</li>
+<li>
+<p>Switch to Layout View in one of the following ways:</p>
+<ul>
+<li>Click the Layout View button in the lower-left of the map canvas:
+<img src="/geog358/media/image28.jpg" alt=""  /></li>
+<li>Select View &gt; Layout View from the menu.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>Note that you can toggle back and forth between the layout and data view windows.</p>
+</blockquote>
+<ol start="4">
+<li>
+<p>When you switched views a new toolbar likely appeared: the Layout toolbar.
+<img src="/geog358/media/image29.jpg" alt=""  />
+Recall that if it did not you can click up in the grey area to add it in manually.  This toolbar has pan and zoom tools, similar to the ones you have used before, but these will zoom into the page (not the map). Notice that each of these icons has a page behind it (e.g. magnifier on a page) to distinguish it from the pan and zoom tools on the Tools toolbar. Experiment with these tools to move around the page. When you are done, hit Zoom Whole Page (the fourth button on the Layout toolbar).
+<img src="/geog358/media/image30.jpg" alt=""  /></p>
+</li>
+<li>
+<p>The pan and zoom buttons on the Tools toolbar can be used to resize the map image on the page. Use the Zoom In button to make sure that Philadelphia fills most of the data frame. Note that if you zoom in too far, parts of Philadelphia will be &ldquo;outside&rdquo; the data frame, and will not appear on the page.</p>
+</li>
+<li>
+<p>The standard map elements are standard for a reason.  Although it is possible to break the rules, you should know what you are doing before you snub 200+ years of cartographic theory.  Use the Insert menu to add the following elements:</p>
+<ul>
+<li>Title&mdash;Should default to top center, can be repositioned.</li>
+<li>Legend&mdash;A dialog will appear offering many options for customizing the legend. Just keep hitting Next until the legend appears on your map.</li>
+<li>North Arrow.</li>
+<li>Scale Bar.</li>
+</ul>
+</li>
+<li>
+<p>Reposition the map elements to fill the white space. Try not to have any elements overlaying the Philadelphia neighborhoods. Your final layout may look something like this, but do <em>~NOT~</em> try to make it look the same. Just make sure it has all the requested elements:
+<img src="/geog358/media/image32.jpg" alt=""  /></p>
+</li>
+<li>
+<p>Once you have completed your map, save your .mxd document.</p>
+</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="exporting-a-map-image">
+        Exporting a Map Image
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#exporting-a-map-image" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Exporting a Map Image" href="#exporting-a-map-image">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>A finished map product can be exported into an image file that can be inserted into a MS Word document for your lab reports, or into web pages or other documents. This takes no extra effort compared to a screen shot, and is infinity more professional looking.  <strong>We will not accept screen shots of the ArcMap program, unless the directions specifically request a screen shot.</strong>  Here, as an example we will export the map using the PNG format.</p>
+<ol>
+<li>
+<p>Go to File → Export Map.&hellip;</p>
+</li>
+<li>
+<p>Set the Save as type to &quot;PNG (*.png)&quot;.</p>
+</li>
+<li>
+<p>Navigate to your lab1 folder. As always, be clear about where you are saving your files.</p>
+</li>
+<li>
+<p>Press Save.</p>
+</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h1 id="submission">
+        Submission
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog358/labs/lab01/#submission" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Submission" href="#submission">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h1>
+</div><p>All you have to turn into blackboard for this week is the final image you created above.</p>
+
+
+    </article>
+
+                
+
+
+
+
+
+
+
+
+    
+    
+
+    
+
+
+
+
+
+<div class="gdoc-page__footer flex flex-wrap justify-between">
+    
+    
+</div>
+
+            </div>
+        </main>
+
+        <footer class="gdoc-footer">
+    <div class="container flex">
+        <div class="flex flex-wrap">
+            <span class="gdoc-footer__item gdoc-footer__item--row">
+                <a href="https://jimcoll.github.io/" class="gdoc-footer__link">Site home</a> -- Built with <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> and
+                <svg class="icon gdoc_heart"><use xlink:href="#gdoc_heart"></use></svg>
+            </span>
+            
+            
+        </div>
+        
+        <div class="flex flex-25 justify-end">
+            <span class="gdoc-footer__item">
+                <a class="gdoc-footer__link fake-link" href="#" aria-label="Back to top">
+                    <svg class="icon gdoc_keyborad_arrow_up"><use xlink:href="#gdoc_keyborad_arrow_up"></use></svg> <span class="hidden-mobile">Back to top</span>
+                </a>
+            </span>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+
+    
+
+
+
+
+<script defer src="/classes/js/en.search.min.e0b46e67d3290d6164e22a3133b6589cabdc358125f8155b6e926503fd8af4be.js"></script>
+
+
+
+<script defer src="/classes/js/clipboard-27784b7376.min.js"></script>
+<script defer src="/classes/js/clipboard-loader-f0b5fbd5f6.min.js"></script>
+
+
+</body>
+</html>

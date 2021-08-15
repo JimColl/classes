@@ -1,0 +1,2829 @@
+<!DOCTYPE html>
+<html lang="en" class="color-toggle-hidden">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark" />
+
+
+
+
+
+    <meta name="description" content="Learning Objective    In this lab we&rsquo;ll cover a variety of terrain analysis techniques including shelter analysis and a suite of tools within the hydrology toolbox.
+What you need to submit     Lab 8: Answer Sheet
+Name:
+Part 1
+Question 1:
+What is the value of the majority of the cells on the focalcells raster layer?
+Where are the cells with smaller values located?
+and why do they have smaller values?">
+
+
+
+    <title>Lab 08 - Advanced Terrain Analysis | So long as you get the GIST of it</title>
+
+    <link rel="icon" href="/classes/favicon/favicon-32x32.png" type="image/x-icon">
+
+    <script src="/classes/js/darkmode-ce906ea916.min.js"></script>
+
+<link rel="preload" as="font" href="/classes/fonts/Metropolis.woff2" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" as="font" href="/classes/fonts/LiberationSans.woff2" type="font/woff2" crossorigin="anonymous">
+
+<link rel="preload" href="/classes/main-468ccf24c5.min.css" as="style">
+<link rel="stylesheet" href="/classes/main-468ccf24c5.min.css" media="all">
+
+<link rel="preload" href="/classes/mobile-0e5d2e7ecf.min.css" as="style">
+<link rel="stylesheet" href="/classes/mobile-0e5d2e7ecf.min.css" media="screen and (max-width: 45rem)">
+
+<link rel="preload" href="/classes/print-f79fc3e5d7.min.css" as="style">
+<link rel="stylesheet" href="/classes/print-f79fc3e5d7.min.css" media="print">
+
+<link rel="preload" href="/classes/custom.css" as="style">
+<link rel="stylesheet" href="/classes/custom.css" media="all">
+
+
+
+<!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
+
+    
+
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+    
+<!-- geekdoc include: sprites/geekdoc.svg -->
+<svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_back" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.526v2.947H5.755l8.351 8.421-2.105 2.105-12-12 12-12 2.105 2.105-8.351 8.421H24z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_left_alt" xmlns="http://www.w3.org/2000/svg"><path d="M5.965 10.526V6.035L0 12l5.965 5.965v-4.491H24v-2.947H5.965z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_right_alt" xmlns="http://www.w3.org/2000/svg"><path d="M18.035 10.526V6.035L24 12l-5.965 5.965v-4.491H0v-2.947h18.035z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_bitbucket" xmlns="http://www.w3.org/2000/svg"><path d="M15.905 13.355c.189 1.444-1.564 2.578-2.784 1.839-1.375-.602-1.375-2.784-.034-3.403 1.151-.705 2.818.223 2.818 1.564zm1.907-.361c-.309-2.44-3.076-4.056-5.328-3.042-1.426.636-2.389 2.148-2.32 3.747.086 2.097 2.08 3.815 4.176 3.626s3.729-2.234 3.472-4.331zm4.108-9.315c-.756-.997-2.045-1.169-3.179-1.358-3.214-.516-6.513-.533-9.727.034-1.066.172-2.269.361-2.939 1.323 1.1 1.031 2.664 1.186 4.073 1.358 2.544.327 5.156.344 7.699.017 1.426-.172 3.008-.309 4.073-1.375zm.979 17.788c-.481 1.684-.206 3.953-1.994 4.932-3.076 1.701-6.806 1.89-10.191 1.289-1.787-.327-3.884-.894-4.864-2.578-.43-1.65-.705-3.334-.98-5.018l.103-.275.309-.155c5.121 3.386 12.288 3.386 17.427 0 .808.241.206 1.22.189 1.805zM26.01 4.951c-.584 3.764-1.255 7.51-1.908 11.257-.189 1.1-1.255 1.719-2.148 2.183-3.214 1.615-6.96 1.89-10.483 1.512-2.389-.258-4.829-.894-6.771-2.389-.911-.705-.911-1.908-1.083-2.922-.602-3.523-1.289-7.046-1.719-10.604.206-1.547 1.942-2.217 3.231-2.698C6.848.654 8.686.362 10.508.19c3.884-.378 7.854-.241 11.618.859 1.341.395 2.784.945 3.695 2.097.412.533.275 1.203.189 1.805z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_bookmark" xmlns="http://www.w3.org/2000/svg"><path d="M15.268 4.392q.868 0 1.532.638t.664 1.506v17.463l-7.659-3.268-7.608 3.268V6.536q0-.868.664-1.506t1.532-.638h10.876zm4.34 14.144V4.392q0-.868-.638-1.532t-1.506-.664H6.537q0-.868.664-1.532T8.733 0h10.876q.868 0 1.532.664t.664 1.532v17.412z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_auto" xmlns="http://www.w3.org/2000/svg"><path d="M16.846 18.938h2.382L15.22 7.785h-2.44L8.772 18.938h2.382l.871-2.44h3.95zm7.087-9.062L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809zm-11.385 4.937L14 10.282l1.452 4.531h-2.904z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_dark" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565q-1.51 0-3.079.697 1.917.871 3.108 2.701T15.22 14t-1.191 4.037-3.108 2.701q1.568.697 3.079.697zm9.933-11.559L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_light" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565 8.743 8.743 6.565 14t2.178 5.257T14 21.435zm9.933-3.311v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809L27.999 14z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_cloud_off" xmlns="http://www.w3.org/2000/svg"><path d="M9.023 10.5H7q-1.914 0-3.281 1.395t-1.367 3.309 1.367 3.281T7 19.852h11.375zM3.5 4.976l1.477-1.477L24.5 23.022l-1.477 1.477-2.352-2.297H6.999q-2.898 0-4.949-2.051t-2.051-4.949q0-2.844 1.969-4.867t4.758-2.133zm19.086 5.578q2.242.164 3.828 1.832T28 16.351q0 3.008-2.461 4.758l-1.695-1.695q1.805-.984 1.805-3.063 0-1.422-1.039-2.461t-2.461-1.039h-1.75v-.602q0-2.68-1.859-4.539t-4.539-1.859q-1.531 0-2.953.711l-1.75-1.695Q11.431 3.5 14.001 3.5q2.953 0 5.496 2.078t3.09 4.977z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_code" xmlns="http://www.w3.org/2000/svg"><path d="M9.917 24.5a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm0-21a1.75 1.75 0 10-3.501.001A1.75 1.75 0 009.917 3.5zm11.666 2.333a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm1.75 0a3.502 3.502 0 01-1.75 3.026c-.055 6.581-4.721 8.039-7.82 9.023-2.898.911-3.846 1.349-3.846 3.117v.474a3.502 3.502 0 011.75 3.026c0 1.932-1.568 3.5-3.5 3.5s-3.5-1.568-3.5-3.5c0-1.294.711-2.424 1.75-3.026V6.526A3.502 3.502 0 014.667 3.5c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5a3.502 3.502 0 01-1.75 3.026v9.06c.93-.456 1.914-.766 2.807-1.039 3.391-1.075 5.323-1.878 5.359-5.687a3.502 3.502 0 01-1.75-3.026c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_date" xmlns="http://www.w3.org/2000/svg"><path d="M27.192 28.844V11.192H4.808v17.652h22.384zm0-25.689q1.277 0 2.253.976t.976 2.253v22.459q0 1.277-.976 2.216t-2.253.939H4.808q-1.352 0-2.291-.901t-.939-2.253V6.385q0-1.277.939-2.253t2.291-.976h1.577V.001h3.23v3.155h12.769V.001h3.23v3.155h1.577zm-3.155 11.267v3.155h-3.23v-3.155h3.23zm-6.46 0v3.155h-3.155v-3.155h3.155zm-6.384 0v3.155h-3.23v-3.155h3.23z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_download" xmlns="http://www.w3.org/2000/svg"><path d="M2.866 28.209h26.269v3.79H2.866v-3.79zm26.268-16.925L16 24.418 2.866 11.284h7.493V.001h11.283v11.283h7.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_email" xmlns="http://www.w3.org/2000/svg"><path d="M28.845 9.615v-3.23L16 14.422 3.155 6.385v3.23L16 17.577zm0-6.46q1.277 0 2.216.977T32 6.385v19.23q0 1.277-.939 2.253t-2.216.977H3.155q-1.277 0-2.216-.977T0 25.615V6.385q0-1.277.939-2.253t2.216-.977h25.69z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_git" xmlns="http://www.w3.org/2000/svg"><path d="M27.472 12.753L15.247.529a1.803 1.803 0 00-2.55 0l-2.84 2.84 2.137 2.137a2.625 2.625 0 013.501 3.501l3.499 3.499a2.625 2.625 0 11-1.237 1.237l-3.499-3.499c-.083.04-.169.075-.257.106v7.3a2.626 2.626 0 11-1.75 0v-7.3a2.626 2.626 0 01-1.494-3.607L8.62 4.606l-8.09 8.09a1.805 1.805 0 000 2.551l12.225 12.224a1.803 1.803 0 002.55 0l12.168-12.168a1.805 1.805 0 000-2.551z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_github" xmlns="http://www.w3.org/2000/svg"><path d="M16 .394c8.833 0 15.999 7.166 15.999 15.999 0 7.062-4.583 13.062-10.937 15.187-.813.146-1.104-.354-1.104-.771 0-.521.021-2.25.021-4.396 0-1.5-.5-2.458-1.083-2.958 3.562-.396 7.312-1.75 7.312-7.896 0-1.75-.625-3.167-1.646-4.291.167-.417.708-2.042-.167-4.25-1.333-.417-4.396 1.646-4.396 1.646a15.032 15.032 0 00-8 0S8.937 6.602 7.603 7.018c-.875 2.208-.333 3.833-.167 4.25-1.021 1.125-1.646 2.542-1.646 4.291 0 6.125 3.729 7.5 7.291 7.896-.458.417-.875 1.125-1.021 2.146-.917.417-3.25 1.125-4.646-1.333-.875-1.521-2.458-1.646-2.458-1.646-1.562-.021-.104.979-.104.979 1.042.479 1.771 2.333 1.771 2.333.938 2.854 5.396 1.896 5.396 1.896 0 1.333.021 2.583.021 2.979 0 .417-.292.917-1.104.771C4.582 29.455-.001 23.455-.001 16.393-.001 7.56 7.165.394 15.998.394zM6.063 23.372c.042-.083-.021-.187-.146-.25-.125-.042-.229-.021-.271.042-.042.083.021.187.146.25.104.062.229.042.271-.042zm.646.709c.083-.062.062-.208-.042-.333-.104-.104-.25-.146-.333-.062-.083.062-.062.208.042.333.104.104.25.146.333.062zm.625.937c.104-.083.104-.25 0-.396-.083-.146-.25-.208-.354-.125-.104.062-.104.229 0 .375s.271.208.354.146zm.875.875c.083-.083.042-.271-.083-.396-.146-.146-.333-.167-.417-.062-.104.083-.062.271.083.396.146.146.333.167.417.062zm1.187.521c.042-.125-.083-.271-.271-.333-.167-.042-.354.021-.396.146s.083.271.271.312c.167.062.354 0 .396-.125zm1.313.104c0-.146-.167-.25-.354-.229-.187 0-.333.104-.333.229 0 .146.146.25.354.229.187 0 .333-.104.333-.229zm1.208-.208c-.021-.125-.187-.208-.375-.187-.187.042-.312.167-.292.312.021.125.187.208.375.167s.312-.167.292-.292z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_gitlab" xmlns="http://www.w3.org/2000/svg"><path d="M1.629 11.034L14 26.888.442 17.048a1.09 1.09 0 01-.39-1.203l1.578-4.811zm7.217 0h10.309l-5.154 15.854zM5.753 1.475l3.093 9.559H1.63l3.093-9.559a.548.548 0 011.031 0zm20.618 9.559l1.578 4.811c.141.437-.016.922-.39 1.203l-13.558 9.84 12.371-15.854zm0 0h-7.216l3.093-9.559a.548.548 0 011.031 0z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_heart" xmlns="http://www.w3.org/2000/svg"><path d="M16 29.714a1.11 1.11 0 01-.786-.321L4.072 18.643c-.143-.125-4.071-3.714-4.071-8 0-5.232 3.196-8.357 8.535-8.357 3.125 0 6.053 2.464 7.464 3.857 1.411-1.393 4.339-3.857 7.464-3.857 5.339 0 8.535 3.125 8.535 8.357 0 4.286-3.928 7.875-4.089 8.035L16.785 29.392c-.214.214-.5.321-.786.321z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_down" xmlns="http://www.w3.org/2000/svg"><path d="M3.281 5.36L14 16.079 24.719 5.36 28 8.641l-14 14-14-14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_left" xmlns="http://www.w3.org/2000/svg"><path d="M25.875 28.25L22.125 32 6.126 16.001 22.125.002l3.75 3.75-12.25 12.25z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_right" xmlns="http://www.w3.org/2000/svg"><path d="M6.125 28.25L18.375 16 6.125 3.75 9.875 0l15.999 15.999L9.875 31.998z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_up" xmlns="http://www.w3.org/2000/svg"><path d="M24.719 22.64L14 11.921 3.281 22.64 0 19.359l14-14 14 14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_link" xmlns="http://www.w3.org/2000/svg"><path d="M24.037 7.963q3.305 0 5.634 2.366T32 16t-2.329 5.671-5.634 2.366h-6.46v-3.08h6.46q2.028 0 3.493-1.465t1.465-3.493-1.465-3.493-3.493-1.465h-6.46v-3.08h6.46zM9.615 17.578v-3.155h12.77v3.155H9.615zM3.005 16q0 2.028 1.465 3.493t3.493 1.465h6.46v3.08h-6.46q-3.305 0-5.634-2.366T0 16.001t2.329-5.671 5.634-2.366h6.46v3.08h-6.46q-2.028 0-3.493 1.465t-1.465 3.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_menu" xmlns="http://www.w3.org/2000/svg"><path d="M.001 5.334h31.998v3.583H.001V5.334zm0 12.416v-3.5h31.998v3.5H.001zm0 8.916v-3.583h31.998v3.583H.001z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_notification" xmlns="http://www.w3.org/2000/svg"><path d="M22.615 19.384l2.894 2.894v1.413H2.49v-1.413l2.894-2.894V12.25q0-3.365 1.716-5.856t4.745-3.231v-1.01q0-.875.606-1.514T13.999 0t1.548.639.606 1.514v1.01q3.029.74 4.745 3.231t1.716 5.856v7.134zM14 27.999q-1.211 0-2.053-.808t-.841-2.019h5.788q0 1.144-.875 1.986T14 27.999z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_path" xmlns="http://www.w3.org/2000/svg"><path d="M28 12.62h-9.793V8.414h-2.826v11.173h2.826v-4.206H28V26.62h-9.793v-4.206H12.62v-14H9.794v4.206H.001V1.381h9.793v4.206h8.413V1.381H28V12.62z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_person" xmlns="http://www.w3.org/2000/svg"><path d="M16 20.023q5.052 0 10.526 2.199t5.473 5.754v4.023H0v-4.023q0-3.555 5.473-5.754t10.526-2.199zM16 16q-3.275 0-5.614-2.339T8.047 8.047t2.339-5.661T16 0t5.614 2.386 2.339 5.661-2.339 5.614T16 16z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_search" xmlns="http://www.w3.org/2000/svg"><path d="M11.925 20.161q3.432 0 5.834-2.402t2.402-5.834-2.402-5.834-5.834-2.402-5.834 2.402-2.402 5.834 2.402 5.834 5.834 2.402zm10.981 0L32 29.255 29.255 32l-9.094-9.094v-1.458l-.515-.515q-3.26 2.831-7.721 2.831-4.976 0-8.45-3.432T.001 11.925t3.474-8.45 8.45-3.474 8.407 3.474 3.432 8.45q0 1.802-.858 4.075t-1.973 3.646l.515.515h1.458z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_shield" xmlns="http://www.w3.org/2000/svg"><path d="M22.167 15.166V3.5h-8.166v20.726c.93-.492 2.424-1.349 3.883-2.497 1.95-1.531 4.284-3.919 4.284-6.562zm3.499-13.999v14c0 7.674-10.737 12.523-11.192 12.724-.146.073-.31.109-.474.109s-.328-.036-.474-.109c-.456-.201-11.192-5.049-11.192-12.724v-14C2.334.529 2.863 0 3.501 0H24.5c.638 0 1.167.529 1.167 1.167z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_tags" xmlns="http://www.w3.org/2000/svg"><path d="M6.606 7.549c0-1.047-.84-1.887-1.887-1.887s-1.887.84-1.887 1.887.84 1.887 1.887 1.887 1.887-.84 1.887-1.887zm15.732 8.493c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546s-.988-.206-1.327-.546L1.342 14.066C.59 13.329 0 11.899 0 10.852V4.718a1.9 1.9 0 011.887-1.887h6.134c1.047 0 2.477.59 3.229 1.342L21.792 14.7c.339.354.546.84.546 1.342zm5.661 0c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546-.767 0-1.15-.354-1.651-.87l6.93-6.93c.339-.339.546-.826.546-1.327s-.206-.988-.546-1.342L13.609 4.173c-.752-.752-2.182-1.342-3.229-1.342h3.303c1.047 0 2.477.59 3.229 1.342L27.454 14.7c.339.354.546.84.546 1.342z"/></symbol></svg>
+
+
+
+    <div class="wrapper ">
+        <input type="checkbox" class="hidden" id="menu-control" />
+        
+        <header class="gdoc-header">
+    <div class="container flex align-center justify-between">
+        
+        <label for="menu-control" class="gdoc-nav__control">
+            <svg class="icon gdoc_menu"><use xlink:href="#gdoc_menu"></use></svg>
+            <svg class="icon gdoc_arrow_back"><use xlink:href="#gdoc_arrow_back"></use></svg>
+        </label>
+        
+        <a class="gdoc-header__link" href="https://jimcoll.github.io/classes/">
+            <span class="gdoc-brand flex align-center">
+                <img class="gdoc-brand__img" src="/classes/logo.png" alt="">
+                <span class="gdoc-brand__title">So long as you get the GIST of it</span>
+            </span>
+        </a>
+        <span id="gdoc-dark-mode">
+            <svg class="icon gdoc_brightness_dark"><use xlink:href="#gdoc_brightness_dark"></use></svg>
+            <svg class="icon gdoc_brightness_light"><use xlink:href="#gdoc_brightness_light"></use></svg>
+            <svg class="icon gdoc_brightness_auto"><use xlink:href="#gdoc_brightness_auto"></use></svg>
+        </span>
+    </div>
+</header>
+
+
+        <main class="container flex flex-even">
+            
+            <aside class="gdoc-nav">
+                <nav>
+    
+    <div class="gdoc-search">
+        <svg class="icon gdoc_search"><use xlink:href="#gdoc_search"></use></svg>
+        <input type="text" id="gdoc-search-input" class="gdoc-search__input" placeholder="Search..."
+            aria-label="Search" maxlength="64" />
+        <div class="gdoc-search__spinner spinner hidden"></div>
+        <ul id="gdoc-search-results" class="gdoc-search__list"></ul>
+    </div>
+
+
+
+    <section class="gdoc-nav--main">
+        <h2>Navigation</h2>
+        
+            
+
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-3ac26c08" class="gdoc-nav__toggle" >
+            <label for="navtree-3ac26c08" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/" class="gdoc-nav__entry ">
+                        Introduction to GEOINT -- GEOG111
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-57082eb1" class="gdoc-nav__toggle" >
+            <label for="navtree-57082eb1" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Computer basics
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Introduction to Google Earth Pro
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Coordinates and Position Measurements
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - GPS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - GIS introduction
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - spatial analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Digital Terrain Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Map making
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab09A/" class="gdoc-nav__entry ">
+                        Lab 09A - 3D Modeling and Visualization
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab09B/" class="gdoc-nav__entry ">
+                        Lab 09B - Cloud based GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab 10 - Visual Imagery Interpretation
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab11/" class="gdoc-nav__entry ">
+                        Lab 11 - Remotely Sensed Imagery and Color Composites
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab12/" class="gdoc-nav__entry ">
+                        Lab 12 - Landsat 8 Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab13/" class="gdoc-nav__entry ">
+                        Lab 13 - Earth Observing Missions Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab14/" class="gdoc-nav__entry ">
+                        Lab 14 - Final Lab activity
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-9af49685" class="gdoc-nav__toggle" >
+            <label for="navtree-9af49685" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/" class="gdoc-nav__entry ">
+                        Introduction to GIS -- GEOG358
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-2ef21881" class="gdoc-nav__toggle" >
+            <label for="navtree-2ef21881" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab00/" class="gdoc-nav__entry ">
+                        Lab 00 - Intro to GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Intro to GISystems
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Projections and Coordinate Systems
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Using GPS for Field Data Collection
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - On-Screen Digitizing &amp; Image Restoration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - Building a GIS database
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - Selections Queries and Joins
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Overlay &amp; site suitability analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Introduction to network analyist and ArcScene
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab09/" class="gdoc-nav__entry ">
+                        Lab 09 - Interpolation and Fire Hazard Modeling
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/termpaper/" class="gdoc-nav__entry ">
+                        Project
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-91899dd7" class="gdoc-nav__toggle" >
+            <label for="navtree-91899dd7" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/" class="gdoc-nav__entry ">
+                        Remote Sensing -- GEOG526
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-efafcb0c" class="gdoc-nav__toggle" >
+            <label for="navtree-efafcb0c" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/bib/" class="gdoc-nav__entry ">
+                        Bibliography Guidelines
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab - Data Acquisition and Image Preprocessing
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab - Introduction to ERDAS IMAGINE I
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab09A/" class="gdoc-nav__entry ">
+                        Lab - Introduction to ERDAS IMAGINE （Part II）
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO IMAGE INTERPRETATION
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab11/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO MODIS TIME SERIES
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab - LANDSAT TM &amp; SPOT IMAGERY
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab09B/" class="gdoc-nav__entry ">
+                        Lab - Remote Sensing (Assignment 9) NDVI
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab13/" class="gdoc-nav__entry ">
+                        Lab - Remote Sensing with RADAR Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab12/" class="gdoc-nav__entry ">
+                        Lab - THERMAL IMAGERY
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Map making
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab14/" class="gdoc-nav__entry ">
+                        Lab 14 - Final Lab activity
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab - Internet Resources Exploration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab - Maps &amp; Aerial Photography
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO UNIT CONVERSION &amp; SCALE PROBLEMS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab - ELECTROMAGNETIC RADIATION PRINCIPLES
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-a5a58dbc" class="gdoc-nav__toggle" checked>
+            <label for="navtree-a5a58dbc" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/" class="gdoc-nav__entry ">
+                        Intermediate GIS -- GEOG558
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-e44c6ffc" class="gdoc-nav__toggle" checked>
+            <label for="navtree-e44c6ffc" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Data survey and database building
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Cartographic Modeling
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Focal Operations
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - Zonal Operations
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - Model Builder
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - Cost Distance, Region Groups, more Model Builder &amp; Python
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Siting a New School with Model Builder and Fungus weight
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab08/" class="gdoc-nav__entry is-active">
+                        Lab 08 - Advanced Terrain Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab09/" class="gdoc-nav__entry ">
+                        Lab 09 - Descriptive Spatial Statistics and Point Pattern Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab 10 - Spatial Interpolation
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/termpaper/" class="gdoc-nav__entry ">
+                        Project
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-643316ca" class="gdoc-nav__toggle" >
+            <label for="navtree-643316ca" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/" class="gdoc-nav__entry ">
+                        Random bin
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/Install_Help/" class="gdoc-nav__entry ">
+                        Installing GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/cart_prime/" class="gdoc-nav__entry ">
+                        Cartography primer
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FOSS/" class="gdoc-nav__entry ">
+                        FOSS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FirstGoogleEarthMap/" class="gdoc-nav__entry ">
+                        A basic map in Google Maps
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/dronemapping/" class="gdoc-nav__entry ">
+                        Drone Mapping
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FOSS_RS/" class="gdoc-nav__entry ">
+                        RS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/GEE_intro/" class="gdoc-nav__entry ">
+                        GEE
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-4d073202" class="gdoc-nav__toggle" >
+            <label for="navtree-4d073202" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/website/" class="gdoc-nav__entry ">
+                        Creating a website
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/website/oldwebsite/" class="gdoc-nav__entry ">
+                        Old website tutorial
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+
+
+
+
+        
+    </section>
+
+    <section class="gdoc-nav--more">
+        
+    </section>
+</nav>
+
+            </aside>
+            
+
+            <div class="gdoc-page">
+                
+    
+
+
+    
+
+
+
+
+
+
+<div class="gdoc-page__header flex flex-wrap
+     justify-between 
+     hidden-mobile 
+    " itemprop="breadcrumb">
+    
+    <div>
+        <svg class="icon gdoc_path hidden-mobile"><use xlink:href="#gdoc_path"></use></svg>
+        <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            
+            
+            
+            
+    
+    
+        
+        
+        
+        
+    
+    
+        
+        
+        
+        
+    
+    
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/' href='/classes/'><span itemprop='name'>Classes</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/geog558/' href='/classes/geog558/'><span itemprop='name'>Intermediate GIS -- GEOG558</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/geog558/labs/' href='/classes/geog558/labs/'><span itemprop='name'>Labs</span></a><meta itemprop='position' content='4' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Lab 08 - Advanced Terrain Analysis</span><meta itemprop='position' content='5' /></li>
+    
+
+    
+
+    
+
+    
+
+        </ol>
+    </div>
+    
+    
+</div>
+
+
+    <article class="gdoc-markdown gdoc-markdown__align--left">
+        <h1>Lab 08 - Advanced Terrain Analysis</h1>
+        <div class="gdoc-page__anchorwrap">
+    <h1 id="learning-objective">
+        <strong>Learning Objective</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#learning-objective" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Learning Objective" href="#learning-objective">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h1>
+</div><p>In this lab we&rsquo;ll cover a variety of terrain analysis techniques including shelter analysis and a suite of tools within the  hydrology toolbox.</p>
+<div class="gdoc-page__anchorwrap">
+    <h1 id="what-you-need-to-submit">
+        <strong>What you need to submit</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#what-you-need-to-submit" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor What you need to submit" href="#what-you-need-to-submit">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h1>
+</div><hr>
+<p><strong>Lab 8: Answer Sheet</strong><br>
+Name:</p>
+<p><strong>Part 1</strong><br>
+<strong>Question 1</strong>:<br>
+What is the value of the majority of the cells on the focalcells raster layer?</p>
+<p>Where are the cells with smaller values located?</p>
+<p>and why do they have smaller values?</p>
+<p><strong>Question 2</strong>:<br>
+What is the value range in the shelter analysis raster layer?
+________ to ________</p>
+<p>A large positive value means:</p>
+<p>A value close to zero means:</p>
+<p>A small negative value means:</p>
+<p><strong>Question 3</strong>:<br>
+What is the interpretation of the sinks output?  What would the correct symbology of this layer look like?</p>
+<p><strong>Question 4</strong>:<br>
+Paste your final unit hydrograph here.</p>
+<hr>
+<div class="gdoc-page__anchorwrap">
+    <h1 id="materials">
+        <strong>Materials</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#materials" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Materials" href="#materials">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h1>
+</div><p><a class="gdoc-markdown__link" href="https://www.dropbox.com/sh/twnbts6pg0yi7mu/AABJDvh7c6o1Ae8Q6q2EHZS0a?dl=0">click to download</a></p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-btxf{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0pky">Relevant part</th>
+    <th class="tg-0pky">Data Name</th>
+    <th class="tg-0pky">Description</th>
+  </tr>
+  <tr>
+    <th class="tg-0pky">Part01</th>
+    <td class="tg-btxf">chase_dem</td>
+    <td class="tg-btxf">DEM for Chase County, KS (30m cell size, elevation in feet)</td>
+  </tr>
+  <tr>
+    <th class="tg-0pky">Part02</th>
+    <td class="tg-btxf">Pour_point</td>
+    <td class="tg-btxf">A point feature layer that depicts the outlet downstream of the Little River where you'll create a unit hydrograph.</td>
+  </tr>
+  <tr>
+    <th class="tg-0pky">Part02</th>
+    <td class="tg-btxf">Stowe_boundary</td>
+    <td class="tg-btxf">A polygon feature layer that depicts the boundaries of Stowe, Vermont. This layer was derived from data available from [Vermont Center for Geographic Information (VCGI)](https://vcgi.vermont.gov/)</td>
+  </tr>
+  <tr>
+    <th class="tg-0pky">Part02</th>
+    <td class="tg-btxf">Stowe_DEM</td>
+    <td class="tg-btxf">A raster layer that depicts elevation within the study area. It also has a resolution of 30 meters. It was derived from data made available by the [United States Geological Survey (USGS)](https://www.usgs.gov/).</td>
+  </tr>
+  <tr>
+    <th class="tg-0pky">Part02_worked</th>
+    <td class="tg-btxf">Stowe hydrology folder</td>
+    <td class="tg-btxf">A worked version of part 2 in consideration of processing power</td>
+  </tr>
+</table>  
+<hr>
+<blockquote class="gdoc-hint info">
+  <p>This lab, and part 2 in particular, can take a while when CPU is a limiting concern.  I can offer a few suggestions, and an alternative.</p>
+<ul>
+<li>Pick a smaller area to process.</li>
+<li>You can skip step if you are careful, as outlined in the instructions.</li>
+<li>If you pause drawing that may speed up UI interactions <img src="/geog558/media/PauseIcon.PNG" alt=""  /></li>
+<li>When not actively manipulation the tools you can multi-task.  Take the time to understand the workflow, fire off a process, and move onto something else.  Try not to have anything super intensive running in conjunction, but light Microsoft office work shouldn&rsquo;t break you.</li>
+<li>As a stopgap if it&rsquo;s taking too long, I have provided a copy of my part 2 for you to look over.  Use this only if needed.</li>
+<li><a class="gdoc-markdown__link" href="https://open.spotify.com/album/1Un2hgy3OUsbmmFNop3Pj2?si=oYzFtULARyqAQVSG66_pdw">A great album to jam to while working</a>.</li>
+</ul>
+
+</blockquote>
+
+<div class="gdoc-page__anchorwrap">
+    <h1 id="part-1-terrain-exposure-analysis">
+        <strong>Part 1: Terrain Exposure Analysis</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#part-1-terrain-exposure-analysis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Part 1: Terrain Exposure Analysis" href="#part-1-terrain-exposure-analysis">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h1>
+</div><p>In this part of the lab, we will perform a terrain exposure analysis, referred to as shelter analysis.  The outputs of this workflow are quite popular in archeology studies and inform us as to how protected a given location is.
+<img src="/geog558/media/Lab8part1_ModelBuilder_Arcmap.png" alt=""  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="terrain-exposure-analysis-procedure">
+        <strong>Terrain Exposure Analysis Procedure</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#terrain-exposure-analysis-procedure" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Terrain Exposure Analysis Procedure" href="#terrain-exposure-analysis-procedure">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="project-and-normalize-raster">
+        <strong>Project and normalize raster</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#project-and-normalize-raster" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Project and normalize raster" href="#project-and-normalize-raster">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><strong>1)</strong> Start Arcmap and rename the data frame to Terrain Exposure Analysis.  Because we are working at a relatively small geographic scale, we should first reproject our raster from it&rsquo;s native projection (GSC_North_America_1983) to a more appropriate one for this analysis (NAD_1983_StatePlane_Colorado_South_FIPS_0503 WKID: 26955).</p>
+<ul>
+<li>Open ArcToolbox and navigate to <strong>Data Management Tools | Projections and Transformations | Raster | Project Raster</strong></li>
+<li>For your Input raster select you <i>chase_dem</i> from your lab08\part01 folder using the browse button.
+<ul>
+<li>Here we use the browse button to avoid data locks on the elevation data and avoid inadvertently assigning a projection to the dataframe prematurely.</li>
+</ul>
+</li>
+<li>Call the Output raster <i>proj_dem</i> saved in your lab08\part01 folder</li>
+<li>To select an Output coordinate system, click on the Spatial Reference Properties Button (the hand with the card)</li>
+<li>Define the coordinate system as:
+<ul>
+<li>Projected Coordinate Systems &gt; State Plane &gt; NAD 1983 (meters) &gt; NAD 1983 StatePlane Colorado South FIPS 0503 (meters).prj</li>
+<li>You can also use the search tool to find it, 26955</li>
+<li>Click OK</li>
+</ul>
+</li>
+<li>Set the Resampling technique to BILINEAR and click OK</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part1_proj_arcmap.PNG" alt="imcenter"  /></p>
+<p><strong>2)</strong> Finally, convert the elevation from feet to meters.</p>
+<ul>
+<li>Raster calculator expression: <i>proj_dem * 0.3048</i></li>
+<li>Name the output <i>chase_m</i></li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="calculate-the-volume-of-earth-around-a-window">
+        <strong>Calculate the volume of earth around a window</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#calculate-the-volume-of-earth-around-a-window" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Calculate the volume of earth around a window" href="#calculate-the-volume-of-earth-around-a-window">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><strong>1)</strong> First let&rsquo;s calculate the volume of earth per cell.</p>
+<ul>
+<li>Raster calculator expression, we can round here:
+<ul>
+<li><i>chase_m * 30 * 30</i></li>
+</ul>
+</li>
+<li>Call your output <i>volpercell</i></li>
+</ul>
+<p><strong>2)</strong>  Finally, use Focal Statistics to calculate the focal sum of this raster layer using a circular neighborhood with a radius of 2 cell size.</p>
+<ul>
+<li>Save the output raster layer as <i>earthvol</i></li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="calculate-the-earth-volume-of-a-cylinder-of-earth-around-a-window">
+        <strong>Calculate the earth volume of a cylinder of earth around a window</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#calculate-the-earth-volume-of-a-cylinder-of-earth-around-a-window" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Calculate the earth volume of a cylinder of earth around a window" href="#calculate-the-earth-volume-of-a-cylinder-of-earth-around-a-window">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><strong>1)</strong> Create a flat surface using <strong>Raster Calculator</strong> to create a constant raster layer on which all of the cells have a value of 1.</p>
+<ul>
+<li><i>(“chase_m” / “chase_m”)</i> will do the trick.</li>
+<li>Make the output raster a permanent raster named <i>constant</i></li>
+</ul>
+<p><strong>2)</strong> Use <strong>Focal Statistics</strong> to calculate the focal sum on the <i>constant</i> raster layer using a circular neighborhood with a radius of 2 cell size.</p>
+<ul>
+<li>Save the output raster layer as <i>focalcells</i></li>
+</ul>
+<p><strong>3)</strong> Calculate the earth volume within the circular neighborhood assuming all the cells inside the neighborhood have the same Z value as the focus <b>(“volpercell” * “focalcells”)</b></p>
+<ul>
+<li>Save the output raster layer as <i>flatearthvol</i></li>
+<li>Answer question #1 on your assignment sheet</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="calculate-the-shelter-layer">
+        <strong>Calculate the shelter layer</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#calculate-the-shelter-layer" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Calculate the shelter layer" href="#calculate-the-shelter-layer">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ul>
+<li>Calculate the shelter raster layer by subtracting <i>flatearthvol</i> from <i>earthvol</i></li>
+<li>Save the output raster layer as <i>shelter</i></li>
+</ul>
+<p>After some stylization, you might end up with a map that looks like so:</p>
+<p><img src="/classes/geog558/img/Lab8part1_shelterNew.png" alt="imcenter"  /></p>
+<ul>
+<li>Answer question #2 on your assignment sheet</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h1 id="part-2-creating-a-unit-hydrograph">
+        <strong>Part 2: Creating a Unit Hydrograph</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#part-2-creating-a-unit-hydrograph" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Part 2: Creating a Unit Hydrograph" href="#part-2-creating-a-unit-hydrograph">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h1>
+</div><blockquote>
+<p>The instructions herein are guided by material gratefully pilfered from <a class="gdoc-markdown__link" href="https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/">https://learn.arcgis.com/en/projects/predict-floods-with-unit-hydrographs/</a></p>
+</blockquote>
+<p>As is the case with many locations across the globe, when disaster strikes planners and residents realize they have data gaps that they can not readily fill.  Exampled here, the town of Stowe in Vermont suffered considerably when the remnants of Hurricane Irene stuck the Green Mountain region in August 2011. The Little River overflowed and washed out roads, bridges, and culverts. In an effort to learn more about the event, officials tried to recreate the event using a number of techniques.  One way to do this is to construct a hydrograph, which are line graphs determining how much water a stream will discharge during a rainstorm. In this lesson, you&rsquo;ll create those hydrographs using data provided.  If you&rsquo;re interested in trying this for yourself I encourage you to download and run an area meaningful to you.  Refer back to lab 1 if you need a refresher on how to acquire elevation data.  The model builder is shown below:</p>
+<p><img src="/classes/geog558/img/Lab8part2_ModelBuilder_Arcmap.png" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="precondition-the-elevation-model">
+        <strong>Precondition the elevation model</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#precondition-the-elevation-model" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Precondition the elevation model" href="#precondition-the-elevation-model">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>Either import the Stowe_DEM and Pour_point or download and select your own pour point for this analysis.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="identify-and-fill-sinks">
+        <strong>Identify and Fill Sinks</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#identify-and-fill-sinks" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Identify and Fill Sinks" href="#identify-and-fill-sinks">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><strong>1)</strong> First, you&rsquo;ll identify sinks in your DEM. Although your DEM was derived from reliable data provided by the USGS, sinks may still be present. In order to identify them we need to know which way the water flows over the surface.  The first tool in the workflow is the <strong>Flow Direction</strong> tool.</p>
+<ul>
+<li>For Input surface raster, choose <i>Stowe_DEM</i>.</li>
+<li>save the output as <i>Stowe_flow_direction</i> in the geodatabase.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image1arcmap.PNG" alt="imcenter"  /></p>
+<p>The symbology of the resulting layer corresponds to the direction water is likely to flow. The layer&rsquo;s appearance isn&rsquo;t important to this analysis, we just need this layer to run the next step&hellip;</p>
+<p><strong>2)</strong> Open the <strong>sinks tool</strong>, the next step in the analysis.</p>
+<ul>
+<li>For Input D8 flow direction raster, choose <i>Stowe_flow_direction</i>.</li>
+<li>Save the output as <i>Stowe_sinks</i>.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image2arcmap.PNG" alt="imcenter"  /></p>
+<p><strong>3)</strong> The final step in the current task uses the <strong>Fill tool</strong> to remove sinks from a DEM.</p>
+<ul>
+<li>For Input surface raster, choose Stowe_DEM</li>
+<li>Name the output <i>Stowe_fill</i>.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image3arcmap.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="delineate-the-watershed">
+        <strong>Delineate the Watershed</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#delineate-the-watershed" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Delineate the Watershed" href="#delineate-the-watershed">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>Having now removed sinks from the DEM, it is considered &ldquo;hydrologically conditioned&rdquo; and is ready for hydrological analysis. We&rsquo;ll use this DEM to determine the watershed area for the outlet point south of Stowe (or wherever you want to drop your point!). A watershed area is the area in which all flowing water will flow toward a certain point—in this case, your outlet. With the watershed area, you&rsquo;ll be able to limit your subsequent analysis results to the relevant area for your outlet. Determining a watershed requires two components: a flow direction raster layer and an accurate outlet point. One of the most common reasons for a watershed analysis to fail is when the pour point is not adequately aligned to the flow grids.  For that reason the <strong>Snap Pour Point</strong> tool is often included in a workflow.  This step can be skipped if you are deliberate with your placement of the point, but I&rsquo;ll walk through the workflow using it here. First, you&rsquo;ll determine the stream&rsquo;s exact location by calculating the areas where water accumulates the most. Then, you&rsquo;ll snap the outlet point&rsquo;s location to match the stream and verify it.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="assess-flow-directions">
+        <strong>Assess flow directions</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#assess-flow-directions" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Assess flow directions" href="#assess-flow-directions">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>The first step to delineate a watershed is to determine the direction that water will flow in your DEM. That way, you can determine the areas where water will flow to the outlet. To do so, you&rsquo;ll&hellip;</p>
+<p><strong>1)</strong> Create another <strong>flow direction</strong> raster layer, this time for your DEM with filled sinks.</p>
+<ul>
+<li>For Input surface raster, choose <i>Stowe_fill</i>.</li>
+<li>Name your output <i>Stowe_fill_flow_direction</i>.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_FlowDirFill_arcmap.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="snap-outlet-to-stream">
+        <strong>Snap outlet to stream</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#snap-outlet-to-stream" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Snap outlet to stream" href="#snap-outlet-to-stream">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><strong>2)</strong> Open the <strong>Flow Accumulation tool</strong>. This tool creates a raster layer that indicates where water is most likely to accumulate. The flow accumulation for each cell is expressed as a numeric value based on the number of cells that flow into that cell. Cells with high values of accumulation often coincide with the locations of flowing water bodies. With your flow accumulation raster, you&rsquo;ll identify the Little River that flows through Stowe.</p>
+<ul>
+<li>For your Input flow direction raster, choose <i>Stowe_fill_flow_direction</i>.</li>
+<li>Name your Output accumulation raster <i>Stowe_flow_accumulation</i>.</li>
+<li>You&rsquo;ll leave the remaining parameters unchanged. The first of these parameters applies a weight to each cell, which is useful when you expect water to be distributed in ways that aren&rsquo;t uniform (for instance, in larger study areas where precipitation levels may vary significantly). The second parameter determines whether accumulation will be measured with integers or floating points. Floating point, the default value, allows for the inclusion of decimal places, making it more accurate in most situations. The third parameter determines the input flow direction.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_FillFlowAccumulation_Arcmap.PNG" alt="imcenter"  /></p>
+<p>The next step of the task opens the Measure Distance tool (which is a tool on the ribbon, not a geoprocessing tool). You&rsquo;ll use this tool to measure the distance between the current outlet point and the Little River&rsquo;s location as represented in the flow accumulation raster. You can use this distance to then snap the outlet point to the correct cell so that it precisely lines up with the stream. Be sure you&rsquo;re as precise as feasible by zooming in closer to the outlet point.  click the outlet point. Then double-click the approximate center of the nearest cell with a high flow accumulation value.  The Measure Distance tool&rsquo;s window updates to include the length of the measurement. I measurement approximately 50 meters so I&rsquo;ll round to a distance of 60 meters when I snap the outlet point to the stream. A snapping distance that is slightly higher than the measured distance will help avoid ambiguity in the tool. When deciding on a snapping distance, be sure it doesn&rsquo;t exceed the measured distance by too much, or the point may snap to an area further downstream.</p>
+<p><img src="/classes/geog558/img/Lab8part2image_Measure_Arcmap.PNG" alt="imcenter"  /></p>
+<p><strong>3)</strong> Open up the <strong>Snap Pour Point</strong> tool.</p>
+<ul>
+<li>For Input raster or feature pour point data, choose <i>Pour_point</i>.</li>
+<li>For Input accumulation raster, choose <i>Stowe_flow_accumulation</i>.</li>
+<li>Name the output raster <i>Stowe_snapped_outlet</i>.</li>
+<li>For Snap distance, type 60.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_SnapRas_Arcmap.PNG" alt="imcenter"  /></p>
+<p>The tool runs and the snapped outlet raster layer is added to the map. The raster displays a single cell that represents the outlet&rsquo;s new location. In the example image, the snapped outlet is represented as a yellow cell.</p>
+<p><img src="/classes/geog558/img/Lab8part2image_SnapRasOutput_Arcmap.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="delineate-watershed-upstream-of-outlet">
+        <strong>Delineate watershed upstream of outlet</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#delineate-watershed-upstream-of-outlet" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Delineate watershed upstream of outlet" href="#delineate-watershed-upstream-of-outlet">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Now that you have both a flow direction layer and an accurate outlet layer, you can determine the watershed area upstream of the outlet.<br>
+<strong>4)</strong> The final step of the task opens the <strong>Watershed tool</strong>.</p>
+<ul>
+<li>For Input D8 flow direction raster, choose <i>Stowe_fill_flow_direction</i>.</li>
+<li>For Input raster or feature pour point data, choose <i>Stowe_snapped_outlet</i>.</li>
+<li>For Output raster, set the name to <i>Stowe_watershed</i>.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_Watershed_Arcmap.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="create-a-velocity-field">
+        <strong>Create a velocity field</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#create-a-velocity-field" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Create a velocity field" href="#create-a-velocity-field">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>Next, you&rsquo;ll start determining how long it takes water to reach the outlet, allowing the town to better predict when flooding will occur during a hypothetical rainfall event. To determine the time it takes water to flow somewhere, you first need to determine how fast water flows. You&rsquo;ll calculate the speed of flowing water with a velocity field, another type of raster layer. There are many types of velocity fields, and they can be calculated with a wide variety of mathematical equations. You&rsquo;ll create a velocity field that is spatially variant, but time and discharge invariant. This means that your velocity field makes the following assumptions:</p>
+<ul>
+<li>Velocity is affected by spatial components such as slope and flow accumulation (spatially variant).</li>
+<li>Velocity at a given location does not change over time (time invariant).</li>
+<li>Velocity at a given location does not depend on the location&rsquo;s rate of water flow (discharge invariant).</li>
+</ul>
+<p>In reality, velocity could be time variant and would definitely be discharge variant. However, incorporating these variants would require additional datasets that might not be available and use modeling techniques that might not be replicable in a GIS environment. The spatially variant, time- and discharge-invariant velocity field will provide a generally accurate result, although it&rsquo;s important to remember that any method will be only an approximation of observed phenomena. You&rsquo;ll use a method for creating velocity fields first proposed by Maidment et al. (1996)<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. In this method, each cell in the velocity field is assigned a velocity based on the local slope and the upstream contributing area (the number of cells that flow into that cell, or flow accumulation). They use the following equation:</p>
+<blockquote>
+<p>V = V<sub>m</sub> * (s<sup>b</sup>A<sup>c</sup>) / (s<sup>b</sup>A<sup>c</sup><sub>m</sub>)</p>
+</blockquote>
+<p>Where:</p>
+<ul>
+<li>V is the velocity of a single cell with a local slope of s and an upstream contributing area of A.</li>
+<li>Coefficients b and c can be determined by calibration.  In this scenario, you&rsquo;ll use the method&rsquo;s recommended value of b = c = 0.5.</li>
+<li>V<sub>m</sub> is the average velocity of all cells in the watershed. You&rsquo;ll assume an average velocity of V<sub>m</sub> = 0.1 m/s.</li>
+<li>s<sup>b</sup>A<sup>c</sup><sub>m</sub> is the average slope-area term throughout the watershed. To avoid results that are unrealistically fast or slow, you&rsquo;ll set limits for minimum and maximum velocities. The lower limit will be 0.02 meters per second, while the upper limit will be 2 meters per second.</li>
+</ul>
+<p>This equation is only one of many ways that a velocity field can be calculated, and it comes with several assumptions and limitations of its own.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="create-the-slope-raster">
+        <strong>Create the slope raster</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#create-the-slope-raster" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Create the slope raster" href="#create-the-slope-raster">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>The primary variables in the equation you&rsquo;ll use for your velocity field are slope and upstream contributing area. You already have a raster layer for upstream contributing area: the flow accumulation layer you created above, but we don&rsquo;t yet have a slope layer, so that&rsquo;s the next one we&rsquo;ll create.<br>
+<strong>1)</strong> Open the <strong>Slope tool</strong>.</p>
+<ul>
+<li>For the Input raster, choose <i>Stowe_DEM</i></li>
+<li>Name your Output raster <i>Stowe_slope</i></li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_Slope_Arcmap.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="calculate-the-slope-area-term">
+        <strong>Calculate the slope-area term</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#calculate-the-slope-area-term" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Calculate the slope-area term" href="#calculate-the-slope-area-term">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Now that we have a raster layer for both slope and flow accumulation area, we&rsquo;ll calculate a new raster layer that combines them. This layer will show the slope-area term (the value s<sup>b</sup>A<sup>c</sup><sub>m</sub> from the Maidment et al. equation).</p>
+<p><strong>2)</strong> The next step can be accomplished using the <strong>Raster Calculator tool</strong>.</p>
+<ul>
+<li>Use the fields to create the expression: <br><code>Power(&quot;Stowe_flow_accumulation&quot;,0.5) * Power(&quot;Stowe_slope&quot;,0.5)</code></li>
+<li>Name your output raster <i>Stowe_slope_area_term</i>.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_SlopeAreaEq_Arcmap.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Finally, lets use the environments of this tool to clip to our watershed at the same time:
+In the tool parameters, click <strong>Environments</strong>. Under <strong>Raster Analysis</strong> for <strong>Mask</strong>, choose <strong>Stowe_watershed</strong>.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_SlopeArea_ArcmapEnvironments.PNG" alt="imcenter"  /></p>
+<p>Your output should look like so:</p>
+<p><img src="/classes/geog558/img/Lab8part2image_SlopeAreaOutput_Arcmap.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="calculate-the-velocity-field">
+        <strong>Calculate the velocity field</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#calculate-the-velocity-field" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Calculate the velocity field" href="#calculate-the-velocity-field">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><strong>3)</strong> Now that you have the slope-area term, you can calculate a velocity field using the following equation:</p>
+<blockquote>
+<p>V = V<sub>m</sub> * (s<sup>b</sup>A<sup>c</sup>) / (s<sup>b</sup>A<sup>c</sup><sub>m</sub>)</p>
+</blockquote>
+<p>As mentioned previously,</p>
+<ul>
+<li>V<sub>m</sub> is the average velocity of all cells in the watershed. You&rsquo;ll use an assumed average value of V<sub>m</sub> = 0.1, which is recommended by Maidment et al.</li>
+<li>Similarly, s<sup>b</sup>A<sup>c</sup><sub>m</sub> is the average slope-area term across the watershed. Because you&rsquo;ve calculated slope-area term for the watershed, we can simply pull the median out of our raster.  To find it you need to&hellip;</li>
+</ul>
+<p><strong>3A)</strong> right-click <strong>Stowe_slope_area_term</strong> and choose <strong>Properties</strong>, and under the <strong>Source</strong> tab and expand the <strong>Statistics</strong> heading.</p>
+<p><img src="/classes/geog558/img/Lab8part2image_LayerStats_Arcmap.PNG" alt="imcenter"  /></p>
+<p><strong>3B)</strong> and then open a <strong>raster calculator</strong> and enter the expression, Where <strong>[Mean slope-area term]</strong> is the value that you copied from the <strong>Layer Properties</strong> window:</p>
+<ul>
+<li>You expression should look like:<br><code>0.1 * (&quot;Stowe_slope_area_term&quot; / [Mean slope-area term])</code></li>
+<li>Call that output Stowe_velocity_unlimited</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_VeloUnlimitTool_Arcmap.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="limit-the-velocities">
+        <strong>Limit the velocities</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#limit-the-velocities" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Limit the velocities" href="#limit-the-velocities">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>The raster layer you created is a velocity field, but it has unrealistically high and low velocities. For instance, some values in the field have a velocity of 0 meters per second, which is unlikely during an extreme rainfall event. Likewise, the maximum value of approximately 7.5 meters per second is unrealistic even during a major flood. You&rsquo;ll limit the velocity values with a lower limit of 0.02 meters per second and an upper limit of 2 meters per second.  Bearing in mind that there are a number of ways to end up with the desired output, the most direct in my opinion is a <a class="gdoc-markdown__link" href="https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/conditional-evaluation-with-con.htm">complex raster calculator con expression</a>.  Other alternatives include reclassifying, multiple con tools, or a clamp tool to name a few.<br>
+<strong>4)</strong> Open up a <strong>Raster Calculator</strong> and enter your expression.</p>
+<ul>
+<li>My expression looks like so: <br><code>Con(&quot;Stowe_velocity_unlimited&quot; &lt; 0.02,0.02,Con(&quot;Stowe_velocity_unlimited&quot; &gt; 2,2,&quot;Stowe_velocity_unlimited&quot;))</code>
+<ul>
+<li>Read it from right to left: &ldquo;If &ldquo;Raster&rdquo; is less than x, put y, otherwise; if &ldquo;Raster&rdquo; is greater than than w, put z, otherwise put &ldquo;Raster&rdquo;&rdquo;</li>
+</ul>
+</li>
+<li>Save your output as <i>Stowe_velocity</i>.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_VelocityClampExpression_Arcmap.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="create-an-isochrone-map">
+        <strong>Create an isochrone map</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#create-an-isochrone-map" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Create an isochrone map" href="#create-an-isochrone-map">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>Having now created a velocity field that predicts how fast water will flow throughout Stowe, we still need to know the time it takes to get to the pour point.  In this step we&rsquo;ll create an isochrone map, which maps the time it takes to reach a specified location from anywhere else in an area. To create the isochrone map, you&rsquo;ll first create a weight grid. Then, you&rsquo;ll assess the time it takes for water to reach the outlet.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="create-a-weight-grid">
+        <strong>Create a weight grid</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#create-a-weight-grid" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Create a weight grid" href="#create-a-weight-grid">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Flow time is calculated with a relatively simple equation: The length that water must flow divided by the speed at which it flows. While you know how fast water flows due to your velocity field, you don&rsquo;t know flow length. To determine flow length, you need two variables: flow direction (which you know) and weight (which you don&rsquo;t). Weight, in regard to flow, represents impedance. For instance, water flowing through forested land takes longer than water flowing over smooth rock because it&rsquo;s impeded by terrain. While calculating weight may seem difficult without detailed terrain data, we can simplify our model by assuming that this weight is the inverse of the velocity we calculated.  This is more formally notated as</p>
+<blockquote>
+<p>Weight [L<sup>-1</sup>T] = 1 / Velocity [LT<sup>-1</sup>]</p>
+</blockquote>
+<p><strong>1)</strong> Thus, it is a simple matter to create our weights grid with a <strong>raster calculator</strong>.</p>
+<ul>
+<li>The raster calculator expression is:<br><code>1 / &quot;Stowe_velocity&quot;</code></li>
+<li>Save the output as <i>Stowe_weight</i></li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_WeightsTool_Arcmap.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Your output should look like so:</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_WeightsToolVis_Arcmap.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="assess-flow-time-to-outlet-pour-point">
+        <strong>Assess flow time to outlet pour point</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#assess-flow-time-to-outlet-pour-point" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Assess flow time to outlet pour point" href="#assess-flow-time-to-outlet-pour-point">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><strong>2)</strong> The next step of the task uses the <strong>Flow Length</strong> tool. While this tool, as its name suggests, normally calculates flow length, it has an optional parameter to include a weight raster. When a weight raster is included, the tool calculates flow time instead.</p>
+<ul>
+<li>For Input flow direction raster, choose <i>Stowe_fill_flow_direction</i>.</li>
+<li>For Output raster, name it <i>Stowe_time</i>.</li>
+<li>For Direction of measurement, confirm that <i>Downstream</i> is chosen.</li>
+<li>For Input weight raster, choose <i>Stowe_weight</i>.</li>
+<li>Finally, use the <strong>environments</strong> of the tool to clip to our watershed at the same time again.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_TimeToolAndEnviro_Arcmap.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Your output should look like so, and has units of seconds.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_TimeToolOutput_Arcmap.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="create-a-unit-hydrograph">
+        <strong>Create a unit hydrograph</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#create-a-unit-hydrograph" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Create a unit hydrograph" href="#create-a-unit-hydrograph">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>The last step we want to accomplish is to create a unit hydrograph.  In essence, this unit hydrograph is the area that falls within the specific we want the histogram of the output layer.  Although conceptually simple, this can be quite difficult, as outlined in the source tutorial.  Fortunately, simpler solutions exists, and the exact method will vary depending on your desired output.  Here I will show how to create a &ldquo;raw&rdquo; unit hydrograph and manipulate it within Arcmap and Microsoft Excel.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="approach-1-visualize-a-raw-unit-hydrograph-histogram-and-then-extract-to-create-the-desired-output">
+        <strong>Approach 1) Visualize a &ldquo;raw&rdquo; unit hydrograph histogram and then Extract to create the desired output</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#approach-1-visualize-a-raw-unit-hydrograph-histogram-and-then-extract-to-create-the-desired-output" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Approach 1) Visualize a &ldquo;raw&rdquo; unit hydrograph histogram and then Extract to create the desired output" href="#approach-1-visualize-a-raw-unit-hydrograph-histogram-and-then-extract-to-create-the-desired-output">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>We will first&hellip;<br>
+<strong>1)</strong> Cast the raster to an int.  Because our unit is seconds, truncating our numbers is a reasonable tradeoff, and has the added benefit of creating a workable attribute table for us to export.</p>
+<ul>
+<li>The input raster is <i>Stowe_time</i></li>
+<li>Save the output as <i>Stowe_time_int</i></li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_TimeInt_Arcmap.PNG" alt="imcenter"  /></p>
+<p><strong>2)</strong> Export our results.  We can export the raster as a table and use another software package to make a graph, or we can use ArcMap&rsquo;s built in graph maker to create a simple graph.<br>
+<strong>2A)</strong> Open the attribute table and create a graph,<br>
+<strong>2B)</strong> Set the axis value to value and the number of bins to something sane (I started with 35).  Click next and click finish.<br>
+<strong>2C)</strong> Right click on the graph and change advanced properties, or export the image<br>
+<strong>2D)</strong> A final graph.</p>
+<p><img src="/classes/geog558/img/Lab8part2_UnitHydrography_Arc.PNG" alt="imcenter"  /></p>
+<p><strong>3)</strong> Lets now export this database and manipulate it within Excel to create a unit hydrohraph.  Here I&rsquo;ll walk you through how to take the exported database into Excel and then transform it into a PivotTable for formatting and visualization.</p>
+<ul>
+<li>To export the database, click on the table options and export it to a dbase table on your hard drive (not in a geodatabase)</li>
+<li>From there you can open the table in Excel using File &gt; Open.</li>
+<li>We need to first create a column for area, click in cell D2 and enter the formula <code>=C2*30*30</code></li>
+<li>Click the little black box at the lower right hand corner of the cell to fill the formula down.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2_Excel1.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Go to Inset &gt; pivot table and choose the whole table.  Dump the pivot table out in the same worksheet.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2_Excel2.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Add <i>Value</i> and <i>Sum of Area</i> to <i>Rows</i> and <i>Values</i> respectively.</li>
+<li>Click in the first column of Value in the pivot table, and click Group Field up in the PivotTable Analyze ribbon</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2_Excel3.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Group the field into chunks of 1800&hellip;</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2_Excel4.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Copy the table, and calculate the unit hydrograph using a time field and the area divided by the timestep.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2_Excel5.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="approach-2-bin-the-raster-into-isochrones-within-arcmap-before-extracting-the-graph">
+        <strong>Approach 2) Bin the raster into Isochrones within Arcmap before extracting the graph</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog558/labs/lab08/#approach-2-bin-the-raster-into-isochrones-within-arcmap-before-extracting-the-graph" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Approach 2) Bin the raster into Isochrones within Arcmap before extracting the graph" href="#approach-2-bin-the-raster-into-isochrones-within-arcmap-before-extracting-the-graph">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><strong>1)</strong> We can <strong>Reclassify</strong> our time raster into N isochrones (contours of time) and generate a graph from that.  Here I&rsquo;ll demonstrate a 30 minute timestep (1800 seconds).</p>
+<ul>
+<li>Click the classify button after adding the <i>Stowe_time</i> raster to the input, and set the interval size to 1800 (30 minutes in seconds)</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2_IsochroneReclassView_arcmap.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Name the output <i>Stowe_1800_isochrone</i>.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2_IsochroneReclassTool_arcmap.PNG" alt="imcenter"  /></p>
+<p><strong>2)</strong> Now we&rsquo;ll use these as the zones to <strong>calculate the ordinate of the unit hydrograph</strong>.  These &ldquo;ordinates&rdquo; are the sum of the area within that time step divided by the timestep.  In essence, this is the area within the isochrone divided by range of the isochrone.  We will first add a new field to the <i>Stowe_1800_isochrone</i> and calculate the area within each isochrone.  We will then normalize that area to the time range of our isochrone.</p>
+<ul>
+<li>Use the <strong>Add field</strong> button in the table options of the <i>Stowe_1800_isochrone</i> raster
+<ul>
+<li>Name the field <i>time</i> and set the type to <i>double</i>.</li>
+<li>Right click on the newly created field and calculate the area (simply the <i>[Value] * 1800</i>)</li>
+</ul>
+</li>
+<li>Create a new field called <i>area</i> of type <i>double</i>.
+<ul>
+<li>Right click on the newly created field and calculate the area (simply the <i>[Count] * 30 * 30</i>)</li>
+</ul>
+</li>
+<li>To finish, create a last field called <i>UH_Ord</i> of type <i>float</i>
+<ul>
+<li>Your expression here is the area divided by the range of the isochrone (<i>[Area]/1800</i>)</li>
+</ul>
+</li>
+</ul>
+<p><strong>3)</strong> Finally, create the graph.</p>
+<ul>
+<li>Explore the graphing options as before.  Here I demonstrate how you may add two series to the same graph (here the raw histogram and the aggregated and normalized unit hydrograph.</li>
+</ul>
+<p><img src="/classes/geog558/img/Lab8part2image_UHGraphComposit_Arcmap.PNG" alt="imcenter"  /></p>
+<p>Answer questions 3 and 4 related to this part of the lab.  Submit your final answer sheet to blackboard.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>MAIDMENT, D.R., OLIVERA, F., CALVER, A., EATHERALL, A. and FRACZEK, W. (1996), UNIT HYDROGRAPH DERIVED FROM A SPATIALLY DISTRIBUTED VELOCITY FIELD. Hydrol. Process., 10: 831-844. doi:10.1002/(SICI)1099-1085(199606)10:6&lt;831::AID-HYP374&gt;3.0.CO;2-N&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+
+    </article>
+
+                
+
+
+
+
+
+
+
+
+    
+    
+
+    
+
+
+
+
+
+<div class="gdoc-page__footer flex flex-wrap justify-between">
+    
+    
+</div>
+
+            </div>
+        </main>
+
+        <footer class="gdoc-footer">
+    <div class="container flex">
+        <div class="flex flex-wrap">
+            <span class="gdoc-footer__item gdoc-footer__item--row">
+                <a href="https://jimcoll.github.io/" class="gdoc-footer__link">Site home</a> -- Built with <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> and
+                <svg class="icon gdoc_heart"><use xlink:href="#gdoc_heart"></use></svg>
+            </span>
+            
+            
+        </div>
+        
+        <div class="flex flex-25 justify-end">
+            <span class="gdoc-footer__item">
+                <a class="gdoc-footer__link fake-link" href="#" aria-label="Back to top">
+                    <svg class="icon gdoc_keyborad_arrow_up"><use xlink:href="#gdoc_keyborad_arrow_up"></use></svg> <span class="hidden-mobile">Back to top</span>
+                </a>
+            </span>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+
+    
+
+
+
+
+<script defer src="/classes/js/en.search.min.e0b46e67d3290d6164e22a3133b6589cabdc358125f8155b6e926503fd8af4be.js"></script>
+
+
+
+<script defer src="/classes/js/clipboard-27784b7376.min.js"></script>
+<script defer src="/classes/js/clipboard-loader-f0b5fbd5f6.min.js"></script>
+
+
+</body>
+</html>

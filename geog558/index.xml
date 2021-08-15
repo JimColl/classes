@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Intermediate GIS -- GEOG558 on So long as you get the GIST of it</title>
+    <link>https://jimcoll.github.io/classes/geog558/</link>
+    <description>Recent content in Intermediate GIS -- GEOG558 on So long as you get the GIST of it</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://jimcoll.github.io/classes/geog558/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Syllabus and course policies</title>
+      <link>https://jimcoll.github.io/classes/geog558/classoutline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/classoutline/</guid>
+      <description>This is a living document. Changes will be announced in class. The syllabus will supersede the blackboard course in the event of a conflict.     Course Description Student Responsibilities: Expectations: Computers:  Computer recommendations   Resources Academic Integrity Disabilities Course Evaluation  Labs  Cartography primers:   Exams Grade determination       Course Description    Building on the introductory GIS class, this course focuses primarily on teaching advanced spatial analysis methods with applications in the mapping of surface water and the analysis of water related environmental issues.</description>
+    </item>
+    
+    <item>
+      <title>Project</title>
+      <link>https://jimcoll.github.io/classes/geog558/termpaper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/termpaper/</guid>
+      <description>Class project    Objective:    Identify a biophysical, human, or environmental problem that requires or would benefit from your newfound knowledge of spatial analysis using GIS. Describe the problem that you are interested in. Provide geographic context to the problem. Discuss what kind of GIS analysis you want to use and the implementation strategy you have chosen. Present simple diagrams or maps that illustrate your approach. Apply your approach to real-world data and present the results of your project in oral form.</description>
+    </item>
+    
+  </channel>
+</rss>

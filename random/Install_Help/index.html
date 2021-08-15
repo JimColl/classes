@@ -1,0 +1,2566 @@
+<!DOCTYPE html>
+<html lang="en" class="color-toggle-hidden">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark" />
+
+
+
+
+
+    <meta name="description" content="Using GIS (or really any skill you are trying to pick up) at least twice a week greatly improves the time to learn, and the easiest way to do so is to have it readily available to you. Here I&rsquo;ll walk through the ways to install the software for yourself.
+Install instructions for:  ArcMap/ArcPro QGIS   ArcMap/ArcPro    The ESRI suite of products tends to be a demanding set of programs, so you should have a fairly modern computer if you want to install them for yourself.">
+
+
+
+    <title>Installing GIS | So long as you get the GIST of it</title>
+
+    <link rel="icon" href="/classes/favicon/favicon-32x32.png" type="image/x-icon">
+
+    <script src="/classes/js/darkmode-ce906ea916.min.js"></script>
+
+<link rel="preload" as="font" href="/classes/fonts/Metropolis.woff2" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" as="font" href="/classes/fonts/LiberationSans.woff2" type="font/woff2" crossorigin="anonymous">
+
+<link rel="preload" href="/classes/main-468ccf24c5.min.css" as="style">
+<link rel="stylesheet" href="/classes/main-468ccf24c5.min.css" media="all">
+
+<link rel="preload" href="/classes/mobile-0e5d2e7ecf.min.css" as="style">
+<link rel="stylesheet" href="/classes/mobile-0e5d2e7ecf.min.css" media="screen and (max-width: 45rem)">
+
+<link rel="preload" href="/classes/print-f79fc3e5d7.min.css" as="style">
+<link rel="stylesheet" href="/classes/print-f79fc3e5d7.min.css" media="print">
+
+<link rel="preload" href="/classes/custom.css" as="style">
+<link rel="stylesheet" href="/classes/custom.css" media="all">
+
+
+
+<!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
+
+    
+
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+    
+<!-- geekdoc include: sprites/geekdoc.svg -->
+<svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_back" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.526v2.947H5.755l8.351 8.421-2.105 2.105-12-12 12-12 2.105 2.105-8.351 8.421H24z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_left_alt" xmlns="http://www.w3.org/2000/svg"><path d="M5.965 10.526V6.035L0 12l5.965 5.965v-4.491H24v-2.947H5.965z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_right_alt" xmlns="http://www.w3.org/2000/svg"><path d="M18.035 10.526V6.035L24 12l-5.965 5.965v-4.491H0v-2.947h18.035z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_bitbucket" xmlns="http://www.w3.org/2000/svg"><path d="M15.905 13.355c.189 1.444-1.564 2.578-2.784 1.839-1.375-.602-1.375-2.784-.034-3.403 1.151-.705 2.818.223 2.818 1.564zm1.907-.361c-.309-2.44-3.076-4.056-5.328-3.042-1.426.636-2.389 2.148-2.32 3.747.086 2.097 2.08 3.815 4.176 3.626s3.729-2.234 3.472-4.331zm4.108-9.315c-.756-.997-2.045-1.169-3.179-1.358-3.214-.516-6.513-.533-9.727.034-1.066.172-2.269.361-2.939 1.323 1.1 1.031 2.664 1.186 4.073 1.358 2.544.327 5.156.344 7.699.017 1.426-.172 3.008-.309 4.073-1.375zm.979 17.788c-.481 1.684-.206 3.953-1.994 4.932-3.076 1.701-6.806 1.89-10.191 1.289-1.787-.327-3.884-.894-4.864-2.578-.43-1.65-.705-3.334-.98-5.018l.103-.275.309-.155c5.121 3.386 12.288 3.386 17.427 0 .808.241.206 1.22.189 1.805zM26.01 4.951c-.584 3.764-1.255 7.51-1.908 11.257-.189 1.1-1.255 1.719-2.148 2.183-3.214 1.615-6.96 1.89-10.483 1.512-2.389-.258-4.829-.894-6.771-2.389-.911-.705-.911-1.908-1.083-2.922-.602-3.523-1.289-7.046-1.719-10.604.206-1.547 1.942-2.217 3.231-2.698C6.848.654 8.686.362 10.508.19c3.884-.378 7.854-.241 11.618.859 1.341.395 2.784.945 3.695 2.097.412.533.275 1.203.189 1.805z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_bookmark" xmlns="http://www.w3.org/2000/svg"><path d="M15.268 4.392q.868 0 1.532.638t.664 1.506v17.463l-7.659-3.268-7.608 3.268V6.536q0-.868.664-1.506t1.532-.638h10.876zm4.34 14.144V4.392q0-.868-.638-1.532t-1.506-.664H6.537q0-.868.664-1.532T8.733 0h10.876q.868 0 1.532.664t.664 1.532v17.412z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_auto" xmlns="http://www.w3.org/2000/svg"><path d="M16.846 18.938h2.382L15.22 7.785h-2.44L8.772 18.938h2.382l.871-2.44h3.95zm7.087-9.062L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809zm-11.385 4.937L14 10.282l1.452 4.531h-2.904z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_dark" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565q-1.51 0-3.079.697 1.917.871 3.108 2.701T15.22 14t-1.191 4.037-3.108 2.701q1.568.697 3.079.697zm9.933-11.559L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_light" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565 8.743 8.743 6.565 14t2.178 5.257T14 21.435zm9.933-3.311v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809L27.999 14z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_cloud_off" xmlns="http://www.w3.org/2000/svg"><path d="M9.023 10.5H7q-1.914 0-3.281 1.395t-1.367 3.309 1.367 3.281T7 19.852h11.375zM3.5 4.976l1.477-1.477L24.5 23.022l-1.477 1.477-2.352-2.297H6.999q-2.898 0-4.949-2.051t-2.051-4.949q0-2.844 1.969-4.867t4.758-2.133zm19.086 5.578q2.242.164 3.828 1.832T28 16.351q0 3.008-2.461 4.758l-1.695-1.695q1.805-.984 1.805-3.063 0-1.422-1.039-2.461t-2.461-1.039h-1.75v-.602q0-2.68-1.859-4.539t-4.539-1.859q-1.531 0-2.953.711l-1.75-1.695Q11.431 3.5 14.001 3.5q2.953 0 5.496 2.078t3.09 4.977z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_code" xmlns="http://www.w3.org/2000/svg"><path d="M9.917 24.5a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm0-21a1.75 1.75 0 10-3.501.001A1.75 1.75 0 009.917 3.5zm11.666 2.333a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm1.75 0a3.502 3.502 0 01-1.75 3.026c-.055 6.581-4.721 8.039-7.82 9.023-2.898.911-3.846 1.349-3.846 3.117v.474a3.502 3.502 0 011.75 3.026c0 1.932-1.568 3.5-3.5 3.5s-3.5-1.568-3.5-3.5c0-1.294.711-2.424 1.75-3.026V6.526A3.502 3.502 0 014.667 3.5c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5a3.502 3.502 0 01-1.75 3.026v9.06c.93-.456 1.914-.766 2.807-1.039 3.391-1.075 5.323-1.878 5.359-5.687a3.502 3.502 0 01-1.75-3.026c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_date" xmlns="http://www.w3.org/2000/svg"><path d="M27.192 28.844V11.192H4.808v17.652h22.384zm0-25.689q1.277 0 2.253.976t.976 2.253v22.459q0 1.277-.976 2.216t-2.253.939H4.808q-1.352 0-2.291-.901t-.939-2.253V6.385q0-1.277.939-2.253t2.291-.976h1.577V.001h3.23v3.155h12.769V.001h3.23v3.155h1.577zm-3.155 11.267v3.155h-3.23v-3.155h3.23zm-6.46 0v3.155h-3.155v-3.155h3.155zm-6.384 0v3.155h-3.23v-3.155h3.23z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_download" xmlns="http://www.w3.org/2000/svg"><path d="M2.866 28.209h26.269v3.79H2.866v-3.79zm26.268-16.925L16 24.418 2.866 11.284h7.493V.001h11.283v11.283h7.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_email" xmlns="http://www.w3.org/2000/svg"><path d="M28.845 9.615v-3.23L16 14.422 3.155 6.385v3.23L16 17.577zm0-6.46q1.277 0 2.216.977T32 6.385v19.23q0 1.277-.939 2.253t-2.216.977H3.155q-1.277 0-2.216-.977T0 25.615V6.385q0-1.277.939-2.253t2.216-.977h25.69z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_git" xmlns="http://www.w3.org/2000/svg"><path d="M27.472 12.753L15.247.529a1.803 1.803 0 00-2.55 0l-2.84 2.84 2.137 2.137a2.625 2.625 0 013.501 3.501l3.499 3.499a2.625 2.625 0 11-1.237 1.237l-3.499-3.499c-.083.04-.169.075-.257.106v7.3a2.626 2.626 0 11-1.75 0v-7.3a2.626 2.626 0 01-1.494-3.607L8.62 4.606l-8.09 8.09a1.805 1.805 0 000 2.551l12.225 12.224a1.803 1.803 0 002.55 0l12.168-12.168a1.805 1.805 0 000-2.551z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_github" xmlns="http://www.w3.org/2000/svg"><path d="M16 .394c8.833 0 15.999 7.166 15.999 15.999 0 7.062-4.583 13.062-10.937 15.187-.813.146-1.104-.354-1.104-.771 0-.521.021-2.25.021-4.396 0-1.5-.5-2.458-1.083-2.958 3.562-.396 7.312-1.75 7.312-7.896 0-1.75-.625-3.167-1.646-4.291.167-.417.708-2.042-.167-4.25-1.333-.417-4.396 1.646-4.396 1.646a15.032 15.032 0 00-8 0S8.937 6.602 7.603 7.018c-.875 2.208-.333 3.833-.167 4.25-1.021 1.125-1.646 2.542-1.646 4.291 0 6.125 3.729 7.5 7.291 7.896-.458.417-.875 1.125-1.021 2.146-.917.417-3.25 1.125-4.646-1.333-.875-1.521-2.458-1.646-2.458-1.646-1.562-.021-.104.979-.104.979 1.042.479 1.771 2.333 1.771 2.333.938 2.854 5.396 1.896 5.396 1.896 0 1.333.021 2.583.021 2.979 0 .417-.292.917-1.104.771C4.582 29.455-.001 23.455-.001 16.393-.001 7.56 7.165.394 15.998.394zM6.063 23.372c.042-.083-.021-.187-.146-.25-.125-.042-.229-.021-.271.042-.042.083.021.187.146.25.104.062.229.042.271-.042zm.646.709c.083-.062.062-.208-.042-.333-.104-.104-.25-.146-.333-.062-.083.062-.062.208.042.333.104.104.25.146.333.062zm.625.937c.104-.083.104-.25 0-.396-.083-.146-.25-.208-.354-.125-.104.062-.104.229 0 .375s.271.208.354.146zm.875.875c.083-.083.042-.271-.083-.396-.146-.146-.333-.167-.417-.062-.104.083-.062.271.083.396.146.146.333.167.417.062zm1.187.521c.042-.125-.083-.271-.271-.333-.167-.042-.354.021-.396.146s.083.271.271.312c.167.062.354 0 .396-.125zm1.313.104c0-.146-.167-.25-.354-.229-.187 0-.333.104-.333.229 0 .146.146.25.354.229.187 0 .333-.104.333-.229zm1.208-.208c-.021-.125-.187-.208-.375-.187-.187.042-.312.167-.292.312.021.125.187.208.375.167s.312-.167.292-.292z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_gitlab" xmlns="http://www.w3.org/2000/svg"><path d="M1.629 11.034L14 26.888.442 17.048a1.09 1.09 0 01-.39-1.203l1.578-4.811zm7.217 0h10.309l-5.154 15.854zM5.753 1.475l3.093 9.559H1.63l3.093-9.559a.548.548 0 011.031 0zm20.618 9.559l1.578 4.811c.141.437-.016.922-.39 1.203l-13.558 9.84 12.371-15.854zm0 0h-7.216l3.093-9.559a.548.548 0 011.031 0z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_heart" xmlns="http://www.w3.org/2000/svg"><path d="M16 29.714a1.11 1.11 0 01-.786-.321L4.072 18.643c-.143-.125-4.071-3.714-4.071-8 0-5.232 3.196-8.357 8.535-8.357 3.125 0 6.053 2.464 7.464 3.857 1.411-1.393 4.339-3.857 7.464-3.857 5.339 0 8.535 3.125 8.535 8.357 0 4.286-3.928 7.875-4.089 8.035L16.785 29.392c-.214.214-.5.321-.786.321z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_down" xmlns="http://www.w3.org/2000/svg"><path d="M3.281 5.36L14 16.079 24.719 5.36 28 8.641l-14 14-14-14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_left" xmlns="http://www.w3.org/2000/svg"><path d="M25.875 28.25L22.125 32 6.126 16.001 22.125.002l3.75 3.75-12.25 12.25z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_right" xmlns="http://www.w3.org/2000/svg"><path d="M6.125 28.25L18.375 16 6.125 3.75 9.875 0l15.999 15.999L9.875 31.998z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_up" xmlns="http://www.w3.org/2000/svg"><path d="M24.719 22.64L14 11.921 3.281 22.64 0 19.359l14-14 14 14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_link" xmlns="http://www.w3.org/2000/svg"><path d="M24.037 7.963q3.305 0 5.634 2.366T32 16t-2.329 5.671-5.634 2.366h-6.46v-3.08h6.46q2.028 0 3.493-1.465t1.465-3.493-1.465-3.493-3.493-1.465h-6.46v-3.08h6.46zM9.615 17.578v-3.155h12.77v3.155H9.615zM3.005 16q0 2.028 1.465 3.493t3.493 1.465h6.46v3.08h-6.46q-3.305 0-5.634-2.366T0 16.001t2.329-5.671 5.634-2.366h6.46v3.08h-6.46q-2.028 0-3.493 1.465t-1.465 3.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_menu" xmlns="http://www.w3.org/2000/svg"><path d="M.001 5.334h31.998v3.583H.001V5.334zm0 12.416v-3.5h31.998v3.5H.001zm0 8.916v-3.583h31.998v3.583H.001z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_notification" xmlns="http://www.w3.org/2000/svg"><path d="M22.615 19.384l2.894 2.894v1.413H2.49v-1.413l2.894-2.894V12.25q0-3.365 1.716-5.856t4.745-3.231v-1.01q0-.875.606-1.514T13.999 0t1.548.639.606 1.514v1.01q3.029.74 4.745 3.231t1.716 5.856v7.134zM14 27.999q-1.211 0-2.053-.808t-.841-2.019h5.788q0 1.144-.875 1.986T14 27.999z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_path" xmlns="http://www.w3.org/2000/svg"><path d="M28 12.62h-9.793V8.414h-2.826v11.173h2.826v-4.206H28V26.62h-9.793v-4.206H12.62v-14H9.794v4.206H.001V1.381h9.793v4.206h8.413V1.381H28V12.62z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_person" xmlns="http://www.w3.org/2000/svg"><path d="M16 20.023q5.052 0 10.526 2.199t5.473 5.754v4.023H0v-4.023q0-3.555 5.473-5.754t10.526-2.199zM16 16q-3.275 0-5.614-2.339T8.047 8.047t2.339-5.661T16 0t5.614 2.386 2.339 5.661-2.339 5.614T16 16z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_search" xmlns="http://www.w3.org/2000/svg"><path d="M11.925 20.161q3.432 0 5.834-2.402t2.402-5.834-2.402-5.834-5.834-2.402-5.834 2.402-2.402 5.834 2.402 5.834 5.834 2.402zm10.981 0L32 29.255 29.255 32l-9.094-9.094v-1.458l-.515-.515q-3.26 2.831-7.721 2.831-4.976 0-8.45-3.432T.001 11.925t3.474-8.45 8.45-3.474 8.407 3.474 3.432 8.45q0 1.802-.858 4.075t-1.973 3.646l.515.515h1.458z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_shield" xmlns="http://www.w3.org/2000/svg"><path d="M22.167 15.166V3.5h-8.166v20.726c.93-.492 2.424-1.349 3.883-2.497 1.95-1.531 4.284-3.919 4.284-6.562zm3.499-13.999v14c0 7.674-10.737 12.523-11.192 12.724-.146.073-.31.109-.474.109s-.328-.036-.474-.109c-.456-.201-11.192-5.049-11.192-12.724v-14C2.334.529 2.863 0 3.501 0H24.5c.638 0 1.167.529 1.167 1.167z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_tags" xmlns="http://www.w3.org/2000/svg"><path d="M6.606 7.549c0-1.047-.84-1.887-1.887-1.887s-1.887.84-1.887 1.887.84 1.887 1.887 1.887 1.887-.84 1.887-1.887zm15.732 8.493c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546s-.988-.206-1.327-.546L1.342 14.066C.59 13.329 0 11.899 0 10.852V4.718a1.9 1.9 0 011.887-1.887h6.134c1.047 0 2.477.59 3.229 1.342L21.792 14.7c.339.354.546.84.546 1.342zm5.661 0c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546-.767 0-1.15-.354-1.651-.87l6.93-6.93c.339-.339.546-.826.546-1.327s-.206-.988-.546-1.342L13.609 4.173c-.752-.752-2.182-1.342-3.229-1.342h3.303c1.047 0 2.477.59 3.229 1.342L27.454 14.7c.339.354.546.84.546 1.342z"/></symbol></svg>
+
+
+
+    <div class="wrapper ">
+        <input type="checkbox" class="hidden" id="menu-control" />
+        
+        <header class="gdoc-header">
+    <div class="container flex align-center justify-between">
+        
+        <label for="menu-control" class="gdoc-nav__control">
+            <svg class="icon gdoc_menu"><use xlink:href="#gdoc_menu"></use></svg>
+            <svg class="icon gdoc_arrow_back"><use xlink:href="#gdoc_arrow_back"></use></svg>
+        </label>
+        
+        <a class="gdoc-header__link" href="https://jimcoll.github.io/classes/">
+            <span class="gdoc-brand flex align-center">
+                <img class="gdoc-brand__img" src="/classes/logo.png" alt="">
+                <span class="gdoc-brand__title">So long as you get the GIST of it</span>
+            </span>
+        </a>
+        <span id="gdoc-dark-mode">
+            <svg class="icon gdoc_brightness_dark"><use xlink:href="#gdoc_brightness_dark"></use></svg>
+            <svg class="icon gdoc_brightness_light"><use xlink:href="#gdoc_brightness_light"></use></svg>
+            <svg class="icon gdoc_brightness_auto"><use xlink:href="#gdoc_brightness_auto"></use></svg>
+        </span>
+    </div>
+</header>
+
+
+        <main class="container flex flex-even">
+            
+            <aside class="gdoc-nav">
+                <nav>
+    
+    <div class="gdoc-search">
+        <svg class="icon gdoc_search"><use xlink:href="#gdoc_search"></use></svg>
+        <input type="text" id="gdoc-search-input" class="gdoc-search__input" placeholder="Search..."
+            aria-label="Search" maxlength="64" />
+        <div class="gdoc-search__spinner spinner hidden"></div>
+        <ul id="gdoc-search-results" class="gdoc-search__list"></ul>
+    </div>
+
+
+
+    <section class="gdoc-nav--main">
+        <h2>Navigation</h2>
+        
+            
+
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-3ac26c08" class="gdoc-nav__toggle" >
+            <label for="navtree-3ac26c08" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/" class="gdoc-nav__entry ">
+                        Introduction to GEOINT -- GEOG111
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-57082eb1" class="gdoc-nav__toggle" >
+            <label for="navtree-57082eb1" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Computer basics
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Introduction to Google Earth Pro
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Coordinates and Position Measurements
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - GPS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - GIS introduction
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - spatial analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Digital Terrain Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Map making
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab09A/" class="gdoc-nav__entry ">
+                        Lab 09A - 3D Modeling and Visualization
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab09B/" class="gdoc-nav__entry ">
+                        Lab 09B - Cloud based GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab 10 - Visual Imagery Interpretation
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab11/" class="gdoc-nav__entry ">
+                        Lab 11 - Remotely Sensed Imagery and Color Composites
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab12/" class="gdoc-nav__entry ">
+                        Lab 12 - Landsat 8 Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab13/" class="gdoc-nav__entry ">
+                        Lab 13 - Earth Observing Missions Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab14/" class="gdoc-nav__entry ">
+                        Lab 14 - Final Lab activity
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-9af49685" class="gdoc-nav__toggle" >
+            <label for="navtree-9af49685" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/" class="gdoc-nav__entry ">
+                        Introduction to GIS -- GEOG358
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-2ef21881" class="gdoc-nav__toggle" >
+            <label for="navtree-2ef21881" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab00/" class="gdoc-nav__entry ">
+                        Lab 00 - Intro to GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Intro to GISystems
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Projections and Coordinate Systems
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Using GPS for Field Data Collection
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - On-Screen Digitizing &amp; Image Restoration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - Building a GIS database
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - Selections Queries and Joins
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Overlay &amp; site suitability analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Introduction to network analyist and ArcScene
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab09/" class="gdoc-nav__entry ">
+                        Lab 09 - Interpolation and Fire Hazard Modeling
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/termpaper/" class="gdoc-nav__entry ">
+                        Project
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-91899dd7" class="gdoc-nav__toggle" >
+            <label for="navtree-91899dd7" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/" class="gdoc-nav__entry ">
+                        Remote Sensing -- GEOG526
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-efafcb0c" class="gdoc-nav__toggle" >
+            <label for="navtree-efafcb0c" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/bib/" class="gdoc-nav__entry ">
+                        Bibliography Guidelines
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab - Data Acquisition and Image Preprocessing
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab - Introduction to ERDAS IMAGINE I
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab09A/" class="gdoc-nav__entry ">
+                        Lab - Introduction to ERDAS IMAGINE （Part II）
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO IMAGE INTERPRETATION
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab11/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO MODIS TIME SERIES
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab - LANDSAT TM &amp; SPOT IMAGERY
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab09B/" class="gdoc-nav__entry ">
+                        Lab - Remote Sensing (Assignment 9) NDVI
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab13/" class="gdoc-nav__entry ">
+                        Lab - Remote Sensing with RADAR Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab12/" class="gdoc-nav__entry ">
+                        Lab - THERMAL IMAGERY
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Map making
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab14/" class="gdoc-nav__entry ">
+                        Lab 14 - Final Lab activity
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab - Internet Resources Exploration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab - Maps &amp; Aerial Photography
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO UNIT CONVERSION &amp; SCALE PROBLEMS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab - ELECTROMAGNETIC RADIATION PRINCIPLES
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-a5a58dbc" class="gdoc-nav__toggle" >
+            <label for="navtree-a5a58dbc" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/" class="gdoc-nav__entry ">
+                        Intermediate GIS -- GEOG558
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-e44c6ffc" class="gdoc-nav__toggle" >
+            <label for="navtree-e44c6ffc" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Data survey and database building
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Cartographic Modeling
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Focal Operations
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - Zonal Operations
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - Model Builder
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - Cost Distance, Region Groups, more Model Builder &amp; Python
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Siting a New School with Model Builder and Fungus weight
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Advanced Terrain Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab09/" class="gdoc-nav__entry ">
+                        Lab 09 - Descriptive Spatial Statistics and Point Pattern Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab 10 - Spatial Interpolation
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/termpaper/" class="gdoc-nav__entry ">
+                        Project
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-643316ca" class="gdoc-nav__toggle" checked>
+            <label for="navtree-643316ca" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/" class="gdoc-nav__entry ">
+                        Random bin
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/Install_Help/" class="gdoc-nav__entry is-active">
+                        Installing GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/cart_prime/" class="gdoc-nav__entry ">
+                        Cartography primer
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FOSS/" class="gdoc-nav__entry ">
+                        FOSS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FirstGoogleEarthMap/" class="gdoc-nav__entry ">
+                        A basic map in Google Maps
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/dronemapping/" class="gdoc-nav__entry ">
+                        Drone Mapping
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FOSS_RS/" class="gdoc-nav__entry ">
+                        RS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/GEE_intro/" class="gdoc-nav__entry ">
+                        GEE
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-4d073202" class="gdoc-nav__toggle" >
+            <label for="navtree-4d073202" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/website/" class="gdoc-nav__entry ">
+                        Creating a website
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/website/oldwebsite/" class="gdoc-nav__entry ">
+                        Old website tutorial
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+
+
+
+
+        
+    </section>
+
+    <section class="gdoc-nav--more">
+        
+    </section>
+</nav>
+
+            </aside>
+            
+
+            <div class="gdoc-page">
+                
+    
+
+
+    
+
+
+
+
+
+
+<div class="gdoc-page__header flex flex-wrap
+     justify-between 
+     hidden-mobile 
+    " itemprop="breadcrumb">
+    
+    <div>
+        <svg class="icon gdoc_path hidden-mobile"><use xlink:href="#gdoc_path"></use></svg>
+        <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            
+            
+            
+            
+    
+    
+        
+        
+        
+        
+    
+    
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/' href='/classes/'><span itemprop='name'>Classes</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/random/' href='/classes/random/'><span itemprop='name'>Random bin</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Installing GIS</span><meta itemprop='position' content='4' /></li>
+    
+
+    
+
+    
+
+        </ol>
+    </div>
+    
+    
+</div>
+
+
+    <article class="gdoc-markdown gdoc-markdown__align--left">
+        <h1>Installing GIS</h1>
+        <p>Using GIS (or really any skill you are trying to pick up) at least twice a week greatly improves the time to learn, and the easiest way to do so is to have it readily available to you.  Here I&rsquo;ll walk through the ways to install the software for yourself.</p>
+<p><strong>Install instructions for:</strong>
+
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#arcmaparcpro"><strong>ArcMap/ArcPro</strong></a></li>
+    <li><a href="#qgis"><strong>QGIS</strong></a></li>
+  </ul>
+</nav><hr></div>
+
+</p>
+<div class="gdoc-page__anchorwrap">
+    <h1 id="arcmaparcpro">
+        <strong>ArcMap/ArcPro</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#arcmaparcpro" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ArcMap/ArcPro" href="#arcmaparcpro">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h1>
+</div><p>The ESRI suite of products tends to be a demanding set of programs, so you should have a fairly modern computer if you want to install them for yourself.  The ArcGIS system requirements can be found <a class="gdoc-markdown__link" href="https://desktop.arcgis.com/en/system-requirements/latest/arcgis-desktop-system-requirements.htm">here</a>.  I also recommend <em>at least</em> 64 gigs of free hard drive space at minimum.  In addition to the hardware requirements, ArcGIS also requires the Windows operating system.  Below find installation instructions for different platforms.</p>
+<blockquote class="gdoc-hint info">
+  The Virtual option is by far the easiest option if you are a recently virtualized member of the KU community.  The QGIS virtual option is what I use when I&rsquo;m not wed to ArcMap.
+</blockquote>
+
+
+
+
+
+<div class="gdoc-tabs">
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-uniqueid" id="tabs-uniqueid-0"
+      checked="checked"  />
+    <label for="tabs-uniqueid-0" class="gdoc-tabs__label">
+      Windows
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap">
+    <h3 id="before-you-install-arcgis-for-desktop">
+        Before you install ArcGIS for Desktop
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#before-you-install-arcgis-for-desktop" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Before you install ArcGIS for Desktop" href="#before-you-install-arcgis-for-desktop">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>To install ArcMap on windows, check the system requirements to make sure your computer has the hardware and software required.  You should also close any other open programs or windows.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="activate-your-authorization-code">
+        Activate your authorization code
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#activate-your-authorization-code" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Activate your authorization code" href="#activate-your-authorization-code">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol start="2">
+<li>Visit <a class="gdoc-markdown__link" href="https://wwww.esri.com/educationedition">https://wwww.esri.com/educationedition</a> to begin the process of activating and downloading your ArcGIS for Desktop Student Trial software.</li>
+</ol>
+<blockquote class="gdoc-hint info">
+  If you need an authorization code, you can use the free trial ESRI provides by sighing up at <a class="gdoc-markdown__link" href="https://www.esri.com/en-us/arcgis/trial">https://www.esri.com/en-us/arcgis/trial</a>.
+</blockquote>
+<ol start="3">
+<li>Create or Log in using your ESRI account as necessary.  You will need to use this log in again so remember what you enter here.</li>
+<li>Enter the authorization code and click Activate ArcGIS.</li>
+</ol>
+<blockquote class="gdoc-hint warning">
+  If you received the ArcGIS for Desktop software from your instructor or license administrator, or will be installing from a network server, proceed to step 10.
+</blockquote>
+<ol start="5">
+<li>Click the button for the ArcGIS for Desktop software version being activated.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="download-and-install-arcgis-for-desktop-student-trial">
+        Download and install ArcGIS for Desktop Student Trial
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#download-and-install-arcgis-for-desktop-student-trial" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Download and install ArcGIS for Desktop Student Trial" href="#download-and-install-arcgis-for-desktop-student-trial">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol start="6">
+<li>If necessary, download the ArcGIS Uninstall Utility and uninstall previous versions of ArcGIS Desktop or Server.  The software cannot be installed on a computer that has a previous version of ArcGIS for Desktop or ArcGIS for Server installed. It&rsquo;s OK if the computer has ArcGIS Explorer installed.</li>
+<li><strong>If necessary</strong>, install the <a class="gdoc-markdown__link" href="https://dotnet.microsoft.com/">Microsoft .NET Framework</a> (version 3.5 Service Pack 1 or higher).  However, if you have a current version of Windows installed it is highly likely this is already installed.  If you are unsure if you have the .NetFramework installed, you can download a .net Version detector from <a class="gdoc-markdown__link" href="http://www.asoft.be/prod_netver.html">http://www.asoft.be/prod_netver.html</a>.</li>
+<li>Determine the location for the ArcGIS for Desktop software you wish to install and click the Download button.  You can also download tutorial Data, if desired.</li>
+<li>Double-click ArcGIS_Desktop_10XXXXXXX.exe (Depending on the version you selected, the file extensions may be different) to extract the installation files.</li>
+<li>Locate and run Setup.exe to install ArcGIS for Desktop.  The “Complete” installation is recommended.</li>
+<li>After the files are installed, the Authorization Wizard will open and prompt you to choose a product to authorize; select “ArcGIS Desktop Advanced (Single Use)” and click continue.</li>
+<li>The Authorization Wizard will prompt you for an authorization code; enter your activated code.  Follow the prompts and the software will authorize and be ready for use.  Note: leave the default option for the software extensions selected; they will be authorized automatically.</li>
+<li>Finally, restart your computer and try to open ArcMap.  If the installation was successful, you should be greeted with the ArcMap template window.</li>
+</ol>
+<p><img src="/classes/random/img/ArcmapLaunch.PNG" alt="lrgimcenter"  /></p>
+<blockquote class="gdoc-hint danger">
+  If the installation was unsuccessful, you may need to double check your license authorization.  Search for the &ldquo;ArcGIS Administrator&rdquo; program which was installed alongside ArcMap, click on <strong>Desktop</strong>, select the <em>Advanced (ArcInfo) Single Use</em> radio button, and then the <strong>Authorize Now&hellip;</strong> button.  Follow the prompts and enter the necessary info.<br>
+<img src="/classes/random/img/ArcAdmin.jpeg" alt="imcenter"  />
+</blockquote>
+
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-uniqueid" id="tabs-uniqueid-1"
+       />
+    <label for="tabs-uniqueid-1" class="gdoc-tabs__label">
+      Mac &amp; Linux
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <p>If you are on a mac os or Linux distribution, there are two ways to install ArcMap.  You may use <a class="gdoc-markdown__link" href="https://support.apple.com/en-us/HT201468">Boot camp</a> to dual boot windows, or you can use a virtualization software to launch a windows installation.  In either case you will need a windows key to fully authorize the software.  For more information see this <a class="gdoc-markdown__link" href="https://www.esri.com/arcgis-blog/products/3d-gis/3d-gis/arcgis-pro-in-mac-os-x/">ESRI post</a>.  Here I will walk you through a virtualization process suitable for either operating system.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="installing-virtualbox">
+        Installing VirtualBox
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#installing-virtualbox" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Installing VirtualBox" href="#installing-virtualbox">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>You should start by closing any other programs or windows, and then <a class="gdoc-markdown__link" href="https://www.virtualbox.org/">download VirtualBox here</a>.</li>
+<li>Double click the VirtualBox exe and click through the guided installation.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="installing-windows">
+        Installing Windows
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#installing-windows" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Installing Windows" href="#installing-windows">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol start="3">
+<li>Windows provides unlicensed virtual environments for development, available <a class="gdoc-markdown__link" href="https://developer.microsoft.com/en-us/windows/downloads/virtual-machines/">here</a>.  Download the VirtualBox version, and unzip it.</li>
+<li>In Oracle VM, go to File&gt;Import Virtual Appliance and point to the Windows ova.  Click next.</li>
+<li>Most of the defaults are fine, but I like to create separate folders of each VM I import.  To do this, use the drop down underneath the table to select &ldquo;other&hellip;&rdquo; and create a new folder called Windows and click on the folder once to select it.  Lastly, click Import.</li>
+</ol>
+<p><img src="/classes/random/img/mac1.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="connecting-your-hard-drive">
+        Connecting your hard drive
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#connecting-your-hard-drive" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Connecting your hard drive" href="#connecting-your-hard-drive">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol start="6">
+<li>Finally, lets set up the instance.  Right click on the newly added machine and go to settings.  Most of the time these are sensible defaults, although there are a few things we can tweak.</li>
+</ol>
+<ul>
+<li>under the System dialog, feel free to increase the Base Memory to a reasonable amount, bearing in mind that the more you allocate to the vm, the less you have available on the host.  Feel free to explore the other options but don&rsquo;t change them unless you know what you&rsquo;re doing or can handle a crash or two :)</li>
+<li>Under Shared Folders, create a new folder (the icon with a plus)</li>
+<li>Point to a shared folder on your host machine (mine is called &ldquo;hold&rdquo; here)</li>
+<li>Select the Auto-mount option</li>
+<li>Change the Mount point to something sensible (like \share)</li>
+</ul>
+<p><img src="/classes/random/img/WindowsVMSetup.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="installing-arcmap">
+        Installing ArcMap
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#installing-arcmap" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Installing ArcMap" href="#installing-arcmap">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol start="7">
+<li>To launch Windows, click the imported Windows appliance and click start.  You may close the Auto-capture alerts.</li>
+<li>To connect your folder simply navigate to This PC in the windows explorer and click on the share folder button on the VirtualBox window as needed to make the folder appear.</li>
+</ol>
+<p><img src="/classes/random/img/ShareFolder.PNG" alt="imcenter"  /></p>
+<p>Now that you have a version of Windows installed, you can follow the instructions under the Windows tab.</p>
+<blockquote class="gdoc-hint info">
+  A last note: As you may have noticed, when you downloaded the VM image, there was an expiration date ~60 days from the date you downloaded it.  You will either need to activate this version of windows, or delete and reinstall as needed.
+</blockquote>
+
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-uniqueid" id="tabs-uniqueid-2"
+       />
+    <label for="tabs-uniqueid-2" class="gdoc-tabs__label">
+      Virtual options
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <p>If you are a student at KU,  IT offers <a class="gdoc-markdown__link" href="https://technology.ku.edu/services/virtual-lab">virtualLabs</a>, a remote desktop program you can use to access ArcMap.  In order to access VirtualLabs you will need to install Citrix Workspace.  Because ArcMap is running on a remote PC, the system requirements are far lower and largely related to browser compatibility.  To install this, you should:</p>
+<ol>
+<li>Login to Virtual Lab using your KU Online ID and password.</li>
+<li>You will be prompted to download and install the “Citrix Receiver” application.</li>
+<li>Follow the installation instructions, including restarting your computer.</li>
+<li>and finally, re-log into <a class="gdoc-markdown__link" href="https://virtuallab.ku.edu/vpn/index.html">https://virtuallab.ku.edu/vpn/index.html</a>.  You should see the storefront, where you can select ArcMap, which will launch through your browser.</li>
+</ol>
+<p><img src="/classes/random/img/citrix.PNG" alt="imcenter"  /></p>
+<ol start="5">
+<li>Click the Open Citrix Workspace Launcher.</li>
+</ol>
+<p><img src="/classes/random/img/Virtual4.PNG" alt="imcenter"  /></p>
+<ol start="6">
+<li>Finally, in order to transfer data you need to &ldquo;Permit all access&rdquo;, a prompt you can make appear when you attempt to connect to a folder.</li>
+</ol>
+<p><img src="/classes/random/img/virtual2.PNG" alt="imcenter"  /></p>
+<blockquote>
+<p>At no point did I have to log in via the actual citrix app.  Feel free to close the prompt that looks like so: <img src="/classes/random/img/Virtual3.PNG" alt=""  /></p>
+</blockquote>
+<p>If you need more detailed instructions, you can find those <a class="gdoc-markdown__link" href="https://kuit.service-now.com/kb_home.do?jvar_view_topic=KU&#43;Virtual&#43;Lab&amp;sysparm_refer=kb_home.do">here</a>.  Finally, as per the instructions&hellip;</p>
+<blockquote>
+<p>When working in Virtual Lab, you must save files to your computer or mobile device. Virtual Lab does not provide storage space. Files edited with Virtual Lab applications are not backed up by KU and cannot be restored by KU if something happens to them. <br><br> NOTE: After one hour of idle time, Virtual Lab will disconnect and any unsaved work will be lost. It is important to save files to your personal device before you disconnect from Virtual Lab.</p>
+</blockquote>
+<p>Finally, a few tips picked up along the way:</p>
+<ul>
+<li>File pathing is especially important when using this service.  I would consider it best practice to make sure that you are saving all outputs to your local computer.  These paths should always start with \client...  This is your local pc, so use your folder structure.</li>
+<li>I&rsquo;ve found connecting to OneDrive to work some of the time, but be aware that you are going through three different api&rsquo;s just to load a file.  When in doubt, one of the first things I cross off my troubleshooting list is to place the files on my local disk.</li>
+<li>You will have to be exceptionally patient, this is by far one of the slowest ways I&rsquo;ve ever used GIS.</li>
+</ul>
+<p><img src="/classes/random/img/sharefilesvl.PNG" alt="imcenter"  /></p>
+
+    </div>
+  
+</div>
+
+<hr>
+<div class="gdoc-page__anchorwrap">
+    <h1 id="qgis">
+        <strong>QGIS</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#qgis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor QGIS" href="#qgis">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h1>
+</div><p>&ldquo;QGIS is a user friendly Open Source Geographic Information System (GIS) licensed under the GNU General Public License. QGIS is an official project of the Open Source Geospatial Foundation (OSGeo). It runs on Linux, Unix, Mac OSX, Windows and Android and supports numerous vector, raster, and database formats and functionalities.&rdquo;  When I first encountered QGIS many moons ago, it used to be a cumbersome, difficult tool to use compared to ArcMap.  However, in just a few short years QGIS has made massive improvements and can even stand toe to toe with ESRI in many respects, and is free and open source.  Additionally, it can be even easer to install than ArcMap, and if you go with the virtual installation route provided by <a class="gdoc-markdown__link" href="https://live.osgeo.org/en/index.html">OSGeo</a> below you will have a platform agnostic installation of many of the GIS tools and programs that you could ever need (Python, R, PostGIS, GRASS, GDAL ect.)  As such, I hearty recommend the virtual option.  Regardless of the version chosen system requirements are minimal (1 GB RAM (2 GB are better for trying Java based applications), 1GHz i386 or amd64 compatible CPU) and most modern computers will meet your needs.</p>
+
+
+
+
+<div class="gdoc-tabs">
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-QGISid" id="tabs-QGISid-0"
+      checked="checked"  />
+    <label for="tabs-QGISid-0" class="gdoc-tabs__label">
+      OS independent
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      The installation of QGIS is far less involved than it&rsquo;s ESRI counterparts.  The QGIS website has <a class="gdoc-markdown__link" href="https://qgis.org/en/site/forusers/download.html">downloads separated by operating system here</a>, simply select your operating system.  New users are recommended to install the standalone installer of the latest release.  All you need to do to get started is to download and run the executable.
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-QGISid" id="tabs-QGISid-1"
+       />
+    <label for="tabs-QGISid-1" class="gdoc-tabs__label">
+      Virtually
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <p>See the <a class="gdoc-markdown__link" href="https://live.osgeo.org/en/quickstart/virtualization_quickstart.html">OSGeo quickstart docs</a> for a more verbose but slightly outdated set of instructions should this set of steps not do it for you.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="installing-virtualbox">
+        Installing VirtualBox
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#installing-virtualbox" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Installing VirtualBox" href="#installing-virtualbox">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>You should start by closing any other programs or windows, and then <a class="gdoc-markdown__link" href="https://www.virtualbox.org/">download VirtualBox here</a>.</li>
+<li>Double click the VirtualBox exe and click through the guided installation.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="installing-osgeolive">
+        Installing OSGeoLive
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#installing-osgeolive" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Installing OSGeoLive" href="#installing-osgeolive">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol start="3">
+<li>Download and unzip the latest version of <a class="gdoc-markdown__link" href="https://sourceforge.net/projects/osgeo-live/files/">OSGeoLive</a>, you probably want the .amd64.vmdk.7z version.  Save that unzipped folder in your VirtualBox VMs folder.</li>
+<li>In Oracle VM, Click on Tools, New.</li>
+<li>Name your new machine (I call mine FOSSGIS).</li>
+<li>You can leave the Machine Folder dialog on VirtualBox VMs.</li>
+<li>Change your Type to Linux and your Version to Ubuntu.</li>
+<li>You will most certainly want to increase your memory (ram) beyond the half gig default.</li>
+<li>Select the &ldquo;Use an existing virtual hard drive disk file&rdquo; and point to the vmdk file.  Finally, click Create.</li>
+</ol>
+<p><img src="/classes/random/img/FOSSGIS.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="setting-up">
+        Setting up
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#setting-up" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting up" href="#setting-up">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol start="10">
+<li>Finally, lets set share a folder.  Right click on the newly added machine and go to settings.</li>
+<li>Under Shared Folders, create a new folder (the icon with a plus)</li>
+<li>Point to a shared folder on your host machine (mine is called &ldquo;FOSSFlood-master&rdquo; here)</li>
+<li>Select the Auto-mount option</li>
+<li>The shared folder is now connected!</li>
+</ol>
+<blockquote class="gdoc-hint warning">
+  If you&rsquo;re on a smaller keyboard you likely don&rsquo;t have a right-ctrl key, change the host bind key to something else (I use right alt.  <strong>File</strong> &gt; <strong>Preferences</strong> &gt; <strong>Input</strong>)
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="updating-for-the-future">
+        Updating for the future
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/Install_Help/#updating-for-the-future" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Updating for the future" href="#updating-for-the-future">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol start="16">
+<li>While the above steps will serve you through the intro and intermediate classes, I also use this method almost exclusively for my python needs.  Python <i>can</i> be a wonderful tool, but installation and update woes, along with less flexible graphical execution options means it often loses out to R when new geospatial programmers are looking for their first launch point.  With this linux (ubuntu) installation, we bypass virtually all these issues (see note below).  However, to get the most out of this way of accessing python, we need to set up a few things.  Therefore, after setting up your virtual machine for the first time, I suggest you open up a terminal and run the following:</li>
+</ol>
+<pre><code>sudo apt-get update -y				# updates all sorts of goodies
+sudo apt install snapd				# Installs snapd, used to install programs
+sudo snap install --classic notepadqq		# Installs a better text editor (almost notepad++)
+sudo apt install python3-pip			# Installs pip3 for python
+sudo apt-get install proj-bin			# Installs and updates proj library 
+pip3 install pysimplegui			# Adds gui library for python scripts!
+pip3 install seaborn --upgrade			# My favorite python plotting library, because matpltlib syntax is disgusting
+pip3 install jupyterlab				# for notebook support
+
+# Only run if you want to get geopandas to run
+pip3 install setuptools==39.0.1
+pip3 install pyproj==2.6.1
+pip3 install pandas==0.23.3
+pip3 install geopandas==0.5.1
+</code></pre><p><img src="/classes/random/img/FOSSGIS2.PNG" alt="imcenter"  /></p>
+<blockquote class="gdoc-hint info">
+  When I say all, I mean all but the arcpy library :/   ESRI provides a <a class="gdoc-markdown__link" href="https://enterprise.arcgis.com/en/server/latest/administer/linux/linux-python.htm">tiny bit of help in this direction</a>, but it seems as though their objective is to force you into the always on licensing of the new millennium.  For what it&rsquo;s worth, I don&rsquo;t think I&rsquo;ve encountered anything written in arcpy that wasn&rsquo;t more straightforward to implement yourself, but of course your mileage will vary.
+</blockquote>
+
+    </div>
+  
+</div>
+
+
+
+    </article>
+
+                
+
+
+
+
+
+
+
+
+    
+    
+
+    
+
+
+
+
+
+<div class="gdoc-page__footer flex flex-wrap justify-between">
+    
+    
+</div>
+
+            </div>
+        </main>
+
+        <footer class="gdoc-footer">
+    <div class="container flex">
+        <div class="flex flex-wrap">
+            <span class="gdoc-footer__item gdoc-footer__item--row">
+                <a href="https://jimcoll.github.io/" class="gdoc-footer__link">Site home</a> -- Built with <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> and
+                <svg class="icon gdoc_heart"><use xlink:href="#gdoc_heart"></use></svg>
+            </span>
+            
+            
+        </div>
+        
+        <div class="flex flex-25 justify-end">
+            <span class="gdoc-footer__item">
+                <a class="gdoc-footer__link fake-link" href="#" aria-label="Back to top">
+                    <svg class="icon gdoc_keyborad_arrow_up"><use xlink:href="#gdoc_keyborad_arrow_up"></use></svg> <span class="hidden-mobile">Back to top</span>
+                </a>
+            </span>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+
+    
+
+
+
+
+<script defer src="/classes/js/en.search.min.e0b46e67d3290d6164e22a3133b6589cabdc358125f8155b6e926503fd8af4be.js"></script>
+
+
+
+<script defer src="/classes/js/clipboard-27784b7376.min.js"></script>
+<script defer src="/classes/js/clipboard-loader-f0b5fbd5f6.min.js"></script>
+
+
+</body>
+</html>

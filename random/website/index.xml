@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Creating a website on So long as you get the GIST of it</title>
+    <link>https://jimcoll.github.io/classes/random/website/</link>
+    <description>Recent content in Creating a website on So long as you get the GIST of it</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://jimcoll.github.io/classes/random/website/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Old website tutorial</title>
+      <link>https://jimcoll.github.io/classes/random/website/oldwebsite/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/website/oldwebsite/</guid>
+      <description>Like apparently everything digital these days, not even a year later and most of the material I&amp;rsquo;ve written here is too out of date to be used as a direct tutorial (like nailing a flying carpet down, the reproducibility crisis might really be a thing). The academic theme has now moved to a quasi-GUI driven deployment system which both makes the site easier to create and deploy, but also strips it of the flexibility to modify it as I&amp;rsquo;ve outlined here.</description>
+    </item>
+    
+  </channel>
+</rss>

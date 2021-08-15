@@ -1,0 +1,2774 @@
+<!DOCTYPE html>
+<html lang="en" class="color-toggle-hidden">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark" />
+
+
+
+
+
+    <meta name="description" content="Introduction to Remote Sensing    Remote sensing is a course onto itself, but it’s worth introducing here as GIScience, GISystems, and remote sensing overlap more than they diverge. Remote sensing, as opposed to in-situ measurement, is the measurement of an object from a distance, most often a great distance.
+Objectives    This lab should provide you with the bulk of the background knowledge needed to dive further into the field of remote sensing.">
+
+
+
+    <title>RS | So long as you get the GIST of it</title>
+
+    <link rel="icon" href="/classes/favicon/favicon-32x32.png" type="image/x-icon">
+
+    <script src="/classes/js/darkmode-ce906ea916.min.js"></script>
+
+<link rel="preload" as="font" href="/classes/fonts/Metropolis.woff2" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" as="font" href="/classes/fonts/LiberationSans.woff2" type="font/woff2" crossorigin="anonymous">
+
+<link rel="preload" href="/classes/main-468ccf24c5.min.css" as="style">
+<link rel="stylesheet" href="/classes/main-468ccf24c5.min.css" media="all">
+
+<link rel="preload" href="/classes/mobile-0e5d2e7ecf.min.css" as="style">
+<link rel="stylesheet" href="/classes/mobile-0e5d2e7ecf.min.css" media="screen and (max-width: 45rem)">
+
+<link rel="preload" href="/classes/print-f79fc3e5d7.min.css" as="style">
+<link rel="stylesheet" href="/classes/print-f79fc3e5d7.min.css" media="print">
+
+<link rel="preload" href="/classes/custom.css" as="style">
+<link rel="stylesheet" href="/classes/custom.css" media="all">
+
+
+
+<!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
+
+    
+
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+    
+<!-- geekdoc include: sprites/geekdoc.svg -->
+<svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_back" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.526v2.947H5.755l8.351 8.421-2.105 2.105-12-12 12-12 2.105 2.105-8.351 8.421H24z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_left_alt" xmlns="http://www.w3.org/2000/svg"><path d="M5.965 10.526V6.035L0 12l5.965 5.965v-4.491H24v-2.947H5.965z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_right_alt" xmlns="http://www.w3.org/2000/svg"><path d="M18.035 10.526V6.035L24 12l-5.965 5.965v-4.491H0v-2.947h18.035z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_bitbucket" xmlns="http://www.w3.org/2000/svg"><path d="M15.905 13.355c.189 1.444-1.564 2.578-2.784 1.839-1.375-.602-1.375-2.784-.034-3.403 1.151-.705 2.818.223 2.818 1.564zm1.907-.361c-.309-2.44-3.076-4.056-5.328-3.042-1.426.636-2.389 2.148-2.32 3.747.086 2.097 2.08 3.815 4.176 3.626s3.729-2.234 3.472-4.331zm4.108-9.315c-.756-.997-2.045-1.169-3.179-1.358-3.214-.516-6.513-.533-9.727.034-1.066.172-2.269.361-2.939 1.323 1.1 1.031 2.664 1.186 4.073 1.358 2.544.327 5.156.344 7.699.017 1.426-.172 3.008-.309 4.073-1.375zm.979 17.788c-.481 1.684-.206 3.953-1.994 4.932-3.076 1.701-6.806 1.89-10.191 1.289-1.787-.327-3.884-.894-4.864-2.578-.43-1.65-.705-3.334-.98-5.018l.103-.275.309-.155c5.121 3.386 12.288 3.386 17.427 0 .808.241.206 1.22.189 1.805zM26.01 4.951c-.584 3.764-1.255 7.51-1.908 11.257-.189 1.1-1.255 1.719-2.148 2.183-3.214 1.615-6.96 1.89-10.483 1.512-2.389-.258-4.829-.894-6.771-2.389-.911-.705-.911-1.908-1.083-2.922-.602-3.523-1.289-7.046-1.719-10.604.206-1.547 1.942-2.217 3.231-2.698C6.848.654 8.686.362 10.508.19c3.884-.378 7.854-.241 11.618.859 1.341.395 2.784.945 3.695 2.097.412.533.275 1.203.189 1.805z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_bookmark" xmlns="http://www.w3.org/2000/svg"><path d="M15.268 4.392q.868 0 1.532.638t.664 1.506v17.463l-7.659-3.268-7.608 3.268V6.536q0-.868.664-1.506t1.532-.638h10.876zm4.34 14.144V4.392q0-.868-.638-1.532t-1.506-.664H6.537q0-.868.664-1.532T8.733 0h10.876q.868 0 1.532.664t.664 1.532v17.412z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_auto" xmlns="http://www.w3.org/2000/svg"><path d="M16.846 18.938h2.382L15.22 7.785h-2.44L8.772 18.938h2.382l.871-2.44h3.95zm7.087-9.062L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809zm-11.385 4.937L14 10.282l1.452 4.531h-2.904z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_dark" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565q-1.51 0-3.079.697 1.917.871 3.108 2.701T15.22 14t-1.191 4.037-3.108 2.701q1.568.697 3.079.697zm9.933-11.559L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_light" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565 8.743 8.743 6.565 14t2.178 5.257T14 21.435zm9.933-3.311v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809L27.999 14z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_cloud_off" xmlns="http://www.w3.org/2000/svg"><path d="M9.023 10.5H7q-1.914 0-3.281 1.395t-1.367 3.309 1.367 3.281T7 19.852h11.375zM3.5 4.976l1.477-1.477L24.5 23.022l-1.477 1.477-2.352-2.297H6.999q-2.898 0-4.949-2.051t-2.051-4.949q0-2.844 1.969-4.867t4.758-2.133zm19.086 5.578q2.242.164 3.828 1.832T28 16.351q0 3.008-2.461 4.758l-1.695-1.695q1.805-.984 1.805-3.063 0-1.422-1.039-2.461t-2.461-1.039h-1.75v-.602q0-2.68-1.859-4.539t-4.539-1.859q-1.531 0-2.953.711l-1.75-1.695Q11.431 3.5 14.001 3.5q2.953 0 5.496 2.078t3.09 4.977z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_code" xmlns="http://www.w3.org/2000/svg"><path d="M9.917 24.5a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm0-21a1.75 1.75 0 10-3.501.001A1.75 1.75 0 009.917 3.5zm11.666 2.333a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm1.75 0a3.502 3.502 0 01-1.75 3.026c-.055 6.581-4.721 8.039-7.82 9.023-2.898.911-3.846 1.349-3.846 3.117v.474a3.502 3.502 0 011.75 3.026c0 1.932-1.568 3.5-3.5 3.5s-3.5-1.568-3.5-3.5c0-1.294.711-2.424 1.75-3.026V6.526A3.502 3.502 0 014.667 3.5c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5a3.502 3.502 0 01-1.75 3.026v9.06c.93-.456 1.914-.766 2.807-1.039 3.391-1.075 5.323-1.878 5.359-5.687a3.502 3.502 0 01-1.75-3.026c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_date" xmlns="http://www.w3.org/2000/svg"><path d="M27.192 28.844V11.192H4.808v17.652h22.384zm0-25.689q1.277 0 2.253.976t.976 2.253v22.459q0 1.277-.976 2.216t-2.253.939H4.808q-1.352 0-2.291-.901t-.939-2.253V6.385q0-1.277.939-2.253t2.291-.976h1.577V.001h3.23v3.155h12.769V.001h3.23v3.155h1.577zm-3.155 11.267v3.155h-3.23v-3.155h3.23zm-6.46 0v3.155h-3.155v-3.155h3.155zm-6.384 0v3.155h-3.23v-3.155h3.23z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_download" xmlns="http://www.w3.org/2000/svg"><path d="M2.866 28.209h26.269v3.79H2.866v-3.79zm26.268-16.925L16 24.418 2.866 11.284h7.493V.001h11.283v11.283h7.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_email" xmlns="http://www.w3.org/2000/svg"><path d="M28.845 9.615v-3.23L16 14.422 3.155 6.385v3.23L16 17.577zm0-6.46q1.277 0 2.216.977T32 6.385v19.23q0 1.277-.939 2.253t-2.216.977H3.155q-1.277 0-2.216-.977T0 25.615V6.385q0-1.277.939-2.253t2.216-.977h25.69z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_git" xmlns="http://www.w3.org/2000/svg"><path d="M27.472 12.753L15.247.529a1.803 1.803 0 00-2.55 0l-2.84 2.84 2.137 2.137a2.625 2.625 0 013.501 3.501l3.499 3.499a2.625 2.625 0 11-1.237 1.237l-3.499-3.499c-.083.04-.169.075-.257.106v7.3a2.626 2.626 0 11-1.75 0v-7.3a2.626 2.626 0 01-1.494-3.607L8.62 4.606l-8.09 8.09a1.805 1.805 0 000 2.551l12.225 12.224a1.803 1.803 0 002.55 0l12.168-12.168a1.805 1.805 0 000-2.551z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_github" xmlns="http://www.w3.org/2000/svg"><path d="M16 .394c8.833 0 15.999 7.166 15.999 15.999 0 7.062-4.583 13.062-10.937 15.187-.813.146-1.104-.354-1.104-.771 0-.521.021-2.25.021-4.396 0-1.5-.5-2.458-1.083-2.958 3.562-.396 7.312-1.75 7.312-7.896 0-1.75-.625-3.167-1.646-4.291.167-.417.708-2.042-.167-4.25-1.333-.417-4.396 1.646-4.396 1.646a15.032 15.032 0 00-8 0S8.937 6.602 7.603 7.018c-.875 2.208-.333 3.833-.167 4.25-1.021 1.125-1.646 2.542-1.646 4.291 0 6.125 3.729 7.5 7.291 7.896-.458.417-.875 1.125-1.021 2.146-.917.417-3.25 1.125-4.646-1.333-.875-1.521-2.458-1.646-2.458-1.646-1.562-.021-.104.979-.104.979 1.042.479 1.771 2.333 1.771 2.333.938 2.854 5.396 1.896 5.396 1.896 0 1.333.021 2.583.021 2.979 0 .417-.292.917-1.104.771C4.582 29.455-.001 23.455-.001 16.393-.001 7.56 7.165.394 15.998.394zM6.063 23.372c.042-.083-.021-.187-.146-.25-.125-.042-.229-.021-.271.042-.042.083.021.187.146.25.104.062.229.042.271-.042zm.646.709c.083-.062.062-.208-.042-.333-.104-.104-.25-.146-.333-.062-.083.062-.062.208.042.333.104.104.25.146.333.062zm.625.937c.104-.083.104-.25 0-.396-.083-.146-.25-.208-.354-.125-.104.062-.104.229 0 .375s.271.208.354.146zm.875.875c.083-.083.042-.271-.083-.396-.146-.146-.333-.167-.417-.062-.104.083-.062.271.083.396.146.146.333.167.417.062zm1.187.521c.042-.125-.083-.271-.271-.333-.167-.042-.354.021-.396.146s.083.271.271.312c.167.062.354 0 .396-.125zm1.313.104c0-.146-.167-.25-.354-.229-.187 0-.333.104-.333.229 0 .146.146.25.354.229.187 0 .333-.104.333-.229zm1.208-.208c-.021-.125-.187-.208-.375-.187-.187.042-.312.167-.292.312.021.125.187.208.375.167s.312-.167.292-.292z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_gitlab" xmlns="http://www.w3.org/2000/svg"><path d="M1.629 11.034L14 26.888.442 17.048a1.09 1.09 0 01-.39-1.203l1.578-4.811zm7.217 0h10.309l-5.154 15.854zM5.753 1.475l3.093 9.559H1.63l3.093-9.559a.548.548 0 011.031 0zm20.618 9.559l1.578 4.811c.141.437-.016.922-.39 1.203l-13.558 9.84 12.371-15.854zm0 0h-7.216l3.093-9.559a.548.548 0 011.031 0z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_heart" xmlns="http://www.w3.org/2000/svg"><path d="M16 29.714a1.11 1.11 0 01-.786-.321L4.072 18.643c-.143-.125-4.071-3.714-4.071-8 0-5.232 3.196-8.357 8.535-8.357 3.125 0 6.053 2.464 7.464 3.857 1.411-1.393 4.339-3.857 7.464-3.857 5.339 0 8.535 3.125 8.535 8.357 0 4.286-3.928 7.875-4.089 8.035L16.785 29.392c-.214.214-.5.321-.786.321z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_down" xmlns="http://www.w3.org/2000/svg"><path d="M3.281 5.36L14 16.079 24.719 5.36 28 8.641l-14 14-14-14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_left" xmlns="http://www.w3.org/2000/svg"><path d="M25.875 28.25L22.125 32 6.126 16.001 22.125.002l3.75 3.75-12.25 12.25z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_right" xmlns="http://www.w3.org/2000/svg"><path d="M6.125 28.25L18.375 16 6.125 3.75 9.875 0l15.999 15.999L9.875 31.998z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_up" xmlns="http://www.w3.org/2000/svg"><path d="M24.719 22.64L14 11.921 3.281 22.64 0 19.359l14-14 14 14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_link" xmlns="http://www.w3.org/2000/svg"><path d="M24.037 7.963q3.305 0 5.634 2.366T32 16t-2.329 5.671-5.634 2.366h-6.46v-3.08h6.46q2.028 0 3.493-1.465t1.465-3.493-1.465-3.493-3.493-1.465h-6.46v-3.08h6.46zM9.615 17.578v-3.155h12.77v3.155H9.615zM3.005 16q0 2.028 1.465 3.493t3.493 1.465h6.46v3.08h-6.46q-3.305 0-5.634-2.366T0 16.001t2.329-5.671 5.634-2.366h6.46v3.08h-6.46q-2.028 0-3.493 1.465t-1.465 3.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_menu" xmlns="http://www.w3.org/2000/svg"><path d="M.001 5.334h31.998v3.583H.001V5.334zm0 12.416v-3.5h31.998v3.5H.001zm0 8.916v-3.583h31.998v3.583H.001z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_notification" xmlns="http://www.w3.org/2000/svg"><path d="M22.615 19.384l2.894 2.894v1.413H2.49v-1.413l2.894-2.894V12.25q0-3.365 1.716-5.856t4.745-3.231v-1.01q0-.875.606-1.514T13.999 0t1.548.639.606 1.514v1.01q3.029.74 4.745 3.231t1.716 5.856v7.134zM14 27.999q-1.211 0-2.053-.808t-.841-2.019h5.788q0 1.144-.875 1.986T14 27.999z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_path" xmlns="http://www.w3.org/2000/svg"><path d="M28 12.62h-9.793V8.414h-2.826v11.173h2.826v-4.206H28V26.62h-9.793v-4.206H12.62v-14H9.794v4.206H.001V1.381h9.793v4.206h8.413V1.381H28V12.62z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_person" xmlns="http://www.w3.org/2000/svg"><path d="M16 20.023q5.052 0 10.526 2.199t5.473 5.754v4.023H0v-4.023q0-3.555 5.473-5.754t10.526-2.199zM16 16q-3.275 0-5.614-2.339T8.047 8.047t2.339-5.661T16 0t5.614 2.386 2.339 5.661-2.339 5.614T16 16z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_search" xmlns="http://www.w3.org/2000/svg"><path d="M11.925 20.161q3.432 0 5.834-2.402t2.402-5.834-2.402-5.834-5.834-2.402-5.834 2.402-2.402 5.834 2.402 5.834 5.834 2.402zm10.981 0L32 29.255 29.255 32l-9.094-9.094v-1.458l-.515-.515q-3.26 2.831-7.721 2.831-4.976 0-8.45-3.432T.001 11.925t3.474-8.45 8.45-3.474 8.407 3.474 3.432 8.45q0 1.802-.858 4.075t-1.973 3.646l.515.515h1.458z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_shield" xmlns="http://www.w3.org/2000/svg"><path d="M22.167 15.166V3.5h-8.166v20.726c.93-.492 2.424-1.349 3.883-2.497 1.95-1.531 4.284-3.919 4.284-6.562zm3.499-13.999v14c0 7.674-10.737 12.523-11.192 12.724-.146.073-.31.109-.474.109s-.328-.036-.474-.109c-.456-.201-11.192-5.049-11.192-12.724v-14C2.334.529 2.863 0 3.501 0H24.5c.638 0 1.167.529 1.167 1.167z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_tags" xmlns="http://www.w3.org/2000/svg"><path d="M6.606 7.549c0-1.047-.84-1.887-1.887-1.887s-1.887.84-1.887 1.887.84 1.887 1.887 1.887 1.887-.84 1.887-1.887zm15.732 8.493c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546s-.988-.206-1.327-.546L1.342 14.066C.59 13.329 0 11.899 0 10.852V4.718a1.9 1.9 0 011.887-1.887h6.134c1.047 0 2.477.59 3.229 1.342L21.792 14.7c.339.354.546.84.546 1.342zm5.661 0c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546-.767 0-1.15-.354-1.651-.87l6.93-6.93c.339-.339.546-.826.546-1.327s-.206-.988-.546-1.342L13.609 4.173c-.752-.752-2.182-1.342-3.229-1.342h3.303c1.047 0 2.477.59 3.229 1.342L27.454 14.7c.339.354.546.84.546 1.342z"/></symbol></svg>
+
+
+
+    <div class="wrapper ">
+        <input type="checkbox" class="hidden" id="menu-control" />
+        
+        <header class="gdoc-header">
+    <div class="container flex align-center justify-between">
+        
+        <label for="menu-control" class="gdoc-nav__control">
+            <svg class="icon gdoc_menu"><use xlink:href="#gdoc_menu"></use></svg>
+            <svg class="icon gdoc_arrow_back"><use xlink:href="#gdoc_arrow_back"></use></svg>
+        </label>
+        
+        <a class="gdoc-header__link" href="https://jimcoll.github.io/classes/">
+            <span class="gdoc-brand flex align-center">
+                <img class="gdoc-brand__img" src="/classes/logo.png" alt="">
+                <span class="gdoc-brand__title">So long as you get the GIST of it</span>
+            </span>
+        </a>
+        <span id="gdoc-dark-mode">
+            <svg class="icon gdoc_brightness_dark"><use xlink:href="#gdoc_brightness_dark"></use></svg>
+            <svg class="icon gdoc_brightness_light"><use xlink:href="#gdoc_brightness_light"></use></svg>
+            <svg class="icon gdoc_brightness_auto"><use xlink:href="#gdoc_brightness_auto"></use></svg>
+        </span>
+    </div>
+</header>
+
+
+        <main class="container flex flex-even">
+            
+            <aside class="gdoc-nav">
+                <nav>
+    
+    <div class="gdoc-search">
+        <svg class="icon gdoc_search"><use xlink:href="#gdoc_search"></use></svg>
+        <input type="text" id="gdoc-search-input" class="gdoc-search__input" placeholder="Search..."
+            aria-label="Search" maxlength="64" />
+        <div class="gdoc-search__spinner spinner hidden"></div>
+        <ul id="gdoc-search-results" class="gdoc-search__list"></ul>
+    </div>
+
+
+
+    <section class="gdoc-nav--main">
+        <h2>Navigation</h2>
+        
+            
+
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-3ac26c08" class="gdoc-nav__toggle" >
+            <label for="navtree-3ac26c08" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/" class="gdoc-nav__entry ">
+                        Introduction to GEOINT -- GEOG111
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-57082eb1" class="gdoc-nav__toggle" >
+            <label for="navtree-57082eb1" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Computer basics
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Introduction to Google Earth Pro
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Coordinates and Position Measurements
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - GPS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - GIS introduction
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - spatial analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Digital Terrain Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Map making
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab09A/" class="gdoc-nav__entry ">
+                        Lab 09A - 3D Modeling and Visualization
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab09B/" class="gdoc-nav__entry ">
+                        Lab 09B - Cloud based GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab 10 - Visual Imagery Interpretation
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab11/" class="gdoc-nav__entry ">
+                        Lab 11 - Remotely Sensed Imagery and Color Composites
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab12/" class="gdoc-nav__entry ">
+                        Lab 12 - Landsat 8 Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab13/" class="gdoc-nav__entry ">
+                        Lab 13 - Earth Observing Missions Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab14/" class="gdoc-nav__entry ">
+                        Lab 14 - Final Lab activity
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-9af49685" class="gdoc-nav__toggle" >
+            <label for="navtree-9af49685" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/" class="gdoc-nav__entry ">
+                        Introduction to GIS -- GEOG358
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-2ef21881" class="gdoc-nav__toggle" >
+            <label for="navtree-2ef21881" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab00/" class="gdoc-nav__entry ">
+                        Lab 00 - Intro to GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Intro to GISystems
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Projections and Coordinate Systems
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Using GPS for Field Data Collection
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - On-Screen Digitizing &amp; Image Restoration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - Building a GIS database
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - Selections Queries and Joins
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Overlay &amp; site suitability analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Introduction to network analyist and ArcScene
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab09/" class="gdoc-nav__entry ">
+                        Lab 09 - Interpolation and Fire Hazard Modeling
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/termpaper/" class="gdoc-nav__entry ">
+                        Project
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-91899dd7" class="gdoc-nav__toggle" >
+            <label for="navtree-91899dd7" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/" class="gdoc-nav__entry ">
+                        Remote Sensing -- GEOG526
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-efafcb0c" class="gdoc-nav__toggle" >
+            <label for="navtree-efafcb0c" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/bib/" class="gdoc-nav__entry ">
+                        Bibliography Guidelines
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab - Data Acquisition and Image Preprocessing
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab - Introduction to ERDAS IMAGINE I
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab09A/" class="gdoc-nav__entry ">
+                        Lab - Introduction to ERDAS IMAGINE （Part II）
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO IMAGE INTERPRETATION
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab11/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO MODIS TIME SERIES
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab - LANDSAT TM &amp; SPOT IMAGERY
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab09B/" class="gdoc-nav__entry ">
+                        Lab - Remote Sensing (Assignment 9) NDVI
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab13/" class="gdoc-nav__entry ">
+                        Lab - Remote Sensing with RADAR Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab12/" class="gdoc-nav__entry ">
+                        Lab - THERMAL IMAGERY
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Map making
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab14/" class="gdoc-nav__entry ">
+                        Lab 14 - Final Lab activity
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab - Internet Resources Exploration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab - Maps &amp; Aerial Photography
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO UNIT CONVERSION &amp; SCALE PROBLEMS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab - ELECTROMAGNETIC RADIATION PRINCIPLES
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-a5a58dbc" class="gdoc-nav__toggle" >
+            <label for="navtree-a5a58dbc" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/" class="gdoc-nav__entry ">
+                        Intermediate GIS -- GEOG558
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-e44c6ffc" class="gdoc-nav__toggle" >
+            <label for="navtree-e44c6ffc" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Data survey and database building
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Cartographic Modeling
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Focal Operations
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - Zonal Operations
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - Model Builder
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - Cost Distance, Region Groups, more Model Builder &amp; Python
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Siting a New School with Model Builder and Fungus weight
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Advanced Terrain Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab09/" class="gdoc-nav__entry ">
+                        Lab 09 - Descriptive Spatial Statistics and Point Pattern Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab 10 - Spatial Interpolation
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/termpaper/" class="gdoc-nav__entry ">
+                        Project
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-643316ca" class="gdoc-nav__toggle" checked>
+            <label for="navtree-643316ca" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/" class="gdoc-nav__entry ">
+                        Random bin
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/Install_Help/" class="gdoc-nav__entry ">
+                        Installing GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/cart_prime/" class="gdoc-nav__entry ">
+                        Cartography primer
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FOSS/" class="gdoc-nav__entry ">
+                        FOSS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FirstGoogleEarthMap/" class="gdoc-nav__entry ">
+                        A basic map in Google Maps
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/dronemapping/" class="gdoc-nav__entry ">
+                        Drone Mapping
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FOSS_RS/" class="gdoc-nav__entry is-active">
+                        RS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/GEE_intro/" class="gdoc-nav__entry ">
+                        GEE
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-4d073202" class="gdoc-nav__toggle" >
+            <label for="navtree-4d073202" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/website/" class="gdoc-nav__entry ">
+                        Creating a website
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/website/oldwebsite/" class="gdoc-nav__entry ">
+                        Old website tutorial
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+
+
+
+
+        
+    </section>
+
+    <section class="gdoc-nav--more">
+        
+    </section>
+</nav>
+
+            </aside>
+            
+
+            <div class="gdoc-page">
+                
+    
+
+
+    
+
+
+
+
+
+
+<div class="gdoc-page__header flex flex-wrap
+     justify-between 
+     hidden-mobile 
+    " itemprop="breadcrumb">
+    
+    <div>
+        <svg class="icon gdoc_path hidden-mobile"><use xlink:href="#gdoc_path"></use></svg>
+        <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            
+            
+            
+            
+    
+    
+        
+        
+        
+        
+    
+    
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/' href='/classes/'><span itemprop='name'>Classes</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/random/' href='/classes/random/'><span itemprop='name'>Random bin</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>RS</span><meta itemprop='position' content='4' /></li>
+    
+
+    
+
+    
+
+        </ol>
+    </div>
+    
+    
+</div>
+
+
+    <article class="gdoc-markdown gdoc-markdown__align--left">
+        <h1>RS</h1>
+        <div class="gdoc-page__anchorwrap">
+    <h2 id="introduction-to-remote-sensing">
+        <strong>Introduction to Remote Sensing</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#introduction-to-remote-sensing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Introduction to Remote Sensing" href="#introduction-to-remote-sensing">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p><img src="/classes/geog358/img/GPSSplash.jpg" alt="imcenter"  /></p>
+<p>Remote sensing is a course onto itself, but it’s worth introducing here as GIScience, GISystems, and remote sensing overlap more than they diverge.  Remote sensing, as opposed to in-situ measurement, is the measurement of an object from a distance, most often a great distance.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="objectives">
+        <strong>Objectives</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#objectives" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Objectives" href="#objectives">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>This lab should provide you with the bulk of the background knowledge needed to dive further into the field of remote sensing.  We&rsquo;ll cover common terminology and technology, some basic applications, and cover how R can be used to perform common GIScience and remote sensing operations.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="quick-vocab">
+        <strong>Quick vocab</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#quick-vocab" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Quick vocab" href="#quick-vocab">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>To start off, lets review some key vocabulary that often comes up when discussing remote sensing.  These definitions are important when discussing concepts such as distortion and illumination angles but will only crop up sporadically.</p>
+<ul>
+<li>In physics, the <strong>nadir</strong> direction for a given location is the local vertical direction pointing in the direction the force of gravity acts at that location.  In remote sensing this concept is, in essence, the point on a photo which is directly below the satellite.  It&rsquo;s opposite direction, <strong>zenith</strong>, refers to the direction directly opposed to gravity.</li>
+<li><strong>Julian days</strong> are equivalent to Day of the Year, starting on January first of each year.</li>
+<li><strong>Epoch time</strong>, also know as Unix time or POSIX time, is the number of seconds that have elapsed since January first, 1970 at midnight GMT/UTC, and is often used to indicate the timestamp of the data. (<a class="gdoc-markdown__link" href="https://www.epochconverter.com/">handy web converter</a>)</li>
+<li>Remote sensing data comes from <strong>instruments</strong>, or sensors, which in turn are housed aboard <strong>platforms</strong>, or satellites.</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="the-basics">
+        <strong>The basics</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#the-basics" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor The basics" href="#the-basics">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>It’s difficult to learn about remote sensing without first recalling some basic physics.  First, take a second and recall how eyesight and vision works, using the conceptual diagram below.</p>
+<p><img src="/classes/random/img/placeholdereyesremotesensing.gif" alt="imcenter"  /></p>
+<p>Remote sensing is the measurement of the electromagnetic spectrum.  Energy (not necessarily in the visible spectrum) from a source, strikes the object, and then travels to the eye.  We’ll break this down a little further.  There are several different flavors of remote sensing, but the two most common ones are:</p>
+<ul>
+<li><strong>Active sensing</strong>: A sensor or pair of instruments that both emit and receive measurements.  Common examples of active remote sensing include ground penetrating radar, sonar, and LIDAR.</li>
+<li><strong>Passive sensing</strong>: A sensor which only receives measurements.  These are some of the most common forms of sensors, examples of which include: Your eyes, cameras, and most earth orbiting satellites.</li>
+</ul>
+<p>Next we need to introduce the most common properties used to differentiate and classify different remote sensing platforms.  These properties are all in the context of scale and resolution.</p>
+<p><strong>Radiometric resolution</strong>: Radiometric resolution is the number of brightness levels that can be detected by the sensor, also known as radiometric sensitivity, quantization, or simply the number of bits per pixel.
+<img src="/classes/random/img/RadiometricResolution.png" alt="imcenter"  /></p>
+<p><strong>Spectral resolution</strong>: Spectral resolution refers to the number and position of the sensor bands along the EM spectrum. 
+<img src="/classes/random/img/SpectralResolution.png" alt="imcenter"  /></p>
+<p><strong>Spatial resolution</strong>: Spatial resolution is the ground distance of the pixel, and is typically reported in meters at nadir at the equator.
+<img src="/classes/random/img/tempSpatialResolution.png" alt="imcenter"  /></p>
+<p><strong>Temporal resolution</strong>: Temporal resolution, or more directly refereed to as revisit time, is, as the name suggests, the time between a repeated observation of the same place on the globe.  Temporal resolution is the result of a number of factors, but the two largest are the swath width and the orbit.</p>
+<p><strong>Swath width</strong> is the width of a single image, and can either be small or large,  The image below (gratefully pilfered from Figure 1 in <a class="gdoc-markdown__link" href="https://doi-org.www2.lib.ku.edu/10.1016/j.rse.2019.111254">https://doi-org.www2.lib.ku.edu/10.1016/j.rse.2019.111254</a>) shows the swath of a Landsat-8 OLI orbit (185 km wide, left) compared  and a Sentinel-2A MSI orbit (290 km wide, right).
+<img src="/classes/random/img/Swathwidth.jpg" alt="imcenter"  /></p>
+<p><strong>Orbit</strong> refers to the direction and nature of the travel path of satellites around a body.  There are a number of common orbital patterns satellites exhibit.  For more information, see <a class="gdoc-markdown__link" href="https://www.sciencelearn.org.nz/image_maps/13-satellites-and-orbits">an example of the different orbits and satellites</a>, and explore satellite orbits at this <a class="gdoc-markdown__link" href="https://maps.esri.com/rc/sat/index.html">ESRI site</a>.<br>
+<img src="/classes/random/img/SatelliteOrbits.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Geostationary: The orbit of the sensor is such that it rotates at a speed which maintains the satellites position over the same spot on the earth.  Most commonly seen with communication and weather satellites.</li>
+<li>Sun synchronous: The orbit of this satellite follows the sun.</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="an-introduction-to-platforms">
+        <strong>An introduction to platforms</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#an-introduction-to-platforms" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor An introduction to platforms" href="#an-introduction-to-platforms">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>As you might have guessed by now, a proper understanding of remote sensing hinges on a thorough understanding of the data structure and lineage.  The <a class="gdoc-markdown__link" href="https://developers.google.com/earth-engine/datasets/">Google Earth Engine Dataset catalog</a> has an excellent overview of platforms and datasets avalible for end users, but here we’ll introduce two of my favorite platforms, MODIS, and Landsat</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="modis">
+        <strong>MODIS</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#modis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor MODIS" href="#modis">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><img src="/classes/random/img/MODIS-Aqua.jpg" alt="imcenter"  />
+<a class="gdoc-markdown__link" href="https://modis.gsfc.nasa.gov/about/">MODIS,(Moderate Resolution Imaging Spectroradiometer)</a> is a key instrument aboard the Terra (originally known as EOS AM-1) and Aqua (originally known as EOS PM-1) satellites.  These are passive remote sensing platforms, and so follow a sun synchronous orbit.  Terra&rsquo;s orbit around the Earth is timed so that it passes from north to south across the equator in the morning, while Aqua passes south to north over the equator in the afternoon. Terra MODIS and Aqua MODIS are viewing the entire Earth&rsquo;s surface every 1 to 2 days, acquiring data in 36 spectral bands.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="landsat">
+        <strong>LANDSAT</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#landsat" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor LANDSAT" href="#landsat">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><img src="/classes/random/img/landsat_8_01.jpg" alt="imcenter"  />
+The Landsat program is the longest-running enterprise for acquisition of satellite imagery of Earth. It is a joint NASA/USGS program. Back in July of 1972, the first satellite was launched, and eventually became known as Landsat 1.  The most recent satellite, Landsat 8, was launched on February 11, 2013, and is still currently operational. There are a few different sensors onboard, which are outlined below.  Landsat 1 through 5 carried the Landsat Multispectral Scanner (MSS). Landsat 4 and 5 carried both the MSS and Thematic Mapper (TM) instruments. Landsat 7 uses the Enhanced Thematic Mapper Plus (ETM+) scanner. Landsat 8 uses two instruments, the Operational Land Imager (OLI) for optical bands and the Thermal Infrared Sensor (TIRS) for thermal bands. Handy charts for these instruments can be found on the <a class="gdoc-markdown__link" href="https://en.wikipedia.org/wiki/Landsat_program">wikipedia page</a>.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="landsat-distro">
+        <strong>LANDSAT distro</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#landsat-distro" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor LANDSAT distro" href="#landsat-distro">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>Landsat is distributed in tiles (called scenes) that are identified by their path and row.  Although these designations are somewhat arbitrary (in that they provide little geographic context, what does path 34 row 58 tell you?), they are a consistent means of identifying and disseminating tiles.
+<img src="/classes/random/img/wrs2.gif" alt="imcenter"  />
+<a class="gdoc-markdown__link" href="https://www.usgs.gov/land-resources/nli/landsat/landsat-shapefiles-and-kml-files">https://www.usgs.gov/land-resources/nli/landsat/landsat-shapefiles-and-kml-files</a></p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="landsat-names">
+        <strong>LANDSAT names</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#landsat-names" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor LANDSAT names" href="#landsat-names">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>With so much data being collected, you can imagine that a naming convention can get pretty convoluted, and if you don&rsquo;t work with this data commonly, you&rsquo;ll need to look up this information each time you need it.  However, it&rsquo;s worthwhile to introduce it here.  Landsat collection 1 Level-1 products are all identified using the following naming convention.</p>
+<p>LXSS_LLLL_PPPRRR_YYYYMMDD_yyyymmdd_CC_TX</p>
+<p>Where:</p>
+<p>L = Landsat
+X = Sensor (“C”=OLI/TIRS combined, “O”=OLI-only, “T”=TIRS-only, “E”=ETM+, “T”=“TM, “M”=MSS)
+SS = Satellite (”07”=Landsat 7, “08”=Landsat 8)
+LLL = Processing correction level (L1TP/L1GT/L1GS)
+PPP = WRS path
+RRR = WRS row
+YYYYMMDD = Acquisition year, month, day
+yyyymmdd - Processing year, month, day
+CC = Collection number (01, 02, …)
+TX = Collection category (“RT”=Real-Time, “T1”=Tier 1, “T2”=Tier 2)</p>
+<p>Example:  LC08_L1GT_029030_20151209_20160131_01_RT
+Means: Landsat 8; OLI/TIRS combined; processing correction level L1GT; path 029; row 030; acquired December 9, 2015; processed January 31, 2016; Collection 1; Real-Time</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="landsat-anomalies">
+        <strong>LANDSAT anomalies</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#landsat-anomalies" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor LANDSAT anomalies" href="#landsat-anomalies">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>There are quirks to every remote sensing product, but landsat 7 has one of the most unique.  Unlike other platforms, such as the Hubble space telescope, these remote sensing platforms do not have the benefit of maintenance after being placed in orbit.  So, in June of 2003, when the landsat 7 scan line corrector (slc) module failed, data from half of the collected data was no longer viable.  This scan line correcter is responsible for adjusting the position of the sensor as it scanned the earth.  The result is a charicteristic striping of the data.  There have been numerous efforts to correct for this failure, but for now, just know that most landsat 7 data will look rather zebra-esque.
+<img src="/classes/random/img/Schematic-of-Landsat-7-data-collection-in-SLC-On-a-and-SLC-Off-b-mode-and-a.png" alt="imcenter"  /></p>
+<blockquote>
+<p>Image from <a class="gdoc-markdown__link" href="https://www.researchgate.net/publication/236864661_Validating_gap-filling_of_Landsat_ETM_satellite_images_in_the_Golestan_Province_Iran">https://www.researchgate.net/publication/236864661_Validating_gap-filling_of_Landsat_ETM_satellite_images_in_the_Golestan_Province_Iran</a></p>
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="a-simple-application">
+        <strong>A simple application</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#a-simple-application" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor A simple application" href="#a-simple-application">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>There are a number of uses for remote sensing data, but one of the cornerstones of remote sensing is the normalized difference index.  If we take two numbers and subtract them, and divide that by the sum of those same two numbers, we end up with a number that can range from -1 to 1.  This normalization can tell us a lot about a process, and is performed for a wide variety of earth classification operations such as snow (NDSI), water (NDWI), and vegetative health (NDVI).</p>
+<p><img src="/classes/random/img/genericNDVI.PNG" alt="imcenter"  /></p>
+<p>The latter, NDVI, is an often performed analysis to give us a roughly quantitative analysis of the vegetative health of a system.  When sunlight strikes objects, some wavelengths of this spectrum are absorbed and other wavelengths are reflected. The pigment in plant leaves, chlorophyll, strongly absorbs visible light (from 0.4 to 0.7 µm) for use in photosynthesis, whereas the cell structure of the leaves strongly reflects near-infrared light (from 0.7 to 1.1 µm). The more leaves a plant has, the more these wavelengths of light are affected.  NDVI values are fairly relative (the difference between 0.5 to 0.6 is not generally quantifiable), but in general, anything above 0.2 is vegetation, and higher values are roughly equivalent to more vegetation.</p>
+<p><img src="/classes/random/img/NDVITrees.jpg" alt="imcenter"  /></p>
+<blockquote>
+<p>Image from <a class="gdoc-markdown__link" href="https://eos.com/ndvi/">https://eos.com/ndvi/</a></p>
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="lab-exercise">
+        <strong>Lab exercise</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#lab-exercise" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Lab exercise" href="#lab-exercise">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>Let&rsquo;s use our newfound knowledge to perform one of the most common operations one might want to take, a change detection study.  Let’s explore how NDVI changes by land cover type between summer and fall.  We&rsquo;ll use landsat 8.  If we look back at the landsat 8 OLS sensor (copied below), we can see that those wavelengths are equivalent to bands 4 and 5.</p>
+<table>
+<thead>
+<tr>
+<th>Band number</th>
+<th>Spectral resolution</th>
+<th>Spatial Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Band 1</td>
+<td>Visible (0.43 - 0.45 µm)</td>
+<td>30 m</td>
+</tr>
+<tr>
+<td>Band 2</td>
+<td>Visible (0.450 - 0.51 µm)</td>
+<td>30 m</td>
+</tr>
+<tr>
+<td>Band 3</td>
+<td>Visible (0.53 - 0.59 µm)</td>
+<td>30 m</td>
+</tr>
+<tr>
+<td>Band 4</td>
+<td>Red (0.64 - 0.67 µm)</td>
+<td>30 m</td>
+</tr>
+<tr>
+<td>Band 5</td>
+<td>Near-Infrared (0.85 - 0.88 µm)</td>
+<td>30 m</td>
+</tr>
+<tr>
+<td>Band 6</td>
+<td>SWIR 1(1.57 - 1.65 µm)</td>
+<td>30 m</td>
+</tr>
+<tr>
+<td>Band 7</td>
+<td>SWIR 2 (2.11 - 2.29 µm)</td>
+<td>30 m</td>
+</tr>
+<tr>
+<td>Band 8</td>
+<td>Panchromatic (PAN) (0.50 - 0.68 µm)</td>
+<td>15 m</td>
+</tr>
+<tr>
+<td>Band 9</td>
+<td>Near-Infrared (0.85 - 0.88 µm)</td>
+<td>30 m</td>
+</tr>
+</tbody>
+</table>
+<p>Let&rsquo;s lay out our workflow conceptually.  We&rsquo;ll first establish an area over which we&rsquo;ll perform the analysis.  Next, we&rsquo;ll scrape an amazon web service to identify suitable data to use for our analysis, and grab land cover data to perform our analysis.  Afterwards, we&rsquo;ll calculate NDVI and perform our zonal statistics using our land cover.  Finally, we&rsquo;ll create a pretty image as our output image.</p>
+<p><img src="/classes/random/img/Workflows.png" alt="imcenter"  /></p>
+<blockquote class="gdoc-hint info">
+  <p>You may notice a slightly unique naming convention in the code:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="c1"># Pick an AOI</span>
+<span class="n">xx</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">()</span> 
+<span class="n">xx</span><span class="o">$</span><span class="n">AOI_center...</span>
+</code></pre></div><p>I like to create an empty list and stuff all cartographic variables into a single place for easy access when it comes time to create outputs.  This also makes it easer to create web apps (the global file then only has to return the list), but that will be a topic for a later date.</p>
+
+</blockquote>
+
+<div class="gdoc-page__anchorwrap">
+    <h3 id="first-lets-load-in-the-requisite-packages">
+        First, let&rsquo;s load in the requisite packages
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#first-lets-load-in-the-requisite-packages" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor First, let&rsquo;s load in the requisite packages" href="#first-lets-load-in-the-requisite-packages">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><pre><code># Last build: 7/30/20
+# install.packages(&quot;devtools&quot;)  # Will throw errors if RTools is not installed, you can ignore this for the remained of installation
+# install.packages(&quot;geosphere&quot;)  # For geodesic buffer function
+# install.packages(&quot;leaflet&quot;)  # For visualization
+# install.packages(&quot;leafem&quot;)  # For visualization
+# install.packages(&quot;raster&quot;) # for raster vis
+# library(devtools, quietly = TRUE)
+# devtools::install_github(&quot;ropensci/FedData&quot;)  # For easy NLCD download
+# devtools::install_github(c(&quot;ropensci/getlandsat&quot;))  # For easy landsat download
+
+library(raster, quietly = TRUE)  # vis
+library(dplyr, quietly = TRUE)  # Syntax sugar
+library(lubridate, quietly = TRUE)  # more syntax sugar
+library(rgeos, quietly = TRUE)  # second buffer function
+library(jsonlite, quietly = TRUE)  # API query
+library(httr, quietly = TRUE)  # web download
+library(leaflet, quietly = TRUE)  # vis
+library(leafem, quietly = TRUE)  # vis
+library(htmltools, quietly = TRUE)  # vis
+library(FedData, quietly = TRUE)  # Easy NLCD
+library(getlandsat, quietly = TRUE)  # Easy landsat
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="define-a-few-helper-functions">
+        Define a few helper functions
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#define-a-few-helper-functions" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Define a few helper functions" href="#define-a-few-helper-functions">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>We&rsquo;ll use a few helper functions to help us accomplish this task, one to plot a point in the world for use as the centroid of our AOI, and another to generate the approprite utm epsg for that point.</p>
+<pre><code>## Helper functions
+
+## geocoding function using OSM Nominatim API -- details: http://wiki.openstreetmap.org/wiki/Nominatim
+## Inputs: a human readable address or colloquial name string
+## Outputs: success: a sf point with lat and long | Failure: an empty dataframe
+## modified from: D.Kisler @ https://datascienceplus.com/osm-nominatim-with-r-getting-locations-geo-coordinates-by-its-address/
+nominatim_osm &lt;- function(address = NULL) {
+  # Construct a url request
+  d &lt;- jsonlite::fromJSON( 
+    gsub('\\@addr\\@', gsub('\\s+', '\\%20', address), 'http://nominatim.openstreetmap.org/search/@addr@?format=json&amp;addressdetails=0&amp;limit=1'))
+  
+  # return parsed sf point
+  return(
+    sf::st_as_sf(d %&gt;% select('lon','lat','display_name'),
+                 coords=c(&quot;lon&quot;,&quot;lat&quot;), 
+                 crs=sf::st_crs(4326),
+                 remove=TRUE)
+  )
+}
+
+## geodesic buffer function -- details: http://wiki.openstreetmap.org/wiki/Nominatim
+## Inputs: a coordinate pair in EPSG:4326
+## Outputs: the equivelent UTM zone EPSG
+## all credit to Robin Lovelace, Jakub Nowosad, Jannes Muenchow @ https://geocompr.robinlovelace.net/reproj-geo-data.html
+lonlat2UTM = function(lonlat) {
+  utm = (floor((lonlat[1] + 180) / 6) %% 60) + 1
+  if(lonlat[2] &gt; 0) {
+    utm + 32600
+  } else{
+    utm + 32700
+  }
+}
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="define-our-aoi-and-a-small-processing-area">
+        Define our AOI and a small processing area
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#define-our-aoi-and-a-small-processing-area" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Define our AOI and a small processing area" href="#define-our-aoi-and-a-small-processing-area">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>First, let&rsquo;s define our AOI and a small buffer</p>
+<pre><code># set a working directory
+setwd(&quot;C:/Users/Cornholio/Desktop/coolclass&quot;) # your own filepath here
+
+# Pick an AOI and (small) buffer distance
+xx &lt;- list() 
+xx$AOI_center &lt;- nominatim_osm(&quot;Lawrence, KS&quot;) 
+# xx$AOI_center &lt;- sp::SpatialPoints(list(-95.23595,38.97194)) %&gt;% sf::st_as_sfc() %&gt;% sf::st_set_crs(4326) # or spesify a lon/lat point
+mybufferdist_m = 1200
+
+# Buffer AOI point
+# get UTM epsg
+aoiUTMEPSG &lt;- lonlat2UTM(sf::st_coordinates(xx$AOI_center))
+# reproject
+xx$AOI_center_utm &lt;- sf::st_transform(xx$AOI_center,aoiUTMEPSG)
+# buffer (gBuffer requires a spatial object, not an sf), return to sf, reattach crs
+xx$AOI_buffer_utm &lt;- rgeos::gBuffer(sp::SpatialPoints(sf::st_coordinates(xx$AOI_center_utm)),width = mybufferdist_m) %&gt;%
+  sf::st_as_sfc() %&gt;%
+  sf::st_set_crs(aoiUTMEPSG) 
+  
+xx$AOI_buffer_utm &lt;- rgeos::gBuffer(sp::SpatialPoints(sf::st_coordinates(xx$AOI_center_utm)),width = mybufferdist_m) %&gt;%
+  sf::st_as_sfc()
+sf::st_crs(xx$AOI_buffer_utm) = aoiUTMEPSG
+  
+xx$AOI_buffer &lt;- sf::st_transform(xx$AOI_buffer_utm, 4326) # reproject back to wgs84
+xx$processbounds &lt;- sf::st_bbox(xx$AOI_buffer) 
+# st_bbox doesn't return a spatial object, so we'll correct for that here
+xx$AOI_bbox &lt;- sf::st_bbox(xx$AOI_buffer) %&gt;% sf::st_as_sfc() %&gt;% sf::st_set_crs(4326)
+
+# Finally, let's make sure everything plots as expected
+leaflet() %&gt;%
+  addProviderTiles(providers$Stamen.TonerLite, group = &quot;Base Map&quot;) %&gt;%
+  addPolygons(data=xx$AOI_buffer,color=&quot;red&quot;)
+</code></pre><pre><code># Aside: was geodesic buffering necessary?  Let's test using a &quot;relative&quot; simplification!
+# @ https://planetcalc.com/7721/  --  WGS 84 defines ellipsoid parameters as:
+a = 6378137.0        # Semi-major axis in meters
+b = 6356752.314245   # Semi-minor axis in meters
+l = sf::st_coordinates(xx$AOI_center)[2]
+radius_globe_meters &lt;-
+  sqrt((((((a^2)*cos(l))^2)+(((b^2)*sin(l))^2)))/((((a*cos(l))^2)+((b*sin(l))^2))))
+radius_degrees &lt;- mybufferdist_m/radius_globe_meters
+# xx$AOI_badbuffer &lt;- rgeos::gBuffer(sp::SpatialPoints(sf::st_coordinates(xx$AOI_center)),width = radius_degrees) %&gt;% 
+#   sf::st_as_sfc() %&gt;%
+#   sf::st_set_crs(4326)
+
+# all credit to https://geocompr.robinlovelace.net/reproj-geo-data.html
+lonlat2UTM = function(lonlat) {
+  utm = (floor((lonlat[1] + 180) / 6) %% 60) + 1
+  if(lonlat[2] &gt; 0) {
+    utm + 32600
+  } else{
+    utm + 32700
+  }
+}
+aoiUTMEPSG &lt;- lonlat2UTM(sf::st_coordinates(xx$AOI_center))
+xx$AOI_center_utm &lt;- sf::st_transform(xx$AOI_center,newEPSG)                                    
+
+xx$AOI_badbuffer &lt;- rgeos::gBuffer(sp::SpatialPoints(sf::st_coordinates(xx$AOI_center_utm)),width = mybufferdist_m) %&gt;% 
+  sf::st_as_sfc() %&gt;%
+  sf::st_set_crs(aoiUTMEPSG) 
+xx$AOI_badbuffer &lt;- sf::st_transform(xx$AOI_badbuffer,4326)
+
+# and check visually
+leaflet() %&gt;%
+  addProviderTiles(providers$Stamen.TonerLite, group = &quot;Base Map&quot;) %&gt;%
+  addPolygons(data=xx$AOI_buffer,color=&quot;red&quot;) %&gt;%
+  addPolygons(data=xx$AOI_badbuffer,color=&quot;green&quot;) 
+# Conclusion: it's too late for me to be futzing around with this....  Any ideas?
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="discover-appropriate-scenes-for-processing">
+        Discover appropriate scenes for processing
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#discover-appropriate-scenes-for-processing" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Discover appropriate scenes for processing" href="#discover-appropriate-scenes-for-processing">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>We next need to identify scenes for use.  Landsat distriburts scenes by path and row <strong>more here</strong></p>
+<pre><code># discover path and row
+httr::GET('https://prd-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/atoms/files/WRS2_descending_0.zip', 
+          write_disk(paste0(getwd(), &quot;/WRS2_descending_0.zip&quot;)))
+unzip(paste0(getwd(), &quot;/WRS2_descending_0.zip&quot;), exdir = getwd())
+xx$pathrow &lt;- sf::read_sf(paste0(getwd(), &quot;/WRS2_descending.shp&quot;))
+
+# That pathrow file covers the entire globe, let's make this a tiny bit gentler to visualize
+# and subset that to just the pathrows that intersect our AOI
+xx$pathrow_subset &lt;- xx$pathrow[xx$AOI_bbox,]
+
+# explore geographic context
+leaflet() %&gt;%
+  addProviderTiles(providers$Stamen.TonerLite, group = &quot;Base Map&quot;) %&gt;%
+  addPolygons(data=xx$AOI_buffer,color=&quot;red&quot;) %&gt;%
+  addPolygons(data=xx$pathrow_subset,
+              color=&quot;black&quot;,
+              fill = FALSE,
+              label = mapply(function(x, y) {
+                HTML(sprintf(&quot;&lt;em&gt;Path/row:&lt;/em&gt;%s-%s&quot;, htmlEscape(x), htmlEscape(y)))},
+                xx$pathrow_subset$PATH, xx$pathrow_subset$ROW, SIMPLIFY = F),
+              labelOptions = lapply(1:nrow(xx$pathrow_subset), function(x) {
+                labelOptions(noHide = T)
+              })) %&gt;% 
+  fitBounds(as.numeric(floor(xx$processbounds$xmin)), 
+            as.numeric(floor(xx$processbounds$ymin)), 
+            as.numeric(ceiling(xx$processbounds$xmax)), 
+            as.numeric(ceiling(xx$processbounds$ymax)))
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="discover-appropriate-scenes-for-processing-part-2">
+        Discover appropriate scenes for processing <strong>part 2</strong>
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#discover-appropriate-scenes-for-processing-part-2" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Discover appropriate scenes for processing part 2" href="#discover-appropriate-scenes-for-processing-part-2">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>That visualization was perhaps a bit overkill, all we needed to do here is ensure that our AOI is completely enclosed within a single path/row.  We&rsquo;ll cover mosaicking (stitching together multiple scenes at once) later in the course, but for now if you end up inside more than one, adjust your point until you fall squarely within a single tile (or entirely in a crossover section).</p>
+<p>Having identified our path and row, let&rsquo;s now explore the landsat catalog</p>
+<pre><code># Find the scenes for your path and row
+summerdaterange &lt;- interval(as.POSIXct(&quot;2015-06-01 00:00:00&quot;), 
+                            as.POSIXct(&quot;2015-09-01 00:00:00&quot;))   
+
+summerscene &lt;- getlandsat::lsat_scenes() %&gt;% 
+  filter(row == xx$pathrow_subset$ROW) %&gt;%                # Filter for row...
+  filter(path == xx$pathrow_subset$PATH) %&gt;%              # and path
+  filter(acquisitionDate %within% summerdaterange) %&gt;%    # get our date
+  arrange(cloudCover) %&gt;%                                 # put the least cloudy scene first
+  .[1,]                                                   # and peel it off
+
+summerscene
+# as we see, there is a suitable cloud free scene, let's look at it's formatting:
+
+
+# In addition to making a handy scene scrapper, the getLandsat package is also a wrapper to download scenes by name
+summer_band4_path &lt;- getlandsat::lsat_image(paste0(summerscene$entityId,&quot;_B4.TIF&quot;)) 
+summer_band4 &lt;- raster::raster(summer_band4_path)
+xx$summer_band4 &lt;- raster::mask(summer_band4,sf::as_Spatial(xx$AOI_buffer_utm)) 
+
+# and visualize
+leaflet() %&gt;% 
+  addProviderTiles(providers$Stamen.TonerLite, group = &quot;Base Map&quot;) %&gt;%
+  addRasterImage(xx$summer_band4, layerId = &quot;values&quot;) %&gt;% 
+  addMouseCoordinates() %&gt;%
+  addImageQuery(xx$summer_band4, type=&quot;mousemove&quot;, layerId = &quot;values&quot;)
+
+# Lets do the same for band 5
+summer_band5_path &lt;- getlandsat::lsat_image(paste0(summerscene$entityId,&quot;_B5.TIF&quot;)) 
+summer_band5 &lt;- raster::raster(summer_band5_path)
+xx$summer_band5 &lt;- raster::mask(summer_band5,sf::as_Spatial(xx$AOI_buffer_utm)) 
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="creating-ndvi-values">
+        Creating NDVI values
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#creating-ndvi-values" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Creating NDVI values" href="#creating-ndvi-values">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Now, let&rsquo;s perform our local operation</p>
+<pre><code>summer_ndvi &lt;- raster::overlay(xx$summer_band5, xx$summer_band4, fun = function(r1, r2) { return( (r1 - r2)/(r1 + r2)) })
+
+# and visualize
+leaflet() %&gt;% 
+  addProviderTiles(providers$Stamen.TonerLite, group = &quot;Base Map&quot;) %&gt;%
+  addRasterImage(summer_ndvi, layerId = &quot;values&quot;) %&gt;% 
+  addMouseCoordinates() %&gt;%
+  addImageQuery(summer_ndvi, type=&quot;mousemove&quot;, layerId = &quot;values&quot;)
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="grabbing-land-cover">
+        Grabbing land cover
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#grabbing-land-cover" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Grabbing land cover" href="#grabbing-land-cover">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Now that we have NDVI, we need a land cover dataset.  <strong>more here about NLCD</strong></p>
+<pre><code>NLCD &lt;- FedData::get_nlcd(template = sf::as_Spatial(xx$AOI_buffer_utm),
+                          year = 2016,
+                          dataset = &quot;Land_Cover&quot;,
+                          label = &quot;AOI&quot;)
+# --------------------------------------------------------------------------------------------
+# backup, because MRLC service is down more often than it's up...
+# this may take a while because we're grabbing all of CONUS
+httr::GET('https://s3-us-west-2.amazonaws.com/mrlc/NLCD_2016_Land_Cover_L48_20190424.zip', 
+          write_disk(paste0(getwd(), &quot;/NLCD_2016_Land_Cover_L48.zip&quot;)))
+unzip(paste0(getwd(), &quot;/NLCD_2016_Land_Cover_L48.zip&quot;), exdir = getwd())
+NLCD &lt;- raster::raster(paste0(getwd(),'/NLCD_2016_Land_Cover_L48_20190424.img'))
+# --------------------------------------------------------------------------------------------
+landcover_utm &lt;- NLCD %&gt;%
+  raster::projectRaster(crs = raster::crs(xx$summer_band4)) %&gt;%
+  raster::mask(sf::as_Spatial(xx$AOI_buffer_utm))
+
+landcover_utm &lt;- NLCD %&gt;%
+  raster::projectRaster(crs = raster::crs(xx$summer_band4)) %&gt;%
+  raster::mask(sf::as_Spatial(xx$AOI_buffer_utm))
+# Finally, we'll (visualize) write the raster to disk, garbage collect, and reload the layer as that was a fairly
+# expensive set of computations we just performed
+# Land cover color pallete values
+xx$NLCD.pal &lt;- c(&quot;#5475A8&quot;,&quot;#FFFFFF&quot;,&quot;#E8D1D1&quot;,&quot;#E29E8C&quot;,&quot;#FF0000&quot;,&quot;#B50000&quot;,&quot;#D2CDC0&quot;,&quot;#85C77E&quot;,&quot;#38814E&quot;,&quot;#D4E7B0&quot;,&quot;#AF963C&quot;,&quot;#DCCA8F&quot;,&quot;#FDE9AA&quot;,&quot;#D1D182&quot;,&quot;#A3CC51&quot;,&quot;#82BA9E&quot;,&quot;#FBF65D&quot;,&quot;#CA9146&quot;,&quot;#C8E6F8&quot;,&quot;#64B3D5&quot;)
+xx$NLCD.val &lt;- as.numeric(c(11,12,21,22,23,24,31,41,42,43,51,52,71,72,73,74,81,82,90,95))
+xx$NLCD.text &lt;- c(&quot;Open Water&quot;,&quot;Perennial Ice/Snow&quot;,&quot;Developed, Open Space&quot;,&quot;Developed, Low Intensity&quot;,&quot;Developed, Medium Intensity&quot;,&quot;Developed, High Intensity&quot;,&quot;Barren Land&quot;,&quot;Deciduous Forest&quot;,&quot;Evergreen Forest&quot;,&quot;Mixed Forest&quot;,
+                  &quot;Dwarf Scrub&quot;,&quot;Shrub/Scrub&quot;,&quot;Grassland/Herbaceous&quot;,&quot;Sedge/Herbaceous&quot;,&quot;Lichens&quot;,&quot;Moss&quot;,&quot;Pasture/Hay&quot;,&quot;Cultivated Crops&quot;,&quot;Woody Wetlands&quot;,&quot;Emergent Herbaceous Wetlands&quot;)
+xx$NLCD.vis &lt;- colorFactor(palette = xx$NLCD.pal,
+                           domain = xx$NLCD.val)
+
+leaflet() %&gt;%
+  addProviderTiles(providers$Stamen.TonerLite, group = &quot;Base Map&quot;) %&gt;%
+  addRasterImage(NLCD,colors=xx$NLCD.vis) %&gt;%
+  addLegend(&quot;bottomright&quot;,
+            title = &quot;National Land Cover Data&quot;, 
+            colors = xx$NLCD.pal,
+            labels = xx$NLCD.text)
+
+raster::writeRaster(landcover_utm,paste0(getwd(),&quot;/AOI_LC.tif&quot;))
+gc()
+xx$landcover &lt;- raster::raster(paste0(getwd(),&quot;/AOI_LC.tif&quot;))
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="zonal-statistics">
+        zonal statistics
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#zonal-statistics" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor zonal statistics" href="#zonal-statistics">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>We now have all the pieces we need to generate the desired statistics, our last step is to perform the zonal statistics</p>
+<pre><code>xx$summer_ndvi &lt;- raster::resample(summer_ndvi,xx$landcover,method=&quot;bilinear&quot;)
+xx$zonalstats &lt;- raster::zonal(xx$summer_ndvi, xx$landcover, fun='mean', digits=0, na.rm=TRUE) 
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="finishing-up">
+        Finishing up
+        <a data-clipboard-text="https://jimcoll.github.io/classes/random/FOSS_RS/#finishing-up" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Finishing up" href="#finishing-up">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><strong>add here</strong>
+<a class="gdoc-markdown__link" href="https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C01_T1_32DAY_NDVI">https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C01_T1_32DAY_NDVI</a></p>
+
+
+    </article>
+
+                
+
+
+
+
+
+
+
+
+    
+    
+
+    
+
+
+
+
+
+<div class="gdoc-page__footer flex flex-wrap justify-between">
+    
+    
+</div>
+
+            </div>
+        </main>
+
+        <footer class="gdoc-footer">
+    <div class="container flex">
+        <div class="flex flex-wrap">
+            <span class="gdoc-footer__item gdoc-footer__item--row">
+                <a href="https://jimcoll.github.io/" class="gdoc-footer__link">Site home</a> -- Built with <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> and
+                <svg class="icon gdoc_heart"><use xlink:href="#gdoc_heart"></use></svg>
+            </span>
+            
+            
+        </div>
+        
+        <div class="flex flex-25 justify-end">
+            <span class="gdoc-footer__item">
+                <a class="gdoc-footer__link fake-link" href="#" aria-label="Back to top">
+                    <svg class="icon gdoc_keyborad_arrow_up"><use xlink:href="#gdoc_keyborad_arrow_up"></use></svg> <span class="hidden-mobile">Back to top</span>
+                </a>
+            </span>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+
+    
+
+
+
+
+<script defer src="/classes/js/en.search.min.e0b46e67d3290d6164e22a3133b6589cabdc358125f8155b6e926503fd8af4be.js"></script>
+
+
+
+<script defer src="/classes/js/clipboard-27784b7376.min.js"></script>
+<script defer src="/classes/js/clipboard-loader-f0b5fbd5f6.min.js"></script>
+
+
+</body>
+</html>

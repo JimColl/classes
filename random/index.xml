@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Random bin on So long as you get the GIST of it</title>
+    <link>https://jimcoll.github.io/classes/random/</link>
+    <description>Recent content in Random bin on So long as you get the GIST of it</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://jimcoll.github.io/classes/random/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing GIS</title>
+      <link>https://jimcoll.github.io/classes/random/Install_Help/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/Install_Help/</guid>
+      <description>Using GIS (or really any skill you are trying to pick up) at least twice a week greatly improves the time to learn, and the easiest way to do so is to have it readily available to you. Here I&amp;rsquo;ll walk through the ways to install the software for yourself.
+Install instructions for:  ArcMap/ArcPro QGIS   ArcMap/ArcPro    The ESRI suite of products tends to be a demanding set of programs, so you should have a fairly modern computer if you want to install them for yourself.</description>
+    </item>
+    
+    <item>
+      <title>Cartography primer</title>
+      <link>https://jimcoll.github.io/classes/random/cart_prime/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/cart_prime/</guid>
+      <description>Some of this content is gratefully pilfered and modified for my own needs from Elizabeth Wesley.
+ Cartography, the art, science, and technology of map making, is a sequence of courses and a profession unto itself. I won&amp;rsquo;t even attempt to do it real justice here, but I will try and make a short primer you can follow to make a more interesting and visually appealing map. Use these rough steps to help guide your process.</description>
+    </item>
+    
+    <item>
+      <title>FOSS</title>
+      <link>https://jimcoll.github.io/classes/random/FOSS/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/FOSS/</guid>
+      <description>Free and Open Source Software:    There are a whole host of questions I still have regarding the intersections of individuals, societies, economies, and technology. One of the more practically philosophical realizations of this intersection than FOSS. Free and Open Source Software has become one of my go to tools in tackling a problem and has that special allure of feel good contribution and intrinsic reproducibility to it. I&amp;rsquo;ve created a few tools that take a FOSS approach to GIS, and here I&amp;rsquo;d like to demonstrate how to create one.</description>
+    </item>
+    
+    <item>
+      <title>A basic map in Google Maps</title>
+      <link>https://jimcoll.github.io/classes/random/FirstGoogleEarthMap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/FirstGoogleEarthMap/</guid>
+      <description>Learning Objective    Google Earth is a great platform to start your exploration of the GISciences, even if it&amp;rsquo;s not a tool you&amp;rsquo;ll use often in &amp;ldquo;the real world&amp;rdquo;. There are a number of ways to access Google Earth, but this tutorial will cover Google Earth Pro on the Desktop (scroll to the bottom of the page). The objective of this exercise is to familiarize yourself with the numerous tools Google Earth has to offer.</description>
+    </item>
+    
+    <item>
+      <title>Drone Mapping</title>
+      <link>https://jimcoll.github.io/classes/random/dronemapping/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/dronemapping/</guid>
+      <description>Need help passing your part 107? I can recommend the following resources:
+ https://www.youtube.com/watch?v=6_ucCKFJUCU&amp;t=1s https://3dr.com/faa/drone-practice-tests/ https://jrupprechtlaw.com/part-107-test-study-guide/   Drones for mapping and research    One of the most exciting aspects of working in the Environmental Sciences is in exploring how the application of new tools and technologies has allowed us to reimagine and streamline how we observe, process, understand, and communicate the state of the world. Take for instance, the humble terrain surface.</description>
+    </item>
+    
+    <item>
+      <title>RS</title>
+      <link>https://jimcoll.github.io/classes/random/FOSS_RS/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/FOSS_RS/</guid>
+      <description>Introduction to Remote Sensing    Remote sensing is a course onto itself, but it’s worth introducing here as GIScience, GISystems, and remote sensing overlap more than they diverge. Remote sensing, as opposed to in-situ measurement, is the measurement of an object from a distance, most often a great distance.
+Objectives    This lab should provide you with the bulk of the background knowledge needed to dive further into the field of remote sensing.</description>
+    </item>
+    
+    <item>
+      <title>GEE</title>
+      <link>https://jimcoll.github.io/classes/random/GEE_intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/GEE_intro/</guid>
+      <description>Introduction to Google Earth Engine:    What is Google Earth Engine:    Google Earth Engine (GEE) is a cloud-based data and analysis platform which combines more than 17 petabytes of geospatial data, analytic APIs, and a web based Integrated Development Environment in one package and runs on Google’s computational infrastructure, enabling interactive earth data analyses on scales not previously feasible. This platform was first introduced to the public in 2013 as a means of performing an analysis of global forest cover change, published in Science (Hansen et al.</description>
+    </item>
+    
+  </channel>
+</rss>

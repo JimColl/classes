@@ -1,0 +1,3527 @@
+<!DOCTYPE html>
+<html lang="en" class="color-toggle-hidden">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark" />
+
+
+
+
+
+    <meta name="description" content="This lab is a gratefully modified version of lab 5 from Bradley A. Shellito&rsquo;s Introduction to Geospatial Technologies
+ Learning Objective    This lab introduces you to some of the basic features of GIS. You will be using a free open source program, QGIS, to navigate a GIS environment and begin working with geospatial data. The labs in Chapters 6 and 7 will show you how to utilize several more GIS features; the aim of this lab is to familiarize you with the basic GIS functions of the software.">
+
+
+
+    <title>Lab 05 - GIS introduction | So long as you get the GIST of it</title>
+
+    <link rel="icon" href="/classes/favicon/favicon-32x32.png" type="image/x-icon">
+
+    <script src="/classes/js/darkmode-ce906ea916.min.js"></script>
+
+<link rel="preload" as="font" href="/classes/fonts/Metropolis.woff2" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" as="font" href="/classes/fonts/LiberationSans.woff2" type="font/woff2" crossorigin="anonymous">
+
+<link rel="preload" href="/classes/main-468ccf24c5.min.css" as="style">
+<link rel="stylesheet" href="/classes/main-468ccf24c5.min.css" media="all">
+
+<link rel="preload" href="/classes/mobile-0e5d2e7ecf.min.css" as="style">
+<link rel="stylesheet" href="/classes/mobile-0e5d2e7ecf.min.css" media="screen and (max-width: 45rem)">
+
+<link rel="preload" href="/classes/print-f79fc3e5d7.min.css" as="style">
+<link rel="stylesheet" href="/classes/print-f79fc3e5d7.min.css" media="print">
+
+<link rel="preload" href="/classes/custom.css" as="style">
+<link rel="stylesheet" href="/classes/custom.css" media="all">
+
+
+
+<!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
+
+    
+
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+    
+<!-- geekdoc include: sprites/geekdoc.svg -->
+<svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_back" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.526v2.947H5.755l8.351 8.421-2.105 2.105-12-12 12-12 2.105 2.105-8.351 8.421H24z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_left_alt" xmlns="http://www.w3.org/2000/svg"><path d="M5.965 10.526V6.035L0 12l5.965 5.965v-4.491H24v-2.947H5.965z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_right_alt" xmlns="http://www.w3.org/2000/svg"><path d="M18.035 10.526V6.035L24 12l-5.965 5.965v-4.491H0v-2.947h18.035z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_bitbucket" xmlns="http://www.w3.org/2000/svg"><path d="M15.905 13.355c.189 1.444-1.564 2.578-2.784 1.839-1.375-.602-1.375-2.784-.034-3.403 1.151-.705 2.818.223 2.818 1.564zm1.907-.361c-.309-2.44-3.076-4.056-5.328-3.042-1.426.636-2.389 2.148-2.32 3.747.086 2.097 2.08 3.815 4.176 3.626s3.729-2.234 3.472-4.331zm4.108-9.315c-.756-.997-2.045-1.169-3.179-1.358-3.214-.516-6.513-.533-9.727.034-1.066.172-2.269.361-2.939 1.323 1.1 1.031 2.664 1.186 4.073 1.358 2.544.327 5.156.344 7.699.017 1.426-.172 3.008-.309 4.073-1.375zm.979 17.788c-.481 1.684-.206 3.953-1.994 4.932-3.076 1.701-6.806 1.89-10.191 1.289-1.787-.327-3.884-.894-4.864-2.578-.43-1.65-.705-3.334-.98-5.018l.103-.275.309-.155c5.121 3.386 12.288 3.386 17.427 0 .808.241.206 1.22.189 1.805zM26.01 4.951c-.584 3.764-1.255 7.51-1.908 11.257-.189 1.1-1.255 1.719-2.148 2.183-3.214 1.615-6.96 1.89-10.483 1.512-2.389-.258-4.829-.894-6.771-2.389-.911-.705-.911-1.908-1.083-2.922-.602-3.523-1.289-7.046-1.719-10.604.206-1.547 1.942-2.217 3.231-2.698C6.848.654 8.686.362 10.508.19c3.884-.378 7.854-.241 11.618.859 1.341.395 2.784.945 3.695 2.097.412.533.275 1.203.189 1.805z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_bookmark" xmlns="http://www.w3.org/2000/svg"><path d="M15.268 4.392q.868 0 1.532.638t.664 1.506v17.463l-7.659-3.268-7.608 3.268V6.536q0-.868.664-1.506t1.532-.638h10.876zm4.34 14.144V4.392q0-.868-.638-1.532t-1.506-.664H6.537q0-.868.664-1.532T8.733 0h10.876q.868 0 1.532.664t.664 1.532v17.412z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_auto" xmlns="http://www.w3.org/2000/svg"><path d="M16.846 18.938h2.382L15.22 7.785h-2.44L8.772 18.938h2.382l.871-2.44h3.95zm7.087-9.062L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809zm-11.385 4.937L14 10.282l1.452 4.531h-2.904z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_dark" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565q-1.51 0-3.079.697 1.917.871 3.108 2.701T15.22 14t-1.191 4.037-3.108 2.701q1.568.697 3.079.697zm9.933-11.559L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_light" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565 8.743 8.743 6.565 14t2.178 5.257T14 21.435zm9.933-3.311v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809L27.999 14z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_cloud_off" xmlns="http://www.w3.org/2000/svg"><path d="M9.023 10.5H7q-1.914 0-3.281 1.395t-1.367 3.309 1.367 3.281T7 19.852h11.375zM3.5 4.976l1.477-1.477L24.5 23.022l-1.477 1.477-2.352-2.297H6.999q-2.898 0-4.949-2.051t-2.051-4.949q0-2.844 1.969-4.867t4.758-2.133zm19.086 5.578q2.242.164 3.828 1.832T28 16.351q0 3.008-2.461 4.758l-1.695-1.695q1.805-.984 1.805-3.063 0-1.422-1.039-2.461t-2.461-1.039h-1.75v-.602q0-2.68-1.859-4.539t-4.539-1.859q-1.531 0-2.953.711l-1.75-1.695Q11.431 3.5 14.001 3.5q2.953 0 5.496 2.078t3.09 4.977z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_code" xmlns="http://www.w3.org/2000/svg"><path d="M9.917 24.5a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm0-21a1.75 1.75 0 10-3.501.001A1.75 1.75 0 009.917 3.5zm11.666 2.333a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm1.75 0a3.502 3.502 0 01-1.75 3.026c-.055 6.581-4.721 8.039-7.82 9.023-2.898.911-3.846 1.349-3.846 3.117v.474a3.502 3.502 0 011.75 3.026c0 1.932-1.568 3.5-3.5 3.5s-3.5-1.568-3.5-3.5c0-1.294.711-2.424 1.75-3.026V6.526A3.502 3.502 0 014.667 3.5c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5a3.502 3.502 0 01-1.75 3.026v9.06c.93-.456 1.914-.766 2.807-1.039 3.391-1.075 5.323-1.878 5.359-5.687a3.502 3.502 0 01-1.75-3.026c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_date" xmlns="http://www.w3.org/2000/svg"><path d="M27.192 28.844V11.192H4.808v17.652h22.384zm0-25.689q1.277 0 2.253.976t.976 2.253v22.459q0 1.277-.976 2.216t-2.253.939H4.808q-1.352 0-2.291-.901t-.939-2.253V6.385q0-1.277.939-2.253t2.291-.976h1.577V.001h3.23v3.155h12.769V.001h3.23v3.155h1.577zm-3.155 11.267v3.155h-3.23v-3.155h3.23zm-6.46 0v3.155h-3.155v-3.155h3.155zm-6.384 0v3.155h-3.23v-3.155h3.23z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_download" xmlns="http://www.w3.org/2000/svg"><path d="M2.866 28.209h26.269v3.79H2.866v-3.79zm26.268-16.925L16 24.418 2.866 11.284h7.493V.001h11.283v11.283h7.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_email" xmlns="http://www.w3.org/2000/svg"><path d="M28.845 9.615v-3.23L16 14.422 3.155 6.385v3.23L16 17.577zm0-6.46q1.277 0 2.216.977T32 6.385v19.23q0 1.277-.939 2.253t-2.216.977H3.155q-1.277 0-2.216-.977T0 25.615V6.385q0-1.277.939-2.253t2.216-.977h25.69z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_git" xmlns="http://www.w3.org/2000/svg"><path d="M27.472 12.753L15.247.529a1.803 1.803 0 00-2.55 0l-2.84 2.84 2.137 2.137a2.625 2.625 0 013.501 3.501l3.499 3.499a2.625 2.625 0 11-1.237 1.237l-3.499-3.499c-.083.04-.169.075-.257.106v7.3a2.626 2.626 0 11-1.75 0v-7.3a2.626 2.626 0 01-1.494-3.607L8.62 4.606l-8.09 8.09a1.805 1.805 0 000 2.551l12.225 12.224a1.803 1.803 0 002.55 0l12.168-12.168a1.805 1.805 0 000-2.551z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_github" xmlns="http://www.w3.org/2000/svg"><path d="M16 .394c8.833 0 15.999 7.166 15.999 15.999 0 7.062-4.583 13.062-10.937 15.187-.813.146-1.104-.354-1.104-.771 0-.521.021-2.25.021-4.396 0-1.5-.5-2.458-1.083-2.958 3.562-.396 7.312-1.75 7.312-7.896 0-1.75-.625-3.167-1.646-4.291.167-.417.708-2.042-.167-4.25-1.333-.417-4.396 1.646-4.396 1.646a15.032 15.032 0 00-8 0S8.937 6.602 7.603 7.018c-.875 2.208-.333 3.833-.167 4.25-1.021 1.125-1.646 2.542-1.646 4.291 0 6.125 3.729 7.5 7.291 7.896-.458.417-.875 1.125-1.021 2.146-.917.417-3.25 1.125-4.646-1.333-.875-1.521-2.458-1.646-2.458-1.646-1.562-.021-.104.979-.104.979 1.042.479 1.771 2.333 1.771 2.333.938 2.854 5.396 1.896 5.396 1.896 0 1.333.021 2.583.021 2.979 0 .417-.292.917-1.104.771C4.582 29.455-.001 23.455-.001 16.393-.001 7.56 7.165.394 15.998.394zM6.063 23.372c.042-.083-.021-.187-.146-.25-.125-.042-.229-.021-.271.042-.042.083.021.187.146.25.104.062.229.042.271-.042zm.646.709c.083-.062.062-.208-.042-.333-.104-.104-.25-.146-.333-.062-.083.062-.062.208.042.333.104.104.25.146.333.062zm.625.937c.104-.083.104-.25 0-.396-.083-.146-.25-.208-.354-.125-.104.062-.104.229 0 .375s.271.208.354.146zm.875.875c.083-.083.042-.271-.083-.396-.146-.146-.333-.167-.417-.062-.104.083-.062.271.083.396.146.146.333.167.417.062zm1.187.521c.042-.125-.083-.271-.271-.333-.167-.042-.354.021-.396.146s.083.271.271.312c.167.062.354 0 .396-.125zm1.313.104c0-.146-.167-.25-.354-.229-.187 0-.333.104-.333.229 0 .146.146.25.354.229.187 0 .333-.104.333-.229zm1.208-.208c-.021-.125-.187-.208-.375-.187-.187.042-.312.167-.292.312.021.125.187.208.375.167s.312-.167.292-.292z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_gitlab" xmlns="http://www.w3.org/2000/svg"><path d="M1.629 11.034L14 26.888.442 17.048a1.09 1.09 0 01-.39-1.203l1.578-4.811zm7.217 0h10.309l-5.154 15.854zM5.753 1.475l3.093 9.559H1.63l3.093-9.559a.548.548 0 011.031 0zm20.618 9.559l1.578 4.811c.141.437-.016.922-.39 1.203l-13.558 9.84 12.371-15.854zm0 0h-7.216l3.093-9.559a.548.548 0 011.031 0z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_heart" xmlns="http://www.w3.org/2000/svg"><path d="M16 29.714a1.11 1.11 0 01-.786-.321L4.072 18.643c-.143-.125-4.071-3.714-4.071-8 0-5.232 3.196-8.357 8.535-8.357 3.125 0 6.053 2.464 7.464 3.857 1.411-1.393 4.339-3.857 7.464-3.857 5.339 0 8.535 3.125 8.535 8.357 0 4.286-3.928 7.875-4.089 8.035L16.785 29.392c-.214.214-.5.321-.786.321z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_down" xmlns="http://www.w3.org/2000/svg"><path d="M3.281 5.36L14 16.079 24.719 5.36 28 8.641l-14 14-14-14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_left" xmlns="http://www.w3.org/2000/svg"><path d="M25.875 28.25L22.125 32 6.126 16.001 22.125.002l3.75 3.75-12.25 12.25z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_right" xmlns="http://www.w3.org/2000/svg"><path d="M6.125 28.25L18.375 16 6.125 3.75 9.875 0l15.999 15.999L9.875 31.998z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_up" xmlns="http://www.w3.org/2000/svg"><path d="M24.719 22.64L14 11.921 3.281 22.64 0 19.359l14-14 14 14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_link" xmlns="http://www.w3.org/2000/svg"><path d="M24.037 7.963q3.305 0 5.634 2.366T32 16t-2.329 5.671-5.634 2.366h-6.46v-3.08h6.46q2.028 0 3.493-1.465t1.465-3.493-1.465-3.493-3.493-1.465h-6.46v-3.08h6.46zM9.615 17.578v-3.155h12.77v3.155H9.615zM3.005 16q0 2.028 1.465 3.493t3.493 1.465h6.46v3.08h-6.46q-3.305 0-5.634-2.366T0 16.001t2.329-5.671 5.634-2.366h6.46v3.08h-6.46q-2.028 0-3.493 1.465t-1.465 3.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_menu" xmlns="http://www.w3.org/2000/svg"><path d="M.001 5.334h31.998v3.583H.001V5.334zm0 12.416v-3.5h31.998v3.5H.001zm0 8.916v-3.583h31.998v3.583H.001z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_notification" xmlns="http://www.w3.org/2000/svg"><path d="M22.615 19.384l2.894 2.894v1.413H2.49v-1.413l2.894-2.894V12.25q0-3.365 1.716-5.856t4.745-3.231v-1.01q0-.875.606-1.514T13.999 0t1.548.639.606 1.514v1.01q3.029.74 4.745 3.231t1.716 5.856v7.134zM14 27.999q-1.211 0-2.053-.808t-.841-2.019h5.788q0 1.144-.875 1.986T14 27.999z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_path" xmlns="http://www.w3.org/2000/svg"><path d="M28 12.62h-9.793V8.414h-2.826v11.173h2.826v-4.206H28V26.62h-9.793v-4.206H12.62v-14H9.794v4.206H.001V1.381h9.793v4.206h8.413V1.381H28V12.62z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_person" xmlns="http://www.w3.org/2000/svg"><path d="M16 20.023q5.052 0 10.526 2.199t5.473 5.754v4.023H0v-4.023q0-3.555 5.473-5.754t10.526-2.199zM16 16q-3.275 0-5.614-2.339T8.047 8.047t2.339-5.661T16 0t5.614 2.386 2.339 5.661-2.339 5.614T16 16z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_search" xmlns="http://www.w3.org/2000/svg"><path d="M11.925 20.161q3.432 0 5.834-2.402t2.402-5.834-2.402-5.834-5.834-2.402-5.834 2.402-2.402 5.834 2.402 5.834 5.834 2.402zm10.981 0L32 29.255 29.255 32l-9.094-9.094v-1.458l-.515-.515q-3.26 2.831-7.721 2.831-4.976 0-8.45-3.432T.001 11.925t3.474-8.45 8.45-3.474 8.407 3.474 3.432 8.45q0 1.802-.858 4.075t-1.973 3.646l.515.515h1.458z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_shield" xmlns="http://www.w3.org/2000/svg"><path d="M22.167 15.166V3.5h-8.166v20.726c.93-.492 2.424-1.349 3.883-2.497 1.95-1.531 4.284-3.919 4.284-6.562zm3.499-13.999v14c0 7.674-10.737 12.523-11.192 12.724-.146.073-.31.109-.474.109s-.328-.036-.474-.109c-.456-.201-11.192-5.049-11.192-12.724v-14C2.334.529 2.863 0 3.501 0H24.5c.638 0 1.167.529 1.167 1.167z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_tags" xmlns="http://www.w3.org/2000/svg"><path d="M6.606 7.549c0-1.047-.84-1.887-1.887-1.887s-1.887.84-1.887 1.887.84 1.887 1.887 1.887 1.887-.84 1.887-1.887zm15.732 8.493c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546s-.988-.206-1.327-.546L1.342 14.066C.59 13.329 0 11.899 0 10.852V4.718a1.9 1.9 0 011.887-1.887h6.134c1.047 0 2.477.59 3.229 1.342L21.792 14.7c.339.354.546.84.546 1.342zm5.661 0c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546-.767 0-1.15-.354-1.651-.87l6.93-6.93c.339-.339.546-.826.546-1.327s-.206-.988-.546-1.342L13.609 4.173c-.752-.752-2.182-1.342-3.229-1.342h3.303c1.047 0 2.477.59 3.229 1.342L27.454 14.7c.339.354.546.84.546 1.342z"/></symbol></svg>
+
+
+
+    <div class="wrapper ">
+        <input type="checkbox" class="hidden" id="menu-control" />
+        
+        <header class="gdoc-header">
+    <div class="container flex align-center justify-between">
+        
+        <label for="menu-control" class="gdoc-nav__control">
+            <svg class="icon gdoc_menu"><use xlink:href="#gdoc_menu"></use></svg>
+            <svg class="icon gdoc_arrow_back"><use xlink:href="#gdoc_arrow_back"></use></svg>
+        </label>
+        
+        <a class="gdoc-header__link" href="https://jimcoll.github.io/classes/">
+            <span class="gdoc-brand flex align-center">
+                <img class="gdoc-brand__img" src="/classes/logo.png" alt="">
+                <span class="gdoc-brand__title">So long as you get the GIST of it</span>
+            </span>
+        </a>
+        <span id="gdoc-dark-mode">
+            <svg class="icon gdoc_brightness_dark"><use xlink:href="#gdoc_brightness_dark"></use></svg>
+            <svg class="icon gdoc_brightness_light"><use xlink:href="#gdoc_brightness_light"></use></svg>
+            <svg class="icon gdoc_brightness_auto"><use xlink:href="#gdoc_brightness_auto"></use></svg>
+        </span>
+    </div>
+</header>
+
+
+        <main class="container flex flex-even">
+            
+            <aside class="gdoc-nav">
+                <nav>
+    
+    <div class="gdoc-search">
+        <svg class="icon gdoc_search"><use xlink:href="#gdoc_search"></use></svg>
+        <input type="text" id="gdoc-search-input" class="gdoc-search__input" placeholder="Search..."
+            aria-label="Search" maxlength="64" />
+        <div class="gdoc-search__spinner spinner hidden"></div>
+        <ul id="gdoc-search-results" class="gdoc-search__list"></ul>
+    </div>
+
+
+
+    <section class="gdoc-nav--main">
+        <h2>Navigation</h2>
+        
+            
+
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-3ac26c08" class="gdoc-nav__toggle" checked>
+            <label for="navtree-3ac26c08" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/" class="gdoc-nav__entry ">
+                        Introduction to GEOINT -- GEOG111
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-57082eb1" class="gdoc-nav__toggle" checked>
+            <label for="navtree-57082eb1" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Computer basics
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Introduction to Google Earth Pro
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Coordinates and Position Measurements
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - GPS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab05/" class="gdoc-nav__entry is-active">
+                        Lab 05 - GIS introduction
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - spatial analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Digital Terrain Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Map making
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab09A/" class="gdoc-nav__entry ">
+                        Lab 09A - 3D Modeling and Visualization
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab09B/" class="gdoc-nav__entry ">
+                        Lab 09B - Cloud based GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab 10 - Visual Imagery Interpretation
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab11/" class="gdoc-nav__entry ">
+                        Lab 11 - Remotely Sensed Imagery and Color Composites
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab12/" class="gdoc-nav__entry ">
+                        Lab 12 - Landsat 8 Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab13/" class="gdoc-nav__entry ">
+                        Lab 13 - Earth Observing Missions Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab14/" class="gdoc-nav__entry ">
+                        Lab 14 - Final Lab activity
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-9af49685" class="gdoc-nav__toggle" >
+            <label for="navtree-9af49685" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/" class="gdoc-nav__entry ">
+                        Introduction to GIS -- GEOG358
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-2ef21881" class="gdoc-nav__toggle" >
+            <label for="navtree-2ef21881" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab00/" class="gdoc-nav__entry ">
+                        Lab 00 - Intro to GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Intro to GISystems
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Projections and Coordinate Systems
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Using GPS for Field Data Collection
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - On-Screen Digitizing &amp; Image Restoration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - Building a GIS database
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - Selections Queries and Joins
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Overlay &amp; site suitability analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Introduction to network analyist and ArcScene
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab09/" class="gdoc-nav__entry ">
+                        Lab 09 - Interpolation and Fire Hazard Modeling
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/termpaper/" class="gdoc-nav__entry ">
+                        Project
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-91899dd7" class="gdoc-nav__toggle" >
+            <label for="navtree-91899dd7" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/" class="gdoc-nav__entry ">
+                        Remote Sensing -- GEOG526
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-efafcb0c" class="gdoc-nav__toggle" >
+            <label for="navtree-efafcb0c" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/bib/" class="gdoc-nav__entry ">
+                        Bibliography Guidelines
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab - Data Acquisition and Image Preprocessing
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab - Introduction to ERDAS IMAGINE I
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab09A/" class="gdoc-nav__entry ">
+                        Lab - Introduction to ERDAS IMAGINE （Part II）
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO IMAGE INTERPRETATION
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab11/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO MODIS TIME SERIES
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab - LANDSAT TM &amp; SPOT IMAGERY
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab09B/" class="gdoc-nav__entry ">
+                        Lab - Remote Sensing (Assignment 9) NDVI
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab13/" class="gdoc-nav__entry ">
+                        Lab - Remote Sensing with RADAR Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab12/" class="gdoc-nav__entry ">
+                        Lab - THERMAL IMAGERY
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Map making
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab14/" class="gdoc-nav__entry ">
+                        Lab 14 - Final Lab activity
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab - Internet Resources Exploration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab - Maps &amp; Aerial Photography
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO UNIT CONVERSION &amp; SCALE PROBLEMS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab - ELECTROMAGNETIC RADIATION PRINCIPLES
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-a5a58dbc" class="gdoc-nav__toggle" >
+            <label for="navtree-a5a58dbc" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/" class="gdoc-nav__entry ">
+                        Intermediate GIS -- GEOG558
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-e44c6ffc" class="gdoc-nav__toggle" >
+            <label for="navtree-e44c6ffc" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Data survey and database building
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Cartographic Modeling
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Focal Operations
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - Zonal Operations
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - Model Builder
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - Cost Distance, Region Groups, more Model Builder &amp; Python
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Siting a New School with Model Builder and Fungus weight
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Advanced Terrain Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab09/" class="gdoc-nav__entry ">
+                        Lab 09 - Descriptive Spatial Statistics and Point Pattern Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab 10 - Spatial Interpolation
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/termpaper/" class="gdoc-nav__entry ">
+                        Project
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-643316ca" class="gdoc-nav__toggle" >
+            <label for="navtree-643316ca" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/" class="gdoc-nav__entry ">
+                        Random bin
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/Install_Help/" class="gdoc-nav__entry ">
+                        Installing GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/cart_prime/" class="gdoc-nav__entry ">
+                        Cartography primer
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FOSS/" class="gdoc-nav__entry ">
+                        FOSS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FirstGoogleEarthMap/" class="gdoc-nav__entry ">
+                        A basic map in Google Maps
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/dronemapping/" class="gdoc-nav__entry ">
+                        Drone Mapping
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FOSS_RS/" class="gdoc-nav__entry ">
+                        RS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/GEE_intro/" class="gdoc-nav__entry ">
+                        GEE
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-4d073202" class="gdoc-nav__toggle" >
+            <label for="navtree-4d073202" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/website/" class="gdoc-nav__entry ">
+                        Creating a website
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/website/oldwebsite/" class="gdoc-nav__entry ">
+                        Old website tutorial
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+
+
+
+
+        
+    </section>
+
+    <section class="gdoc-nav--more">
+        
+    </section>
+</nav>
+
+            </aside>
+            
+
+            <div class="gdoc-page">
+                
+    
+
+
+    
+
+
+
+
+
+
+<div class="gdoc-page__header flex flex-wrap
+     justify-between 
+     hidden-mobile 
+    " itemprop="breadcrumb">
+    
+    <div>
+        <svg class="icon gdoc_path hidden-mobile"><use xlink:href="#gdoc_path"></use></svg>
+        <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            
+            
+            
+            
+    
+    
+        
+        
+        
+        
+    
+    
+        
+        
+        
+        
+    
+    
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/' href='/classes/'><span itemprop='name'>Classes</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/geog111/' href='/classes/geog111/'><span itemprop='name'>Introduction to GEOINT -- GEOG111</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/geog111/labs/' href='/classes/geog111/labs/'><span itemprop='name'>Labs</span></a><meta itemprop='position' content='4' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Lab 05 - GIS introduction</span><meta itemprop='position' content='5' /></li>
+    
+
+    
+
+    
+
+    
+
+        </ol>
+    </div>
+    
+    
+</div>
+
+
+    <article class="gdoc-markdown gdoc-markdown__align--left">
+        <h1>Lab 05 - GIS introduction</h1>
+        <blockquote>
+<p>This lab is a gratefully modified version of lab 5 from <a class="gdoc-markdown__link" href="https://www.macmillanlearning.com/college/us/product/Introduction-to-Geospatial-Technologies/p/1319249515">Bradley A. Shellito&rsquo;s Introduction to Geospatial Technologies</a></p>
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="learning-objective">
+        Learning Objective
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#learning-objective" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Learning Objective" href="#learning-objective">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>This lab introduces you to some of the basic features of GIS. You will be using a free open source program, QGIS, to navigate a GIS environment and begin working with geospatial data. The labs in Chapters 6 and 7 will show you how to utilize several more GIS features; the aim of this lab is to familiarize you with the basic GIS functions of the software.  The goals for you to take away from this lab:</p>
+<ul>
+<li>Familiarize yourself with the GIS software environment of your choice, including basic navigation and tool use with both the Map and Browser</li>
+<li>Examine characteristics of geospatial data, such as the coordinate system, datum, and projection information</li>
+<li>Familiarize yourself with adding data and manipulating data layer properties, including changing the symbology and appearance of geospatial data</li>
+<li>Familiarize yourself with data attribute tables in QGIS</li>
+<li>Join a table of non-spatial data to a layer’s attribute table in QGIS</li>
+<li>Make measurements between objects in QGIS</li>
+</ul>
+<p><strong>Outline:</strong>
+
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#learning-objective">Learning Objective</a></li>
+        <li><a href="#submission-requirements">Submission requirements</a></li>
+        <li><a href="#tutorial">Tutorial</a>
+          <ul>
+            <li><a href="#downloading-data">Downloading data</a></li>
+            <li><a href="#data-prep">Data prep</a></li>
+            <li><a href="#working-in-gis-software">Working in GIS software</a></li>
+          </ul>
+        </li>
+        <li><a href="#submission">Submission</a></li>
+      </ul></nav><hr></div>
+
+</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="submission-requirements">
+        Submission requirements
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#submission-requirements" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Submission requirements" href="#submission-requirements">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p><a class="gdoc-markdown__link" href="https://www.dropbox.com/sh/4ykzafop037m91r/AABCNErz0ZKl-TcD9qnkPDpba?dl=0">Materials</a></p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-btxf{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0pky">Data Name</th>
+    <th class="tg-0pky">Description</th>
+  </tr>
+  <tr>
+    <td class="tg-0pky">GEOG111_Lab05Questions.docx</td>
+    <td class="tg-0pky">Handout to turn in</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">rawdata/ACSDT5Y2019.B01003_2021-04-18T051624.zip</td>
+    <td class="tg-0pky">Population estimates for Kansas Counties from ACS - 2019</td>
+  </tr>
+   <tr>
+    <td class="tg-0pky">rawdata/GOVTUNIT_Kansas_State_GDB.zip</td>
+    <td class="tg-0pky">Kansas boundaries from the National Map</td>
+  </tr>
+   <tr>
+    <td class="tg-0pky">rawdata/STRUCT_Kansas_State_GDB.zip</td>
+    <td class="tg-0pky">Kansas structures from the National Map</td>
+  </tr>
+   <tr>
+    <td class="tg-0pky">rawdata/TRAN_Kansas_State_GDB.zip</td>
+    <td class="tg-0pky">Kansas transportation layer from the National Map</td>
+  </tr>
+</table>
+<p>You are answering the questions (laid out in the word doc above and also included in the tutorial below) as you work through the lab.  Use full sentences as necessary to answer the prompts and submit it to blackboard.</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="tutorial">
+        Tutorial
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#tutorial" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Tutorial" href="#tutorial">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="downloading-data">
+        Downloading data
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#downloading-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Downloading data" href="#downloading-data">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>In this lab we&rsquo;ll use data from two of the most common sources in the US, the National Map and the Census bureau.  I&rsquo;ve gone and downloaded the data for Kansas for you to use, but if you want to do this for a state you are more interested in&hellip;
+
+<div class="gdoc-expand">
+  <label class="gdoc-expand__head flex justify-between" for="6b2e2a16-1">
+    <span>How to download your own data</span>
+    <span>↕</span>
+  </label>
+  <input id="6b2e2a16-1" type="checkbox" class="gdoc-expand__control hidden" />
+  <div class="gdoc-markdown--nested gdoc-expand__content">
+    <ul>
+<li>We&rsquo;ll get started in the <a class="gdoc-markdown__link" href="https://apps.nationalmap.gov/downloader/#/">National Map</a>.  This provides easy access to a number of data sets at useful geographic units.  Start by defining an AOI (Area of Interest), the simplest is a point within the boundaries of your state.</li>
+</ul>
+<p><img src="/classes/geog111/img/Lab5NationalMap1.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Next, select the <strong>Boundaries - National Boundary Dataset</strong> check box and within that the <strong>State</strong> and <strong>FileGDB</strong> radio buttons.</li>
+</ul>
+<p><img src="/classes/geog111/img/Lab5NationalMap2.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Do the same for the <strong>Structures - National Structures Dataset</strong> and <strong>Transportation</strong> layers.</li>
+</ul>
+<p><img src="/classes/geog111/img/Lab5NationalMap3.PNG" alt="imcenter"  /></p>
+<ul>
+<li>After you&rsquo;ve done that click the <strong>Search products</strong> button at the top.  This will filter the data into the requested selections and take you to the <strong>Products</strong> tab.  For each of the requested data sets, you can click the <strong>Expand View</strong> prompt, and then the <strong>Download ZIP</strong> prompt to get the data.</li>
+</ul>
+<p><img src="/classes/geog111/img/Lab5NationalMap4.PNG" alt="imcenter"  /></p>
+<ul>
+<li>You should save these in a new folder, preferable in a separate folder.  I typically create a folder called <em>rawdata</em> that I place data into.  This folder serves as a place to keep data that comes directly from a provider, and I don&rsquo;t touch it afterwards.  Although this might seem a bit overkill, you&rsquo;ll thank yourself down the road as you grow as a data scientist.</li>
+</ul>
+<p><img src="/classes/geog111/img/Lab5NationalMap5.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Finally, we&rsquo;d like to add population data, and for that, the Census is King?  We cover census data in much more detail in future classes but in essence, the census is a rich collection of data hidden behind difficult data conventions, obscure naming schema, and a poor interface that is frustrating for even advanced users to gather and process.  Fortunately, grabbing population data is <em>almost</em> straightforward.  Starting at the <a class="gdoc-markdown__link" href="https://data.census.gov/cedsci/">U.S. Census data portal</a>, search for &ldquo;Total Population&rdquo; and locate the <em>TOTAL POPULATION</em> table from the American Community Survey.</li>
+</ul>
+<p><img src="/classes/geog111/img/Lab5Census2.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Click <strong>CUSTOMIZE TABLE</strong> to find table view, and you should be taken to <a class="gdoc-markdown__link" href="https://data.census.gov/cedsci/table?t=Population%20Total&amp;tid=ACSDT1Y2019.B01003&amp;hidePreview=true">this page</a>.</li>
+</ul>
+<p><img src="/classes/geog111/img/Lab5Census3.PNG" alt="imcenter"  /></p>
+<ul>
+<li>First, click on the <strong>Geo</strong> button.  We want <strong>County</strong> populations within your selected states, and we want all counties, like so:</li>
+</ul>
+<p><img src="/classes/geog111/img/Lab5Census4.PNG" alt="imcenter"  /></p>
+<ul>
+<li>We can turn off the <strong>Margin of Error</strong>, and turn on <strong>Transpose</strong>, and then change the <em>Product</em> to the <strong>5 year estimate</strong>.  Finally, change the <em>Year</em> tab to the most recent year.</li>
+</ul>
+<p><img src="/classes/geog111/img/Lab5Census6.PNG" alt="imcenter"  /></p>
+<ul>
+<li>You can now click <strong>Download</strong> and save the data to your relevant folder.</li>
+</ul>
+<p><img src="/classes/geog111/img/Lab5Census7.PNG" alt="imcenter"  /></p>
+
+  </div>
+</div>
+</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="data-prep">
+        Data prep
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#data-prep" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Data prep" href="#data-prep">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ul>
+<li>As you become more versed in the geographic sciences, you&rsquo;ll slowly learn how data needs to be formatted.  One of these is that the Census data we downloaded has an extra row which we&rsquo;ll need to remove before it&rsquo;s ready to be used.  To do this we first need to unzip the files we&rsquo;ve downloaded.  You can do this one at a time with the standard <em>extract</em> feature built into windows, but I recommend <a class="gdoc-markdown__link" href="https://www.7-zip.org/">7-Zip</a>.  If you highlight all three and <strong>right click</strong> &gt; <strong>7-Zip</strong> &gt; <strong>Extract to &ldquo;*&quot;</strong> it will put them in that same location with the same name.</li>
+</ul>
+<p><img src="/classes/geog111/img/Lab5NationalMap6.PNG" alt="imcenter"  /></p>
+<ul>
+<li>Recall that we&rsquo;re working in the &ldquo;rawdata&rdquo; folder, but we are about to (irreversibly) modify the data, so we should create a new folder.  In general, I create a &ldquo;storedata&rdquo; folder for these intermediate products.  So, create that folder and then copy the ****<em>data_with_overlays</em> file into it.</li>
+<li>Open it up (Excel is fine), and remove the second row by <strong>right clicking</strong> on the row number and press <strong>delete</strong>, and the save it and make sure it&rsquo;s saved in a .csv format.</li>
+</ul>
+<p><img src="/classes/geog111/img/Lab5CensusCSVmodify.PNG" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="working-in-gis-software">
+        Working in GIS software
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#working-in-gis-software" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Working in GIS software" href="#working-in-gis-software">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Use the start menu to open up your software of choice.
+
+
+
+
+<div class="gdoc-tabs">
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-uniqueid" id="tabs-uniqueid-0"
+      checked="checked"  />
+    <label for="tabs-uniqueid-0" class="gdoc-tabs__label">
+      ArcPRO
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap">
+    <h3 id="working-with-a-project-in-arcgis-pro">
+        Working with a Project in ArcGIS Pro
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#working-with-a-project-in-arcgis-pro" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Working with a Project in ArcGIS Pro" href="#working-with-a-project-in-arcgis-pro">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>In the Windows search bar type in &ldquo;ArcGIS Pro&rdquo; and open the program.</li>
+<li>In the top right corner make sure you are signed in to your ESRI account.</li>
+<li>ArcGIS Pro opens and asks how you want to proceed. You can either open an existing project, begin using a blank project template, or start without a project template. In ArcGIS Pro, a “project” is the means by which you organize all the various layers, tables, maps, and so on of your work, and a “template” is how a project starts when you begin working with ArcGIS Pro. If you were just going to do something quick like examine a GIS layer, you wouldn’t need to use a template. However, as you’ll be doing several things in this lab and to get into the good habit of being digitally organized, click on <strong>Map</strong> in the New Blank Templates options.</li>
+<li>You are now prompted to give your project a name and indicate where it will be located.  Let&rsquo;s call this project &ldquo;lab05&rdquo; and save it in the lab05 folder.  Finally, click <strong>OK</strong>.
+<img src="/classes/geog111/img/ARCPRO_EmptySplashScreen.PNG" alt="imcenter"  /></li>
+<li>ArcGIS Pro opens to your project. The large area in the center is referred to as the View. Because you chose the Map template, ArcGIS Pro opened with a new Map for you to add your data to. You can see a new tab called Map in the View, and it contains a topographic map of the United States. In ArcGIS Pro, you add GIS data to a Map so you can work with it. You can have multiple different tabs in the View and switch back and forth between them as needed. For instance, you can have several Maps available at once, each containing different data. You can also have tabs open for one or more Layouts.  For this lab, you’ll be using only this one Map.</li>
+<li>Along the top of the window you&rsquo;ll find the toolbar area.  This, along with the toolbox which we&rsquo;ll cover later, are the primary means of interacting with your data.</li>
+<li>You see a Catalog pane on the right-hand side of the screen and a Contents pane on the left-hand side of the screen (with the word Contents at the top). The Contents pane shows what is contained in the tab that is currently being used.  As you add items to whatever you’re working with, you&rsquo;ll see them available in the Contents pane.</li>
+</ol>
+<blockquote class="gdoc-hint info">
+  Don&rsquo;t see them?  Click on the <strong>view</strong> tab at the top and click <strong>Reset Panels</strong> &gt; <strong>Reset Panels for Mapping (default)</strong>
+</blockquote>
+<p><img src="/classes/geog111/img/ARCPRO_UI.PNG" alt="imcenter"  /> 
+8. With several Maps or tabs open, it’s easy to lose track of what the various tabs contain. Even though you’re using only one Map in this exercise, for ease of use, you can change its name to something more distinctive than “Map.” With the Map tab in the View selected, return to the Contents pane. Right-click on <strong>Map</strong> and choose <strong>Properties</strong>.<br>
+<img src="/classes/geog111/img/ARCPRO_MapProperties.PNG" alt="imcenter"  /><br>
+9. The Map Properties dialog box opens. On the <em>General tab</em>, change the name of this Map from Map to &ldquo;Kansas&rdquo;. Then click <strong>OK</strong> to close the Map Properties dialog box. You should now see that the Map tab has changed to be the Kansas tab as well as having updated in the Contents panel.
+10. Click the <strong>x</strong> on the Kansas Map tab to close the map window.  To get this back, in the Catalog pane, you see a Maps folder. Expand this, and you&rsquo;ll see a list of all the Maps you have available in this particular project. You should have only one: the Kansas Map. You can add this map back into the view by coming to this location and double-clicking the Map.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="add-and-manipulate-basemap">
+        Add and manipulate basemap
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#add-and-manipulate-basemap" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Add and manipulate basemap" href="#add-and-manipulate-basemap">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>A fresh map template loads in a standard topographic map, but this can easily be changed on the <strong>Map</strong> tab under the Basemap icon.  Take a second and explore the different options here.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="navigate-around-map">
+        Navigate around map
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#navigate-around-map" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Navigate around map" href="#navigate-around-map">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>Navigating around the map is a critical skill you need in order to be a competent practitioner.  Fortunately, Google controls became pretty standard and you likely know most of them at this point simply though intuition and general exposure.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="manual-controls">
+        Manual controls
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#manual-controls" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Manual controls" href="#manual-controls">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><ol>
+<li>While the <strong>Explore</strong> button is on, you can left click to pan around the map.  Both the right click and the scroll wheel zooms the map in and out.</li>
+</ol>
+<blockquote class="gdoc-hint info">
+  Does the zoom seem backwards to you?  You can change this (The <strong>Projects</strong> tab &gt; <strong>Options</strong> &gt; <strong>Navigation</strong>)
+</blockquote>
+<ol start="2">
+<li>There is also a Google Earth style navigation compass.  If you right click in the map and select <strong>Navigator</strong>.  This opens a navigator compass on the map which allows you to rotate and navigate around the map with a click.  Clicking on the arrow reorients yourself northward.<br>
+<img src="/classes/geog111/img/ArcProNavigator.PNG" alt="imcenter"  /></li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="go-to-point">
+        Go To point
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#go-to-point" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Go To point" href="#go-to-point">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>1</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="add-vector-data">
+        Add Vector Data
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#add-vector-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Add Vector Data" href="#add-vector-data">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol start="11">
+<li>In the Catalog pane, expand the Folders option, and you see the folders and data available for this project.  If you explore your folders, you&rsquo;ll notice that none of your data is visible.  To add data without moving your data between folders manually, right-click on the Folders option and choose <strong>Add Folder Connection</strong>.  From there, navigate to the folder you&rsquo;ve stored your data in (in this case, the Lab05 folder).<br>
+<img src="/classes/geog111/img/ARCPRO_DataView.PNG" alt="imcenter"  /></li>
+<li>Expand the geodatabases to verify that it contains the three feature classes you’ll
+be working with in this lab: Trans_AirportPoint, GU_CountyOrEquivalent, and Trans_TrailSegment.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="adding-data-to-arcgis-pro-and-working-with-the-contents-pane">
+        Adding Data to ArcGIS Pro and Working with the Contents Pane
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#adding-data-to-arcgis-pro-and-working-with-the-contents-pane" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Adding Data to ArcGIS Pro and Working with the Contents Pane" href="#adding-data-to-arcgis-pro-and-working-with-the-contents-pane">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>Return to the Map. Its corresponding area in the Contents pane is empty, so let&rsquo;s add some data to work with.</li>
+<li>Click on the <strong>Map</strong> tab at the top of the screen, and then within the Layer group, click on the <strong>Add Data</strong> icon (<img src="/classes/geog111/img/ArcProAddDataIcon.PNG" alt=""  />) and select <strong>Data</strong>. In the dialog box, navigate to the rawdata folder, then the GOVTUNIT_Kansas_State_GDB.gdb geodatabase, and then in the GovernmentUnits you&rsquo;ll find the GU_CountyOrEquivalent layer.  Click <strong>OK</strong> (or double-click) to add it to the map.<br>
+<img src="/classes/geog111/img/Arcpro_AddVector.PNG" alt="imcenter"  /></li>
+<li>You now see the GU_CountyOrEquivalent feature class listed in the Layers panel and its contents (a set of polygons displaying each of the counties in Kansas) displayed in the Map View. In
+the Layers panel, you see a checkmark in the box next to the layer.  When this checkmark is displayed, the layer is shown in the Map View, and when the checkmark is removed, the layer is not displayed.</li>
+<li>Let&rsquo;s add two more layers from the CalData geodatabase: CalAirports (a point layer) and
+CalTrails (a line layer). All three of your layers are now in the Layers panel.</li>
+<li>You can manipulate the “drawing order” of items in the Layers panel by grabbing a layer
+with the mouse and moving it up or down in the Layers panel. Whatever layer is at thebottom is drawn first, and the layers above it in the Layers panel are drawn on top of it.
+Thus, if you move the CalBounds layer to the top of the Layers panel, the other layers are
+no longer visible in the Map View because the polygons of the CalBounds layer are being
+drawn over them.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="add-tabular-data">
+        Add Tabular Data
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#add-tabular-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Add Tabular Data" href="#add-tabular-data">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="look-at-attribute-tables">
+        Look at attribute tables
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#look-at-attribute-tables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Look at attribute tables" href="#look-at-attribute-tables">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="joining-vector-and-tabular-data">
+        Joining vector and tabular data
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#joining-vector-and-tabular-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Joining vector and tabular data" href="#joining-vector-and-tabular-data">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="selections">
+        Selections
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#selections" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Selections" href="#selections">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h4 id="manual-pick">
+        Manual pick
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#manual-pick" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Manual pick" href="#manual-pick">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="gdoc-page__anchorwrap">
+    <h4 id="select-by-attribute">
+        Select by attribute
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#select-by-attribute" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Select by attribute" href="#select-by-attribute">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="gdoc-page__anchorwrap">
+    <h4 id="select-by-location">
+        Select by Location
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#select-by-location" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Select by Location" href="#select-by-location">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="saving">
+        saving
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#saving" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor saving" href="#saving">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol start="5">
+<li>Next, you need to get some basic information about your GIS layers. Right-click on the
+CalBounds layer and choose Show Feature Count. A number in brackets appears after
+the CalBounds name, indicating how many features are in that layer. If each feature in the
+CalBounds layer represents a county in California, then this is the number of counties in
+the dataset.</li>
+<li>Repeat step 5 for the CalAirports and CalTrails layers and examine their information.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 1</strong> 
+How many airports are represented as points in the CalAirports dataset? (Remember that each feature is a separate polygon.) How many trails are represented as lines in the CalTrails dataset?
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="symbology-of-features-in-qgis">
+        Symbology of Features in QGIS
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#symbology-of-features-in-qgis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Symbology of Features in QGIS" href="#symbology-of-features-in-qgis">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>Notice that the symbology generated for each of the three objects is simple: Points, lines,
+and polygons have been assigned a random color. You can significantly alter the
+appearance of the objects in the Map View to customize your maps.</li>
+<li>Right-click on the CalBounds layer and select Properties.</li>
+<li>In the Properties dialog box, select the Symbology tab. Here, you can alter the
+appearance of the states by changing their style and color, as well as elements of how the
+polygons are outlined.
+<img src="/classes/geog111/img/QGIS_Symbology.png" alt="imcenter"  /></li>
+<li>Select one of the suggested appearances for your polygons. To select a different color for
+your layer, first click on Fill and then clicking on the solid color bar beside the Color
+pull-down menu and choose the color you want. Clicking once on Simple fill brings up
+more options for adjusting the color, border color, border thickness, and so on. These
+options allow you to alter the CalBounds layer to make it more appealing. After you’ve
+selected all the options you want, click Apply to make the changes and then click OK to
+close the dialog box.</li>
+<li>Repeat step 4 to change the appearances for the CalAirports and CalTrails feature classes.
+Note that you can also change the points for the airports into shapes such as stars,
+triangles, or a default airport symbol, and you can change the size and color of the
+airports. Several different styles are available for the lines of the trails as well.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="obtaining-projection-information">
+        Obtaining Projection Information
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#obtaining-projection-information" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Obtaining Projection Information" href="#obtaining-projection-information">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>Chapter 2 discusses the importance of projections, coordinate systems, and datums. All of
+the information associated with these concepts can be accessed using QGIS. Right-click
+on the CalBounds feature class and select Properties. Click on the Information tab in
+the dialog box. Information about the layer (also known as the metadata, or “data about
+the data”) is shown. The top of the dialog box gives a variety of information, including
+some shorthand about the coordinate system being used. Carefully read through the
+abbreviated information to determine what units of measurement are being used for the
+CalBounds layer.</li>
+<li>Click OK to exit the CalBounds Properties dialog box.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 2</strong> 
+What units of measurement (feet, meters, degrees, etc.) are being used
+in the CalTrails dataset?
+</blockquote>
+<blockquote class="gdoc-hint question">
+  <strong>Question 3</strong> 
+What units of measurement (feet, meters, degrees, etc.) are being used
+in the CalAirports dataset?
+</blockquote>
+<ol start="3">
+<li>QGIS allows you to specify the projection information used by the entire project. Because
+your layers are in the U.S. National Atlas Equal Area projection, you need to tell QGIS to
+use this projection information while you’re using that data in this lab. To do this, select
+the Project pull-down menu and then choose Properties.</li>
+<li>In the Project Properties dialog box, select the CRS tab (which stands for Coordinate
+Reference System).</li>
+<li>In the filter box, type US National Atlas to limit your search to find the U.S. National
+Atlas Equal Area projection, which is just one of the hundreds of supported projections.</li>
+<li>In the bottom panel, select the US National Atlas Equal Area option.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 4</strong> 
+To which “family” of projections does the U.S. National Atlas Equal
+Area projection belong? Hint: QGIS shows a hierarchical system of projections that
+can help you answer this question.
+</blockquote>
+<p><img src="/classes/geog111/img/QGIS_Proj.png" alt="imcenter"  /></p>
+<ol start="7">
+<li>Click Apply to make the changes and then click OK to close the dialog box.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="examining-attribute-tables">
+        Examining Attribute Tables
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#examining-attribute-tables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Examining Attribute Tables" href="#examining-attribute-tables">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>Each of your three layers is represented by points (airports), lines (trails), and polygons
+(the counties), but each layer also has a corresponding set of attributes that accompanies
+the spatial features. As noted in the chapter, these non-spatial attributes are stored in an
+attribute table for each layer. To get started working with this non-spatial data, in the
+Layers panel, right-click on the CalBounds layer and choose Open Attribute Table.</li>
+</ol>
+<p><img src="/classes/geog111/img/QGIS_AttTable.png" alt="imcenter"  /></p>
+<ol start="2">
+<li>A new window opens, showing the CalBounds attribute table. Each of the rows of the
+table is a record representing an individual feature (in this case, a single polygon of a
+California county), and the columns of the table are the fields representing the attributes
+for each of those records. By perusing the attribute table, you can find information about
+a particular record. However, with 58 records, it could take some time to find specific
+information. One way to organize the table is to sort it: To do this, scroll across the
+CalBounds attribute table until you find the field called County_Name, click the
+County_Name table header, and the table sorts itself into alphabetical order by the name
+of the county. Click on the County_Name table header a second time, and the table sorts
+itself into reverse alphabetical order. Click it a third time to return the sorting of the table
+to alphabetical order.</li>
+<li>With the table sorted, scroll through it to find the record with the County_Name attribute
+San Diego. Each county has a FIPS code assigned to it; this is a numerical value that is a
+government designation to uniquely identify things such as states, counties, and
+townships. The FIPS code information for each California county is located in this
+attribute table.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 5</strong> 
+What is the county FIPS code for San Diego County?
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="joining-a-table-to-an-attribute-table">
+        Joining a Table to an Attribute Table
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#joining-a-table-to-an-attribute-table" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Joining a Table to an Attribute Table" href="#joining-a-table-to-an-attribute-table">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>While there are a lot of records in the CalBounds attribute table, QGIS allows you to add
+further attributes to them. This can be done by taking another table that contains
+additional non-spatial information and joining it to the CalBounds attribute table. Tobegin, the first thing you need to do is add to QGIS a table of non-spatial data with which
+to work.</li>
+<li>From the Layer pull-down menu, choose Add Layer and then choose Add Delimited
+Text Layer.</li>
+<li>In the Data Source Manager dialog box, click the Browse button next to File Name,
+navigate to the C:\Chapter5QGIS folder and choose the CAPop.csv file, and click
+Open.</li>
+<li>Under File Format, select the radio button for CSV (comma separated values).</li>
+<li>Expand the options for Geometry definition and select the radio button for No geometry
+(attribute only table) because this is only a table of values, not something that will be a
+spatial layer.</li>
+<li>Leave the other settings as their defaults. At the bottom of the dialog box you can see a
+preview of what your added table will look like. If everything looks okay, click Add.</li>
+<li>A new item called CAPop is added to the Layers panel. This is a table that contains a new
+set of attributes. Click Close in the Data Source Manager dialog box if it is still open.</li>
+<li>Right-click on CAPop and choose Open Attribute Table. You see the new non-spatial
+table open in QGIS; it contains a field with the county’s FIPS code, the name of that
+county, and the population of that county. Before you can join two tables together, they
+need to contain the same field; in this case, the CAPop table contains a field called N that
+contains the name of the county, and the CalBounds layer’s attribute table contains a field
+called County_Name that contains the same information. Because these two tables (the
+spatial data from CalBounds and the non-spatial data from CAPop) have a field in
+common (i.e., they both have a field containing the name of each county), they can be
+joined together.</li>
+<li>To perform the join, right-click on the CalBounds layer, select Properties, and select the
+Joins tab.</li>
+</ol>
+<p><img src="/classes/geog111/img/QGIS_VectorJoin.png" alt="imcenter"  /></p>
+<ol start="10">
+<li>At the bottom of the Joins dialog box, click the green plus button to indicate that you
+want to join a table to the layer with which you’re working.</li>
+<li>In the Add Vector Join dialog, for Join Layer, select CAPop (which is the table
+containing the information you want to join to the spatial layer).</li>
+<li>For Join Field, select N (which is the name of the county name field in the CAPop table).</li>
+<li>For Target Field, select County_Name (which is the name of the county name field in the
+CalBounds layer).</li>
+<li>Put a checkmark in the Joined Fields box and put checkmarks next to the CAFIPS, N,
+and Pop2010 options to join the data from the Pop2010 field from CAPop to CalBounds.</li>
+<li>Put a checkmark in the Custom Field Name Prefix box so that any of the joined fields
+will start with the prefix CAPop_, which will help you keep them separate.</li>
+<li>Leave the other options alone and click OK to perform the join. Then click OK in the
+Layer Properties dialog box to close it</li>
+</ol>
+<p><img src="/classes/geog111/img/QGIS_VectorJoin1.png" alt="imcenter"  /></p>
+<ol start="17">
+<li>Open the CalBounds layer’s attribute table and scroll across to the far right. You now see
+the population values from the CAPop table joined for each record in the attribute table
+(i.e., each county now has a value for population joined to it).18. Now that CAPop_Pop2010 is a field in the attribute table, you can sort it from highest to
+lowest populations (or vice versa) by clicking on the field header, just as you can do to
+sort any other field (in the same way you sorted the counties alphabetically by name).
+Keeping this ability in mind, answer Questions 5.6–5.9.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 6</strong><br>
+What is the 2010 population of Los Angeles County?
+</blockquote>
+<blockquote class="gdoc-hint question">
+  <strong>Question 7</strong><br>
+What is the 2010 population of the California county with FIPS code 065?
+</blockquote>
+<blockquote class="gdoc-hint question">
+  <strong>Question 8</strong><br>
+What county in California has the lowest 2010 population, and what is
+that population value?
+</blockquote>
+<blockquote class="gdoc-hint question">
+  <strong>Question 9</strong><br>
+What county in California has the third-highest 2010 population, and what is that population value?
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="navigating-the-map-view">
+        Navigating the Map View
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#navigating-the-map-view" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Navigating the Map View" href="#navigating-the-map-view">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>You’ll now just focus on one area of California: San Diego County. In the CalBounds
+attribute table, scroll through until you find San Diego County and then click on the
+header of the record on the far-left of the attribute table.</li>
+<li>Back in the Map View, you see San Diego County now highlighted in yellow.</li>
+</ol>
+<p><img src="/classes/geog111/img/QGIS_ScrollSelect.png" alt="imcenter"  /></p>
+<ol start="3">
+<li>QGIS provides a number of tools for navigating around the data layers in the view. Click
+on the icon that shows a magnifying glass with three arrows to zoom the Map View to
+the full extent of all the layers. It’s good to do this if you’ve zoomed too far in or out in
+the Map View or need to restart.</li>
+<li>The other magnifying glass icons allow you to zoom in (the plus icon) or out (the minus
+icon). You can zoom by clicking in the window or by clicking and dragging a box around
+the area you want to zoom in on.</li>
+</ol>
+<p><img src="/classes/geog111/img/QGIS_MapControl.png" alt="imcenter"  /></p>
+<ol start="5">
+<li>The hand icon, which is the Pan tool, allows you to “grab” the Map View by clicking on
+it and dragging the map around the screen for navigation.</li>
+<li>Use the Zoom and Pan tools to center the Map View on San Diego County so that you’re
+able to see the entirety of the state and its airports and trails.</li>
+<li>Return to the CalBounds attribute table and hold down the Ctrl key on the keyboard
+while clicking the header record for the county again to remove the blue highlighting.
+Then close the attribute table.
+5.8 Interactively Obtaining Information</li>
+<li>Even with the Map View centered on San Diego County, there are an awful lot of point
+symbols there, representing the airports. You are going to want to identify and use only a
+couple of them. QGIS has a searching tool that allows you to locate specific objects from
+a dataset.</li>
+<li>Right-click on the CalAirports layer and select Open Attribute Table. The attribute
+table for the layer appears as a new window.</li>
+<li>You need to find out which of these 1163 records represents San Diego International
+Airport. To begin searching the attribute table, click on the button at the bottom that says
+Show All Features and choose the option Field Filter. A list of all of the attributes
+appears; choose the one called Name.</li>
+<li>You can now search through the attribute table on the basis of the Name field. At the
+bottom of the dialog box, type San Diego International Airport.</li>
+<li>Click on the Enter key on the keyboard. The record where the Name attribute is “San
+Diego International” appears as the only record in the attribute table. Click on the record
+header next to the Name field (the tab should be labeled 269), and you see the record
+highlighted in dark blue, just like when you selected San Diego County previously. This
+indicates that you’ve selected the record.</li>
+<li>Drag the dialog box out of the way so that you can see both it and the Map View at the
+same time.</li>
+<li>You can see that the point symbol for the San Diego International Airport has changed to
+a yellow color. This means it has been selected by QGIS, and any actions performed on
+the CalAirports layer will affect only the selected items, not all the items in CalAirports.
+However, all that you’ve done so far is locate and select an object. To obtain information
+about it, you can use the Identify Features tool (the icon on the toolbar with a white
+cursor pointing to the letter i in a blue circle). Identify Features works only with the layer
+that is selected in the Map Legend, so make sure CalAirports (i.e., the layer in which
+you want to identify items) is highlighted in the Map Legend before choosing the tool</li>
+<li>Select the Identify Features tool and then click on the point representing San Diego
+International Airport (zooming in as necessary). A new panel called Identify Results
+appears, listing all the attributes for the CalAirports layer. If you click on the View
+Feature Form button at the top of the panel, you can see all the field attribute
+information that goes along with the record/point representing San Diego International
+Airport.</li>
+</ol>
+<p><img src="/classes/geog111/img/QGIS_Identify.png" alt="imcenter"  /></p>
+<blockquote class="gdoc-hint question">
+  <strong>Question 10</strong><br>
+What is the three-letter FAA airport classification code for San Diego
+International Airport?
+</blockquote>
+<ol start="9">
+<li>Close the Identify Results panel after you’ve answered the question.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="labeling-features">
+        Labeling Features
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#labeling-features" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Labeling Features" href="#labeling-features">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>Rather than dealing with several points on a map and trying to remember which airport is
+which, it’s easier to simply label each airport so that its name appears in the Map View.QGIS gives you the ability to do this by creating a label for each record and allowing you
+to choose the field with which to create the label. To start, right-click on the CalAirports
+layer in the Map Legend and select Properties.</li>
+<li>Click on the Labels tab.</li>
+<li>From the pull-down menu at the top of the dialog box, choose Single labels.</li>
+<li>From the pull-down menu next to Label with, choose Name.</li>
+</ol>
+<p><img src="/classes/geog111/img/QGIS_LableDialog.png" alt="imcenter"  /></p>
+<ol start="5">
+<li>For now, accept all the defaults and click Apply and then click OK. Back in the Map
+View, you see that labels of the airport names have been created and placed near the
+appropriate points.</li>
+<li>Change any of the options—font size, color, label placement, and even the angle—to set
+up the labels so that you can easily examine the map data.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="measurements-on-a-map">
+        Measurements on a Map
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#measurements-on-a-map" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Measurements on a Map" href="#measurements-on-a-map">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>With all the airports now labeled, it’s easier to keep track of them. Your next task is to
+make a series of measurements between points to find the Euclidian (straight-line)
+distance between airports around San Diego. Zoom in tightly so that your Map View
+contains the airports San Diego International and North Island Naval Air Station.</li>
+<li>Select the Measure Line tool from the toolbar (the one that resembles a gray ruler with a
+line positioned over the top).</li>
+</ol>
+<p><img src="/classes/geog111/img/QGIS_Measure.png" alt="imcenter"  /></p>
+<ol start="4">
+<li>You see that the cursor has turned into a crosshairs. Place the crosshairs on the point
+representing San Diego International Airport and left-click the mouse. Drag the crosshairs
+south and west to the point representing North Island Naval Air Station and click the
+mouse there. The distance measurement appears in the Measure box. If you click on the
+Info text in the dialog box, you see that you are measuring “ellipsoidal” distance, referred
+to as the “surface” distance as measured on a sphere. Note that each line of measurement
+you make with the mouse counts as an individual “segment,” and the value listed in the
+box for “Total” is the sum of all segments.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 11</strong><br>
+What is the ellipsoidal distance from San Diego International Airport to North Island Naval Air Station?5. Clear all the lines of measurement by clicking on New in the Measure box.
+</blockquote>
+<ol start="6">
+<li>Zoom out a bit so that you can see some of the other airports in the region, particularly
+Montgomery Field and Brown Field Municipal Airport.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 12</strong><br>
+What is the total ellipsoidal distance in miles from San Diego
+International Airport to Montgomery Field, then from Montgomery Field to Brown
+Field Municipal Airport, and then finally from Brown Field Municipal Airport back
+to San Diego International Airport?
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="saving-your-work-and-working-on-it-later">
+        Saving Your Work (and Working on It Later)
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#saving-your-work-and-working-on-it-later" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Saving Your Work (and Working on It Later)" href="#saving-your-work-and-working-on-it-later">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>When you’re using QGIS, you can save your work at any time and then return to it later.
+When work is saved in QGIS, a QGZ file is written to disk. Later, you can reopen this file
+to pick up your work where you left off. Saving to a QGZ file is done by selecting the
+Project pull-down menu and then selecting Save.</li>
+<li>Files can be reopened by choosing Open from the Project pull-down menu.</li>
+<li>Exit QGIS by selecting Exit QGIS from the Project pull-down menu.</li>
+</ol>
+
+    </div>
+  
+    <input type="radio" class="gdoc-tabs__control hidden" name="tabs-uniqueid" id="tabs-uniqueid-1"
+       />
+    <label for="tabs-uniqueid-1" class="gdoc-tabs__label">
+      QGIS
+    </label>
+    <div class="gdoc-markdown--nested gdoc-tabs__content">
+      <div class="gdoc-page__anchorwrap">
+    <h3 id="open-a-map">
+        Open a map
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#open-a-map" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Open a map" href="#open-a-map">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="add-and-manipulate-basemap">
+        Add and manipulate basemap
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#add-and-manipulate-basemap" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Add and manipulate basemap" href="#add-and-manipulate-basemap">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="navigate-around-map">
+        Navigate around map
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#navigate-around-map" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Navigate around map" href="#navigate-around-map">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h4 id="manual-controls">
+        Manual controls
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#manual-controls" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Manual controls" href="#manual-controls">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="gdoc-page__anchorwrap">
+    <h4 id="go-to-point">
+        Go To point
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#go-to-point" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Go To point" href="#go-to-point">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="add-vector-data">
+        Add Vector Data
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#add-vector-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Add Vector Data" href="#add-vector-data">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="add-tabular-data">
+        Add Tabular Data
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#add-tabular-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Add Tabular Data" href="#add-tabular-data">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="look-at-attribute-tables">
+        Look at attribute tables
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#look-at-attribute-tables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Look at attribute tables" href="#look-at-attribute-tables">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="joining-vector-and-tabular-data">
+        Joining vector and tabular data
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#joining-vector-and-tabular-data" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Joining vector and tabular data" href="#joining-vector-and-tabular-data">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="selections">
+        Selections
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#selections" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Selections" href="#selections">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h4 id="manual-pick">
+        Manual pick
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#manual-pick" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Manual pick" href="#manual-pick">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="gdoc-page__anchorwrap">
+    <h4 id="select-by-attribute">
+        Select by attribute
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#select-by-attribute" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Select by attribute" href="#select-by-attribute">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="gdoc-page__anchorwrap">
+    <h4 id="select-by-location">
+        Select by Location
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#select-by-location" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Select by Location" href="#select-by-location">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="saving">
+        saving
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#saving" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor saving" href="#saving">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="an-introduction-to-qgis">
+        An Introduction to QGIS
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#an-introduction-to-qgis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor An Introduction to QGIS" href="#an-introduction-to-qgis">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>Start QGIS, and it opens in its initial mode. The left-hand column (where you see the
+word “Layers”) is referred to as the Map Legend; it’s where you see a list of available
+data layers. The blank screen that takes up most of the interface, called the Map View, is
+where data will be displayed.</li>
+</ol>
+<p><img src="/classes/geog111/img/QGIS_EmptySplashScreen.png" alt="imcenter"  /></p>
+<p>Important note: If you don’t see the Map Legend on the screen (or if other panels are open
+where the Map Legend should be), you can change which panels are available to view. From the
+View pull-down menu, select Panels and then you can place an x next to the name of each
+panels that you want to see on the screen. To begin, make sure that the Layers panel has an x
+next to its name.</p>
+<p>Important note: Before you begin adding and viewing data, you need to examine the data you
+have available to you. To do so in QGIS, you can use the QGIS Browser—a utility designed to
+enable you to organize and manage GIS data.
+Important note: Before you begin adding and viewing data, you need to examine the data you
+have available to you. To do so in QGIS, you can use the QGIS Browser—a utility designed to
+enable you to organize and manage GIS data.</p>
+<ol start="2">
+<li>If the Browser panel is not open, from the View pull-down menu, select Panels and then
+place an x next to Browser Panel.</li>
+<li>The Browser panel can be used to manage your data and to get information about it. In
+the Browser tree (the section going down the left-hand side of the dialog box), navigate to
+the C: drive and open the Chapter5QGIS folder. Verify that you have the CalData.gdb
+folder (which is the file geodatabase) and the CAPop.csv file (which is the table
+containing population data). Next, expand the CalData.gdb geodatabase by clicking the
+arrow next to it. You have three feature classes available: CalAirports, CalBounds, and
+CalTrails.</li>
+</ol>
+<p><img src="/classes/geog111/img/QGIS_DataView.png" alt="imcenter"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="adding-data-to-qgis-and-working-with-the-map-legend">
+        Adding Data to QGIS and Working with the Map Legend
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#adding-data-to-qgis-and-working-with-the-map-legend" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Adding Data to QGIS and Working with the Map Legend" href="#adding-data-to-qgis-and-working-with-the-map-legend">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>Next, you need to add some data to the Layers panel. The first layer you need to add is
+the CalBounds layer. You can do this in one of two ways:
+a. You can drag and drop the CalBounds layer directly from the Browser panel into the
+Layers panel.
+b. From the Layer pull-down menu, choose Add Layer and then choose Add Vector
+Layer.
+In the Add Vector Layer dialog box, click on the radio button for Directory, and from
+the Type pull-down menu choose OpenFileGDB. This will allow you to chooseindividual files from within the file geodatabase.
+Next, click Browse and navigate to the C:\Chapter5QGIS folder. In that folder click
+on the CalData folder and then click on Select Folder.
+Next, click on Add. You see a list of the different layers that are within the file
+geodatabase and from which you can choose. To begin, choose CalBounds and click
+OK.</li>
+</ol>
+<p><img src="/classes/geog111/img/QGIS_AddVector.png" alt="imcenter"  /></p>
+<ol start="2">
+<li>You now see the CalBounds feature class listed in the Layers panel and its contents (a set
+of polygons displaying each of the counties in California) displayed in the Map View. In
+the Layers panel, you see a checkmark in the box next to the CalBounds feature class.
+When the checkmark is displayed, the layer is shown in the Map View, and when the
+checkmark is removed, the layer is not displayed.</li>
+<li>Add two more layers from the CalData geodatabase: CalAirports (a point layer) and
+CalTrails (a line layer). All three of your layers are now in the Layers panel.</li>
+<li>You can manipulate the “drawing order” of items in the Layers panel by grabbing a layer
+with the mouse and moving it up or down in the Layers panel. Whatever layer is at thebottom is drawn first, and the layers above it in the Layers panel are drawn on top of it.
+Thus, if you move the CalBounds layer to the top of the Layers panel, the other layers are
+no longer visible in the Map View because the polygons of the CalBounds layer are being
+drawn over them.</li>
+<li>Next, you need to get some basic information about your GIS layers. Right-click on the
+CalBounds layer and choose Show Feature Count. A number in brackets appears after
+the CalBounds name, indicating how many features are in that layer. If each feature in the
+CalBounds layer represents a county in California, then this is the number of counties in
+the dataset.</li>
+<li>Repeat step 5 for the CalAirports and CalTrails layers and examine their information.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 1</strong> 
+How many airports are represented as points in the CalAirports dataset? (Remember that each feature is a separate polygon.) How many trails are represented as lines in the CalTrails dataset?
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="symbology-of-features-in-qgis">
+        Symbology of Features in QGIS
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#symbology-of-features-in-qgis" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Symbology of Features in QGIS" href="#symbology-of-features-in-qgis">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>Notice that the symbology generated for each of the three objects is simple: Points, lines,
+and polygons have been assigned a random color. You can significantly alter the
+appearance of the objects in the Map View to customize your maps.</li>
+<li>Right-click on the CalBounds layer and select Properties.</li>
+<li>In the Properties dialog box, select the Symbology tab. Here, you can alter the
+appearance of the states by changing their style and color, as well as elements of how the
+polygons are outlined.</li>
+</ol>
+<p><img src="/classes/geog111/img/QGIS_Symbology.png" alt="imcenter"  /></p>
+<ol start="4">
+<li>Select one of the suggested appearances for your polygons. To select a different color for
+your layer, first click on Fill and then clicking on the solid color bar beside the Color
+pull-down menu and choose the color you want. Clicking once on Simple fill brings up
+more options for adjusting the color, border color, border thickness, and so on. These
+options allow you to alter the CalBounds layer to make it more appealing. After you’ve
+selected all the options you want, click Apply to make the changes and then click OK to
+close the dialog box.</li>
+<li>Repeat step 4 to change the appearances for the CalAirports and CalTrails feature classes.
+Note that you can also change the points for the airports into shapes such as stars,
+triangles, or a default airport symbol, and you can change the size and color of the
+airports. Several different styles are available for the lines of the trails as well.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="obtaining-projection-information">
+        Obtaining Projection Information
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#obtaining-projection-information" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Obtaining Projection Information" href="#obtaining-projection-information">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>Chapter 2 discusses the importance of projections, coordinate systems, and datums. All of
+the information associated with these concepts can be accessed using QGIS. Right-click
+on the CalBounds feature class and select Properties. Click on the Information tab in
+the dialog box. Information about the layer (also known as the metadata, or “data about
+the data”) is shown. The top of the dialog box gives a variety of information, including
+some shorthand about the coordinate system being used. Carefully read through the
+abbreviated information to determine what units of measurement are being used for the
+CalBounds layer.</li>
+<li>Click OK to exit the CalBounds Properties dialog box.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 2</strong> 
+What units of measurement (feet, meters, degrees, etc.) are being used
+in the CalTrails dataset?
+</blockquote>
+<blockquote class="gdoc-hint question">
+  <strong>Question 3</strong> 
+What units of measurement (feet, meters, degrees, etc.) are being used
+in the CalAirports dataset?
+</blockquote>
+<ol start="3">
+<li>QGIS allows you to specify the projection information used by the entire project. Because
+your layers are in the U.S. National Atlas Equal Area projection, you need to tell QGIS to
+use this projection information while you’re using that data in this lab. To do this, select
+the Project pull-down menu and then choose Properties.</li>
+<li>In the Project Properties dialog box, select the CRS tab (which stands for Coordinate
+Reference System).</li>
+<li>In the filter box, type US National Atlas to limit your search to find the U.S. National
+Atlas Equal Area projection, which is just one of the hundreds of supported projections.</li>
+<li>In the bottom panel, select the US National Atlas Equal Area option.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 4</strong> 
+To which “family” of projections does the U.S. National Atlas Equal
+Area projection belong? Hint: QGIS shows a hierarchical system of projections that
+can help you answer this question.
+</blockquote>
+<p><img src="/geog111/media/QGIS_Proj.png" alt=""  /></p>
+<ol start="7">
+<li>Click Apply to make the changes and then click OK to close the dialog box.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="examining-attribute-tables">
+        Examining Attribute Tables
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#examining-attribute-tables" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Examining Attribute Tables" href="#examining-attribute-tables">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>Each of your three layers is represented by points (airports), lines (trails), and polygons
+(the counties), but each layer also has a corresponding set of attributes that accompanies
+the spatial features. As noted in the chapter, these non-spatial attributes are stored in an
+attribute table for each layer. To get started working with this non-spatial data, in the
+Layers panel, right-click on the CalBounds layer and choose Open Attribute Table.</li>
+</ol>
+<p><img src="/geog111/media/QGIS_AttTable.png" alt=""  /></p>
+<ol start="2">
+<li>A new window opens, showing the CalBounds attribute table. Each of the rows of the
+table is a record representing an individual feature (in this case, a single polygon of a
+California county), and the columns of the table are the fields representing the attributes
+for each of those records. By perusing the attribute table, you can find information about
+a particular record. However, with 58 records, it could take some time to find specific
+information. One way to organize the table is to sort it: To do this, scroll across the
+CalBounds attribute table until you find the field called County_Name, click the
+County_Name table header, and the table sorts itself into alphabetical order by the name
+of the county. Click on the County_Name table header a second time, and the table sorts
+itself into reverse alphabetical order. Click it a third time to return the sorting of the table
+to alphabetical order.</li>
+<li>With the table sorted, scroll through it to find the record with the County_Name attribute
+San Diego. Each county has a FIPS code assigned to it; this is a numerical value that is a
+government designation to uniquely identify things such as states, counties, and
+townships. The FIPS code information for each California county is located in this
+attribute table.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 5</strong> 
+What is the county FIPS code for San Diego County?
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="joining-a-table-to-an-attribute-table">
+        Joining a Table to an Attribute Table
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#joining-a-table-to-an-attribute-table" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Joining a Table to an Attribute Table" href="#joining-a-table-to-an-attribute-table">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>While there are a lot of records in the CalBounds attribute table, QGIS allows you to add
+further attributes to them. This can be done by taking another table that contains
+additional non-spatial information and joining it to the CalBounds attribute table. Tobegin, the first thing you need to do is add to QGIS a table of non-spatial data with which
+to work.</li>
+<li>From the Layer pull-down menu, choose Add Layer and then choose Add Delimited
+Text Layer.</li>
+<li>In the Data Source Manager dialog box, click the Browse button next to File Name,
+navigate to the C:\Chapter5QGIS folder and choose the CAPop.csv file, and click
+Open.</li>
+<li>Under File Format, select the radio button for CSV (comma separated values).</li>
+<li>Expand the options for Geometry definition and select the radio button for No geometry
+(attribute only table) because this is only a table of values, not something that will be a
+spatial layer.</li>
+<li>Leave the other settings as their defaults. At the bottom of the dialog box you can see a
+preview of what your added table will look like. If everything looks okay, click Add.</li>
+<li>A new item called CAPop is added to the Layers panel. This is a table that contains a new
+set of attributes. Click Close in the Data Source Manager dialog box if it is still open.</li>
+<li>Right-click on CAPop and choose Open Attribute Table. You see the new non-spatial
+table open in QGIS; it contains a field with the county’s FIPS code, the name of that
+county, and the population of that county. Before you can join two tables together, they
+need to contain the same field; in this case, the CAPop table contains a field called N that
+contains the name of the county, and the CalBounds layer’s attribute table contains a field
+called County_Name that contains the same information. Because these two tables (the
+spatial data from CalBounds and the non-spatial data from CAPop) have a field in
+common (i.e., they both have a field containing the name of each county), they can be
+joined together.</li>
+<li>To perform the join, right-click on the CalBounds layer, select Properties, and select the
+Joins tab.</li>
+</ol>
+<p><img src="/geog111/media/QGIS_VectorJoin.png" alt=""  /></p>
+<ol start="10">
+<li>At the bottom of the Joins dialog box, click the green plus button to indicate that you
+want to join a table to the layer with which you’re working.</li>
+<li>In the Add Vector Join dialog, for Join Layer, select CAPop (which is the table
+containing the information you want to join to the spatial layer).</li>
+<li>For Join Field, select N (which is the name of the county name field in the CAPop table).</li>
+<li>For Target Field, select County_Name (which is the name of the county name field in the
+CalBounds layer).</li>
+<li>Put a checkmark in the Joined Fields box and put checkmarks next to the CAFIPS, N,
+and Pop2010 options to join the data from the Pop2010 field from CAPop to CalBounds.</li>
+<li>Put a checkmark in the Custom Field Name Prefix box so that any of the joined fields
+will start with the prefix CAPop_, which will help you keep them separate.</li>
+<li>Leave the other options alone and click OK to perform the join. Then click OK in the
+Layer Properties dialog box to close it</li>
+</ol>
+<p><img src="/geog111/media/QGIS_VectorJoin1.png" alt=""  /></p>
+<ol start="17">
+<li>Open the CalBounds layer’s attribute table and scroll across to the far right. You now see
+the population values from the CAPop table joined for each record in the attribute table
+(i.e., each county now has a value for population joined to it).18. Now that CAPop_Pop2010 is a field in the attribute table, you can sort it from highest to
+lowest populations (or vice versa) by clicking on the field header, just as you can do to
+sort any other field (in the same way you sorted the counties alphabetically by name).
+Keeping this ability in mind, answer Questions 5.6–5.9.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 6</strong><br>
+What is the 2010 population of Los Angeles County?
+</blockquote>
+<blockquote class="gdoc-hint question">
+  <strong>Question 7</strong><br>
+What is the 2010 population of the California county with FIPS code 065?
+</blockquote>
+<blockquote class="gdoc-hint question">
+  <strong>Question 8</strong><br>
+What county in California has the lowest 2010 population, and what is
+that population value?
+</blockquote>
+<blockquote class="gdoc-hint question">
+  <strong>Question 9</strong><br>
+What county in California has the third-highest 2010 population, and what is that population value?
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="navigating-the-map-view">
+        Navigating the Map View
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#navigating-the-map-view" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Navigating the Map View" href="#navigating-the-map-view">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>You’ll now just focus on one area of California: San Diego County. In the CalBounds
+attribute table, scroll through until you find San Diego County and then click on the
+header of the record on the far-left of the attribute table.</li>
+<li>Back in the Map View, you see San Diego County now highlighted in yellow.</li>
+</ol>
+<p><img src="/geog111/media/QGIS_ScrollSelect.png" alt=""  /></p>
+<ol start="3">
+<li>QGIS provides a number of tools for navigating around the data layers in the view. Click
+on the icon that shows a magnifying glass with three arrows to zoom the Map View to
+the full extent of all the layers. It’s good to do this if you’ve zoomed too far in or out in
+the Map View or need to restart.</li>
+<li>The other magnifying glass icons allow you to zoom in (the plus icon) or out (the minus
+icon). You can zoom by clicking in the window or by clicking and dragging a box around
+the area you want to zoom in on.</li>
+</ol>
+<p><img src="/geog111/media/QGIS_MapControl.png" alt=""  /></p>
+<ol start="5">
+<li>The hand icon, which is the Pan tool, allows you to “grab” the Map View by clicking on
+it and dragging the map around the screen for navigation.</li>
+<li>Use the Zoom and Pan tools to center the Map View on San Diego County so that you’re
+able to see the entirety of the state and its airports and trails.</li>
+<li>Return to the CalBounds attribute table and hold down the Ctrl key on the keyboard
+while clicking the header record for the county again to remove the blue highlighting.
+Then close the attribute table.
+5.8 Interactively Obtaining Information</li>
+<li>Even with the Map View centered on San Diego County, there are an awful lot of point
+symbols there, representing the airports. You are going to want to identify and use only a
+couple of them. QGIS has a searching tool that allows you to locate specific objects from
+a dataset.</li>
+<li>Right-click on the CalAirports layer and select Open Attribute Table. The attribute
+table for the layer appears as a new window.</li>
+<li>You need to find out which of these 1163 records represents San Diego International
+Airport. To begin searching the attribute table, click on the button at the bottom that says
+Show All Features and choose the option Field Filter. A list of all of the attributes
+appears; choose the one called Name.</li>
+<li>You can now search through the attribute table on the basis of the Name field. At the
+bottom of the dialog box, type San Diego International Airport.</li>
+<li>Click on the Enter key on the keyboard. The record where the Name attribute is “San
+Diego International” appears as the only record in the attribute table. Click on the record
+header next to the Name field (the tab should be labeled 269), and you see the record
+highlighted in dark blue, just like when you selected San Diego County previously. This
+indicates that you’ve selected the record.</li>
+<li>Drag the dialog box out of the way so that you can see both it and the Map View at the
+same time.</li>
+<li>You can see that the point symbol for the San Diego International Airport has changed to
+a yellow color. This means it has been selected by QGIS, and any actions performed on
+the CalAirports layer will affect only the selected items, not all the items in CalAirports.
+However, all that you’ve done so far is locate and select an object. To obtain information
+about it, you can use the Identify Features tool (the icon on the toolbar with a white
+cursor pointing to the letter i in a blue circle). Identify Features works only with the layer
+that is selected in the Map Legend, so make sure CalAirports (i.e., the layer in which
+you want to identify items) is highlighted in the Map Legend before choosing the tool</li>
+<li>Select the Identify Features tool and then click on the point representing San Diego
+International Airport (zooming in as necessary). A new panel called Identify Results
+appears, listing all the attributes for the CalAirports layer. If you click on the View
+Feature Form button at the top of the panel, you can see all the field attribute
+information that goes along with the record/point representing San Diego International
+Airport.</li>
+</ol>
+<p><img src="/geog111/media/QGIS_Identify.png" alt=""  /></p>
+<blockquote class="gdoc-hint question">
+  <strong>Question 10</strong><br>
+What is the three-letter FAA airport classification code for San Diego
+International Airport?
+</blockquote>
+<ol start="9">
+<li>Close the Identify Results panel after you’ve answered the question.</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="labeling-features">
+        Labeling Features
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#labeling-features" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Labeling Features" href="#labeling-features">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>
+<p>Rather than dealing with several points on a map and trying to remember which airport is
+which, it’s easier to simply label each airport so that its name appears in the Map View.QGIS gives you the ability to do this by creating a label for each record and allowing you
+to choose the field with which to create the label. To start, right-click on the CalAirports
+layer in the Map Legend and select Properties.</p>
+</li>
+<li>
+<p>Click on the Labels tab.</p>
+</li>
+<li>
+<p>From the pull-down menu at the top of the dialog box, choose Single labels.</p>
+</li>
+<li>
+<p>From the pull-down menu next to Label with, choose Name.
+<img src="/geog111/media/QGIS_LableDialog.png" alt=""  /></p>
+</li>
+<li>
+<p>For now, accept all the defaults and click Apply and then click OK. Back in the Map
+View, you see that labels of the airport names have been created and placed near the
+appropriate points.</p>
+</li>
+<li>
+<p>Change any of the options—font size, color, label placement, and even the angle—to set
+up the labels so that you can easily examine the map data.</p>
+</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="measurements-on-a-map">
+        Measurements on a Map
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#measurements-on-a-map" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Measurements on a Map" href="#measurements-on-a-map">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>With all the airports now labeled, it’s easier to keep track of them. Your next task is to
+make a series of measurements between points to find the Euclidian (straight-line)
+distance between airports around San Diego. Zoom in tightly so that your Map View
+contains the airports San Diego International and North Island Naval Air Station.</li>
+<li>Select the Measure Line tool from the toolbar (the one that resembles a gray ruler with a
+line positioned over the top).
+<img src="/geog111/media/QGIS_Measure.png" alt=""  /></li>
+<li>You see that the cursor has turned into a crosshairs. Place the crosshairs on the point
+representing San Diego International Airport and left-click the mouse. Drag the crosshairs
+south and west to the point representing North Island Naval Air Station and click the
+mouse there. The distance measurement appears in the Measure box. If you click on the
+Info text in the dialog box, you see that you are measuring “ellipsoidal” distance, referred
+to as the “surface” distance as measured on a sphere. Note that each line of measurement
+you make with the mouse counts as an individual “segment,” and the value listed in the
+box for “Total” is the sum of all segments.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 11</strong><br>
+What is the ellipsoidal distance from San Diego International Airport to North Island Naval Air Station?5. Clear all the lines of measurement by clicking on New in the Measure box.
+</blockquote>
+<ol start="6">
+<li>Zoom out a bit so that you can see some of the other airports in the region, particularly
+Montgomery Field and Brown Field Municipal Airport.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 12</strong><br>
+What is the total ellipsoidal distance in miles from San Diego
+International Airport to Montgomery Field, then from Montgomery Field to Brown
+Field Municipal Airport, and then finally from Brown Field Municipal Airport back
+to San Diego International Airport?
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="saving-your-work-and-working-on-it-later">
+        Saving Your Work (and Working on It Later)
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#saving-your-work-and-working-on-it-later" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Saving Your Work (and Working on It Later)" href="#saving-your-work-and-working-on-it-later">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><ol>
+<li>When you’re using QGIS, you can save your work at any time and then return to it later.
+When work is saved in QGIS, a QGZ file is written to disk. Later, you can reopen this file
+to pick up your work where you left off. Saving to a QGZ file is done by selecting the
+Project pull-down menu and then selecting Save.</li>
+<li>Files can be reopened by choosing Open from the Project pull-down menu.</li>
+<li>Exit QGIS by selecting Exit QGIS from the Project pull-down menu.</li>
+</ol>
+
+    </div>
+  
+</div>
+</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="submission">
+        Submission
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab05/#submission" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Submission" href="#submission">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>All you have to turn into blackboard for this week is the final image you created above.</p>
+
+
+    </article>
+
+                
+
+
+
+
+
+
+
+
+    
+    
+
+    
+
+
+
+
+
+<div class="gdoc-page__footer flex flex-wrap justify-between">
+    
+    
+</div>
+
+            </div>
+        </main>
+
+        <footer class="gdoc-footer">
+    <div class="container flex">
+        <div class="flex flex-wrap">
+            <span class="gdoc-footer__item gdoc-footer__item--row">
+                <a href="https://jimcoll.github.io/" class="gdoc-footer__link">Site home</a> -- Built with <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> and
+                <svg class="icon gdoc_heart"><use xlink:href="#gdoc_heart"></use></svg>
+            </span>
+            
+            
+        </div>
+        
+        <div class="flex flex-25 justify-end">
+            <span class="gdoc-footer__item">
+                <a class="gdoc-footer__link fake-link" href="#" aria-label="Back to top">
+                    <svg class="icon gdoc_keyborad_arrow_up"><use xlink:href="#gdoc_keyborad_arrow_up"></use></svg> <span class="hidden-mobile">Back to top</span>
+                </a>
+            </span>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+
+    
+
+
+
+
+<script defer src="/classes/js/en.search.min.e0b46e67d3290d6164e22a3133b6589cabdc358125f8155b6e926503fd8af4be.js"></script>
+
+
+
+<script defer src="/classes/js/clipboard-27784b7376.min.js"></script>
+<script defer src="/classes/js/clipboard-loader-f0b5fbd5f6.min.js"></script>
+
+
+</body>
+</html>

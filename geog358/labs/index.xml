@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Labs on So long as you get the GIST of it</title>
+    <link>https://jimcoll.github.io/classes/geog358/labs/</link>
+    <description>Recent content in Labs on So long as you get the GIST of it</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://jimcoll.github.io/classes/geog358/labs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lab 00 - Intro to GIS</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab00/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab00/</guid>
+      <description>Learning Objective    This lab is here more for me as we walk through how to open and manipulate the interface, the meaning of icons, and how to navigate the world without getting lost. The questions here are more to remind me to talk about things while we explore. The instructions are not meant to be followed. You should use this page more as an opportunity to learn how the labs will be laid out, how the sections are formatted, and how to navigate the site.</description>
+    </item>
+    
+    <item>
+      <title>Lab 01 - Intro to GISystems</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab01/</guid>
+      <description>This lab is a gratefully modified version a lab from Lee Hachadoorian&amp;rsquo;s github page
+ Learning Objective    To introduce ArcGIS and its basic data management, display, and analysis components. To learn how to work with map layers, query attribute tables and geographic features, create maps, and design and execute a simple GIS analysis. As a demonstration, you will map and analyze data from Philadelphia, Pennsylvania.
+Outline:    Learning Objective Submission requirements Tutorial  Acquiring the Data Opening ArcMap and Adding Map Layers  What are ArcMap documents?</description>
+    </item>
+    
+    <item>
+      <title>Lab 02 - Projections and Coordinate Systems</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab02/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab02/</guid>
+      <description>A note about this lab: Items in bold are to indicate buttons and/or menus you are looking for.
+ Lab 2: Projections and Coordinate Systems    Learning Objective    An introduction to how ArcGIS handles geographic and projected coordinate systems. Users should understand the difference between geographic coordinate systems and projected coordinate systems. Identify appropriate projections for datasets. Become familiar with the ArcGIS toolbox
+Tutorial    Getting started     Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab 03 - Using GPS for Field Data Collection</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab03/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab03/</guid>
+      <description>Background    This exercise provides an introduction to using a Global Positioning System (GPS) receiver to obtain coordinates and create a point shapefile. GPS is a system consisting of a network of satellites that orbit ~11,000 nautical miles from the earth in six different orbital paths. They are continuously monitored by ground stations located worldwide. The satellites transmit signals that can be detected with a GPS receiver. Using the receiver, you can determine your location with great precision through the trilateration (not triangulation!</description>
+    </item>
+    
+    <item>
+      <title>Lab 04 - On-Screen Digitizing &amp; Image Restoration</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab04/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab04/</guid>
+      <description>**Lab 04:	**    Learning Objective    This lab covers one of the most common tasks a starting GIS analysis will likely be paid to do, aligning and digitizing data.
+Tutorial    Getting started     Materials
+.tg {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}.tg .tg-btxf{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:top}Data NameDescriptionlawrencenorth.tifA scanned aerial photograph of north Lawrencenaip2004sub.</description>
+    </item>
+    
+    <item>
+      <title>Lab 05 - Building a GIS database</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab05/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab05/</guid>
+      <description>Learning Objective    This lab will teach you how to build a GIS database for Douglas County, KS using existing digital data from the Internet. First you will download data from Kansas Geospatial Community Commons (provided by Data Access and Support Center, or DASC). Then you will define coordinate systems and project the data to Kansas State Plane Coordinate System NAD83 meters North Zone. You will then make a second map of a county of your choice using the USGS National Map Website as your data source.</description>
+    </item>
+    
+    <item>
+      <title>Lab 06 - Selections Queries and Joins</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab06/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab06/</guid>
+      <description>Learning Objective    As is more often the case than not, the information we need to answer a question are in separate places (read: shapefiles). Therefore, we need to join that data together. However, the concept of joins are communicated, implemented, and executed very differently within a computer/GIS context than they are in everyday language. Database joins are their own class in computer science/engineering, and we won’t cover all of them in this class.</description>
+    </item>
+    
+    <item>
+      <title>Lab 07 - Overlay &amp; site suitability analysis</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab07/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab07/</guid>
+      <description>Learning Objective    This lab will introduce the idea of overlay analysis in terms of a common application, site suitability. Site suitability can take a number of forms but in this lab we&amp;rsquo;ll approach these concepts in vector and raster form. You will also touch briefly on Terrain analysis, something we&amp;rsquo;ll see more of in the next lab.
+Part 1: Attribute &amp;amp; Spatial Queries    A logging company has been given a license to develop and to cut down trees in the Oakwood area (see the figure to the right).</description>
+    </item>
+    
+    <item>
+      <title>Lab 08 - Introduction to network analyist and ArcScene</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab08/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab08/</guid>
+      <description>Part 1: Network Analysis    Objectives The part of the lab is designed to introduce some basic networking analyses, including how to setup a network dataset, how to find the efficient routes under different rules, and how to calculate the nearest facilities.
+Materials
+.tg {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}.tg .tg-btxf{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:top}Data NameDescriptionSanFranciscoTran.gdbVarious transportation and government data about San FranciscoRestricted Turns.</description>
+    </item>
+    
+    <item>
+      <title>Lab 09 - Interpolation and Fire Hazard Modeling</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab09/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab09/</guid>
+      <description>Part 1: Temperature Modeling and Interpolation    Objectives
+This part will introduce you to the basic operations of cartographic modeling (or map algebra). We will be calculating temperature across the U.S. using a Digital Elevation Model (DEM) and building a simple fire hazard model.
+Materials
+.tg {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}.tg .tg-btxf{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:top}Data NameDescriptionUSDEM10KDEM covering the conterminous US.</description>
+    </item>
+    
+  </channel>
+</rss>

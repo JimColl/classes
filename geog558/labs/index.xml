@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Labs on So long as you get the GIST of it</title>
+    <link>https://jimcoll.github.io/classes/geog558/labs/</link>
+    <description>Recent content in Labs on So long as you get the GIST of it</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://jimcoll.github.io/classes/geog558/labs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lab 01 - Data survey and database building</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab01/</guid>
+      <description>Learning Objective    The first part of this lab requires writing a survey of the data and mapping technologies in the field that you are interested in (wildlife reserve, conservation, urban planning, forest resources, natural hazards, business, etc.), not limited to the data and mapping technologies covered in the lecture. This survey may include both traditional and new emerging datasets and/or mapping technologies that are used in the fields.</description>
+    </item>
+    
+    <item>
+      <title>Lab 02 - Cartographic Modeling</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab02/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab02/</guid>
+      <description>Learning Objective    This lab will introduce local operations using cartographic modeling (map algebra). Part 1 is intended to show you how you can organize and display raster datasets in a usable format. Part 2 will walk you through how to calculate NDWI and perform a water area analysis. Part 3 you will model the geographic distribution of Kudzu in the conterminous United States and then compare your model to the actual geographic distribution, using Map Algebra and attribute table manipulation.</description>
+    </item>
+    
+    <item>
+      <title>Lab 03 - Focal Operations</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab03/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab03/</guid>
+      <description>Learning Objective    This lab will use neighborhood operators (i.e. focal operators) to examine an elevation surface, remove errors in a DEM, analyze wind exposure, and delineate the edge of our lake classified in Lab 2. In the first part, you will learn how to bring an ASCII into Arc as a grid and confirm your understanding of focal statistics. In the second, you will use the slope tool and focal statistics to blur out errors in the DEM and examine how changing the window results in a changing image.</description>
+    </item>
+    
+    <item>
+      <title>Lab 04 - Zonal Operations</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab04/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab04/</guid>
+      <description>Learning Objective    In this lab, we are interested in assessing how much of Douglas County is covered by tornado sirens. In other words, we want to know how many people can actually hear a tornado siren when it goes off. While the sirens for Douglas County were designed to be heard at distances of up to 5,800 feet, there might be areas in which people can’t hear them.</description>
+    </item>
+    
+    <item>
+      <title>Lab 05 - Model Builder</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab05/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab05/</guid>
+      <description>Lab 5 - Model Builder    Learning Objective    As you have likely noticed, the process of delineating a lake follows a predictable workflow that could easily be automated, and because time is money, it would behoove us to create a script one could run which would create the needed outputs for us without all the tedious clicking and typing that would otherwise have to occur. Fortunately, ArcGIS has a mode, ModelBuilder, which enables us to visually create a workflow to connect our data to a series of operations without the need to actually code in python.</description>
+    </item>
+    
+    <item>
+      <title>Lab 06 - Cost Distance, Region Groups, more Model Builder &amp; Python</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab06/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab06/</guid>
+      <description>Lab 6 - Cost Distance, Region Groups, more Model Builder &amp;amp; Python    Learning Objective    This lab is designed to further strengthen your understanding and ability to apply local, focal, and zonal operations to solve problems and comfortability with ModelBuilder, this time in the context of delineating sea level rise. In part 1, you will walk through 2 methods of using the point and click interface to accomplish your analysis.</description>
+    </item>
+    
+    <item>
+      <title>Lab 07 - Siting a New School with Model Builder and Fungus weight</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab07/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab07/</guid>
+      <description>Lab 7 - Siting a New School with Model Builder and Fungus Dispersion Modeling    Learning Objective    In ArcGIS, we can build a model, based on a flow of data through a series of GIS operations, to arrive at a desired end. We will be using Model Builder to create a suitability layer for school siting in Stowe, Vermont in an automated way (yes, this was the same lab from intro class, we&amp;rsquo;re going to create the model this time).</description>
+    </item>
+    
+    <item>
+      <title>Lab 08 - Advanced Terrain Analysis</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab08/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab08/</guid>
+      <description>Learning Objective    In this lab we&amp;rsquo;ll cover a variety of terrain analysis techniques including shelter analysis and a suite of tools within the hydrology toolbox.
+What you need to submit     Lab 8: Answer Sheet
+Name:
+Part 1
+Question 1:
+What is the value of the majority of the cells on the focalcells raster layer?
+Where are the cells with smaller values located?
+and why do they have smaller values?</description>
+    </item>
+    
+    <item>
+      <title>Lab 09 - Descriptive Spatial Statistics and Point Pattern Analysis</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab09/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab09/</guid>
+      <description>Lab 9: Descriptive Spatial Statistics and Point Pattern Analysis    Learning Objective    In this lab, we will use a tornado touchdown points database which spans from 1950 to 2018 to introduce you to some techniques of measuring geographic distributions. Through the use of yearly and monthly mean centers and standard deviation ellipses, well explore how tornado touchdowns are distributed and then use the tracking analyst to visualize how these change over time.</description>
+    </item>
+    
+    <item>
+      <title>Lab 10 - Spatial Interpolation</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab10/</guid>
+      <description>Learning Objective    When we deal with spatial analysis, one of the problems we have is getting data we collect in the field into a form we can analyze. Most field data are collected at discrete points (e.g., rain gages, GPS point collection, address points, ect.). There are several interpolation methods that allow us to take this point data and make it into a continuous surface. We will look at the Inverted Distance Weighting and Kriging methods in this lab.</description>
+    </item>
+    
+  </channel>
+</rss>

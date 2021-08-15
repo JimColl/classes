@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Labs on So long as you get the GIST of it</title>
+    <link>https://jimcoll.github.io/classes/geog526/labs/</link>
+    <description>Recent content in Labs on So long as you get the GIST of it</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://jimcoll.github.io/classes/geog526/labs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bibliography Guidelines</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/bib/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/bib/</guid>
+      <description>Part of your grade is comprised of seven article reviews. These reviews will be turned in at the beginning of lab on designated days (see schedule on syllabus). Each article review is worth 8 points, for a total of 56 points.
+   Bibliography Criteria Annotated Bibliography Assignment Requirements  Example of very bad bibliography: Example of a good bibliography:       Bibliography Criteria    The following criteria are used for each of the bibliographies:</description>
+    </item>
+    
+    <item>
+      <title>Lab - Data Acquisition and Image Preprocessing</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab10/</guid>
+      <description>Introduction This lab serves as an introduction to downloading remotely sensed data from one, of the several, online sources and includes some common remote sensing image preprocessing functions. This lab allows you to become familiar with the process of searching for and downloading a Landsat scene, and how to stack layers from the original products. You will also use multiple SPOT images to learn the image mosaic and subset processes and to subset the image to an area of interest.</description>
+    </item>
+    
+    <item>
+      <title>Lab - Introduction to ERDAS IMAGINE I</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab06/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab06/</guid>
+      <description>Learning Objective    The goals for you to aim for in this lab:
+ Build simple and compound database queries Extract the results of a query into separate GIS layers Count the number of features within the boundary of another feature Overlay two features for spatial analysis Create and use buffers around objects for spatial analysis  Outline:    Learning Objective Submission requirements Guide   of Bands: __________  Submission     Submission requirements    Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab - Introduction to ERDAS IMAGINE （Part II）</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab09A/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab09A/</guid>
+      <description>Guide    Image Info •	Enables you to view and edit many elements of a raster image file (.img), including statistics, map information, and projection information.
+•	to access, click on the	icon or right click on image name in contents and select metadata
+Inquire Cursor •	gives you individual pixel information by using a cursor which displays as a crosshair in the Viewer window •	lists all of the available layers and indicates which color represents each individual layer •	For every layer, each pixel has a value representing reflectance •	Higher values indicate brighter reflectance •	to access, click on the	icon</description>
+    </item>
+    
+    <item>
+      <title>Lab - INTRODUCTION TO IMAGE INTERPRETATION</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab05/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab05/</guid>
+      <description>Learning Objective    This exercise is designed to introduce you to procedures used in image analysis. The image diagnostics (or clues) that we use to identify and classify features that we see depicted on images are as follows:
+(S) Size (Sh) Shape (T) Tone or color (Tx) Texture (P) Pattern (St) Site or location (A) Association or context (Sd) Shadow (Te) Temporal characteristics
+During this lab you will identify features on different digital aerial imagery.</description>
+    </item>
+    
+    <item>
+      <title>Lab - INTRODUCTION TO MODIS TIME SERIES</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab11/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab11/</guid>
+      <description>Learning Objective    This lab serves as an introduction to MODIS data products, which are widely used in a variety of terrestrial, aquatic and atmospheric remote sensing research and applications. This lab will familiarize you with MODIS vegetation indices products and various land cover/land use interpretation tasks. In addition, you will become familiar with the characteristics of MODIS imagery and time-series.
+Outline:    Learning Objective Submission requirements Guide Tutorial     Submission requirements    Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab - LANDSAT TM &amp; SPOT IMAGERY</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab07/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab07/</guid>
+      <description>Learning Objective    The purpose of Lab06 is to familiarize you with interpreting Landsat Thematic Mapper and SPOT imagery. Upon completion of this lab you should be aware of the usefulness of each TM band, and the similarities and differences between TM and SPOT data.
+Outline:    Learning Objective Submission requirements Tutorial   of Bands: 3    Wrapping up       Submission requirements    Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab - Remote Sensing (Assignment 9) NDVI</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab09B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab09B/</guid>
+      <description>Perform a Normalized Difference Vegetation Index (NDVI) on both change detection images; Tallahassee-97.img and Tallahassee-99.img.
+From the main horizontal menu bar select Raster&amp;gt; Unsupervised &amp;gt; Indices. The input file will be one of the two Tallahassee images (repeat the process for the other one), output file will be something like Tallahassee-97-ndvi, make sure the Sensor is highlighted as Landsat TM, and make sure the Select Function is highlighted to NDVI. Click OK.</description>
+    </item>
+    
+    <item>
+      <title>Lab - Remote Sensing with RADAR Imagery</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab13/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab13/</guid>
+      <description>Learning Objective    The purpose of Lab 11 is to familiarize you with interpreting radar imagery. Upon completion of this lab you should be aware of the usefulness and difficulties of radar imagery in remote sensing applications.
+Outline:    Learning Objective Submission requirements Guide  Wrapping up       Submission requirements    Materials (click to download)
+.tg {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}.</description>
+    </item>
+    
+    <item>
+      <title>Lab - THERMAL IMAGERY</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab12/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab12/</guid>
+      <description>Learning Objective    The purpose of Lab 10 is to familiarize you with interpreting thermal imagery. Upon completion of this lab you should be aware of the usefulness of thermal imagery in various applications.
+Outline:    Learning Objective Submission requirements Exercise Submission     Submission requirements    Materials (click to download)
+.tg {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}.</description>
+    </item>
+    
+    <item>
+      <title>Lab 08 - Map making</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab08/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab08/</guid>
+      <description>Learning Objective    The purpose of Lab06 is to familiarize you with interpreting Landsat Thematic Mapper and SPOT imagery. Upon completion of this lab you should be aware of the usefulness of each TM band, and the similarities and differences between TM and SPOT data.
+Outline:    Learning Objective Submission requirements Guide Tutorial Submission     Submission requirements    Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab 14 - Final Lab activity</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab14/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab14/</guid>
+      <description>TODO</description>
+    </item>
+    
+    <item>
+      <title>Lab - Internet Resources Exploration</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab01/</guid>
+      <description>Learning Objective    The objective of this laboratory exercise is to get students familiar with using the Internet as a learning and research resource for remote sensing. Specifically, you will browse some web sites for free remotely sensed data, image providers, professional conferences, societies, and remote sensing software vendors. These should help you search for remotely sensed data required for specific research topics or learning objectives. You will need to write short paragraphs to summarize the websites you visit.</description>
+    </item>
+    
+    <item>
+      <title>Lab - Maps &amp; Aerial Photography</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab02/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab02/</guid>
+      <description>Learning Objective    This lab provides an introduction on how to use Google Earth Pro and will help familiarize you with many of its features. Although we&amp;rsquo;ll touch on several more advanced software as the class moves on, Google Earth Pro is a really fast and useful arrow to have in your quiver and we&amp;rsquo;ll be back to use it more than once. The steps and analyses we&amp;rsquo;ll do in this introductory lab are pretty basic but foundational, and we&amp;rsquo;ll build on these as we move forward.</description>
+    </item>
+    
+    <item>
+      <title>Lab - INTRODUCTION TO UNIT CONVERSION &amp; SCALE PROBLEMS</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab03/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab03/</guid>
+      <description>Learning Objective    Calculation of photo scale and the measurement of distances and areas are fundamental skills in remote sensing. However, the various combinations of available information (scale, height, distance, focal length, etc.) and the use of both metric and imperial units of measurement can be confusing. This lab is designed to familiarize you with the common scale and area computations performed in association with remote sensing.
+Outline:    Learning Objective Submission requirements Guide  Representative Fraction (RF) Aerial Photo Scale Determination without Maps     Wrapping up       Submission requirements    .</description>
+    </item>
+    
+    <item>
+      <title>Lab - ELECTROMAGNETIC RADIATION PRINCIPLES</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab04/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab04/</guid>
+      <description>Background    This exercise provides an introduction to using a Global Positioning System (GPS) receiver to obtain coordinates and create a point shapefile. GPS is a system consisting of a network of satellites that orbit ~11,000 nautical miles from the earth in six different orbital paths. They are continuously monitored by ground stations located worldwide. The satellites transmit signals that can be detected with a GPS receiver. Using the receiver, you can determine your location with great precision through the trilateration (not triangulation!</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Labs on So long as you get the GIST of it</title>
+    <link>https://jimcoll.github.io/classes/geog111/labs/</link>
+    <description>Recent content in Labs on So long as you get the GIST of it</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://jimcoll.github.io/classes/geog111/labs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lab 01 - Computer basics</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab01/</guid>
+      <description>Learning Objective    This lab is not a beginner level &amp;ldquo;how to computer&amp;rdquo;, but we will cover a few critical PC setup tips that will only make your life easier, as well as a few lesser known tips and tricks that I&amp;rsquo;ve picked up and found useful.
+Outline:    Learning Objective Submission requirements Tutorial  Navigating folder structures Setting up Cloud storage Setting up Windows options Screenshots Virtual access Installing GIS Misc.</description>
+    </item>
+    
+    <item>
+      <title>Lab 02 - Introduction to Google Earth Pro</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab02/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab02/</guid>
+      <description>This lab is a gratefully modified version of lab 2 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies
+ Learning Objective    This lab provides an introduction on how to use Google Earth Pro and will help familiarize you with many of its features. Although we&amp;rsquo;ll touch on several more advanced software as the class moves on, Google Earth Pro is a really fast and useful arrow to have in your quiver and we&amp;rsquo;ll be back to use it more than once.</description>
+    </item>
+    
+    <item>
+      <title>Lab 03 - Coordinates and Position Measurements</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab03/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab03/</guid>
+      <description>This lab is a gratefully modified version of lab 2 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies
+ Learning Objective    In this lab we&amp;rsquo;ll continue using Google Earth Pro (GEP) to examine coordinate systems and the relationships between various sets of coordinates and the objects they represent in the real world. In addition, we’ll make more measurements using GEP and compare measurements made by using different coordinate systems.</description>
+    </item>
+    
+    <item>
+      <title>Lab 04 - GPS</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab04/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab04/</guid>
+      <description>Background    This exercise provides an introduction to using a Global Positioning System (GPS) receiver to obtain coordinates and create a point shapefile. GPS is a system consisting of a network of satellites that orbit ~11,000 nautical miles from the earth in six different orbital paths. They are continuously monitored by ground stations located worldwide. The satellites transmit signals that can be detected with a GPS receiver. Using the receiver, you can determine your location with great precision through the trilateration (not triangulation!</description>
+    </item>
+    
+    <item>
+      <title>Lab 05 - GIS introduction</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab05/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab05/</guid>
+      <description>This lab is a gratefully modified version of lab 5 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies
+ Learning Objective    This lab introduces you to some of the basic features of GIS. You will be using a free open source program, QGIS, to navigate a GIS environment and begin working with geospatial data. The labs in Chapters 6 and 7 will show you how to utilize several more GIS features; the aim of this lab is to familiarize you with the basic GIS functions of the software.</description>
+    </item>
+    
+    <item>
+      <title>Lab 06 - spatial analysis</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab06/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab06/</guid>
+      <description>This lab is a gratefully modified version of lab 6 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies p442
+ Learning Objective    The goals for you to aim for in this lab:
+ Build simple and compound database queries Extract the results of a query into separate GIS layers Count the number of features within the boundary of another feature Overlay two features for spatial analysis Create and use buffers around objects for spatial analysis  Outline:    Learning Objective Submission requirements Tutorial  import and join data (refresher) Attribute queries Exporting Overlay Buffer Measuring   Submission     Submission requirements    Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab 07 - Digital Terrain Analysis</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab07/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab07/</guid>
+      <description>This lab is a gratefully modified version of lab 13 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies 934
+ Learning Objective    This chapter’s lab introduces some of the basics of digital terrain modeling: working with DTMs, slope, viewsheds, and imagery draped over the terrain model. You’ll be using the free Google Earth Pro for this lab. The goals for you to take away from this lab:</description>
+    </item>
+    
+    <item>
+      <title>Lab 08 - Map making</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab08/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab08/</guid>
+      <description>This lab is a gratefully modified version of lab 7 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies 529
+ Learning Objective    This lab introduces you to the concept of using GIS data to create a print quality map. This map should contain the following:
+ The population per square kilometer for all counties in California, set up in an appropriate color scheme The data displayed in a projection with units of measurement other than decimal degrees (The default units used by the lab data are meters; make sure the scale bar reflects this information.</description>
+    </item>
+    
+    <item>
+      <title>Lab 09A - 3D Modeling and Visualization</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab09A/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab09A/</guid>
+      <description>Future content here</description>
+    </item>
+    
+    <item>
+      <title>Lab 09B - Cloud based GIS</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab09B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab09B/</guid>
+      <description>This lab is ungracefully ripped from my own tutorial on the UCGIS BoK entry for GEE. Please explore this version for more information and background.
+ Google Earth Engine is still a beta product, and you will need to request access to the platform through your Google account here. These are still approved by hand and may take a few days to get. Once approved, you will need to follow the instructions in the email that is sent before you are able to access the platform.</description>
+    </item>
+    
+    <item>
+      <title>Lab 10 - Visual Imagery Interpretation</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab10/</guid>
+      <description>This lab is a gratefully modified version of lab 9 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies
+ Learning Objective    This lab will help you start thinking about what objects look like from the sky rather than from the ground. You’ll be examining a series of images and applying the elements of visual image interpretation discussed in the chapter. As you do, you’ll need to think like a detective and search the image for clues to help figure out just what it is you’re looking at.</description>
+    </item>
+    
+    <item>
+      <title>Lab 11 - Remotely Sensed Imagery and Color Composites</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab11/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab11/</guid>
+      <description>This lab is a gratefully modified version of lab 10 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies p752
+ Learning Objective    This chapter’s lab introduces some of the basics of working with multispectral remotely sensed imagery. The goals to take away from this exercise:
+ Familiarize yourself with the basics of multispectral data manipulation in common geospatial softwares Load various bands into the color guns and examine the results Create and examine different color composites Compare the digital numbers of distinct water and environmental features in a remotely sensed satellite image in order to create basic spectral profiles  Outline:    Learning Objective Submission requirements Tutorial   Submission   Submission requirements    Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab 12 - Landsat 8 Imagery</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab12/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab12/</guid>
+      <description>This lab is a gratefully modified version of lab 11 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies p814
+ Learning Objective    This chapter’s lab builds on the remote sensing basics of Chapter 10 and returns to using the MultiSpec program. In this exercise, you’ll be starting with a Landsat 8 scene and creating a subset of it with which to work. During the lab, you’ll examine the uses for several Landsat 8 band combinations in remote sensing analysis.</description>
+    </item>
+    
+    <item>
+      <title>Lab 13 - Earth Observing Missions Imagery</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab13/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab13/</guid>
+      <description>This lab is a gratefully modified version of lab 12 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies p880
+ Learning Objective    This chapter’s lab introduces some of the basics of examining imagery from three different Earth-observing satellite missions: Terra, Aqua, and Suomi NPP. You will be examining data from MOPITT as well as many types of imagery from MODIS and VIIRS. You will also be using online resources from NASA and others in conjunction with Google Earth.</description>
+    </item>
+    
+    <item>
+      <title>Lab 14 - Final Lab activity</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab14/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab14/</guid>
+      <description>Future content in progress</description>
+    </item>
+    
+  </channel>
+</rss>

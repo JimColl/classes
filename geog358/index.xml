@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Introduction to GIS -- GEOG358 on So long as you get the GIST of it</title>
+    <link>https://jimcoll.github.io/classes/geog358/</link>
+    <description>Recent content in Introduction to GIS -- GEOG358 on So long as you get the GIST of it</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://jimcoll.github.io/classes/geog358/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Syllabus and course policies</title>
+      <link>https://jimcoll.github.io/classes/geog358/classoutline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/classoutline/</guid>
+      <description>This is a living document. Changes will be announced in class.     Course Description Student Responsibilities Expectations Computers  Computer recommendations   Resources Academic Integrity Disabilities Course Evaluation  Labs  Cartography primers   Exams Grade determination       Course Description    This course provides an introduction to computer based analysis of spatial data. Topics covered include the fundamentals of geospatial thought, basic principles of collecting, storing, analyzing, and displaying spatial data, and cursory treatment of analysis and decision making.</description>
+    </item>
+    
+    <item>
+      <title>Project</title>
+      <link>https://jimcoll.github.io/classes/geog358/termpaper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/termpaper/</guid>
+      <description>Class project    Objective:    Identify a biophysical, human, or environmental problem that requires or would benefit from your newfound knowledge of spatial analysis using GIS. Describe the problem that you are interested in. Provide geographic context to the problem. Discuss what kind of GIS analysis you want to use and the implementation strategy you have chosen. Present simple diagrams or maps that illustrate your approach. Apply your approach to real-world data and present the results of your project in oral form.</description>
+    </item>
+    
+  </channel>
+</rss>

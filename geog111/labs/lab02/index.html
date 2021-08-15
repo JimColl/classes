@@ -1,0 +1,2567 @@
+<!DOCTYPE html>
+<html lang="en" class="color-toggle-hidden">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark" />
+
+
+
+
+
+    <meta name="description" content="This lab is a gratefully modified version of lab 2 from Bradley A. Shellito&rsquo;s Introduction to Geospatial Technologies
+ Learning Objective    This lab provides an introduction on how to use Google Earth Pro and will help familiarize you with many of its features. Although we&rsquo;ll touch on several more advanced software as the class moves on, Google Earth Pro is a really fast and useful arrow to have in your quiver and we&rsquo;ll be back to use it more than once.">
+
+
+
+    <title>Lab 02 - Introduction to Google Earth Pro | So long as you get the GIST of it</title>
+
+    <link rel="icon" href="/classes/favicon/favicon-32x32.png" type="image/x-icon">
+
+    <script src="/classes/js/darkmode-ce906ea916.min.js"></script>
+
+<link rel="preload" as="font" href="/classes/fonts/Metropolis.woff2" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" as="font" href="/classes/fonts/LiberationSans.woff2" type="font/woff2" crossorigin="anonymous">
+
+<link rel="preload" href="/classes/main-468ccf24c5.min.css" as="style">
+<link rel="stylesheet" href="/classes/main-468ccf24c5.min.css" media="all">
+
+<link rel="preload" href="/classes/mobile-0e5d2e7ecf.min.css" as="style">
+<link rel="stylesheet" href="/classes/mobile-0e5d2e7ecf.min.css" media="screen and (max-width: 45rem)">
+
+<link rel="preload" href="/classes/print-f79fc3e5d7.min.css" as="style">
+<link rel="stylesheet" href="/classes/print-f79fc3e5d7.min.css" media="print">
+
+<link rel="preload" href="/classes/custom.css" as="style">
+<link rel="stylesheet" href="/classes/custom.css" media="all">
+
+
+
+<!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
+
+    
+
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+    
+<!-- geekdoc include: sprites/geekdoc.svg -->
+<svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_back" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.526v2.947H5.755l8.351 8.421-2.105 2.105-12-12 12-12 2.105 2.105-8.351 8.421H24z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_left_alt" xmlns="http://www.w3.org/2000/svg"><path d="M5.965 10.526V6.035L0 12l5.965 5.965v-4.491H24v-2.947H5.965z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_arrow_right_alt" xmlns="http://www.w3.org/2000/svg"><path d="M18.035 10.526V6.035L24 12l-5.965 5.965v-4.491H0v-2.947h18.035z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_bitbucket" xmlns="http://www.w3.org/2000/svg"><path d="M15.905 13.355c.189 1.444-1.564 2.578-2.784 1.839-1.375-.602-1.375-2.784-.034-3.403 1.151-.705 2.818.223 2.818 1.564zm1.907-.361c-.309-2.44-3.076-4.056-5.328-3.042-1.426.636-2.389 2.148-2.32 3.747.086 2.097 2.08 3.815 4.176 3.626s3.729-2.234 3.472-4.331zm4.108-9.315c-.756-.997-2.045-1.169-3.179-1.358-3.214-.516-6.513-.533-9.727.034-1.066.172-2.269.361-2.939 1.323 1.1 1.031 2.664 1.186 4.073 1.358 2.544.327 5.156.344 7.699.017 1.426-.172 3.008-.309 4.073-1.375zm.979 17.788c-.481 1.684-.206 3.953-1.994 4.932-3.076 1.701-6.806 1.89-10.191 1.289-1.787-.327-3.884-.894-4.864-2.578-.43-1.65-.705-3.334-.98-5.018l.103-.275.309-.155c5.121 3.386 12.288 3.386 17.427 0 .808.241.206 1.22.189 1.805zM26.01 4.951c-.584 3.764-1.255 7.51-1.908 11.257-.189 1.1-1.255 1.719-2.148 2.183-3.214 1.615-6.96 1.89-10.483 1.512-2.389-.258-4.829-.894-6.771-2.389-.911-.705-.911-1.908-1.083-2.922-.602-3.523-1.289-7.046-1.719-10.604.206-1.547 1.942-2.217 3.231-2.698C6.848.654 8.686.362 10.508.19c3.884-.378 7.854-.241 11.618.859 1.341.395 2.784.945 3.695 2.097.412.533.275 1.203.189 1.805z"/></symbol><symbol viewBox="-2.29 -2.29 28.57 28.57" id="gdoc_bookmark" xmlns="http://www.w3.org/2000/svg"><path d="M15.268 4.392q.868 0 1.532.638t.664 1.506v17.463l-7.659-3.268-7.608 3.268V6.536q0-.868.664-1.506t1.532-.638h10.876zm4.34 14.144V4.392q0-.868-.638-1.532t-1.506-.664H6.537q0-.868.664-1.532T8.733 0h10.876q.868 0 1.532.664t.664 1.532v17.412z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_auto" xmlns="http://www.w3.org/2000/svg"><path d="M16.846 18.938h2.382L15.22 7.785h-2.44L8.772 18.938h2.382l.871-2.44h3.95zm7.087-9.062L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809zm-11.385 4.937L14 10.282l1.452 4.531h-2.904z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_dark" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565q-1.51 0-3.079.697 1.917.871 3.108 2.701T15.22 14t-1.191 4.037-3.108 2.701q1.568.697 3.079.697zm9.933-11.559L27.999 14l-4.066 4.124v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_brightness_light" xmlns="http://www.w3.org/2000/svg"><path d="M14 21.435q3.079 0 5.257-2.178T21.435 14t-2.178-5.257T14 6.565 8.743 8.743 6.565 14t2.178 5.257T14 21.435zm9.933-3.311v5.809h-5.809L14 27.999l-4.124-4.066H4.067v-5.809L.001 14l4.066-4.124V4.067h5.809L14 .001l4.124 4.066h5.809v5.809L27.999 14z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_cloud_off" xmlns="http://www.w3.org/2000/svg"><path d="M9.023 10.5H7q-1.914 0-3.281 1.395t-1.367 3.309 1.367 3.281T7 19.852h11.375zM3.5 4.976l1.477-1.477L24.5 23.022l-1.477 1.477-2.352-2.297H6.999q-2.898 0-4.949-2.051t-2.051-4.949q0-2.844 1.969-4.867t4.758-2.133zm19.086 5.578q2.242.164 3.828 1.832T28 16.351q0 3.008-2.461 4.758l-1.695-1.695q1.805-.984 1.805-3.063 0-1.422-1.039-2.461t-2.461-1.039h-1.75v-.602q0-2.68-1.859-4.539t-4.539-1.859q-1.531 0-2.953.711l-1.75-1.695Q11.431 3.5 14.001 3.5q2.953 0 5.496 2.078t3.09 4.977z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_code" xmlns="http://www.w3.org/2000/svg"><path d="M9.917 24.5a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm0-21a1.75 1.75 0 10-3.501.001A1.75 1.75 0 009.917 3.5zm11.666 2.333a1.75 1.75 0 10-3.501.001 1.75 1.75 0 003.501-.001zm1.75 0a3.502 3.502 0 01-1.75 3.026c-.055 6.581-4.721 8.039-7.82 9.023-2.898.911-3.846 1.349-3.846 3.117v.474a3.502 3.502 0 011.75 3.026c0 1.932-1.568 3.5-3.5 3.5s-3.5-1.568-3.5-3.5c0-1.294.711-2.424 1.75-3.026V6.526A3.502 3.502 0 014.667 3.5c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5a3.502 3.502 0 01-1.75 3.026v9.06c.93-.456 1.914-.766 2.807-1.039 3.391-1.075 5.323-1.878 5.359-5.687a3.502 3.502 0 01-1.75-3.026c0-1.932 1.568-3.5 3.5-3.5s3.5 1.568 3.5 3.5z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_date" xmlns="http://www.w3.org/2000/svg"><path d="M27.192 28.844V11.192H4.808v17.652h22.384zm0-25.689q1.277 0 2.253.976t.976 2.253v22.459q0 1.277-.976 2.216t-2.253.939H4.808q-1.352 0-2.291-.901t-.939-2.253V6.385q0-1.277.939-2.253t2.291-.976h1.577V.001h3.23v3.155h12.769V.001h3.23v3.155h1.577zm-3.155 11.267v3.155h-3.23v-3.155h3.23zm-6.46 0v3.155h-3.155v-3.155h3.155zm-6.384 0v3.155h-3.23v-3.155h3.23z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_download" xmlns="http://www.w3.org/2000/svg"><path d="M2.866 28.209h26.269v3.79H2.866v-3.79zm26.268-16.925L16 24.418 2.866 11.284h7.493V.001h11.283v11.283h7.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_email" xmlns="http://www.w3.org/2000/svg"><path d="M28.845 9.615v-3.23L16 14.422 3.155 6.385v3.23L16 17.577zm0-6.46q1.277 0 2.216.977T32 6.385v19.23q0 1.277-.939 2.253t-2.216.977H3.155q-1.277 0-2.216-.977T0 25.615V6.385q0-1.277.939-2.253t2.216-.977h25.69z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_git" xmlns="http://www.w3.org/2000/svg"><path d="M27.472 12.753L15.247.529a1.803 1.803 0 00-2.55 0l-2.84 2.84 2.137 2.137a2.625 2.625 0 013.501 3.501l3.499 3.499a2.625 2.625 0 11-1.237 1.237l-3.499-3.499c-.083.04-.169.075-.257.106v7.3a2.626 2.626 0 11-1.75 0v-7.3a2.626 2.626 0 01-1.494-3.607L8.62 4.606l-8.09 8.09a1.805 1.805 0 000 2.551l12.225 12.224a1.803 1.803 0 002.55 0l12.168-12.168a1.805 1.805 0 000-2.551z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_github" xmlns="http://www.w3.org/2000/svg"><path d="M16 .394c8.833 0 15.999 7.166 15.999 15.999 0 7.062-4.583 13.062-10.937 15.187-.813.146-1.104-.354-1.104-.771 0-.521.021-2.25.021-4.396 0-1.5-.5-2.458-1.083-2.958 3.562-.396 7.312-1.75 7.312-7.896 0-1.75-.625-3.167-1.646-4.291.167-.417.708-2.042-.167-4.25-1.333-.417-4.396 1.646-4.396 1.646a15.032 15.032 0 00-8 0S8.937 6.602 7.603 7.018c-.875 2.208-.333 3.833-.167 4.25-1.021 1.125-1.646 2.542-1.646 4.291 0 6.125 3.729 7.5 7.291 7.896-.458.417-.875 1.125-1.021 2.146-.917.417-3.25 1.125-4.646-1.333-.875-1.521-2.458-1.646-2.458-1.646-1.562-.021-.104.979-.104.979 1.042.479 1.771 2.333 1.771 2.333.938 2.854 5.396 1.896 5.396 1.896 0 1.333.021 2.583.021 2.979 0 .417-.292.917-1.104.771C4.582 29.455-.001 23.455-.001 16.393-.001 7.56 7.165.394 15.998.394zM6.063 23.372c.042-.083-.021-.187-.146-.25-.125-.042-.229-.021-.271.042-.042.083.021.187.146.25.104.062.229.042.271-.042zm.646.709c.083-.062.062-.208-.042-.333-.104-.104-.25-.146-.333-.062-.083.062-.062.208.042.333.104.104.25.146.333.062zm.625.937c.104-.083.104-.25 0-.396-.083-.146-.25-.208-.354-.125-.104.062-.104.229 0 .375s.271.208.354.146zm.875.875c.083-.083.042-.271-.083-.396-.146-.146-.333-.167-.417-.062-.104.083-.062.271.083.396.146.146.333.167.417.062zm1.187.521c.042-.125-.083-.271-.271-.333-.167-.042-.354.021-.396.146s.083.271.271.312c.167.062.354 0 .396-.125zm1.313.104c0-.146-.167-.25-.354-.229-.187 0-.333.104-.333.229 0 .146.146.25.354.229.187 0 .333-.104.333-.229zm1.208-.208c-.021-.125-.187-.208-.375-.187-.187.042-.312.167-.292.312.021.125.187.208.375.167s.312-.167.292-.292z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_gitlab" xmlns="http://www.w3.org/2000/svg"><path d="M1.629 11.034L14 26.888.442 17.048a1.09 1.09 0 01-.39-1.203l1.578-4.811zm7.217 0h10.309l-5.154 15.854zM5.753 1.475l3.093 9.559H1.63l3.093-9.559a.548.548 0 011.031 0zm20.618 9.559l1.578 4.811c.141.437-.016.922-.39 1.203l-13.558 9.84 12.371-15.854zm0 0h-7.216l3.093-9.559a.548.548 0 011.031 0z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_heart" xmlns="http://www.w3.org/2000/svg"><path d="M16 29.714a1.11 1.11 0 01-.786-.321L4.072 18.643c-.143-.125-4.071-3.714-4.071-8 0-5.232 3.196-8.357 8.535-8.357 3.125 0 6.053 2.464 7.464 3.857 1.411-1.393 4.339-3.857 7.464-3.857 5.339 0 8.535 3.125 8.535 8.357 0 4.286-3.928 7.875-4.089 8.035L16.785 29.392c-.214.214-.5.321-.786.321z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_down" xmlns="http://www.w3.org/2000/svg"><path d="M3.281 5.36L14 16.079 24.719 5.36 28 8.641l-14 14-14-14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_left" xmlns="http://www.w3.org/2000/svg"><path d="M25.875 28.25L22.125 32 6.126 16.001 22.125.002l3.75 3.75-12.25 12.25z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_keyborad_arrow_right" xmlns="http://www.w3.org/2000/svg"><path d="M6.125 28.25L18.375 16 6.125 3.75 9.875 0l15.999 15.999L9.875 31.998z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_keyborad_arrow_up" xmlns="http://www.w3.org/2000/svg"><path d="M24.719 22.64L14 11.921 3.281 22.64 0 19.359l14-14 14 14z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_link" xmlns="http://www.w3.org/2000/svg"><path d="M24.037 7.963q3.305 0 5.634 2.366T32 16t-2.329 5.671-5.634 2.366h-6.46v-3.08h6.46q2.028 0 3.493-1.465t1.465-3.493-1.465-3.493-3.493-1.465h-6.46v-3.08h6.46zM9.615 17.578v-3.155h12.77v3.155H9.615zM3.005 16q0 2.028 1.465 3.493t3.493 1.465h6.46v3.08h-6.46q-3.305 0-5.634-2.366T0 16.001t2.329-5.671 5.634-2.366h6.46v3.08h-6.46q-2.028 0-3.493 1.465t-1.465 3.493z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_menu" xmlns="http://www.w3.org/2000/svg"><path d="M.001 5.334h31.998v3.583H.001V5.334zm0 12.416v-3.5h31.998v3.5H.001zm0 8.916v-3.583h31.998v3.583H.001z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_notification" xmlns="http://www.w3.org/2000/svg"><path d="M22.615 19.384l2.894 2.894v1.413H2.49v-1.413l2.894-2.894V12.25q0-3.365 1.716-5.856t4.745-3.231v-1.01q0-.875.606-1.514T13.999 0t1.548.639.606 1.514v1.01q3.029.74 4.745 3.231t1.716 5.856v7.134zM14 27.999q-1.211 0-2.053-.808t-.841-2.019h5.788q0 1.144-.875 1.986T14 27.999z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_path" xmlns="http://www.w3.org/2000/svg"><path d="M28 12.62h-9.793V8.414h-2.826v11.173h2.826v-4.206H28V26.62h-9.793v-4.206H12.62v-14H9.794v4.206H.001V1.381h9.793v4.206h8.413V1.381H28V12.62z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_person" xmlns="http://www.w3.org/2000/svg"><path d="M16 20.023q5.052 0 10.526 2.199t5.473 5.754v4.023H0v-4.023q0-3.555 5.473-5.754t10.526-2.199zM16 16q-3.275 0-5.614-2.339T8.047 8.047t2.339-5.661T16 0t5.614 2.386 2.339 5.661-2.339 5.614T16 16z"/></symbol><symbol viewBox="-2.29 -2.29 36.57 36.57" id="gdoc_search" xmlns="http://www.w3.org/2000/svg"><path d="M11.925 20.161q3.432 0 5.834-2.402t2.402-5.834-2.402-5.834-5.834-2.402-5.834 2.402-2.402 5.834 2.402 5.834 5.834 2.402zm10.981 0L32 29.255 29.255 32l-9.094-9.094v-1.458l-.515-.515q-3.26 2.831-7.721 2.831-4.976 0-8.45-3.432T.001 11.925t3.474-8.45 8.45-3.474 8.407 3.474 3.432 8.45q0 1.802-.858 4.075t-1.973 3.646l.515.515h1.458z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_shield" xmlns="http://www.w3.org/2000/svg"><path d="M22.167 15.166V3.5h-8.166v20.726c.93-.492 2.424-1.349 3.883-2.497 1.95-1.531 4.284-3.919 4.284-6.562zm3.499-13.999v14c0 7.674-10.737 12.523-11.192 12.724-.146.073-.31.109-.474.109s-.328-.036-.474-.109c-.456-.201-11.192-5.049-11.192-12.724v-14C2.334.529 2.863 0 3.501 0H24.5c.638 0 1.167.529 1.167 1.167z"/></symbol><symbol viewBox="-2.29 -2.29 32.57 32.57" id="gdoc_tags" xmlns="http://www.w3.org/2000/svg"><path d="M6.606 7.549c0-1.047-.84-1.887-1.887-1.887s-1.887.84-1.887 1.887.84 1.887 1.887 1.887 1.887-.84 1.887-1.887zm15.732 8.493c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546s-.988-.206-1.327-.546L1.342 14.066C.59 13.329 0 11.899 0 10.852V4.718a1.9 1.9 0 011.887-1.887h6.134c1.047 0 2.477.59 3.229 1.342L21.792 14.7c.339.354.546.84.546 1.342zm5.661 0c0 .501-.206.988-.546 1.327l-7.239 7.254c-.354.339-.84.546-1.342.546-.767 0-1.15-.354-1.651-.87l6.93-6.93c.339-.339.546-.826.546-1.327s-.206-.988-.546-1.342L13.609 4.173c-.752-.752-2.182-1.342-3.229-1.342h3.303c1.047 0 2.477.59 3.229 1.342L27.454 14.7c.339.354.546.84.546 1.342z"/></symbol></svg>
+
+
+
+    <div class="wrapper ">
+        <input type="checkbox" class="hidden" id="menu-control" />
+        
+        <header class="gdoc-header">
+    <div class="container flex align-center justify-between">
+        
+        <label for="menu-control" class="gdoc-nav__control">
+            <svg class="icon gdoc_menu"><use xlink:href="#gdoc_menu"></use></svg>
+            <svg class="icon gdoc_arrow_back"><use xlink:href="#gdoc_arrow_back"></use></svg>
+        </label>
+        
+        <a class="gdoc-header__link" href="https://jimcoll.github.io/classes/">
+            <span class="gdoc-brand flex align-center">
+                <img class="gdoc-brand__img" src="/classes/logo.png" alt="">
+                <span class="gdoc-brand__title">So long as you get the GIST of it</span>
+            </span>
+        </a>
+        <span id="gdoc-dark-mode">
+            <svg class="icon gdoc_brightness_dark"><use xlink:href="#gdoc_brightness_dark"></use></svg>
+            <svg class="icon gdoc_brightness_light"><use xlink:href="#gdoc_brightness_light"></use></svg>
+            <svg class="icon gdoc_brightness_auto"><use xlink:href="#gdoc_brightness_auto"></use></svg>
+        </span>
+    </div>
+</header>
+
+
+        <main class="container flex flex-even">
+            
+            <aside class="gdoc-nav">
+                <nav>
+    
+    <div class="gdoc-search">
+        <svg class="icon gdoc_search"><use xlink:href="#gdoc_search"></use></svg>
+        <input type="text" id="gdoc-search-input" class="gdoc-search__input" placeholder="Search..."
+            aria-label="Search" maxlength="64" />
+        <div class="gdoc-search__spinner spinner hidden"></div>
+        <ul id="gdoc-search-results" class="gdoc-search__list"></ul>
+    </div>
+
+
+
+    <section class="gdoc-nav--main">
+        <h2>Navigation</h2>
+        
+            
+
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-3ac26c08" class="gdoc-nav__toggle" checked>
+            <label for="navtree-3ac26c08" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/" class="gdoc-nav__entry ">
+                        Introduction to GEOINT -- GEOG111
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-57082eb1" class="gdoc-nav__toggle" checked>
+            <label for="navtree-57082eb1" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Computer basics
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab02/" class="gdoc-nav__entry is-active">
+                        Lab 02 - Introduction to Google Earth Pro
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Coordinates and Position Measurements
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - GPS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - GIS introduction
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - spatial analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Digital Terrain Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Map making
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab09A/" class="gdoc-nav__entry ">
+                        Lab 09A - 3D Modeling and Visualization
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab09B/" class="gdoc-nav__entry ">
+                        Lab 09B - Cloud based GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab 10 - Visual Imagery Interpretation
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab11/" class="gdoc-nav__entry ">
+                        Lab 11 - Remotely Sensed Imagery and Color Composites
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab12/" class="gdoc-nav__entry ">
+                        Lab 12 - Landsat 8 Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab13/" class="gdoc-nav__entry ">
+                        Lab 13 - Earth Observing Missions Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog111/labs/lab14/" class="gdoc-nav__entry ">
+                        Lab 14 - Final Lab activity
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-9af49685" class="gdoc-nav__toggle" >
+            <label for="navtree-9af49685" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/" class="gdoc-nav__entry ">
+                        Introduction to GIS -- GEOG358
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-2ef21881" class="gdoc-nav__toggle" >
+            <label for="navtree-2ef21881" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab00/" class="gdoc-nav__entry ">
+                        Lab 00 - Intro to GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Intro to GISystems
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Projections and Coordinate Systems
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Using GPS for Field Data Collection
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - On-Screen Digitizing &amp; Image Restoration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - Building a GIS database
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - Selections Queries and Joins
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Overlay &amp; site suitability analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Introduction to network analyist and ArcScene
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/labs/lab09/" class="gdoc-nav__entry ">
+                        Lab 09 - Interpolation and Fire Hazard Modeling
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog358/termpaper/" class="gdoc-nav__entry ">
+                        Project
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-91899dd7" class="gdoc-nav__toggle" >
+            <label for="navtree-91899dd7" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/" class="gdoc-nav__entry ">
+                        Remote Sensing -- GEOG526
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-efafcb0c" class="gdoc-nav__toggle" >
+            <label for="navtree-efafcb0c" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/bib/" class="gdoc-nav__entry ">
+                        Bibliography Guidelines
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab - Data Acquisition and Image Preprocessing
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab - Introduction to ERDAS IMAGINE I
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab09A/" class="gdoc-nav__entry ">
+                        Lab - Introduction to ERDAS IMAGINE （Part II）
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO IMAGE INTERPRETATION
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab11/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO MODIS TIME SERIES
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab - LANDSAT TM &amp; SPOT IMAGERY
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab09B/" class="gdoc-nav__entry ">
+                        Lab - Remote Sensing (Assignment 9) NDVI
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab13/" class="gdoc-nav__entry ">
+                        Lab - Remote Sensing with RADAR Imagery
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab12/" class="gdoc-nav__entry ">
+                        Lab - THERMAL IMAGERY
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Map making
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab14/" class="gdoc-nav__entry ">
+                        Lab 14 - Final Lab activity
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab - Internet Resources Exploration
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab - Maps &amp; Aerial Photography
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab - INTRODUCTION TO UNIT CONVERSION &amp; SCALE PROBLEMS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog526/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab - ELECTROMAGNETIC RADIATION PRINCIPLES
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-a5a58dbc" class="gdoc-nav__toggle" >
+            <label for="navtree-a5a58dbc" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/" class="gdoc-nav__entry ">
+                        Intermediate GIS -- GEOG558
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/classoutline/" class="gdoc-nav__entry ">
+                        Syllabus and course policies
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-e44c6ffc" class="gdoc-nav__toggle" >
+            <label for="navtree-e44c6ffc" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/" class="gdoc-nav__entry ">
+                        Labs
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab01/" class="gdoc-nav__entry ">
+                        Lab 01 - Data survey and database building
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab02/" class="gdoc-nav__entry ">
+                        Lab 02 - Cartographic Modeling
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab03/" class="gdoc-nav__entry ">
+                        Lab 03 - Focal Operations
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab04/" class="gdoc-nav__entry ">
+                        Lab 04 - Zonal Operations
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab05/" class="gdoc-nav__entry ">
+                        Lab 05 - Model Builder
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab06/" class="gdoc-nav__entry ">
+                        Lab 06 - Cost Distance, Region Groups, more Model Builder &amp; Python
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab07/" class="gdoc-nav__entry ">
+                        Lab 07 - Siting a New School with Model Builder and Fungus weight
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab08/" class="gdoc-nav__entry ">
+                        Lab 08 - Advanced Terrain Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab09/" class="gdoc-nav__entry ">
+                        Lab 09 - Descriptive Spatial Statistics and Point Pattern Analysis
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/labs/lab10/" class="gdoc-nav__entry ">
+                        Lab 10 - Spatial Interpolation
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/geog558/termpaper/" class="gdoc-nav__entry ">
+                        Project
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-643316ca" class="gdoc-nav__toggle" >
+            <label for="navtree-643316ca" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/" class="gdoc-nav__entry ">
+                        Random bin
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/Install_Help/" class="gdoc-nav__entry ">
+                        Installing GIS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/cart_prime/" class="gdoc-nav__entry ">
+                        Cartography primer
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FOSS/" class="gdoc-nav__entry ">
+                        FOSS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FirstGoogleEarthMap/" class="gdoc-nav__entry ">
+                        A basic map in Google Maps
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/dronemapping/" class="gdoc-nav__entry ">
+                        Drone Mapping
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/FOSS_RS/" class="gdoc-nav__entry ">
+                        RS
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/GEE_intro/" class="gdoc-nav__entry ">
+                        GEE
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            <input type="checkbox" id="navtree-4d073202" class="gdoc-nav__toggle" >
+            <label for="navtree-4d073202" class="flex justify-between">
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/website/" class="gdoc-nav__entry ">
+                        Creating a website
+                    </a>
+                </span>
+            
+            
+                <svg class="icon gdoc_keyborad_arrow_left"><use xlink:href="#gdoc_keyborad_arrow_left"></use></svg>
+                <svg class="icon gdoc_keyborad_arrow_down hidden"><use xlink:href="#gdoc_keyborad_arrow_down"></use></svg>
+            </label>
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/classes/random/website/oldwebsite/" class="gdoc-nav__entry ">
+                        Old website tutorial
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+
+
+
+
+        
+    </section>
+
+    <section class="gdoc-nav--more">
+        
+    </section>
+</nav>
+
+            </aside>
+            
+
+            <div class="gdoc-page">
+                
+    
+
+
+    
+
+
+
+
+
+
+<div class="gdoc-page__header flex flex-wrap
+     justify-between 
+     hidden-mobile 
+    " itemprop="breadcrumb">
+    
+    <div>
+        <svg class="icon gdoc_path hidden-mobile"><use xlink:href="#gdoc_path"></use></svg>
+        <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            
+            
+            
+            
+    
+    
+        
+        
+        
+        
+    
+    
+        
+        
+        
+        
+    
+    
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/' href='/classes/'><span itemprop='name'>Classes</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/geog111/' href='/classes/geog111/'><span itemprop='name'>Introduction to GEOINT -- GEOG111</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/classes/geog111/labs/' href='/classes/geog111/labs/'><span itemprop='name'>Labs</span></a><meta itemprop='position' content='4' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Lab 02 - Introduction to Google Earth Pro</span><meta itemprop='position' content='5' /></li>
+    
+
+    
+
+    
+
+    
+
+        </ol>
+    </div>
+    
+    
+</div>
+
+
+    <article class="gdoc-markdown gdoc-markdown__align--left">
+        <h1>Lab 02 - Introduction to Google Earth Pro</h1>
+        <blockquote>
+<p>This lab is a gratefully modified version of lab 2 from <a class="gdoc-markdown__link" href="https://www.macmillanlearning.com/college/us/product/Introduction-to-Geospatial-Technologies/p/1319249515">Bradley A. Shellito&rsquo;s Introduction to Geospatial Technologies</a></p>
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="learning-objective">
+        Learning Objective
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#learning-objective" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Learning Objective" href="#learning-objective">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>This lab provides an introduction on how to use Google Earth Pro and will help familiarize you with many of its features.  Although we&rsquo;ll touch on several more advanced software as the class moves on, Google Earth Pro is a really fast and useful arrow to have in your quiver and we&rsquo;ll be back to use it more than once.  The steps and analyses we&rsquo;ll do in this introductory lab are pretty basic but foundational, and we&rsquo;ll build on these as we move forward.  The goals for you to take away from this lab are:</p>
+<ul>
+<li>Familiarize yourself with the Google Earth Pro (GEP) environment, basic functionality, and navigation using the software</li>
+<li>Use different GEP layers and features</li>
+</ul>
+<p><strong>Outline:</strong>
+
+
+
+  <div class="gdoc-toc gdoc-toc__level--3"><nav id="TableOfContents"><ul>
+        <li><a href="#learning-objective">Learning Objective</a></li>
+        <li><a href="#submission-requirements">Submission requirements</a></li>
+        <li><a href="#tutorial">Tutorial</a>
+          <ul>
+            <li><a href="#obtaining-software">Obtaining software</a></li>
+            <li><a href="#setting-up-gep">Setting up GEP</a></li>
+            <li><a href="#navigating-in-gep">Navigating in GEP</a></li>
+            <li><a href="#exploring-landscapes-in-gep">Exploring landscapes in GEP</a></li>
+            <li><a href="#using-gep-to-save-imagery">Using GEP to Save Imagery</a></li>
+            <li><a href="#using-gep-to-make-placemarks-and-measurements">Using GEP to Make Placemarks and Measurements</a></li>
+            <li><a href="#exploring-landscapes-in-gep-1">Exploring landscapes in GEP</a></li>
+            <li><a href="#other-features-of-google-earth-pro">Other Features of Google Earth Pro</a>
+              <ul>
+                <li><a href="#google-mars">Google Mars</a></li>
+                <li><a href="#google-sky">Google Sky</a></li>
+                <li><a href="#flight-simulator">Flight Simulator</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#wrapping-up">Wrapping up</a></li>
+      </ul></nav><hr></div>
+
+</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="submission-requirements">
+        Submission requirements
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#submission-requirements" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Submission requirements" href="#submission-requirements">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-btxf{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-0pky">Data Name</th>
+    <th class="tg-0pky">Description</th>
+  </tr>
+  <tr>
+    <td class="tg-0pky">
+      <a href="https://jimcoll.github.io/geog111/labs/GEOG111_Lab02Questions.docx">GEOG111_Lab2Questions.docx</a>
+    </td>
+    <td class="tg-0pky">Handout to turn in</td>
+  </tr>
+</table>
+You are answering the questions (laid out in the word doc above and also included in the tutorial below) as you work through the lab.  Use full sentences as necessary to answer the prompts, and submit it to blackboard when done.
+<div class="gdoc-page__anchorwrap">
+    <h2 id="tutorial">
+        Tutorial
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#tutorial" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Tutorial" href="#tutorial">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="obtaining-software">
+        Obtaining software
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#obtaining-software" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Obtaining software" href="#obtaining-software">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p><a class="gdoc-markdown__link" href="https://www.google.com/earth/">Google Earth</a> can be found in many forms.  You are more than likely familiar with Google Maps, an application centered on driving directions and location finding, but there is also <a class="gdoc-markdown__link" href="https://earth.google.com/web/">Google Earth on the web</a>, a Google Earth for for your phone, and <a class="gdoc-markdown__link" href="https://www.google.com/earth/versions/#download-pro">Google Earth Pro for desktop</a> (GEP from here on out), a simplistic but fully fledged geospatial software.  The lab computers already have this installed, but if you want to do this on your own PC you will need to download and install it.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="setting-up-gep">
+        Setting up GEP
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#setting-up-gep" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Setting up GEP" href="#setting-up-gep">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>If this is your first time opening GEP, the window will look like so:</p>
+<p><img src="/classes/geog111/img/GEP_splash_screen.PNG" alt="imcenter"  /></p>
+<p>Feel free to take the tour to get a head start on the rest of this lab if you&rsquo;ve never used Google Earth before, but we&rsquo;ll walk though the most important steps below.</p>
+<p>One of the first things to do in any software is to look at the options.  To find these, go to <strong>Tools</strong> &gt; <strong>Options</strong>.  Take a second and read though the visualization options in the <strong>3D View</strong> tab.  Note that the option to change both the <em>Show Lat/Long</em> format and <em>Units of Measurement</em> is in this tab.  In the <strong>Navigation</strong> tab, a useful behavior you may want to turn off is the tilt on zoom option, the &ldquo;Do not automatically tilt while zooming&rdquo; is the most intuitive zoom behavior and will fix the need to habitually reorient yourself when using GEP to explore.  Back on the main application page, if you click <strong>View</strong>, you should make sure both the <em>Toolbar</em> and <em>Sidebar</em> boxes are checked.  There are also several other map options here you might want to explore.  Common ones to keep on are the <em>Overview map</em> and <em>Scale Legend</em>.</p>
+<p>Before we start exploring the planet, lets take a look at the options and set some of the default behaviors
+Use the mouse to change your perspective and explore different areas of the globe.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="navigating-in-gep">
+        Navigating in GEP
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#navigating-in-gep" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Navigating in GEP" href="#navigating-in-gep">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Being able to adeptly navigate around is critical to any geographic software.  Nothing is more frustrating that knowing how you want to move around but not being able to do so.  Below are the navigation steps, read them and take the time to become proficient with them.</p>
+<ul>
+<li>To pan in any direction: Left-click and hold. Then, drag the cursor until you see the view you want.</li>
+<li>To return to the default view (reorient yourself so north is up and the camera angle is pointed straight down) - Click the map and press &ldquo;r&rdquo;.</li>
+<li>You can zoom in and out to see more or less of a map area. Use the scroll wheel on your mouse or mouse touchpad to zoom in and out.</li>
+<li>The map controls on the upper right hand side of the map can also be used to pivot, pan, and zoom using just the mouse.</li>
+<li>Finally, there is a search bar on the toolbar on the left that works just like the search bar on Google Maps.</li>
+</ul>
+<p>Move the mouse to the upper-right side of the screen, and a set of controls appear, should you want to use those instead. These controls fade out when not in use and reappear when the mouse rolls over them.</p>
+<p><img src="/classes/geog111/img/GEP_nav_buttons.PNG" alt="imcenter"  /></p>
+<ul>
+<li>The first button, an eye ball surrounded by four arrow marks with ‘N’ marked above the upward arrow, representing the ‘Look around’ function.  Grab the N with the mouse (by placing the pointer on N and holding down the left mouse button) and drag the N (that is, slowly rotate it) around the ring (this is commonly called “grab and drag”). You see the view change (north will still be the direction in which the N is pointed). Clicking on the N returns the imagery so that the north direction is facing the top of the screen.</li>
+<li>The second button, a palm shaped symbol in the center surrounded by four arrow marks, representing the ‘Move function.  By selecting one of the directional arrows and clicking it with the mouse, you can tilt your view around the terrain as if you were standing still and looking about. You can also grab the control and move it (by holding down the left button on your mouse) to simulate looking around in various directions.  Recall from above that you can reset your view with the &ldquo;r&rdquo; key.</li>
+<li>You&rsquo;ll find the Street View peg man button below that.  This icon appears when Google Street View imagery is available to see on the ground.  To use Street View, you would grab the icon with the mouse and drag it to a street that’s visible in the view to enter the Street View mode. This control is visible only if there are streets in the view through which you can enter Street View mode</li>
+<li>Below that, there is a zoom slider with ‘plus’ marked at the top and ‘minus’ marked at the bottom. The zoom slider is marked at the center of the slide.</li>
+</ul>
+<ol>
+<li>
+<p>In the search box, type in <strong>University of Kansas</strong>.  As GEP rotates zooms in, look to the <strong>Layers</strong> box.  Make sure that both <strong>Photos</strong>, <strong>3D Buildings</strong>, and <strong>Terrain</strong> are selected.  This enables linking of locations on the ground to photos that users have taken. The locations that have linked photos have small blue and brown circles over the imagery.  Click on the photo symbols on the imagery to see some photos.</p>
+</li>
+<li>
+<p>See if you can locate the building you are currently in by panning and zooming around the campus.  If you got lost or aren&rsquo;t on campus but are playing along, type in <strong>Lindley hall, KU</strong> into the search bar.  Grab the Street View icon from the controls and drag it to the street right in front of the building.  You’ll see large areas of the campus pathways and roads turn blue (which indicates that Street View imagery is available for this street). Release the icon on the street, and the view shifts from an aerial view to imagery that looks like you’re actually standing in that spot.  Use a combination of the Street View and imagery to answer question 1:</p>
+</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 1</strong><br>
+From viewing Lindley Hall from above and in front, what details from the aerial view can help identify what the building is and how to properly orient yourself?
+</blockquote>
+
+<ol start="3">
+<li>From the GEP Layers panel, make sure <em>Roads</em> is checked.  You’ll see major roads (interstates, state highways) identifiable as their labels appear, and local roads will also be identifiable when you zoom in close.  We’re going to plan a lunch trip to the greatest restaurant in Lawrence, Thai Diner.  In the Search box, click on the Get Directions option.  In the A option (this is where you’re traveling from), type in Lindley Hall.  In the B option (this is where you’re traveling to), type in Thai Diner.  Finally, click the <strong>Get Directions</strong> button.  GEP zooms out to show you the path it calculated for driving distance between the two points, and the Search box fills with directions featuring stops and turns along the way.</li>
+</ol>
+<p><img src="/classes/geog111/img/GEP_directions.PNG" alt="imcenter"  /></p>
+<blockquote class="gdoc-hint question">
+  <strong>Question 2</strong><br>
+By viewing the road network between our destinations, you’ll realize there are many possible routes between the two. Why do you suppose GEP chose this particular route?
+</blockquote>
+
+<blockquote class="gdoc-hint question">
+  <strong>Question 3</strong><br>
+Based on the route that GEP calculated, what is the driving distance (and approximate time equivalent) to get to our destination?
+</blockquote>
+
+<p>The capabilities to take a bunch of letters and numbers and turn them into a mapped location and to calculate the shortest driving distance between points are some of the core functions of GIS, and we will develop these later in the course.  For now, you can click the X at the bottom of the Search box to clear the directions and remove the route</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="exploring-landscapes-in-gep">
+        Exploring landscapes in GEP
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#exploring-landscapes-in-gep" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Exploring landscapes in GEP" href="#exploring-landscapes-in-gep">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Kansas has some truly gorgeous landscapes, but it is <a class="gdoc-markdown__link" href="http://www.usu.edu/geo/geomorph/kansas.html">mathematically flatter than a pancake</a>, so let&rsquo;s go explore a slightly more topographically diverse landscape.  The closest National Park to Lawrence, the <a class="gdoc-markdown__link" href="www.nps.gov/badl/index.htm">Badlands national park</a>, is just to the northwest.</p>
+<ol start="4">
+<li>To see the boundaries of Badlands National Park, go to the Layers box and expand the option for More (click on the triangle to the left of the name). In the options that appear under the expanded heading, put a checkmark in the <strong>Parks/Recreation Areas</strong> option.</li>
+<li>Pan and Zoom out until you see the northernmost boundary of Badlands National Park highlighted in green.  If you get lost remember you can use the search function.  Once the park is centered in your view new icons for the locations of Visitors Centers and other features should appear.  Pan over to the eastern edge of the park, and you see a large Question Mark icon indicating a park entrance as well as a green arrow indicating an overlook.</li>
+</ol>
+<p><img src="/classes/geog111/img/GEP_parkimage.PNG" alt="imcenter"  /></p>
+<p>Make sure that the option for Terrain in the Layers box is turned on. Zoom into the point representing the overlook. At the bottom of the main map you&rsquo;ll see numbers representing the latitude and longitude of the point, as well as the real-world elevation of that spot.</p>
+<blockquote class="gdoc-hint question">
+  <strong>Question 4</strong><br>
+What is the elevation of this particular overlook in Badlands National Park?
+</blockquote>
+
+<p>The imagery in GEP is placed on top of a model of Earth’s terrain. To get a better view of this extra dimension, use the Zoom Slider to tilt the view down (remember you can also hold down the <em>Ctrl</em> key and move the mouse to change your perspective) so that you can look around as if you were standing at the overlook point (in a perspective view of the planet). Once you’ve tilted all the way down, use the Look controls to examine the landscape. From here, use the Move controls to fly over the Badlands from this overlook point. Once you feel like you have a decent feeling of what the Badlands looks like, answer Question 5.</p>
+<blockquote class="gdoc-hint question">
+  <strong>Question 5</strong><br>
+How does the terrain modeling (with the tilt function) aid in the visualization of the Badlands?
+</blockquote>
+
+<p>This ability to model the peaks and valleys of the landscape with aerial imagery “draped” or “stretched” over the terrain for a more realistic appearance is often used with many aspects of geospatial technology, and we&rsquo;ll explore some of these analyses in more depth later in the semester.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="using-gep-to-save-imagery">
+        Using GEP to Save Imagery
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#using-gep-to-save-imagery" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Using GEP to Save Imagery" href="#using-gep-to-save-imagery">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>It’s time to continue to the next leg of our journey by heading to Mount Rushmore. Carved out of the side of a mountain in the Black Hills, <a class="gdoc-markdown__link" href="www.nps.gov/moru/index.htm">Mount Rushmore National Memorial</a> features the faces of presidents George Washington, Thomas Jefferson, Theodore Roosevelt, and Abraham Lincoln. For more information about Mount Rushmore.</p>
+<ol start="6">
+<li>In GEP’s Search box, type &ldquo;Mount Rushmore&rdquo;. GEP zooms around to an overhead view of the monument. Like the Badlands, Mount Rushmore is overseen by the National Park Service. Zoom out a little bit and you’ll see the extent of the memorial’s boundaries (still outlined in green).  Let&rsquo;s save an image of what’s being shown in the view.  Although we could use the snip tool, GEP can take a “snapshot” and save it as a JPEG (.jpg) file.  Position the view to see the full outlined extent of Mount Rushmore, select the <strong>File</strong> &gt; <strong>Save</strong> &gt; <strong>Save Image</strong>. You’ll see the two most common map elements appear, a box with a legend and a title box with <em>Untitled Map</em> in it.  Click on that to give your image a name.  If your text gets too long, you can enter a new line by pressing <strong>Shift-Enter</strong>.  Once done, you&rsquo;ll see at the top of the map window there are options including map options, image resolution, and he save button.  Once you are happy with your setting hit the save button and save the image to your PC.</li>
+<li>Minimize GEP go to the location on your computer where you saved the image and open it (using a simple image viewer like Microsoft OfficePhotos).</li>
+</ol>
+<p><img src="/classes/geog111/img/GEP_MRM.jpg" alt="imcenter"  /></p>
+<blockquote class="gdoc-hint question">
+  <strong>Question 6</strong><br>
+Note that even though the graphic contains the locations of Mount
+Rushmore, the outline of the park, and information concerning location (including
+latitude, longitude, and elevation) at the bottom, it doesn’t have any spatial reference
+for measurements. Why is this?
+</blockquote>
+
+<p>Even though the saved image doesn’t have any spatial reference data, we&rsquo;ll cover how to add that back in later in the class.  For now, you can turn off the Parks/Recreation layer.</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="using-gep-to-make-placemarks-and-measurements">
+        Using GEP to Make Placemarks and Measurements
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#using-gep-to-make-placemarks-and-measurements" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Using GEP to Make Placemarks and Measurements" href="#using-gep-to-make-placemarks-and-measurements">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>While you’re examining Mount Rushmore, you can set up some points of reference to which you can return. GEP allows you to create points of reference as placemarks. Let&rsquo;s set up three points on the map: the top of the mountain, the amphitheater, and the parking area.</p>
+<ol start="8">
+<li>From the GEP toolbar, select the <strong>Add Placemark</strong> button (1)</li>
+<li>A yellow pushpin (labeled “Untitled Placemark”) appears on the screen. Using your mouse, click on the Pushpin and drag it to the rear of the amphitheater so that the pin of the placemark is where the path meets the amphitheater (2)</li>
+<li>In the Placemark dialog box, type &ldquo;Mount Rushmore Amphitheater&rdquo; (3)</li>
+<li>Click the Placemark icon button next to where you typed the name, you can select an icon other than the yellow pushpin. Choose something more distinctive (4)  When finished, click OK to close the dialog box.</li>
+</ol>
+<p><img src="/classes/geog111/img/GEP_pinplace.png" alt="imcenter"  /></p>
+<ol start="12">
+<li>Put a second placemark at the top of the mountain by repeating this process.  Name this new placemark &ldquo;Top of the Memorial&rdquo;.  When done, position the two as tightly within the view as possible.</li>
+<li>Click on the <strong>Ruler</strong> tool on the toolbar.  In the Ruler dialog box that appears, select <em>Feet</em> from the Map Length pull-down menu  Use the options on the <em>Line</em> tab, which allow you compute the distance between two
+points. If you wanted to measure multiple points, you could do so from the <em>Path</em> tab.  Using this tool, measure the distance between your two placemarks to answer the question below:</li>
+</ol>
+<p><img src="/classes/geog111/img/GEP_rulertoolbar.PNG" alt="imcenter"  /></p>
+<blockquote class="gdoc-hint question">
+  <strong>Question 7</strong><br>
+What is the measured distance between the rear of the amphitheater and the top of the memorial? (Keep in mind that this is the ground distance, not a straight line between the two points.)
+</blockquote>
+
+<p>When you’re done, click on Clear in the Ruler dialog box to remove the drawn line from the screen and then close the Ruler dialog box.  These abilities to create points of reference (as well as lines and area shapes) and then compute the distances between them might seem trivial, but these process level functions form the heart almost every GIS tool.</p>
+<ol start="14">
+<li>Finally, let&rsquo;s use the Tilt functions of GEP to get a perspective view on Mount Rushmore (as we did in the Badlands).  Make sure that the option for <em>Terrain</em> in the Layers box is turned <em>on</em> and <em>3D Buildings</em> option is turned <em>off</em>.  Note that although you can see the height and dimensions of the mountain, the famous four presidents’ faces can’t been seen.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 8</strong><br>
+Even with Terrain turned on and the view switching over to a perspective, why can’t the presidents’ faces on the side of the memorial be seen?
+</blockquote>
+
+<p>Now turn <em>3D Buildings</em> on, can you see them now?</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="exploring-landscapes-in-gep-1">
+        Exploring landscapes in GEP
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#exploring-landscapes-in-gep-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Exploring landscapes in GEP" href="#exploring-landscapes-in-gep-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Notice that next to the elevation value at the bottom of the GEP screen, there’s a set of coordinates for lat (latitude) and long (longitude). Move the mouse around the screen, and you see the coordinates change to reflect the latitude and longitude of whatever the mouse’s current location is.</p>
+<ol start="15">
+<li>Zoom in closely on the road that enters the parking structure area of Mount Rushmore.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 9</strong><br>
+What are the latitude and longitude coordinates of the entrance to the Mount Rushmore parking area?
+</blockquote>
+
+<p>You can also reference specific locations on Earth’s surface by their coordinates instead of by name. In the Search box, type the following coordinates: <em>43.836584, –103.623403</em>. GEP rotates and zooms to this new location. Turn on Photos to obtain more information on what you’ve just flown to. You can also turn on the 3D Buildings layer (if necessary, again using the legacy 3D Buildings option, as you did with the Corn Palace and Mount Rushmore) to look at the location with a 3D version of it there.</p>
+<ol start="16">
+<li>Answer Questions 10 and 11, and then turn off the Photos (and the 3D Buildings option) when you’re done.</li>
+</ol>
+<blockquote class="gdoc-hint question">
+  <strong>Question 10</strong><br>
+What is located at the following geographic coordinates: latitude
+43.836584, longitude –103.623403?
+</blockquote>
+
+<blockquote class="gdoc-hint question">
+  <strong>Question 11</strong><br>
+What is located at the following geographic coordinates: latitude
+43.845709, longitude –103.563499?
+</blockquote>
+
+<div class="gdoc-page__anchorwrap">
+    <h3 id="other-features-of-google-earth-pro">
+        Other Features of Google Earth Pro
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#other-features-of-google-earth-pro" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Other Features of Google Earth Pro" href="#other-features-of-google-earth-pro">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>Google Earth Pro changes with new updates and features, but some of the more novel features include Google Mars, Google Sky, and Flight Simulator.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="google-mars">
+        Google Mars
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#google-mars" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Google Mars" href="#google-mars">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>From the <strong>View</strong> pull-down menu, select <strong>Explore</strong> &gt; <strong>Mars</strong>. The view shifts to the familiar-looking globe, but this time covered with imagery (from NASA and the USGS) from the surface of Mars. The usual controls work the same way as they do with GEP, and there’s a lot of Martian territory to be explored. When you’re ready to return to GEP you use the same <strong>View</strong> &gt; <strong>Explore</strong> menus and then select <strong>Earth</strong>.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="google-sky">
+        Google Sky
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#google-sky" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Google Sky" href="#google-sky">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>From the <strong>View</strong> pull-down menu, select <strong>Explore</strong> &gt; <strong>Sky</strong>. GEP’s view changes: Instead of looking down on Earth, you’re looking up to the stars, and instead of seeing remotely sensed aerial or satellite imagery, you’re looking at space telescope (including the Hubble) imagery. There’s plenty of imagery to be explored in this new mode. When you’re ready to return to GEP you use the same <strong>View</strong> &gt; <strong>Explore</strong> menus and then select <strong>Earth</strong>.</p>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="flight-simulator">
+        Flight Simulator
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#flight-simulator" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Flight Simulator" href="#flight-simulator">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><p>From the <strong>Tools</strong> pull-down menu, select <strong>Enter Flight Simulator</strong>. A new dialog box appears, asking if you want to pilot an F-16 fighter jet or an SR-22 propeller airplane. Select whichever plane you want to fly; GEP switches to the view as seen out the cockpit of your chosen plane, and you can fly across South Dakota (and the rest of GEP). Try not to crash (although you can easily reset if you do).</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="wrapping-up">
+        Wrapping up
+        <a data-clipboard-text="https://jimcoll.github.io/classes/geog111/labs/lab02/#wrapping-up" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Wrapping up" href="#wrapping-up">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>There is no need to save anything from this lab, so when done you can simply close without saving.  Submit your answers to the questions on blackboard.</p>
+
+
+    </article>
+
+                
+
+
+
+
+
+
+
+
+    
+    
+
+    
+
+
+
+
+
+<div class="gdoc-page__footer flex flex-wrap justify-between">
+    
+    
+</div>
+
+            </div>
+        </main>
+
+        <footer class="gdoc-footer">
+    <div class="container flex">
+        <div class="flex flex-wrap">
+            <span class="gdoc-footer__item gdoc-footer__item--row">
+                <a href="https://jimcoll.github.io/" class="gdoc-footer__link">Site home</a> -- Built with <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> and
+                <svg class="icon gdoc_heart"><use xlink:href="#gdoc_heart"></use></svg>
+            </span>
+            
+            
+        </div>
+        
+        <div class="flex flex-25 justify-end">
+            <span class="gdoc-footer__item">
+                <a class="gdoc-footer__link fake-link" href="#" aria-label="Back to top">
+                    <svg class="icon gdoc_keyborad_arrow_up"><use xlink:href="#gdoc_keyborad_arrow_up"></use></svg> <span class="hidden-mobile">Back to top</span>
+                </a>
+            </span>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+
+    
+
+
+
+
+<script defer src="/classes/js/en.search.min.e0b46e67d3290d6164e22a3133b6589cabdc358125f8155b6e926503fd8af4be.js"></script>
+
+
+
+<script defer src="/classes/js/clipboard-27784b7376.min.js"></script>
+<script defer src="/classes/js/clipboard-loader-f0b5fbd5f6.min.js"></script>
+
+
+</body>
+</html>

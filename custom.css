@@ -1,0 +1,44 @@
+.icon-grid {
+  width: 8rem;
+  height: 8rem;
+  margin: 0.2em;
+  text-align: center;
+  padding: 0.3em;
+}
+
+.icon-grid__line {
+  height: 4rem;
+}
+
+.icon-grid__line .icon {
+  font-size: 3em;
+}
+
+.icon-grid__line--text {
+  font-size: 0.8em;
+}
+
+.gdoc-hint.question{
+  border-left-color: #c9f;
+  background-color: rgba(204,102,255,.1)
+}
+
+img[alt=imcenter] {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+img[alt=medimcenter] {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   width:500px;
+}
+
+img[alt=lrgimcenter] {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   width:700px;
+}

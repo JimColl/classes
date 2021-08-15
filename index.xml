@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Classes on So long as you get the GIST of it</title>
+    <link>https://jimcoll.github.io/classes/</link>
+    <description>Recent content in Classes on So long as you get the GIST of it</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://jimcoll.github.io/classes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bibliography Guidelines</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/bib/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/bib/</guid>
+      <description>Part of your grade is comprised of seven article reviews. These reviews will be turned in at the beginning of lab on designated days (see schedule on syllabus). Each article review is worth 8 points, for a total of 56 points.
+   Bibliography Criteria Annotated Bibliography Assignment Requirements  Example of very bad bibliography: Example of a good bibliography:       Bibliography Criteria    The following criteria are used for each of the bibliographies:</description>
+    </item>
+    
+    <item>
+      <title>Installing GIS</title>
+      <link>https://jimcoll.github.io/classes/random/Install_Help/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/Install_Help/</guid>
+      <description>Using GIS (or really any skill you are trying to pick up) at least twice a week greatly improves the time to learn, and the easiest way to do so is to have it readily available to you. Here I&amp;rsquo;ll walk through the ways to install the software for yourself.
+Install instructions for:  ArcMap/ArcPro QGIS   ArcMap/ArcPro    The ESRI suite of products tends to be a demanding set of programs, so you should have a fairly modern computer if you want to install them for yourself.</description>
+    </item>
+    
+    <item>
+      <title>Lab - Data Acquisition and Image Preprocessing</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab10/</guid>
+      <description>Introduction This lab serves as an introduction to downloading remotely sensed data from one, of the several, online sources and includes some common remote sensing image preprocessing functions. This lab allows you to become familiar with the process of searching for and downloading a Landsat scene, and how to stack layers from the original products. You will also use multiple SPOT images to learn the image mosaic and subset processes and to subset the image to an area of interest.</description>
+    </item>
+    
+    <item>
+      <title>Lab - Introduction to ERDAS IMAGINE I</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab06/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab06/</guid>
+      <description>Learning Objective    The goals for you to aim for in this lab:
+ Build simple and compound database queries Extract the results of a query into separate GIS layers Count the number of features within the boundary of another feature Overlay two features for spatial analysis Create and use buffers around objects for spatial analysis  Outline:    Learning Objective Submission requirements Guide   of Bands: __________  Submission     Submission requirements    Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab - Introduction to ERDAS IMAGINE （Part II）</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab09A/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab09A/</guid>
+      <description>Guide    Image Info •	Enables you to view and edit many elements of a raster image file (.img), including statistics, map information, and projection information.
+•	to access, click on the	icon or right click on image name in contents and select metadata
+Inquire Cursor •	gives you individual pixel information by using a cursor which displays as a crosshair in the Viewer window •	lists all of the available layers and indicates which color represents each individual layer •	For every layer, each pixel has a value representing reflectance •	Higher values indicate brighter reflectance •	to access, click on the	icon</description>
+    </item>
+    
+    <item>
+      <title>Lab - INTRODUCTION TO IMAGE INTERPRETATION</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab05/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab05/</guid>
+      <description>Learning Objective    This exercise is designed to introduce you to procedures used in image analysis. The image diagnostics (or clues) that we use to identify and classify features that we see depicted on images are as follows:
+(S) Size (Sh) Shape (T) Tone or color (Tx) Texture (P) Pattern (St) Site or location (A) Association or context (Sd) Shadow (Te) Temporal characteristics
+During this lab you will identify features on different digital aerial imagery.</description>
+    </item>
+    
+    <item>
+      <title>Lab - INTRODUCTION TO MODIS TIME SERIES</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab11/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab11/</guid>
+      <description>Learning Objective    This lab serves as an introduction to MODIS data products, which are widely used in a variety of terrestrial, aquatic and atmospheric remote sensing research and applications. This lab will familiarize you with MODIS vegetation indices products and various land cover/land use interpretation tasks. In addition, you will become familiar with the characteristics of MODIS imagery and time-series.
+Outline:    Learning Objective Submission requirements Guide Tutorial     Submission requirements    Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab - LANDSAT TM &amp; SPOT IMAGERY</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab07/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab07/</guid>
+      <description>Learning Objective    The purpose of Lab06 is to familiarize you with interpreting Landsat Thematic Mapper and SPOT imagery. Upon completion of this lab you should be aware of the usefulness of each TM band, and the similarities and differences between TM and SPOT data.
+Outline:    Learning Objective Submission requirements Tutorial   of Bands: 3    Wrapping up       Submission requirements    Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab - Remote Sensing (Assignment 9) NDVI</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab09B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab09B/</guid>
+      <description>Perform a Normalized Difference Vegetation Index (NDVI) on both change detection images; Tallahassee-97.img and Tallahassee-99.img.
+From the main horizontal menu bar select Raster&amp;gt; Unsupervised &amp;gt; Indices. The input file will be one of the two Tallahassee images (repeat the process for the other one), output file will be something like Tallahassee-97-ndvi, make sure the Sensor is highlighted as Landsat TM, and make sure the Select Function is highlighted to NDVI. Click OK.</description>
+    </item>
+    
+    <item>
+      <title>Lab - Remote Sensing with RADAR Imagery</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab13/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab13/</guid>
+      <description>Learning Objective    The purpose of Lab 11 is to familiarize you with interpreting radar imagery. Upon completion of this lab you should be aware of the usefulness and difficulties of radar imagery in remote sensing applications.
+Outline:    Learning Objective Submission requirements Guide  Wrapping up       Submission requirements    Materials (click to download)
+.tg {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}.</description>
+    </item>
+    
+    <item>
+      <title>Lab - THERMAL IMAGERY</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab12/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab12/</guid>
+      <description>Learning Objective    The purpose of Lab 10 is to familiarize you with interpreting thermal imagery. Upon completion of this lab you should be aware of the usefulness of thermal imagery in various applications.
+Outline:    Learning Objective Submission requirements Exercise Submission     Submission requirements    Materials (click to download)
+.tg {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}.</description>
+    </item>
+    
+    <item>
+      <title>Lab 01 - Computer basics</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab01/</guid>
+      <description>Learning Objective    This lab is not a beginner level &amp;ldquo;how to computer&amp;rdquo;, but we will cover a few critical PC setup tips that will only make your life easier, as well as a few lesser known tips and tricks that I&amp;rsquo;ve picked up and found useful.
+Outline:    Learning Objective Submission requirements Tutorial  Navigating folder structures Setting up Cloud storage Setting up Windows options Screenshots Virtual access Installing GIS Misc.</description>
+    </item>
+    
+    <item>
+      <title>Lab 01 - Data survey and database building</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab01/</guid>
+      <description>Learning Objective    The first part of this lab requires writing a survey of the data and mapping technologies in the field that you are interested in (wildlife reserve, conservation, urban planning, forest resources, natural hazards, business, etc.), not limited to the data and mapping technologies covered in the lecture. This survey may include both traditional and new emerging datasets and/or mapping technologies that are used in the fields.</description>
+    </item>
+    
+    <item>
+      <title>Lab 02 - Cartographic Modeling</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab02/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab02/</guid>
+      <description>Learning Objective    This lab will introduce local operations using cartographic modeling (map algebra). Part 1 is intended to show you how you can organize and display raster datasets in a usable format. Part 2 will walk you through how to calculate NDWI and perform a water area analysis. Part 3 you will model the geographic distribution of Kudzu in the conterminous United States and then compare your model to the actual geographic distribution, using Map Algebra and attribute table manipulation.</description>
+    </item>
+    
+    <item>
+      <title>Lab 02 - Introduction to Google Earth Pro</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab02/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab02/</guid>
+      <description>This lab is a gratefully modified version of lab 2 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies
+ Learning Objective    This lab provides an introduction on how to use Google Earth Pro and will help familiarize you with many of its features. Although we&amp;rsquo;ll touch on several more advanced software as the class moves on, Google Earth Pro is a really fast and useful arrow to have in your quiver and we&amp;rsquo;ll be back to use it more than once.</description>
+    </item>
+    
+    <item>
+      <title>Lab 03 - Coordinates and Position Measurements</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab03/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab03/</guid>
+      <description>This lab is a gratefully modified version of lab 2 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies
+ Learning Objective    In this lab we&amp;rsquo;ll continue using Google Earth Pro (GEP) to examine coordinate systems and the relationships between various sets of coordinates and the objects they represent in the real world. In addition, we’ll make more measurements using GEP and compare measurements made by using different coordinate systems.</description>
+    </item>
+    
+    <item>
+      <title>Lab 04 - GPS</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab04/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab04/</guid>
+      <description>Background    This exercise provides an introduction to using a Global Positioning System (GPS) receiver to obtain coordinates and create a point shapefile. GPS is a system consisting of a network of satellites that orbit ~11,000 nautical miles from the earth in six different orbital paths. They are continuously monitored by ground stations located worldwide. The satellites transmit signals that can be detected with a GPS receiver. Using the receiver, you can determine your location with great precision through the trilateration (not triangulation!</description>
+    </item>
+    
+    <item>
+      <title>Lab 05 - GIS introduction</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab05/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab05/</guid>
+      <description>This lab is a gratefully modified version of lab 5 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies
+ Learning Objective    This lab introduces you to some of the basic features of GIS. You will be using a free open source program, QGIS, to navigate a GIS environment and begin working with geospatial data. The labs in Chapters 6 and 7 will show you how to utilize several more GIS features; the aim of this lab is to familiarize you with the basic GIS functions of the software.</description>
+    </item>
+    
+    <item>
+      <title>Lab 06 - spatial analysis</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab06/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab06/</guid>
+      <description>This lab is a gratefully modified version of lab 6 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies p442
+ Learning Objective    The goals for you to aim for in this lab:
+ Build simple and compound database queries Extract the results of a query into separate GIS layers Count the number of features within the boundary of another feature Overlay two features for spatial analysis Create and use buffers around objects for spatial analysis  Outline:    Learning Objective Submission requirements Tutorial  import and join data (refresher) Attribute queries Exporting Overlay Buffer Measuring   Submission     Submission requirements    Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab 07 - Digital Terrain Analysis</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab07/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab07/</guid>
+      <description>This lab is a gratefully modified version of lab 13 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies 934
+ Learning Objective    This chapter’s lab introduces some of the basics of digital terrain modeling: working with DTMs, slope, viewsheds, and imagery draped over the terrain model. You’ll be using the free Google Earth Pro for this lab. The goals for you to take away from this lab:</description>
+    </item>
+    
+    <item>
+      <title>Lab 08 - Map making</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab08/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab08/</guid>
+      <description>This lab is a gratefully modified version of lab 7 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies 529
+ Learning Objective    This lab introduces you to the concept of using GIS data to create a print quality map. This map should contain the following:
+ The population per square kilometer for all counties in California, set up in an appropriate color scheme The data displayed in a projection with units of measurement other than decimal degrees (The default units used by the lab data are meters; make sure the scale bar reflects this information.</description>
+    </item>
+    
+    <item>
+      <title>Lab 08 - Map making</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab08/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab08/</guid>
+      <description>Learning Objective    The purpose of Lab06 is to familiarize you with interpreting Landsat Thematic Mapper and SPOT imagery. Upon completion of this lab you should be aware of the usefulness of each TM band, and the similarities and differences between TM and SPOT data.
+Outline:    Learning Objective Submission requirements Guide Tutorial Submission     Submission requirements    Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab 09A - 3D Modeling and Visualization</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab09A/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab09A/</guid>
+      <description>Future content here</description>
+    </item>
+    
+    <item>
+      <title>Lab 09B - Cloud based GIS</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab09B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab09B/</guid>
+      <description>This lab is ungracefully ripped from my own tutorial on the UCGIS BoK entry for GEE. Please explore this version for more information and background.
+ Google Earth Engine is still a beta product, and you will need to request access to the platform through your Google account here. These are still approved by hand and may take a few days to get. Once approved, you will need to follow the instructions in the email that is sent before you are able to access the platform.</description>
+    </item>
+    
+    <item>
+      <title>Lab 10 - Visual Imagery Interpretation</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab10/</guid>
+      <description>This lab is a gratefully modified version of lab 9 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies
+ Learning Objective    This lab will help you start thinking about what objects look like from the sky rather than from the ground. You’ll be examining a series of images and applying the elements of visual image interpretation discussed in the chapter. As you do, you’ll need to think like a detective and search the image for clues to help figure out just what it is you’re looking at.</description>
+    </item>
+    
+    <item>
+      <title>Lab 11 - Remotely Sensed Imagery and Color Composites</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab11/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab11/</guid>
+      <description>This lab is a gratefully modified version of lab 10 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies p752
+ Learning Objective    This chapter’s lab introduces some of the basics of working with multispectral remotely sensed imagery. The goals to take away from this exercise:
+ Familiarize yourself with the basics of multispectral data manipulation in common geospatial softwares Load various bands into the color guns and examine the results Create and examine different color composites Compare the digital numbers of distinct water and environmental features in a remotely sensed satellite image in order to create basic spectral profiles  Outline:    Learning Objective Submission requirements Tutorial   Submission   Submission requirements    Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab 12 - Landsat 8 Imagery</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab12/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab12/</guid>
+      <description>This lab is a gratefully modified version of lab 11 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies p814
+ Learning Objective    This chapter’s lab builds on the remote sensing basics of Chapter 10 and returns to using the MultiSpec program. In this exercise, you’ll be starting with a Landsat 8 scene and creating a subset of it with which to work. During the lab, you’ll examine the uses for several Landsat 8 band combinations in remote sensing analysis.</description>
+    </item>
+    
+    <item>
+      <title>Lab 13 - Earth Observing Missions Imagery</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab13/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab13/</guid>
+      <description>This lab is a gratefully modified version of lab 12 from Bradley A. Shellito&amp;rsquo;s Introduction to Geospatial Technologies p880
+ Learning Objective    This chapter’s lab introduces some of the basics of examining imagery from three different Earth-observing satellite missions: Terra, Aqua, and Suomi NPP. You will be examining data from MOPITT as well as many types of imagery from MODIS and VIIRS. You will also be using online resources from NASA and others in conjunction with Google Earth.</description>
+    </item>
+    
+    <item>
+      <title>Lab 14 - Final Lab activity</title>
+      <link>https://jimcoll.github.io/classes/geog111/labs/lab14/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/labs/lab14/</guid>
+      <description>Future content in progress</description>
+    </item>
+    
+    <item>
+      <title>Lab 14 - Final Lab activity</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab14/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab14/</guid>
+      <description>TODO</description>
+    </item>
+    
+    <item>
+      <title>Syllabus and course policies</title>
+      <link>https://jimcoll.github.io/classes/geog111/classoutline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog111/classoutline/</guid>
+      <description>This creation of this course was funded though a course creation scholarship through the University of Kansas Intelligence Community Centers for Academic Excellence  This is a living document. Changes will be announced in class. The syllabus will supersede the blackboard course in the event of a conflict.     Course Description Student Responsibilities Expectations Computers  Computer recommendations   Resources Academic Integrity Disabilities Course Evaluation  Labs Exams Grade determination       Course Description    This course is an introduction to basic geospatial intelligence concepts and geospatial technologies.</description>
+    </item>
+    
+    <item>
+      <title>Syllabus and course policies</title>
+      <link>https://jimcoll.github.io/classes/geog358/classoutline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/classoutline/</guid>
+      <description>This is a living document. Changes will be announced in class.     Course Description Student Responsibilities Expectations Computers  Computer recommendations   Resources Academic Integrity Disabilities Course Evaluation  Labs  Cartography primers   Exams Grade determination       Course Description    This course provides an introduction to computer based analysis of spatial data. Topics covered include the fundamentals of geospatial thought, basic principles of collecting, storing, analyzing, and displaying spatial data, and cursory treatment of analysis and decision making.</description>
+    </item>
+    
+    <item>
+      <title>Syllabus and course policies</title>
+      <link>https://jimcoll.github.io/classes/geog526/classoutline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/classoutline/</guid>
+      <description>This is a living document. Changes will be announced in class.     Course Description Student Responsibilities Expectations Computers  Computer recommendations   Resources Academic Integrity Disabilities Course Evaluation  Labs Annotated bibliography Writing assignment Exams Grade determination       Course Description    This course emphasizes the understanding of the aerospace remote sensing foundations and the use of remote sensor data and image interpretation and processing techniques for environmental and urban applications.</description>
+    </item>
+    
+    <item>
+      <title>Syllabus and course policies</title>
+      <link>https://jimcoll.github.io/classes/geog558/classoutline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/classoutline/</guid>
+      <description>This is a living document. Changes will be announced in class. The syllabus will supersede the blackboard course in the event of a conflict.     Course Description Student Responsibilities: Expectations: Computers:  Computer recommendations   Resources Academic Integrity Disabilities Course Evaluation  Labs  Cartography primers:   Exams Grade determination       Course Description    Building on the introductory GIS class, this course focuses primarily on teaching advanced spatial analysis methods with applications in the mapping of surface water and the analysis of water related environmental issues.</description>
+    </item>
+    
+    <item>
+      <title>Cartography primer</title>
+      <link>https://jimcoll.github.io/classes/random/cart_prime/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/cart_prime/</guid>
+      <description>Some of this content is gratefully pilfered and modified for my own needs from Elizabeth Wesley.
+ Cartography, the art, science, and technology of map making, is a sequence of courses and a profession unto itself. I won&amp;rsquo;t even attempt to do it real justice here, but I will try and make a short primer you can follow to make a more interesting and visually appealing map. Use these rough steps to help guide your process.</description>
+    </item>
+    
+    <item>
+      <title>Lab - Internet Resources Exploration</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab01/</guid>
+      <description>Learning Objective    The objective of this laboratory exercise is to get students familiar with using the Internet as a learning and research resource for remote sensing. Specifically, you will browse some web sites for free remotely sensed data, image providers, professional conferences, societies, and remote sensing software vendors. These should help you search for remotely sensed data required for specific research topics or learning objectives. You will need to write short paragraphs to summarize the websites you visit.</description>
+    </item>
+    
+    <item>
+      <title>Lab 00 - Intro to GIS</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab00/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab00/</guid>
+      <description>Learning Objective    This lab is here more for me as we walk through how to open and manipulate the interface, the meaning of icons, and how to navigate the world without getting lost. The questions here are more to remind me to talk about things while we explore. The instructions are not meant to be followed. You should use this page more as an opportunity to learn how the labs will be laid out, how the sections are formatted, and how to navigate the site.</description>
+    </item>
+    
+    <item>
+      <title>Lab 01 - Intro to GISystems</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab01/</guid>
+      <description>This lab is a gratefully modified version a lab from Lee Hachadoorian&amp;rsquo;s github page
+ Learning Objective    To introduce ArcGIS and its basic data management, display, and analysis components. To learn how to work with map layers, query attribute tables and geographic features, create maps, and design and execute a simple GIS analysis. As a demonstration, you will map and analyze data from Philadelphia, Pennsylvania.
+Outline:    Learning Objective Submission requirements Tutorial  Acquiring the Data Opening ArcMap and Adding Map Layers  What are ArcMap documents?</description>
+    </item>
+    
+    <item>
+      <title>Lab 02 - Projections and Coordinate Systems</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab02/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab02/</guid>
+      <description>A note about this lab: Items in bold are to indicate buttons and/or menus you are looking for.
+ Lab 2: Projections and Coordinate Systems    Learning Objective    An introduction to how ArcGIS handles geographic and projected coordinate systems. Users should understand the difference between geographic coordinate systems and projected coordinate systems. Identify appropriate projections for datasets. Become familiar with the ArcGIS toolbox
+Tutorial    Getting started     Materials (click to download)</description>
+    </item>
+    
+    <item>
+      <title>Lab 03 - Focal Operations</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab03/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab03/</guid>
+      <description>Learning Objective    This lab will use neighborhood operators (i.e. focal operators) to examine an elevation surface, remove errors in a DEM, analyze wind exposure, and delineate the edge of our lake classified in Lab 2. In the first part, you will learn how to bring an ASCII into Arc as a grid and confirm your understanding of focal statistics. In the second, you will use the slope tool and focal statistics to blur out errors in the DEM and examine how changing the window results in a changing image.</description>
+    </item>
+    
+    <item>
+      <title>Lab 03 - Using GPS for Field Data Collection</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab03/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab03/</guid>
+      <description>Background    This exercise provides an introduction to using a Global Positioning System (GPS) receiver to obtain coordinates and create a point shapefile. GPS is a system consisting of a network of satellites that orbit ~11,000 nautical miles from the earth in six different orbital paths. They are continuously monitored by ground stations located worldwide. The satellites transmit signals that can be detected with a GPS receiver. Using the receiver, you can determine your location with great precision through the trilateration (not triangulation!</description>
+    </item>
+    
+    <item>
+      <title>Lab 04 - On-Screen Digitizing &amp; Image Restoration</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab04/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab04/</guid>
+      <description>**Lab 04:	**    Learning Objective    This lab covers one of the most common tasks a starting GIS analysis will likely be paid to do, aligning and digitizing data.
+Tutorial    Getting started     Materials
+.tg {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}.tg .tg-btxf{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:top}Data NameDescriptionlawrencenorth.tifA scanned aerial photograph of north Lawrencenaip2004sub.</description>
+    </item>
+    
+    <item>
+      <title>Lab 04 - Zonal Operations</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab04/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab04/</guid>
+      <description>Learning Objective    In this lab, we are interested in assessing how much of Douglas County is covered by tornado sirens. In other words, we want to know how many people can actually hear a tornado siren when it goes off. While the sirens for Douglas County were designed to be heard at distances of up to 5,800 feet, there might be areas in which people can’t hear them.</description>
+    </item>
+    
+    <item>
+      <title>Lab 05 - Building a GIS database</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab05/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab05/</guid>
+      <description>Learning Objective    This lab will teach you how to build a GIS database for Douglas County, KS using existing digital data from the Internet. First you will download data from Kansas Geospatial Community Commons (provided by Data Access and Support Center, or DASC). Then you will define coordinate systems and project the data to Kansas State Plane Coordinate System NAD83 meters North Zone. You will then make a second map of a county of your choice using the USGS National Map Website as your data source.</description>
+    </item>
+    
+    <item>
+      <title>Lab 05 - Model Builder</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab05/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab05/</guid>
+      <description>Lab 5 - Model Builder    Learning Objective    As you have likely noticed, the process of delineating a lake follows a predictable workflow that could easily be automated, and because time is money, it would behoove us to create a script one could run which would create the needed outputs for us without all the tedious clicking and typing that would otherwise have to occur. Fortunately, ArcGIS has a mode, ModelBuilder, which enables us to visually create a workflow to connect our data to a series of operations without the need to actually code in python.</description>
+    </item>
+    
+    <item>
+      <title>Lab 06 - Cost Distance, Region Groups, more Model Builder &amp; Python</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab06/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab06/</guid>
+      <description>Lab 6 - Cost Distance, Region Groups, more Model Builder &amp;amp; Python    Learning Objective    This lab is designed to further strengthen your understanding and ability to apply local, focal, and zonal operations to solve problems and comfortability with ModelBuilder, this time in the context of delineating sea level rise. In part 1, you will walk through 2 methods of using the point and click interface to accomplish your analysis.</description>
+    </item>
+    
+    <item>
+      <title>Lab 06 - Selections Queries and Joins</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab06/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab06/</guid>
+      <description>Learning Objective    As is more often the case than not, the information we need to answer a question are in separate places (read: shapefiles). Therefore, we need to join that data together. However, the concept of joins are communicated, implemented, and executed very differently within a computer/GIS context than they are in everyday language. Database joins are their own class in computer science/engineering, and we won’t cover all of them in this class.</description>
+    </item>
+    
+    <item>
+      <title>Lab 07 - Overlay &amp; site suitability analysis</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab07/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab07/</guid>
+      <description>Learning Objective    This lab will introduce the idea of overlay analysis in terms of a common application, site suitability. Site suitability can take a number of forms but in this lab we&amp;rsquo;ll approach these concepts in vector and raster form. You will also touch briefly on Terrain analysis, something we&amp;rsquo;ll see more of in the next lab.
+Part 1: Attribute &amp;amp; Spatial Queries    A logging company has been given a license to develop and to cut down trees in the Oakwood area (see the figure to the right).</description>
+    </item>
+    
+    <item>
+      <title>Lab 07 - Siting a New School with Model Builder and Fungus weight</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab07/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab07/</guid>
+      <description>Lab 7 - Siting a New School with Model Builder and Fungus Dispersion Modeling    Learning Objective    In ArcGIS, we can build a model, based on a flow of data through a series of GIS operations, to arrive at a desired end. We will be using Model Builder to create a suitability layer for school siting in Stowe, Vermont in an automated way (yes, this was the same lab from intro class, we&amp;rsquo;re going to create the model this time).</description>
+    </item>
+    
+    <item>
+      <title>Lab 08 - Advanced Terrain Analysis</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab08/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab08/</guid>
+      <description>Learning Objective    In this lab we&amp;rsquo;ll cover a variety of terrain analysis techniques including shelter analysis and a suite of tools within the hydrology toolbox.
+What you need to submit     Lab 8: Answer Sheet
+Name:
+Part 1
+Question 1:
+What is the value of the majority of the cells on the focalcells raster layer?
+Where are the cells with smaller values located?
+and why do they have smaller values?</description>
+    </item>
+    
+    <item>
+      <title>Lab 08 - Introduction to network analyist and ArcScene</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab08/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab08/</guid>
+      <description>Part 1: Network Analysis    Objectives The part of the lab is designed to introduce some basic networking analyses, including how to setup a network dataset, how to find the efficient routes under different rules, and how to calculate the nearest facilities.
+Materials
+.tg {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}.tg .tg-btxf{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:top}Data NameDescriptionSanFranciscoTran.gdbVarious transportation and government data about San FranciscoRestricted Turns.</description>
+    </item>
+    
+    <item>
+      <title>Lab 09 - Descriptive Spatial Statistics and Point Pattern Analysis</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab09/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab09/</guid>
+      <description>Lab 9: Descriptive Spatial Statistics and Point Pattern Analysis    Learning Objective    In this lab, we will use a tornado touchdown points database which spans from 1950 to 2018 to introduce you to some techniques of measuring geographic distributions. Through the use of yearly and monthly mean centers and standard deviation ellipses, well explore how tornado touchdowns are distributed and then use the tracking analyst to visualize how these change over time.</description>
+    </item>
+    
+    <item>
+      <title>Lab 09 - Interpolation and Fire Hazard Modeling</title>
+      <link>https://jimcoll.github.io/classes/geog358/labs/lab09/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/labs/lab09/</guid>
+      <description>Part 1: Temperature Modeling and Interpolation    Objectives
+This part will introduce you to the basic operations of cartographic modeling (or map algebra). We will be calculating temperature across the U.S. using a Digital Elevation Model (DEM) and building a simple fire hazard model.
+Materials
+.tg {border-collapse:collapse;border-spacing:0;border-color:#ccc;margin:0px auto;}.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}.tg .tg-btxf{background-color:#f9f9f9;border-color:inherit;text-align:left;vertical-align:top}Data NameDescriptionUSDEM10KDEM covering the conterminous US.</description>
+    </item>
+    
+    <item>
+      <title>Lab 10 - Spatial Interpolation</title>
+      <link>https://jimcoll.github.io/classes/geog558/labs/lab10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/labs/lab10/</guid>
+      <description>Learning Objective    When we deal with spatial analysis, one of the problems we have is getting data we collect in the field into a form we can analyze. Most field data are collected at discrete points (e.g., rain gages, GPS point collection, address points, ect.). There are several interpolation methods that allow us to take this point data and make it into a continuous surface. We will look at the Inverted Distance Weighting and Kriging methods in this lab.</description>
+    </item>
+    
+    <item>
+      <title>Project</title>
+      <link>https://jimcoll.github.io/classes/geog358/termpaper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog358/termpaper/</guid>
+      <description>Class project    Objective:    Identify a biophysical, human, or environmental problem that requires or would benefit from your newfound knowledge of spatial analysis using GIS. Describe the problem that you are interested in. Provide geographic context to the problem. Discuss what kind of GIS analysis you want to use and the implementation strategy you have chosen. Present simple diagrams or maps that illustrate your approach. Apply your approach to real-world data and present the results of your project in oral form.</description>
+    </item>
+    
+    <item>
+      <title>Project</title>
+      <link>https://jimcoll.github.io/classes/geog558/termpaper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog558/termpaper/</guid>
+      <description>Class project    Objective:    Identify a biophysical, human, or environmental problem that requires or would benefit from your newfound knowledge of spatial analysis using GIS. Describe the problem that you are interested in. Provide geographic context to the problem. Discuss what kind of GIS analysis you want to use and the implementation strategy you have chosen. Present simple diagrams or maps that illustrate your approach. Apply your approach to real-world data and present the results of your project in oral form.</description>
+    </item>
+    
+    <item>
+      <title>FOSS</title>
+      <link>https://jimcoll.github.io/classes/random/FOSS/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/FOSS/</guid>
+      <description>Free and Open Source Software:    There are a whole host of questions I still have regarding the intersections of individuals, societies, economies, and technology. One of the more practically philosophical realizations of this intersection than FOSS. Free and Open Source Software has become one of my go to tools in tackling a problem and has that special allure of feel good contribution and intrinsic reproducibility to it. I&amp;rsquo;ve created a few tools that take a FOSS approach to GIS, and here I&amp;rsquo;d like to demonstrate how to create one.</description>
+    </item>
+    
+    <item>
+      <title>Lab - Maps &amp; Aerial Photography</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab02/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab02/</guid>
+      <description>Learning Objective    This lab provides an introduction on how to use Google Earth Pro and will help familiarize you with many of its features. Although we&amp;rsquo;ll touch on several more advanced software as the class moves on, Google Earth Pro is a really fast and useful arrow to have in your quiver and we&amp;rsquo;ll be back to use it more than once. The steps and analyses we&amp;rsquo;ll do in this introductory lab are pretty basic but foundational, and we&amp;rsquo;ll build on these as we move forward.</description>
+    </item>
+    
+    <item>
+      <title>Lab - INTRODUCTION TO UNIT CONVERSION &amp; SCALE PROBLEMS</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab03/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab03/</guid>
+      <description>Learning Objective    Calculation of photo scale and the measurement of distances and areas are fundamental skills in remote sensing. However, the various combinations of available information (scale, height, distance, focal length, etc.) and the use of both metric and imperial units of measurement can be confusing. This lab is designed to familiarize you with the common scale and area computations performed in association with remote sensing.
+Outline:    Learning Objective Submission requirements Guide  Representative Fraction (RF) Aerial Photo Scale Determination without Maps     Wrapping up       Submission requirements    .</description>
+    </item>
+    
+    <item>
+      <title>A basic map in Google Maps</title>
+      <link>https://jimcoll.github.io/classes/random/FirstGoogleEarthMap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/FirstGoogleEarthMap/</guid>
+      <description>Learning Objective    Google Earth is a great platform to start your exploration of the GISciences, even if it&amp;rsquo;s not a tool you&amp;rsquo;ll use often in &amp;ldquo;the real world&amp;rdquo;. There are a number of ways to access Google Earth, but this tutorial will cover Google Earth Pro on the Desktop (scroll to the bottom of the page). The objective of this exercise is to familiarize yourself with the numerous tools Google Earth has to offer.</description>
+    </item>
+    
+    <item>
+      <title>Lab - ELECTROMAGNETIC RADIATION PRINCIPLES</title>
+      <link>https://jimcoll.github.io/classes/geog526/labs/lab04/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/geog526/labs/lab04/</guid>
+      <description>Background    This exercise provides an introduction to using a Global Positioning System (GPS) receiver to obtain coordinates and create a point shapefile. GPS is a system consisting of a network of satellites that orbit ~11,000 nautical miles from the earth in six different orbital paths. They are continuously monitored by ground stations located worldwide. The satellites transmit signals that can be detected with a GPS receiver. Using the receiver, you can determine your location with great precision through the trilateration (not triangulation!</description>
+    </item>
+    
+    <item>
+      <title>Drone Mapping</title>
+      <link>https://jimcoll.github.io/classes/random/dronemapping/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/dronemapping/</guid>
+      <description>Need help passing your part 107? I can recommend the following resources:
+ https://www.youtube.com/watch?v=6_ucCKFJUCU&amp;t=1s https://3dr.com/faa/drone-practice-tests/ https://jrupprechtlaw.com/part-107-test-study-guide/   Drones for mapping and research    One of the most exciting aspects of working in the Environmental Sciences is in exploring how the application of new tools and technologies has allowed us to reimagine and streamline how we observe, process, understand, and communicate the state of the world. Take for instance, the humble terrain surface.</description>
+    </item>
+    
+    <item>
+      <title>RS</title>
+      <link>https://jimcoll.github.io/classes/random/FOSS_RS/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/FOSS_RS/</guid>
+      <description>Introduction to Remote Sensing    Remote sensing is a course onto itself, but it’s worth introducing here as GIScience, GISystems, and remote sensing overlap more than they diverge. Remote sensing, as opposed to in-situ measurement, is the measurement of an object from a distance, most often a great distance.
+Objectives    This lab should provide you with the bulk of the background knowledge needed to dive further into the field of remote sensing.</description>
+    </item>
+    
+    <item>
+      <title>GEE</title>
+      <link>https://jimcoll.github.io/classes/random/GEE_intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/GEE_intro/</guid>
+      <description>Introduction to Google Earth Engine:    What is Google Earth Engine:    Google Earth Engine (GEE) is a cloud-based data and analysis platform which combines more than 17 petabytes of geospatial data, analytic APIs, and a web based Integrated Development Environment in one package and runs on Google’s computational infrastructure, enabling interactive earth data analyses on scales not previously feasible. This platform was first introduced to the public in 2013 as a means of performing an analysis of global forest cover change, published in Science (Hansen et al.</description>
+    </item>
+    
+    <item>
+      <title>Old website tutorial</title>
+      <link>https://jimcoll.github.io/classes/random/website/oldwebsite/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jimcoll.github.io/classes/random/website/oldwebsite/</guid>
+      <description>Like apparently everything digital these days, not even a year later and most of the material I&amp;rsquo;ve written here is too out of date to be used as a direct tutorial (like nailing a flying carpet down, the reproducibility crisis might really be a thing). The academic theme has now moved to a quasi-GUI driven deployment system which both makes the site easier to create and deploy, but also strips it of the flexibility to modify it as I&amp;rsquo;ve outlined here.</description>
+    </item>
+    
+  </channel>
+</rss>
