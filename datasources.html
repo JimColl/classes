@@ -1,0 +1,2796 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Sources – So long as you get the GIS&amp;T of it</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./_favlogo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c934d02959c7e7930d4b10b09e2e9c58.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-b05e61e0f72a419c38cba2a2ca2d7601.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">So long as you get the GIS&amp;T of it</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-wide tools-end">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-house"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://jimcoll.github.io">
+            Main Site
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://jimcoll.github.io/classes">
+            Classes homepage
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/JimColl">
+            Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://media1.tenor.com/m/o8K70vT5lDAAAAAC/eww-bugs-eww.gif">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./atlas_index.html">Atlas</a></li><li class="breadcrumb-item"><a href="./elementsofGIST.html">Geoprocessing</a></li><li class="breadcrumb-item"><a href="./data_realizations.html">Data Forms and Flows</a></li><li class="breadcrumb-item"><a href="./datasources.html">Data Sources</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The GIS&amp;T of it</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./classindex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Physical Geography</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./placeholder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">placeholder</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./GEOINT_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to GEOINT</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_syl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus and course policies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./GEOINT_labs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 01</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 02</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 03</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 05</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 06</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 07</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 08</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab09A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 09 A</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab09B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 09 B</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 10</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 13</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEOINT_lab14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GEOINT Lab 14</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./classindex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to GIS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./placeholder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">placeholder</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./classindex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Remote Sensing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./placeholder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">placeholder</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./classindex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Intermediate GIS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./placeholder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">placeholder</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./atlas_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Atlas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./sensemaking.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sensemaking</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./soc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Separating Concerns</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sciencemethod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Scientific Method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DDD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Driven Documentation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mapping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modeling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reproducibility</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./working.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Knowledge systems</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install_zotero.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing Zotero</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install_GIS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing GIS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install_docker.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing Docker</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing Web</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./templates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Templates</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./earthscience.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earth Science</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./landforms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Landforms</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hydrology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hydrology</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./precip.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Precipitation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./snow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Snow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./evapotranspiration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Evapotranspiration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hydraulics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">hydraulics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./h_h.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">H&amp;H modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fire.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fire</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./elementsofGIST.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geoprocessing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./data_realizations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Forms and Flows</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vector.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./raster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rasters</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pointcloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Point Clouds</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TIN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./otherformats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other formats</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dtypes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Types and formats</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./PJ.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projections</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fileio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FILE I/O</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./datasources.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Data Sources</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth4 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hydrofab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hydrofabric data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Flow</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./compute.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Compute</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./placeholder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vector Math</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./EX.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extract</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./OV.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overlay</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./PX.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Proximity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SJ.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Join</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./XY.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Add XY Coordinates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AJ.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Adjustment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coordinate Geometry</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./placeholder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vector Data Management</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./VC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vector Conversion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TB.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Table Tools</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CG.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculate Geometry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./JT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Join Table</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Relate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ST.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ED.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Editing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CF.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conflation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Management</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./LR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Referencing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./PF.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Parcel Fabric</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Georeferencing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./placeholder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vector Analysis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Network</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geocoding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topology</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geotagging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Real-time Tracking</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Route</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Directions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./OS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Optimal Site</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CV.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Coverage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cost Matrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./HM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Huff Model</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./MA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Raster Math</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./LL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Local</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GZ.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Generalization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ZS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Zonal Statistics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./placeholder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Raster Data Management</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resample</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Raster Creation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Raster Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mosaic</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./placeholder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Raster Analysis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-20" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3D.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3D Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./LS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Line of Sight Visibility</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./VO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Volume</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Skyline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./VW.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Viewshed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Space-time Cubes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CN.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Contours</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SU.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Suitability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cost Path</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Terrain Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./remotesensing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Remote Sensing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-21" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-21" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./BA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Band Index</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./IC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Image Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./IS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Image Stretching</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CB.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Composite Bands</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./PS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pansharpening</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Atmosphere Correction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./PH.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Photogrammetry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ME.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mensuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Radar</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./gcontext.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Visualization</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-22" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-22" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./PD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plot Diagrams</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Legends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Legends and Labels</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grid Index</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cartographic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Color</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./css.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CSS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CA_Brushes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tools of mapping</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-23" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-23" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accuracy matrix and metrics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./IP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interpolation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./KD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kernel Density</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./KG.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kreging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Autocorrelation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./apps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-24" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-24" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./FIM_primer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FIM</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-25" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-25" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./HEC.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HEC family</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RRASSLER.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RRASSLER</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RAS2FIM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RAS2FIM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CFIM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The continental flood inundation mapping (CFIM) framework</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./OWP_FIM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OWP FIM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fldpln.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">fldpln</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SCHISM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SCHISM</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./metro_primer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Metrology</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-26" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-26" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GPS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GPS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./FAA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FAA licensure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./SFM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Structure from Motion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./PIV.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Particle Image Velocimetry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./photo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Photography</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./placeholder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grab bag</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-27" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-27" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Agent-based Simulation and Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./VR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Virtual Reality</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./IT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Internet of Things</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Augmented Reality</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MV.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Full Motion Video</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./IM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Indoor Mapping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./census.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Census</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./nlp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Natural Language Processing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./now.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Now</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./junk_drawer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Junk Drawer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-sources-1" id="toc-data-sources-1" class="nav-link active" data-scroll-target="#data-sources-1">Data Sources</a>
+  <ul class="collapse">
+  <li><a href="#a-preamble-setting-up-access-and-passwords" id="toc-a-preamble-setting-up-access-and-passwords" class="nav-link" data-scroll-target="#a-preamble-setting-up-access-and-passwords">A preamble: Setting up access and passwords</a></li>
+  <li><a href="#water-specific" id="toc-water-specific" class="nav-link" data-scroll-target="#water-specific">Water Specific</a>
+  <ul class="collapse">
+  <li><a href="#measurements" id="toc-measurements" class="nav-link" data-scroll-target="#measurements">Measurements</a></li>
+  <li><a href="#model-data-inputs-and-outputs" id="toc-model-data-inputs-and-outputs" class="nav-link" data-scroll-target="#model-data-inputs-and-outputs">Model data (inputs and outputs)</a></li>
+  <li><a href="#auxillary-and-adjacent" id="toc-auxillary-and-adjacent" class="nav-link" data-scroll-target="#auxillary-and-adjacent">Auxillary and adjacent</a></li>
+  </ul></li>
+  <li><a href="#climate-and-weather" id="toc-climate-and-weather" class="nav-link" data-scroll-target="#climate-and-weather">Climate and Weather</a>
+  <ul class="collapse">
+  <li><a href="#surface-temperature" id="toc-surface-temperature" class="nav-link" data-scroll-target="#surface-temperature">Surface Temperature</a></li>
+  <li><a href="#climate" id="toc-climate" class="nav-link" data-scroll-target="#climate">Climate</a></li>
+  <li><a href="#atmospheric" id="toc-atmospheric" class="nav-link" data-scroll-target="#atmospheric">Atmospheric</a></li>
+  <li><a href="#pmp" id="toc-pmp" class="nav-link" data-scroll-target="#pmp">PMP</a></li>
+  <li><a href="#weather" id="toc-weather" class="nav-link" data-scroll-target="#weather">Weather</a></li>
+  </ul></li>
+  <li><a href="#imagery" id="toc-imagery" class="nav-link" data-scroll-target="#imagery">Imagery</a>
+  <ul class="collapse">
+  <li><a href="#landsat" id="toc-landsat" class="nav-link" data-scroll-target="#landsat">Landsat</a></li>
+  <li><a href="#sentinel" id="toc-sentinel" class="nav-link" data-scroll-target="#sentinel">Sentinel</a></li>
+  <li><a href="#modis" id="toc-modis" class="nav-link" data-scroll-target="#modis">MODIS</a></li>
+  <li><a href="#high-resolution-imagery" id="toc-high-resolution-imagery" class="nav-link" data-scroll-target="#high-resolution-imagery">High-Resolution Imagery</a></li>
+  </ul></li>
+  <li><a href="#geophysical" id="toc-geophysical" class="nav-link" data-scroll-target="#geophysical">Geophysical</a>
+  <ul class="collapse">
+  <li><a href="#terrain" id="toc-terrain" class="nav-link" data-scroll-target="#terrain">Terrain</a></li>
+  <li><a href="#land-cover" id="toc-land-cover" class="nav-link" data-scroll-target="#land-cover">Land Cover</a></li>
+  <li><a href="#coastal-land-cover" id="toc-coastal-land-cover" class="nav-link" data-scroll-target="#coastal-land-cover">Coastal Land Cover</a></li>
+  <li><a href="#c-cap-high-resolution-land-cover" id="toc-c-cap-high-resolution-land-cover" class="nav-link" data-scroll-target="#c-cap-high-resolution-land-cover">C-CAP High Resolution Land Cover</a></li>
+  <li><a href="#cropland" id="toc-cropland" class="nav-link" data-scroll-target="#cropland">Cropland</a></li>
+  <li><a href="#vector-data" id="toc-vector-data" class="nav-link" data-scroll-target="#vector-data">Vector data</a></li>
+  <li><a href="#other-geophysical-data" id="toc-other-geophysical-data" class="nav-link" data-scroll-target="#other-geophysical-data">Other Geophysical Data</a></li>
+  </ul></li>
+  <li><a href="#administrative-and" id="toc-administrative-and" class="nav-link" data-scroll-target="#administrative-and">Administrative and</a>
+  <ul class="collapse">
+  <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other">Other</a></li>
+  <li><a href="#climater" id="toc-climater" class="nav-link" data-scroll-target="#climater">ClimateR</a></li>
+  <li><a href="#gage-data" id="toc-gage-data" class="nav-link" data-scroll-target="#gage-data">Gage data</a></li>
+  </ul></li>
+  <li><a href="#nwis" id="toc-nwis" class="nav-link" data-scroll-target="#nwis">NWIS</a></li>
+  <li><a href="#ahps" id="toc-ahps" class="nav-link" data-scroll-target="#ahps">AHPS</a></li>
+  </ul></li>
+  <li><a href="#terrain-tools" id="toc-terrain-tools" class="nav-link" data-scroll-target="#terrain-tools">terrain tools</a></li>
+  <li><a href="#bathymetry" id="toc-bathymetry" class="nav-link" data-scroll-target="#bathymetry">Bathymetry</a>
+  <ul class="collapse">
+  <li><a href="#open-data" id="toc-open-data" class="nav-link" data-scroll-target="#open-data">Open data</a></li>
+  <li><a href="#imerg" id="toc-imerg" class="nav-link" data-scroll-target="#imerg">IMERG</a></li>
+  <li><a href="#infrastructure" id="toc-infrastructure" class="nav-link" data-scroll-target="#infrastructure">Infrastructure</a>
+  <ul class="collapse">
+  <li><a href="#national-bridge-inventory" id="toc-national-bridge-inventory" class="nav-link" data-scroll-target="#national-bridge-inventory">National Bridge Inventory</a></li>
+  <li><a href="#electricity-use" id="toc-electricity-use" class="nav-link" data-scroll-target="#electricity-use">Electricity Use</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./atlas_index.html">Atlas</a></li><li class="breadcrumb-item"><a href="./elementsofGIST.html">Geoprocessing</a></li><li class="breadcrumb-item"><a href="./data_realizations.html">Data Forms and Flows</a></li><li class="breadcrumb-item"><a href="./datasources.html">Data Sources</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Data Sources</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="fig-dataheader" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dataheader-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="_unnamed (data2).png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="_unnamed (data1).png" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dataheader-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Prompt: Can you draw me an anime style-d picture of a computer wielding a machete?
+</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>“I have sat in many meetings in which people talk about data as if it were a magical substance that would solve everyone’s problems if only they had more of it.” - <a href="https://radiant.earth/blog/2023/05/we-dont-talk-about-open-data/">Jed Sundwall</a> <span class="citation" data-cites="sundwallWeDonTalk">(<a href="#ref-sundwallWeDonTalk" role="doc-biblioref">Sundwall n.d.</a>)</span></p>
+</blockquote>
+<p>There are two primary lenses I reach for when you start talking to me about data:</p>
+<ul>
+<li>The friction associated with being a data scientist, both in terms of the technical execution of a workflow and the mass moving data can entail</li>
+<li>Garbage in - garbage out</li>
+</ul>
+<p>To address the first, I’ve spent a great deal of time learning, observing, teaching, relearning, and documenting my pathway towards reproducible and more durable knowledge and useful notes. Addressing the second requires a bit of a shift in perspective. Though it’s a common quote that “All models are wrong, some are useful” - George Box <a href="[[20241014130645]]" class="content-hidden"><span class="citation" data-cites="boxScienceStatistics1976">Box (<span>1976</span>)</span></a>, this doesn’t usually suffice when the ask-r has that favorite dataset or model they want to see used in an analysis, and while annoying there is (usually) less friction for all involved if you’ve done all the heavy lifting of functionalizing your analysis properly. In theory that should be as easy as swapping inputs…</p>
+<p>That being said, there are diminishing returns on all of that effort. Some datasets are more authoritative or more widely used, and so there is value added in quantifying skill using that more consistent benchmark. More tangibly, some datasets are formatted and distributed using modern computational patterns and formats, and that ease of accessibility tips the scales heavily in favor of using that data, since the gravity and friction of that data access has been at least partially mitigated by the provider, meaning the limiting factor to scaling your domain is the size of your PC (or the credit limit on the card tied to your cloud budget).</p>
+<p>An additional and very frustrating piece of friction I encounter almost daily is that the chasm between theory and practice has grown so large that the “head work” of swapping inputs and the “hand work” of actually implementing that pipeline can be quite significant, particularly when dealing with spatial scale. Below I’ve copied and modified the <a href="https://developers.google.com/earth-engine/datasets">Google Earth Engine</a> data catalog layout to more closely document and follow the different datasets I encounter and deploy. Starting with what I most frequently encounter…</p>
+<section id="data-sources-1" class="level1">
+<h1>Data Sources</h1>
+<p>Parameterizeing earth system models typically requires a rich mosaic of input data. I attempt to break the following into measurements (in-situ), measurements (remote), and model outputs but of course these categorizations all bleed into each other at the edges.</p>
+<section id="a-preamble-setting-up-access-and-passwords" class="level2">
+<h2 class="anchored" data-anchor-id="a-preamble-setting-up-access-and-passwords">A preamble: Setting up access and passwords</h2>
+<p>Related to [[20241009121912]] Setting up ClimateR</p>
+<p>You can thank Papa Bush for opening up the satellite archives to the general public, but open and free does not mean frictionless and several of the more authoritative data warehouses make you sign up for an account. Additionally, if you’d like to use the climateR package you’ll need to place credentials into a file so that you can hit these resources..</p>
+<blockquote class="blockquote">
+<p>I am a security disaster and the easiest way to make your life simple and ensure that anyone can use your account is to create the same login for all services. An “Ideal” password that works across all services is something shorter with a capital letter and a few numerics at the end.</p>
+</blockquote>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">remotes::install_github("mikejohnson51/climateR",force = TRUE)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">climateR::writeNetrc(login = "user",password = "Password123")</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">climateR::checkNetrc()</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">sites_stack &lt;- climateR::getGLDAS(AOI=AOI::aoi_get(state = "OR"),</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">                        varname='rootmoist_inst',</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">                        model='NOAH025_M.2.1',</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="in">                        startDate='2006-10-01',</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">                        endDate='2007-09-30',</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">                        verbose = TRUE)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="water-specific" class="level2">
+<h2 class="anchored" data-anchor-id="water-specific">Water Specific</h2>
+<blockquote class="blockquote">
+<p>Many of these datasets are deployed in advancement of <a href="./FIM_primer.html">FIM workflows</a>. Due to the topic-centric lens, some of these are also listed under their respective thematic subsections as well.</p>
+</blockquote>
+<section id="measurements" class="level3">
+<h3 class="anchored" data-anchor-id="measurements">Measurements</h3>
+<section id="ahps-and-nwps" class="level4">
+<h4 class="anchored" data-anchor-id="ahps-and-nwps">AHPS and NWPS</h4>
+<p>The National Weather Service Advanced Hydrologic Prediction Service (AHPS), newly superseded by the National Water Prediction Service (NWPS), is a series of gages and measurements of river stage and discharge collected by the USGS and NOAA, and are our primary means of accounting and managing our water resources and scale.</p>
+</section>
+<section id="bathymetery" class="level4">
+<h4 class="anchored" data-anchor-id="bathymetery">Bathymetery</h4>
+</section>
+<section id="altimitry" class="level4">
+<h4 class="anchored" data-anchor-id="altimitry">Altimitry</h4>
+<section id="icsat" class="level5">
+<h5 class="anchored" data-anchor-id="icsat">ICSAT</h5>
+</section>
+<section id="swot" class="level5">
+<h5 class="anchored" data-anchor-id="swot">SWOT</h5>
+<p>https://storymaps.arcgis.com/stories/4a9184e813e540248040069580f6a54c</p>
+</section>
+</section>
+</section>
+<section id="model-data-inputs-and-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="model-data-inputs-and-outputs">Model data (inputs and outputs)</h3>
+<section id="hydrogaphy" class="level4">
+<h4 class="anchored" data-anchor-id="hydrogaphy">Hydrogaphy</h4>
+<p>A term that technically translates to study of water, this is most commonly found in the context of the applied science of measurements of the ocean floor but is often conflated with the study and representation of the flow of water over the earths surface and its’ representation. When you encounter someone talking about hydrography, they likely actually mean…</p>
+</section>
+<section id="hydrofabric" class="level4">
+<h4 class="anchored" data-anchor-id="hydrofabric">Hydrofabric</h4>
+<p>The most technically appropriate term for the conceptual standard as defined by the OGC. (See my <a href="./hydrofab_dm.html">Hydrofabric data model</a> Hydrofabric page] for more details. As a concept though, I like to think of “hydrofabric” as the critical differentiator that separates planetary hydrology from earth hydrology. In planetary hydrology, we know nothing about the system that we are trying to model beyond coarse remote measurements, a high quality DEM if we’re lucky. On earth however, we have the advantage of long durations of meaningful measurements and an implied understanding of the system beyond what “just physics” might tell us, so when we try to model our system, it’s useful to know critical areas that we want to represent, the standard flow paths and channels that usually flow, and how basins delineate themselves. The hydrofabric product does this for us. As I like to say, particularly at the national scale, “water flows down channel, not water flows downhill”.</p>
+<p>Quick links: Links to the <a href="https://github.com/NOAA-OWP/hydrofabric">official documentation</a>, publication: <span class="citation" data-cites="OGCWaterML2">(<a href="#ref-OGCWaterML2" role="doc-biblioref"><span>“<span>OGC</span><span></span> <span>WaterML</span> 2: <span>Part</span> 3 - <span>Surface Hydrology Features</span> (<span>HY</span>_<span>Features</span>) - <span>Conceptual Model</span>”</span> n.d.</a>)</span>, more <a href="./hydrofab.html">information</a> and <a href="https://www.lynker-spatial.com/">the data bucket</a></p>
+</section>
+<section id="d-hydrofabric" class="level4">
+<h4 class="anchored" data-anchor-id="d-hydrofabric">3D Hydrofabric</h4>
+<p>If hydrofabric is the line/polygon representation of the hydrography of a system, 3D Hydrography is intended to walk all the way back to a point cloud. This is a long running program that is still finding it’s footing, and is still an active area for community to debate and come to a concensus. Our take is here: [[20241016192617]] Hydrofabric3D Data Model</p>
+</section>
+<section id="base-level-engineering" class="level4">
+<h4 class="anchored" data-anchor-id="base-level-engineering">Base Level Engineering</h4>
+<p>See the sample <a href="./RRASSLER.html">RRASSLER</a> catalog <a href="https://staging.lynker-spatial.com/data?path=bathymetry%2FRRASSLER_sample_catalog%2F">here</a>; and a STAC’d version of a generated catalog from publicly available RAS models (primarily sourced from <a href="https://webapps.usgs.gov/infrm/estBFE/">FEMA Region 6</a>) <a href="https://staging.lynker-spatial.com/data?path=bathymetry%2FRRASSLER_public_catalog%2F">here</a>. You can find Dewberries version of a HEC-RAS catalog based on efforts in <span class="citation" data-cites="lawlerEvaluationSpatioTemporalAsset2025">(<a href="#ref-lawlerEvaluationSpatioTemporalAsset2025" role="doc-biblioref">Lawler et al. 2025</a>)</span> <a href="https://radiantearth.github.io/stac-browser/#/external/stac2.dewberryanalytics.com?.language=en">here</a>.</p>
+</section>
+<section id="the-national-water-model-nwm" class="level4">
+<h4 class="anchored" data-anchor-id="the-national-water-model-nwm">The National Water Model (<a href="https://water.noaa.gov/about/nwm">NWM</a>)</h4>
+<p> [[NWM.qmd]] NWM.qmd The National Water Model is a framing and system designed to take atmospheric forcings and landscape states and produce a forecast of discharge for every stream reach in the system. It accomplishes all of this at continental scales and in operational time intervals (Operational for weather prediction at least, hourly predictions using 15 minute timestep-d inputs).</p>
+<ul>
+<li>Base data can be found at:</li>
+<li>Operational data can be found at:. <a href="https://www.weather.gov/media/owp/operations/nws_fim_api_instructions.pdf">FIM specific</a>
+<ul>
+<li>and accessed with:
+<ul>
+<li>Geoserver: https://opengeo.ncep.noaa.gov/geoserver/www/index.html</li>
+</ul></li>
+</ul></li>
+<li>NWM retro data can be found at:</li>
+<li>NWM hydrofabric can be found at: https://lynker-spatial.s3.amazonaws.com/index.html</li>
+<li>Training can be found at: https://www.meted.ucar.edu/education_training/lessons?query=National%20Water%20Model&amp;page=1</li>
+</ul>
+<p>https://coast.noaa.gov/digitalcoast/</p>
+<p>https://www.weather.gov/media/wrn/calendar/NationalWaterModel.pdf</p>
+<section id="national-water-model-retroactive-forecasts" class="level5">
+<h5 class="anchored" data-anchor-id="national-water-model-retroactive-forecasts">National Water Model retroactive forecasts</h5>
+<p>https://github.com/NOAA-OWP/hydrotools/issues/157</p>
+</section>
+<section id="nexgen-water-model" class="level5">
+<h5 class="anchored" data-anchor-id="nexgen-water-model">NexGen Water Model</h5>
+<p>NextGen is a means of coupling modeling efforts and allowing for different representations of the hydrologic cycle to be able to talk to each other in different spatial extents. This framework allows many of the different types of model formulations to talk to one another while hiding the complexity associated with making those models talk to each other explicitly.</p>
+<p>[[20240507073634]] NWM forecast steps [[20240817132222]] Time within the NWM</p>
+</section>
+</section>
+</section>
+<section id="auxillary-and-adjacent" class="level3">
+<h3 class="anchored" data-anchor-id="auxillary-and-adjacent">Auxillary and adjacent</h3>
+<p>FIM adjacent data, in my mind, includes inundation maps whose objectives, uses, or derivation include forces outside the accurate prediction of inundation (since those values obfuscate and are unaccountable in the empirical or physical processes we are attempting to describe) ancillary asset data can help add context to the mapped outputs of a model.</p>
+<section id="the-u.s.-flood-inundation-mapping-repository-usfimr" class="level4">
+<h4 class="anchored" data-anchor-id="the-u.s.-flood-inundation-mapping-repository-usfimr">The U.S. Flood Inundation Mapping Repository (<a href="https://sdml.ua.edu/usfimr/">USFIMR</a>)</h4>
+<p><img src="_USFIMR_Overview.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>The USFIMR project commenced in August 2016 with funding from NOAA. The project’s main goal is to provide high-resolution inundation extent maps of past U.S. flood events to be used by scientists and practitioners for model calibration and flood susceptibility evaluation.</p>
+</blockquote>
+<p>By hand digitizing and performing much of the requisite pre-processing, the US Flood Inundation Map Repository (USFIMR) database represents one of the most consolidated and published “ground truth” databases suitable as a means of performing a more consistent benchmarking of FIM results. To derive these, image classification techniques and a number of satellite sensors (e.g., Landsat, Sentinel-1, Sentinel-2) with some ground truthing based on secondary sources (e.g., news reports, social media) were combined with hand digitized water classifications to create bounds and ancillary data for an event. These maps have been widely used to evaluate FIM skill, and so even though the strict application of hydraulics was not used in the process, these maps have a high degree of skill and utility in that they have been used as the means of demonstrating process improvements from version to version of FIM libraries, and because a human (well-trained or in training graduate student) was used in the generation process the results are akin to a deeper dive into the area than an unsupervised classifier might apply.</p>
+</section>
+<section id="flood-insurance-rate-maps" class="level4">
+<h4 class="anchored" data-anchor-id="flood-insurance-rate-maps">Flood Insurance Rate Maps</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./_8d7e6bd7f9b0f52d74b007823461aa49.png" class="img-fluid figure-img"></p>
+<figcaption>_8d7e6bd7f9b0f52d74b007823461aa49.png</figcaption>
+</figure>
+</div>
+<section id="background-and-interpretation" class="level5">
+<h5 class="anchored" data-anchor-id="background-and-interpretation">Background and interpretation</h5>
+<p>As a regulatory product, the use and goals of these maps and data are no longer parallel to those of the hydraulic modeler, but they can help add some context to the underlying values and objectives of the communities they govern. Many of these maps are the result of taking the model outputs for a 1:100 year storm and mapping the elevation as the Base Flood Elevation. Further refinement “based on stakeholder input” are taken into account and the resultant map is accepted as the defacto standard off which flood insurance rates are set and enforced. These maps can display many different areas, but the ones of most common consequence include:</p>
+<ul>
+<li>High-Risk Zones (A &amp; V): These areas are delineate as having the potential to inundate at least once every 100 years, or a 1% annual chance of experiencing a flood event (Sometimes also termed as Annual Exceedance Probability). These maps are the result of the elevations calculated from hydraulic models and the “base flood” that defines it are the zones under which federally backed mortgages must have some form of flood insurance. Zone V is used in coastal zones to indicate the area is impacted by wave action in addition to fluvial flooding.</li>
+<li>Moderate and Low-Risk Zones (X, B, C): These areas define locations which flood less frequently, and specific categories are called out on the FIRM legends. While not all are present for a given area, some of the more commonly found include Zone X (a 0.2% annual chance of flooding, once every 500 years), and medium to low risk zones such as B and C.</li>
+</ul>
+<p>A table of zone definitions aggregated from <span class="citation" data-cites="FEMADirectory"><span>“<span>FEMA Directory</span>”</span> (<a href="#ref-FEMADirectory" role="doc-biblioref">n.d.</a>)</span>. See the <a href="./glossary.html">glossary</a> for more definitions.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 98%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Zone</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>The flood insurance rate zone that corresponds to the 100-year floodplains that are determined in the FIS by approximate methods. Because detailed hydraulic analyses are not performed for such areas, no base flood elevations or depths are shown within this zone.</td>
+</tr>
+<tr class="even">
+<td>AE</td>
+<td>The flood insurance rate zone that corresponds to the 100-year floodplains that are determined in the FIS by detailed methods. In most instances, whole-foot base flood elevations derived from the detailed hydraulic analyses are shown at selected intervals within this zone.</td>
+</tr>
+<tr class="odd">
+<td>AH</td>
+<td>The flood insurance rate zone that corresponds to the 100-year shallow flooding (usually areas of ponding) where average depths are between 1 and 3 feet. Whole-foot base flood elevations are derived from detailed hydraulic analyses are shown at selected intervals within this zone.</td>
+</tr>
+<tr class="even">
+<td>AR</td>
+<td>The flood insurance rate zone used to depict areas protected from flood hazards by flood control structures, such as a levee, that are being restored. FEMA will consider using the Zone AR designation for a community if the flood protection system has been deemed restorable by a Federal agency in consultation with a local project sponsor; a minimum level of flood protection is still provided to the community by the system; and restoration of the flood protection system is scheduled to begin within a designated time period and in accordance with a progress plan negotiated between the community and FEMA. Mandatory purchase requirements for flood insurance will apply in Zone AR, but the rate will not exceed the rate for unnumbered A zones if the structure is built in compliance with Zone AR floodplain management regulations. For floodplain management in Zone AR areas, elevation is not required for improvements to existing structures. However, for new construction, the structure must be elevated (or floodproofed for non-residential structures) such that the lowest floor, including basement, is a maximum of 3 feet above the highest adjacent existing grade if the depth of the base flood elevation (BFE) does not exceed 5 feet at the proposed development site. For infill sites, rehabilitation of existing structures, or redevelopment of previously developed areas, there is a 3 foot elevation requirement regardless of the depth of the BFE at the project site. The Zone AR designation will be removed and the restored flood control system shown as providing protection from the 1% annual chance flood on the NFIP map upon completion of the restoration project and submittal of all the necessary data to FEMA.</td>
+</tr>
+<tr class="odd">
+<td>AO</td>
+<td>The flood insurance rate zone that corresponds to the 100-year shallow flooding ( usually sheet flow on sloping terrain) where average depths are between 1 and 3 feet. Average whole-foot depths derived from the detailed hydraulic analyses. The highest top of curb elevation adjacent to the lowest adjacent grade (LAG) must be submitted if the request lies within this zone.</td>
+</tr>
+<tr class="even">
+<td>A99</td>
+<td>The flood insurance rate zone that corresponds to areas of the 100-year floodplain what will be protected by a Federal flood protection system where construction has reached specified statutory milestones. No base flood elevations or depths are shown within this zone.</td>
+</tr>
+<tr class="odd">
+<td>D</td>
+<td>The flood insurance rate zone that corresponds to unstudied areas where flood hazards are undetermined but possible.</td>
+</tr>
+<tr class="even">
+<td>Gutter</td>
+<td>Boundary, shown on a Flood Insurance Rate Map, dividing Special Flood Hazard Areas of different Base Flood Elevations, base flood depths, flood velocities, or flood insurance risk zone designations.</td>
+</tr>
+<tr class="odd">
+<td>V</td>
+<td>The flood insurance rate zone that corresponds to the 100-year coastal floodplains that have additional hazards associated with storm waves. Because approximate hydraulic analyses are performed for such areas, no base flood elevations (BFEs) are shown within this zone. Mandatory flood insurance purchase requirements apply.</td>
+</tr>
+<tr class="even">
+<td>VE</td>
+<td>The flood insurance rate zone that corresponds to the 100-year coastal floodplains that have additional hazards associated with storm waves. BFEs derived from the detailed hydraulic analyses are shown at selected intervals within this zone. Mandatory flood insurance purchase requirements apply.</td>
+</tr>
+<tr class="odd">
+<td>X</td>
+<td>The flood insurance rate zone that corresponds to areas outside the 500-year floodplain, areas within the 500- year floodplain, and areas of 100-year flooding where average depths are less than 1 foot, areas of 100-year flooding where the contributing drainage area is less than 1 square mile, and areas protected from 100-year flood by levees. No base flood elevations or depths are shown within this zone.</td>
+</tr>
+<tr class="even">
+<td>X (shaded and unshaded) B, and C</td>
+<td>The flood insurance rate zones that corresponds to areas outside the 500-year floodplain, areas within the 500- year floodplain, and areas of 100-year flooding where average depths are less than 1 foot, areas of 100-year flooding where the contributing drainage area is less than 1 square mile, and areas protected from 100-year flood by levees. No base flood elevations or depths are shown within these zones.</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+Acronym
+</th>
+<th style="text-align:right;">
+Longform
+</th>
+<th style="text-align:right;">
+Definition
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+500-Year Flood
+</td>
+<td style="text-align:right;">
+See 0.2-Percent-Annual-Chance Flood
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+50-Year Flood
+</td>
+<td style="text-align:right;">
+See 2-Percent-Annual-Chance Flood.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Ordinance Level A
+</td>
+<td style="text-align:right;">
+Per 44 CFR 60.3 (a), this ordinance level occurs when the Administrator has not defined the special flood hazard areas within a community, has not provided water surface elevation data, and has not provided sufficient data to identify the floodway or coastal high hazard are, but the community has indicated the presence of such hazards by submitting an application to participate in the Program.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Ordinance Level B
+</td>
+<td style="text-align:right;">
+Per 44 CFR 60.3 (b), this ordinance level occurs when the Administrator has designated areas of special flood hazards (A zones) by the publication of a community’s FHBM or FIRM, but has neither produced water suface elevation data nor identified a floodway or coastal high hazard area.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Ordinance Level C
+</td>
+<td style="text-align:right;">
+Per 44 CFR 60.3 (c), this ordinance level occurs when the Administrator has provided a notice of final flood elevations for one or more special flood hazard areas on the community’s FIRM and, if appropriate, has designated other special flood hazard areas without base flood elevations on the community’s FIRM, but has not identified a regulatory floodway or coastal high hazard area.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Ordinance Level D
+</td>
+<td style="text-align:right;">
+Per 44 CFR 60.3 (d), this ordinance level occurs when the Administrator has provided a notice of final flood elevations within Zones A1-30 and/or AE on the community’s FIRM and, if appropriate, has designated AO zones, AH zones, A99 zones, and A zones on the community’s FIRM, and has provided data from which the community shall designate its regulatory floodway.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Ordinance Level E
+</td>
+<td style="text-align:right;">
+Per 44 CFR 60.3 (e), this ordinance level occurs when the Administrator has provided a notice of final base flood elevations within Znes A1-30 and/or AE on the community’s FIRM and, if appropriate, has designated AH zones, AO zones, A99 zones, and A zones on the community’s FIRM, and has identified on the community’s FIRM coastal high hazard areas by designating Zones V1-30, and/or V.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Unnumbered A Zone
+</td>
+<td style="text-align:right;">
+Flood insurance rate zones, designated “Zone A” on a FIRM, that are based on approximate studies.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+zonal classification
+</td>
+<td style="text-align:right;">
+Classification based data set value (ranges) and/or material properties or other attributes specified for polygonal regions as is common with GIS products.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+SFHA
+</td>
+<td style="text-align:right;">
+Special Flood Hazard Area
+</td>
+<td style="text-align:right;">
+The area delineated on a National Flood Insurance Program map as being subject to inundation by the base flood. SFHAs are determined using statistical analyses of records of riverflow, storm tides, and rainfall; information obtained through consultation with a community; floodplain topographic surveys; and hydrologic and hydraulic analyses.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+SOMA
+</td>
+<td style="text-align:right;">
+Summary of Map Actions
+</td>
+<td style="text-align:right;">
+A list, generated by FEMA and delivered to the community, that summarizes the LOMAs, LOMR-Fs, and LOMRs that are or will be affected by a physical update to a FIRM.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+SOMA Category 1
+</td>
+<td style="text-align:right;">
+SOMA Category 1 - LOMRs and LOMAs Incorporated
+</td>
+<td style="text-align:right;">
+The modifications effected by the LOMRs and LOMAs have been reflected on the Preliminary copies of the revised FIRM panels. However, these LOMRs and LOMAs will remain in effect until the revised FIRM becomes effective.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+SOMA Category 2
+</td>
+<td style="text-align:right;">
+SOMA Category 2 - LOMRs and LOMAs Not Incorporated (Revalidated)
+</td>
+<td style="text-align:right;">
+The modifications effected by the LOMRs and LOMAs have not been reflected on the Preliminary copies of the revised FIRM panels because of scale limitations or because the LOMR or LOMA issued had determined that the lot(s) or structure(s) involved were outside the Special Flood Hazard Area, as shown on the FIRM. These LOMRs and LOMAs will be revalidated free of charge 1 day after the revised FIRM becomes effective through a single letter that reaffirms the validity of the previous LOMC.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+SOMA Category 3
+</td>
+<td style="text-align:right;">
+SOMA Category 3 - LOMRs and LOMAs Superseded
+</td>
+<td style="text-align:right;">
+The modifications effected by the LOMRs and LOMAs have not been reflected on the Preliminary copies of the revised FIRM panels because they are being superseded by new detailed flood hazard information or the information available was not sufficient to make a determination. These LOMRs and LOMAs will no longer be in effect when the revised FIRM becomes effective.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+SOMA Category 4
+</td>
+<td style="text-align:right;">
+SOMA Category 4 - LOMRs and LOMAs To Be Redetermined
+</td>
+<td style="text-align:right;">
+The LOMCs in Category 2 will be revalidated through a single letter that reaffirms the validity of the determination in the previously issued LOMC. For LOMCs issued for multiple lots or structures where the determination for one or more of the lots or structures has changed, the LOMC cannot be revalidated through this administrative process. The NSP will review the data previously submitted for the LOMR or LOMA request and issue a new determination for the affected properties after the effective date of the revised FIRM.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Zone A
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+The flood insurance rate zone that corresponds to the 100-year floodplains that are determined in the FIS by approximate methods. Because detailed hydraulic analyses are not performed for such areas, no base flood elevations or depths are shown within this zone.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Zone A99
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+The flood insurance rate zone that corresponds to areas of the 100-year floodplain what will be protected by a Federal flood protection system where construction has reached specified statutory milestones. No base flood elevations or depths are shown within this zone.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Zone AE
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+The flood insurance rate zone that corresponds to the 100-year floodplains that are determined in the FIS by detailed methods. In most instances, whole-foot base flood elevations derived from the detailed hydraulic analyses are shown at selected intervals within this zone.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Zone AH
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+The flood insurance rate zone that corresponds to the 100-year shallow flooding (usually areas of ponding) where average depths are between 1 and 3 feet. Whole-foot base flood elevations are derived from detailed hydraulic analyses are shown at selected intervals within this zone.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Zone AO
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+The flood insurance rate zone that corresponds to the 100-year shallow flooding ( usually sheet flow on sloping terrain) where average depths are between 1 and 3 feet. Average whole-foot depths derived from the detailed hydraulic analyses. The highest top of curb elevation adjacent to the lowest adjacent grade (LAG) must be submitted if the request lies within this zone.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Zone AR
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Zone AR is the flood insurance rate zone used to depict areas protected from flood hazards by flood control structures, such as a levee, that are being restored. FEMA will consider using the Zone AR designation for a community if the flood protection system has been deemed restorable by a Federal agency in consultation with a local project sponsor; a minimum level of flood protection is still provided to the community by the system; and restoration of the flood protection system is scheduled to begin within a designated time period and in accordance with a progress plan negotiated between the community and FEMA. Mandatory purchase requirements for flood insurance will apply in Zone AR, but the rate will not exceed the rate for unnumbered A zones if the structure is built in compliance with Zone AR floodplain management regulations. For floodplain management in Zone AR areas, elevation is not required for improvements to existing structures. However, for new construction, the structure must be elevated (or floodproofed for non-residential structures) such that the lowest floor, including basement, is a maximum of 3 feet above the highest adjacent existing grade if the depth of the base flood elevation (BFE) does not exceed 5 feet at the proposed development site. For infill sites, rehabilitation of existing structures, or redevelopment of previously developed areas, there is a 3 foot elevation requirement regardless of the depth of the BFE at the project site. The Zone AR designation will be removed and the restored flood control system shown as providing protection from the 1% annual chance flood on the NFIP map upon completion of the restoration project and submittal of all the necessary data to FEMA.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Zone D
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+The flood insurance rate zone that corresponds to unstudied areas where flood hazards are undetermined but possible.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Zone Gutter
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Boundary, shown on a Flood Insurance Rate Map, dividing Special Flood Hazard Areas of different Base Flood Elevations, base flood depths, flood velocities, or flood insurance risk zone designations.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Zone V
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+The flood insurance rate zone that corresponds to the 100-year costal floodplains that have additional hazards associated with storm waves. Because approximate hydraulic analyses are performed for such areas, no base flood elevations (BFEs) are shown within this zone. Mandatory flood insurance purchase requirements apply.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Zone VE
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Zone VE is the flood insurance rate zone that corresponds to the 100-year coastal floodplains that have additional hazards associated with storm waves. BFEs derived from the detailed hydraulic analyses are shown at selected intervals within this zone. Mandatory flood insurance purchase requirements apply.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Zone X
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+The flood insurance rate zone that corresponds to areas outside the 500-year floodplain, areas within the 500- year floodplain, and areas of 100-year flooding where average depths are less than 1 foot, areas of 100-year flooding where the contributing drainage area is less than 1 square mile, and areas protected from 100-year flood by levees. No base flood elevations or depths are shown within this zone.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Zone X (shaded and unshaded) B, and C
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Are the flood insurance rate zones that corresponds to areas outside the 500-year floodplain, areas within the 500- year floodplain, and areas of 100-year flooding where average depths are less than 1 foot, areas of 100-year flooding where the contributing drainage area is less than 1 square mile, and areas protected from 100-year flood by levees. No base flood elevations or depths are shown within these zones.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="aside-modifications-to-these-maps" class="level5">
+<h5 class="anchored" data-anchor-id="aside-modifications-to-these-maps">Aside: Modifications to these maps</h5>
+<p>If you want to build in these zones or have a property reevaluated for flood insurance purposes, there are two primary ways to go about accomplishing that. You can either receive a Letter of Map amendment, or a Letter of map Revision. LOMA’s “A Letter of Map Amendment (LOMA) is an official amendment, by letter, to an effective NFIP map. A LOMA establishes a property’s location in relation to the SFHA.” A Letter of Map Revision (LOMR) “is an official revision, by letter, to an effective NFIP map. A LOMR may change flood insurance risk zones, floodplain and/or floodway boundary delineations, planimetric features, and/or BFE.”</p>
+</section>
+<section id="aside-blending-use-cases" class="level5">
+<h5 class="anchored" data-anchor-id="aside-blending-use-cases">Aside: Blending use cases</h5>
+<p>As I allude to, I do not classify FIRM’s as a FIM product. This is a function of both my relative “power user” status as a hydrologist and how these maps are used across the country. While FIRMS represent the “best available information” for a large swath of the country, there are locations which have neither product, there are locations which have both standard BLE models and FIRMS, and there are locations which have heavy invested in custom hydraulic modeling. None of these different data products will align perfectly. Additionally, much like all “federal” regulations, these set that minimum baseline, but states and counties may opt to adopt more rigorous standards. The standard “better practice” as used now is to compare both and use whichever has the most extent as an informed recommendation. It’s important to note however, that the FIRM extent takes legal precedent in enforcement, even if an alternative model shows greater extents.</p>
+</section>
+<section id="aside-disaster-recovery-and-payouts" class="level5">
+<h5 class="anchored" data-anchor-id="aside-disaster-recovery-and-payouts">Aside: Disaster recovery and payouts</h5>
+<p>One of the commonly used metrics in the use of these flood insurance programs and the National Flood Insurance Program is the 50% rule. If a building is flooded, insurance payouts can occur in a few different ways. If a building is historic, the renovations may take place but for every dollar spent, a match in flood prevention measures must take place. If the building is not historic and is more than 50% destroyed, renovations must also include bringing the structure back up to code. Enforcement and interpretation is up to the states, FEMA, flood insurance providers, and the lawyers. I just like making the maps and designing the structures.</p>
+<p>Sources: https://sarasota.wateratlas.usf.edu/upload/documents/FloodplainFacts.pdf https://www.fema.gov/pdf/nfip/manual201205/content/16_maps.pdf https://adeca.alabama.gov/faq/what-are-the-different-types-of-letters-of-map-change-lomcs/#:~:text=LOMA%20%E2%80%93%20A%20Letter%20of%20Map,to%20an%20effective%20NFIP%20map.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="climate-and-weather" class="level2">
+<h2 class="anchored" data-anchor-id="climate-and-weather">Climate and Weather</h2>
+<section id="surface-temperature" class="level3">
+<h3 class="anchored" data-anchor-id="surface-temperature">Surface Temperature</h3>
+<p>Thermal satellite sensors can provide surface temperature and emissivity information. The Earth Engine data catalog includes both land and sea surface temperature products derived from several spacecraft sensors, including MODIS, ASTER, and AVHRR, in addition to raw Landsat thermal data.</p>
+</section>
+<section id="climate" class="level3">
+<h3 class="anchored" data-anchor-id="climate">Climate</h3>
+<p>Climate models generate both long-term climate predictions and historical interpolations of surface variables. The Earth Engine catalog includes historical reanalysis data from NCEP/NCAR, gridded meteorological datasets like NLDAS-2, and GridMET, and climate model outputs like the University of Idaho MACAv2-METDATA and the NASA Earth Exchange’s Downscaled Climate Projections.</p>
+</section>
+<section id="atmospheric" class="level3">
+<h3 class="anchored" data-anchor-id="atmospheric">Atmospheric</h3>
+<p>You can use atmospheric data to help correct image data from other sensors, or you can study it in its own right. The Earth Engine catalog includes atmospheric datasets such as ozone data from NASA’s TOMS and OMI instruments and the MODIS Monthly Gridded Atmospheric Product.</p>
+</section>
+<section id="pmp" class="level3">
+<h3 class="anchored" data-anchor-id="pmp">PMP</h3>
+<p>From NOAA https://hdsc.nws.noaa.gov/pfds/pfds_map_cont.html: https://hdsc.nws.noaa.gov/cgi-bin/new/fe_text.csv?lat=38.0000&amp;lon=-95.0000&amp;data=depth&amp;units=english&amp;series=pds&amp;selAddr=Bronson,%20Kansas,%20USA&amp;selElevNum=1039&amp;selElevSym=ft&amp;selStaName=-</p>
+</section>
+<section id="weather" class="level3">
+<h3 class="anchored" data-anchor-id="weather">Weather</h3>
+<p>Weather datasets describe forecasted and measured conditions over short periods of time, including precipitation, temperature, humidity, and wind, and other variables. Earth Engine includes forecast data from NOAA’s Global Forecast System (GFS) and the NCEP Climate Forecast System (CFSv2), as well as sensor data from sources like the Tropical Rainfall Measuring Mission (TRMM).</p>
+</section>
+</section>
+<section id="imagery" class="level2">
+<h2 class="anchored" data-anchor-id="imagery">Imagery</h2>
+<section id="landsat" class="level3">
+<h3 class="anchored" data-anchor-id="landsat">Landsat</h3>
+<p>Landsat, a joint program of the USGS and NASA, has been observing the Earth continuously from 1972 through the present day. Today the Landsat satellites image the entire Earth’s surface at a 30-meter resolution about once every two weeks, including multispectral and thermal data.</p>
+</section>
+<section id="sentinel" class="level3">
+<h3 class="anchored" data-anchor-id="sentinel">Sentinel</h3>
+<p>The Copernicus Program is an ambitious initiative headed by the European Commission in partnership with the European Space Agency (ESA). The Sentinels include all-weather radar images from Sentinel-1A and -1B, high-resolution optical images from Sentinel 2A and 2B, as well as ocean and land data suitable for environmental and climate monitoring from Sentinel 3.</p>
+</section>
+<section id="modis" class="level3">
+<h3 class="anchored" data-anchor-id="modis">MODIS</h3>
+<p>The Moderate Resolution Imaging Spectroradiometer (MODIS) sensors on NASA’s Terra and Aqua satellites have been acquiring images of the Earth daily since 1999, including daily imagery, 16-day BRDF-adjusted surface reflectance, and derived products such as vegetation indices and snow cover.</p>
+</section>
+<section id="high-resolution-imagery" class="level3">
+<h3 class="anchored" data-anchor-id="high-resolution-imagery">High-Resolution Imagery</h3>
+<p>High-resolution imagery captures the finer details of landscapes and urban environments. The US National Agriculture Imagery Program (NAIP) offers aerial image data of the US at one-meter resolution, including nearly complete coverage every several years since 2003.</p>
+</section>
+</section>
+<section id="geophysical" class="level2">
+<h2 class="anchored" data-anchor-id="geophysical">Geophysical</h2>
+<section id="terrain" class="level3">
+<h3 class="anchored" data-anchor-id="terrain">Terrain</h3>
+<p>Digital Elevation Models (DEMs) describe the shape of Earth’s terrain. The Earth Engine data catalog contains several global DEMs such as Shuttle Radar Topography Mission (SRTM) data at 30-meter resolution, regional DEMs at higher resolutions, and derived products such as the WWF’s HydroSHEDS hydrology database.</p>
+<section id="dep" class="level4">
+<h4 class="anchored" data-anchor-id="dep">3DEP</h4>
+<p><a href="https://usgs.entwine.io/">https://usgs.entwine.io/</a>, the footprints live <a href="https://usgs.entwine.io/boundaries/resources.geojson">here</a>.</p>
+<pre><code>http(s)://&lt;bucket&gt;.s3.amazonaws.com/&lt;object&gt;
+http(s)://s3.amazonaws.com/&lt;bucket&gt;/&lt;object&gt;</code></pre>
+<p>From the URL in /<code>aws s3 sync s3://usgs-lidar-public/USGS_LPC_NY_Sandy_Ul_Du_Or_2013_LAS_2016/</code></p>
+<p>Related: [[CA_Brushes.qmd]] CA_Brushes.qmd</p>
+</section>
+</section>
+<section id="land-cover" class="level3">
+<h3 class="anchored" data-anchor-id="land-cover">Land Cover</h3>
+<p>Land cover maps describe the physical landscape in terms of land cover classes such as forest, grassland, and water. Earth Engine includes a wide variety of land cover datasets, from near real-time Dynamic World to global products such as ESA World Cover.</p>
+</section>
+<section id="coastal-land-cover" class="level3">
+<h3 class="anchored" data-anchor-id="coastal-land-cover">Coastal Land Cover</h3>
+</section>
+<section id="c-cap-high-resolution-land-cover" class="level3">
+<h3 class="anchored" data-anchor-id="c-cap-high-resolution-land-cover">C-CAP High Resolution Land Cover</h3>
+<p>https://coast.noaa.gov/digitalcoast/data/ccaphighres.html A 1 to 2.4 meter land cover classification dataset that has coverage of the coasts and includes</p>
+<p>The new 1-meter products are useful at the local level in ways not previously possible with national-level data. Advanced artificial intelligence combined with expert human analysis, review, and editing are used to produce these high-quality, standardized, raster-based map products.</p>
+</section>
+<section id="cropland" class="level3">
+<h3 class="anchored" data-anchor-id="cropland">Cropland</h3>
+<p>Cropland data is key to understanding global water consumption and agricultural production. Earth Engine includes a number of cropland data products such as the USDA NASS Cropland Data Layers, as well as layers from the Global Food Security-Support Analysis Data (GFSAD) including cropland extent, crop dominance, and watering sources.</p>
+</section>
+<section id="vector-data" class="level3">
+<h3 class="anchored" data-anchor-id="vector-data">Vector data</h3>
+<p>Data from other satellite image sensors is available in Earth Engine as well, including night-time imagery from the Defense Meteorological Satellite Program’s Operational Linescan System (DMSP-OLS), which has collected imagery of night-time lights at approximately 1-kilometer resolution continuously since 1992.</p>
+</section>
+<section id="other-geophysical-data" class="level3">
+<h3 class="anchored" data-anchor-id="other-geophysical-data">Other Geophysical Data</h3>
+<p>Data from other satellite image sensors is available in Earth Engine as well, including night-time imagery from the Defense Meteorological Satellite Program’s Operational Linescan System (DMSP-OLS), which has collected imagery of night-time lights at approximately 1-kilometer resolution continuously since 1992.</p>
+</section>
+</section>
+<section id="administrative-and" class="level2">
+<h2 class="anchored" data-anchor-id="administrative-and">Administrative and</h2>
+<p><code>ftp://ftp2.census.gov/geo/tiger/</code></p>
+<section id="other" class="level3">
+<h3 class="anchored" data-anchor-id="other">Other</h3>
+<p><a href="https://opensourcegisdata.com/index.html">Open Source GIS Data</a>, specifically the <a href="https://opensourcegisdata.com/state/index.html">state data index</a> based on efforts from <a href="http://mappingsupport.com/">MappingSupport</a> Cartographic line data: http://www.projectlinework.org/<br>
+Base imagery: https://www.naturalearthdata.com/downloads/10m-raster-data/<br>
+Easy SRTM tiles: http://dwtkns.com/srtm30m/ Topo resources: http://www.earthpoint.us/TopoMap.aspx<br>
+Shaded relief data: http://www.shadedreliefarchive.com/ Water resources: https://www.hydroshare.org/landingPage/<br>
+Earth as art: https://eros.usgs.gov/image-gallery/earth-as-art https://stn.wim.usgs.gov/FEV/#2022Ian Weather shmorgasbord: * Forecasts: * https://weather.cod.edu/forecast/ * https://www.weather.gov/gis/PublicZones https://www.usgs.gov/mission-areas/water-resources/science/usgs-flood-information#web-tools’; https://datasetsearch.research.google.com/ https://www.google.com/publicdata/directory https://communitycrimemap.com/</p>
+<section id="polaris" class="level4">
+<h4 class="anchored" data-anchor-id="polaris">Polaris</h4>
+<p>http://hydrology.cee.duke.edu/POLARIS/PROPERTIES/v1.0/Readme</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 76%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>silt</td>
+<td>Silt percentage</td>
+<td>%</td>
+</tr>
+<tr class="even">
+<td>sand</td>
+<td>Sand Percentage</td>
+<td>%</td>
+</tr>
+<tr class="odd">
+<td>clay</td>
+<td>Clay Percentage</td>
+<td>%</td>
+</tr>
+<tr class="even">
+<td>bd</td>
+<td>Bulk Density</td>
+<td>g/cm3</td>
+</tr>
+<tr class="odd">
+<td>theta_s</td>
+<td>Saturated Soil Water Content</td>
+<td>m3/m3</td>
+</tr>
+<tr class="even">
+<td>theta_r</td>
+<td>Residual Soil Water Content</td>
+<td>m3/m3</td>
+</tr>
+<tr class="odd">
+<td>ksat</td>
+<td>Saturated Hydraulic Conductivity</td>
+<td>log10(cm/hr)</td>
+</tr>
+<tr class="even">
+<td>ph</td>
+<td>Soil pH in H2O</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>om</td>
+<td>Organic Matter</td>
+<td>log10(%)</td>
+</tr>
+<tr class="even">
+<td>lambda</td>
+<td>Pore Size Distribution Index (Brooks-Corey)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>hb</td>
+<td>Bubbling Pressure (Brooks-Corey)</td>
+<td>log10(kPa)</td>
+</tr>
+<tr class="even">
+<td>n</td>
+<td>Measure of the pore size distribution (Van Genuchten)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>alpha</td>
+<td>Scale parameter inversely proportional to mean pore diameter (Van Genuchten)</td>
+<td>log10(kPa-1)</td>
+</tr>
+</tbody>
+</table>
+<p>Across 6 depth ranges (0-5 cm, 5-15 cm, 15-30 cm, 30-60 cm, 60-100 cm, and 100-200 cm) and with (5th, Arithmetic mean, Mode, Median, and 95th percentiles) statistical reporting.</p>
+<p>**<img src="./_152af02fb4701c6c631d29f42e90bb09.png" class="img-fluid" alt="152af02fb4701c6c631d29f42e90bb09.png"></p>
+</section>
+</section>
+<section id="climater" class="level3">
+<h3 class="anchored" data-anchor-id="climater">ClimateR</h3>
+<p>See [[20241009121912]] Setting up ClimateR</p>
+</section>
+<section id="gage-data" class="level3">
+<h3 class="anchored" data-anchor-id="gage-data">Gage data</h3>
+</section>
+</section>
+<section id="nwis" class="level2">
+<h2 class="anchored" data-anchor-id="nwis">NWIS</h2>
+</section>
+<section id="ahps" class="level2">
+<h2 class="anchored" data-anchor-id="ahps">AHPS</h2>
+</section>
+</section>
+<section id="terrain-tools" class="level1">
+<h1>terrain tools</h1>
+<p>https://mikejohnson51.github.io/terrain_sliceR/</p>
+</section>
+<section id="bathymetry" class="level1">
+<h1>Bathymetry</h1>
+<p>https://rimorphis.org/files/resources/workshop2/overview.pdf https://rimorphis.org/files/resources/workshop2/tools.pdf</p>
+<section id="open-data" class="level3">
+<h3 class="anchored" data-anchor-id="open-data">Open data</h3>
+<p>Terrain - https://github.com/mikejohnson51/climateR-catalogs Land Cover - https://github.com/mikejohnson51/climateR-catalogs Precip: https://www.cocorahs.org/ https://gisgeography.com/download-usgs-topo-maps-free/</p>
+</section>
+<section id="imerg" class="level2">
+<h2 class="anchored" data-anchor-id="imerg">IMERG</h2>
+<p>IMERG Known anomalies include:<br>
+* IMERG overestimates light precip, but at monthly scales this washes out, that added “fake drizzle” accommodates for accumulation values measured at the monthly scale<br>
+* Coastal boundaries are blocky and artifact-d<br>
+* Processing errors reduce input scenes * “Flashy” precip from two sources: * The GPROF retrievals, and the subsequent IMERG calibrations for them, are not entirely consistent between sensors. Accordingly, users will observe “flashing” in the precipitation fields as successive overpasses in a particular location are populated by different sensors. * The IR estimates sometimes exhibit “flashing” because successive images in a given region are successively populated with data from different geo-IR satellites, usually with one having a near-nadir view, but then dropping out and being replaced by high-zenith-angle data from an adjacent geo-IR satellite. * Sensor drift: The mix of satellites has changed over time, which affects the overall performance of the algorithm in two ways. First, the relative weighting of conical-scan imagers versus crosstrack-scan sounders shifts, and second, the relative proportion of IR-based estimates changes. The PMW sensor inventory is shown in “sensors contributing to IMERG”. See Behrangi et al.&nbsp;(2014) for more discussion of sensor performance for legacy algorithms. * and a whole host of outages as outlined below:</p>
+</section>
+<section id="infrastructure" class="level2">
+<h2 class="anchored" data-anchor-id="infrastructure">Infrastructure</h2>
+<section id="national-bridge-inventory" class="level3">
+<h3 class="anchored" data-anchor-id="national-bridge-inventory">National Bridge Inventory</h3>
+<p>The National Bridge Inventory (NBI) serves as the authoritative data source for the location, description, classification, and condition of the critical bridge infrastructure used for inventory and legislative purposes. Maintained by the Federal Highway Administration (FHWA), this extensive dataset encompasses information on over 735,000 bridges along public roads, including interstate highways, U.S. highways, state and county roads, and publicly accessible bridges on federal and tribal lands. This data can be accessed (in ASCII form) <a href="https://www.fhwa.dot.gov/bridge/nbi/ascii.cfm">here</a>. See how these are being transformed to hydrolocations for the hydrofabric <a href="./NBIHydrolocation.html">here</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="datasources_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="related-historic-bridges-.org" class="level5">
+<h5 class="anchored" data-anchor-id="related-historic-bridges-.org">Related: Historic Bridges .org</h5>
+<p>“<a href="https://historicbridges.org/index.php">HistoricBridges.org</a> offers professional detail-oriented photo-documentation, information, and preservation advocacy for all types of historic bridges except covered bridges. HistoricBridges.org is authored by Nathan Holth.”</p>
+</section>
+</section>
+<section id="electricity-use" class="level3">
+<h3 class="anchored" data-anchor-id="electricity-use">Electricity Use</h3>
+<p>https://github.com/mdbartos/RIPS - Electric</p>
+
+
+
+</section>
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-boxScienceStatistics1976" class="csl-entry" role="listitem">
+Box, George E. P. 1976. <span>“Science and <span>Statistics</span>.”</span> <em>Journal of the American Statistical Association</em> 71 (356): 791–99. <a href="https://doi.org/10.1080/01621459.1976.10480949">https://doi.org/10.1080/01621459.1976.10480949</a>.
+</div>
+<div id="ref-FEMADirectory" class="csl-entry" role="listitem">
+<span>“<span>FEMA Directory</span>.”</span> n.d. https://hazards.fema.gov/femaportal/wps/portal/!ut/p/z0/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zifQI83D38vQ38DdyCLQ0CnY1djAN9TY0NzAz0C7IdFQHJLwc3/. Accessed March 6, 2024.
+</div>
+<div id="ref-lawlerEvaluationSpatioTemporalAsset2025" class="csl-entry" role="listitem">
+Lawler, Seth, Thomas Williams, William Lehman, Christina Lindemer, David Rosa, Celso Ferreira, and Chen Zhang. 2025. <span>“Evaluation of the <span>SpatioTemporal Asset Catalog</span> for Management and Discovery of <span>FAIR</span> Flood Hazard Models.”</span> <em>Environmental Modelling &amp; Software</em> 183 (January): 106230. <a href="https://doi.org/10.1016/j.envsoft.2024.106230">https://doi.org/10.1016/j.envsoft.2024.106230</a>.
+</div>
+<div id="ref-OGCWaterML2" class="csl-entry" role="listitem">
+<span>“<span>OGC</span><span></span> <span>WaterML</span> 2: <span>Part</span> 3 - <span>Surface Hydrology Features</span> (<span>HY</span>_<span>Features</span>) - <span>Conceptual Model</span>.”</span> n.d. https://docs.ogc.org/is/14-111r6/14-111r6.html. Accessed January 31, 2025.
+</div>
+<div id="ref-sundwallWeDonTalk" class="csl-entry" role="listitem">
+Sundwall, Jed. n.d. <span>“We <span>Don</span>’t <span>Talk About Open Data</span>.”</span> https://radiant.earth/blog/2023/05/we-dont-talk-about-open-data/. Accessed October 19, 2023.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
