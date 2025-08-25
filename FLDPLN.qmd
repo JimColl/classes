@@ -1,0 +1,43 @@
+---
+title: fldpln
+bibliography: ZoteroDBase.bib
+---
+::: {.content-hidden}
+# FLDPLN
+[[20220227120733]] 01 Welcome to my Zenkettle
+[[20230829120127]] _framing my digital footprint	
+
+In page links:
+
+Related:
+[[FIM_primer.qmd]] FIM_primer.qmd
+
+Model surface as NED: [[DEM.qmd]] DEM.qmd
+
+:::
+
+![](./_fldplndshbrd.PNG)
+
+## Executive Summary
+
+As a pixel based, multi-source flood inundation library, FLDPLN represents the next step up in terms of complexity and process representation in flood inundation library creation by representing both backfill and spillover flooding processes using geospatial approximations.  The high resolution nature of the library combined with the flexible library access patterns makes FLDPLN more suited to flexible access patterns, high-interest areas, and anyone who could potential benefit from a more complex approach to flood inundation mapping without the need to include expensive shallow water equation solvers.  See the libraries in action at the [Kansas Flood Mapping Dashboard](https://ku.maps.arcgis.com/apps/dashboards/6de842421d3945e3ae0fe16372416b10).
+
+::: {.content-hidden}
+
+## HowTo
+
+
+## Tutorials
+
+## explanation
+### What makes FLDPLN unique?
+FLDPLN has many potential ways to inundate an area (FPP), and so REM only really makes sense in the context of a single source (FSP).
+
+# Personal notes
+https://kars.ku.edu/pages/57ede4458af74747aa739d18dac74465
+https://github.com/AlabamaWaterInstitute/fldpln?tab=readme-ov-file
+
+![_a2e8fb69373708a9afd853997ae7f23d.png](./_a2e8fb69373708a9afd853997ae7f23d.png)
+![_562f59726eadc613601c8c4063d32086.png](./_562f59726eadc613601c8c4063d32086.png)
+
+:::
